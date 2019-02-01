@@ -38,6 +38,11 @@ Public Const PERMISO_RUTA_DETALLE_ADD = "RutaDetalle_Agregar"
 Public Const PERMISO_RUTA_DETALLE_MODIFY = "RutaDetalle_Modificar"
 Public Const PERMISO_RUTA_DETALLE_DELETE = "RutaDetalle_Eliminar"
 
+Public Const PERMISO_RUTALUGARGRUPO = "RutaLugarGrupo"
+Public Const PERMISO_RUTALUGARGRUPO_ADD = "RutaLugarGrupo_Agregar"
+Public Const PERMISO_RUTALUGARGRUPO_MODIFY = "RutaLugarGrupo_Modificar"
+Public Const PERMISO_RUTALUGARGRUPO_DELETE = "RutaLugarGrupo_Eliminar"
+
 Public Const PERMISO_LISTA_PRECIO = "Lista_Precio"
 Public Const PERMISO_LISTA_PRECIO_ADD = "Lista_Precio_Agregar"
 Public Const PERMISO_LISTA_PRECIO_MODIFY = "Lista_Precio_Modificar"

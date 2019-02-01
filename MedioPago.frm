@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Begin VB.Form frmMedioPago 
    Caption         =   "Medios de Pago"
@@ -252,7 +252,7 @@ Public Function FillListView(ByVal IDMedioPago As Byte) As Boolean
     Set lvwData.SelectedItem = lvwData.ListItems(KeySave)
     lvwData.SelectedItem.EnsureVisible
     
-    If frmMDI.ActiveForm.Name = Me.Name And GetForegroundWindow() = frmMDI.hWnd And frmMDI.WindowState <> vbMinimized Then
+    If frmMDI.ActiveForm.Name = Me.Name And GetForegroundWindow() = frmMDI.hwnd And frmMDI.WindowState <> vbMinimized Then
         lvwData.SetFocus
     End If
     
@@ -374,7 +374,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 Set MedioPago = Nothing
             End If
         Case "DELETE"
-            If pCPermiso.GotPermission(PERMISO_PERSONA_RESPUESTA_DELETE) Then
+            If pCPermiso.GotPermission(PERMISO_MEDIOPAGO_DELETE) Then
                 If lvwData.SelectedItem Is Nothing Then
                     MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title
                     lvwData.SetFocus

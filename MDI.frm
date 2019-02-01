@@ -9,7 +9,7 @@ Begin VB.MDIForm frmMDI
    ClientHeight    =   5970
    ClientLeft      =   225
    ClientTop       =   870
-   ClientWidth     =   20790
+   ClientWidth     =   20250
    Icon            =   "MDI.frx":0000
    LinkTopic       =   "MDIForm1"
    LockControls    =   -1  'True
@@ -35,8 +35,8 @@ Begin VB.MDIForm frmMDI
       Left            =   0
       TabIndex        =   6
       Top             =   5595
-      Width           =   20790
-      _ExtentX        =   36671
+      Width           =   20250
+      _ExtentX        =   35719
       _ExtentY        =   661
       ShowTips        =   0   'False
       _Version        =   393216
@@ -44,7 +44,7 @@ Begin VB.MDIForm frmMDI
          NumPanels       =   9
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   26741
+            Object.Width           =   25788
             MinWidth        =   1764
             Picture         =   "MDI.frx":08CA
             Key             =   "USUARIO"
@@ -87,6 +87,7 @@ Begin VB.MDIForm frmMDI
             Style           =   2
             Alignment       =   1
             AutoSize        =   2
+            Enabled         =   0   'False
             Object.Width           =   741
             MinWidth        =   2
             TextSave        =   "NUM"
@@ -108,7 +109,7 @@ Begin VB.MDIForm frmMDI
             AutoSize        =   2
             Object.Width           =   1588
             MinWidth        =   2
-            TextSave        =   "08/08/2018"
+            TextSave        =   "01/02/2019"
             Key             =   "DATE"
          EndProperty
          BeginProperty Panel9 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
@@ -117,7 +118,7 @@ Begin VB.MDIForm frmMDI
             AutoSize        =   2
             Object.Width           =   873
             MinWidth        =   2
-            TextSave        =   "23:51"
+            TextSave        =   "13:58"
             Key             =   "TIME"
          EndProperty
       EndProperty
@@ -191,8 +192,8 @@ Begin VB.MDIForm frmMDI
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   20790
-      _ExtentX        =   36671
+      Width           =   20250
+      _ExtentX        =   35719
       _ExtentY        =   1058
       ButtonWidth     =   1535
       ButtonHeight    =   1005
@@ -208,7 +209,7 @@ Begin VB.MDIForm frmMDI
             Object.ToolTipText     =   "Tablas de Datos Iniciales"
             Style           =   5
             BeginProperty ButtonMenus {66833FEC-8583-11D1-B16A-00C0F0283628} 
-               NumButtonMenus  =   34
+               NumButtonMenus  =   35
                BeginProperty ButtonMenu1 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "USUARIO_GRUPO"
                   Text            =   "Grupos de Usuarios"
@@ -240,96 +241,100 @@ Begin VB.MDIForm frmMDI
                   Text            =   "Detalle de Rutas"
                EndProperty
                BeginProperty ButtonMenu9 {66833FEE-8583-11D1-B16A-00C0F0283628} 
-                  Text            =   "-"
+                  Key             =   "RUTA_LUGARGRUPO"
+                  Text            =   "Rutas-Grupos de Lugares"
                EndProperty
                BeginProperty ButtonMenu10 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+                  Text            =   "-"
+               EndProperty
+               BeginProperty ButtonMenu11 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "CONDUCTOR_RUTA"
                   Text            =   "Rutas por Conductor"
                EndProperty
-               BeginProperty ButtonMenu11 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu12 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu12 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu13 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "LISTA_PRECIO"
                   Text            =   "Listas de Precios"
                EndProperty
-               BeginProperty ButtonMenu13 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu14 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu14 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu15 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "VEHICULO"
                   Text            =   "Vehículos"
                EndProperty
-               BeginProperty ButtonMenu15 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu16 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "VEHICULO_MANTENIMIENTO_GRUPO"
                   Text            =   "Grupos de Mantenimiento de Vehículos"
                EndProperty
-               BeginProperty ButtonMenu16 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu17 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "VEHICULO_MANTENIMIENTO"
                   Text            =   "Mantenimiento de Vehículos"
                EndProperty
-               BeginProperty ButtonMenu17 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu18 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu18 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu19 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "HORARIO"
                   Text            =   "Horarios"
                EndProperty
-               BeginProperty ButtonMenu19 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu20 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu20 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu21 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "CUENTACORRIENTE_CAJA"
                   Text            =   "Cajas de Cuenta Corriente"
                EndProperty
-               BeginProperty ButtonMenu21 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu22 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "CUENTACORRIENTE_GRUPO"
                   Text            =   "Grupos de Cuenta Corriente"
                EndProperty
-               BeginProperty ButtonMenu22 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu23 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "MEDIOPAGO"
                   Text            =   "Medios de Pago"
                EndProperty
-               BeginProperty ButtonMenu23 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu24 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu24 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu25 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "FERIADO"
                   Text            =   "Feriados"
                EndProperty
-               BeginProperty ButtonMenu25 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu26 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu26 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu27 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "DOCUMENTO_TIPO"
                   Text            =   "Tipos de Documento"
                EndProperty
-               BeginProperty ButtonMenu27 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu28 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "TELEFONO_TIPO"
                   Text            =   "Tipos de Teléfono"
                EndProperty
-               BeginProperty ButtonMenu28 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu29 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu29 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu30 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "PERSONA_ALARMA_GRUPO"
                   Text            =   "Grupos de Alarmas de Personas"
                EndProperty
-               BeginProperty ButtonMenu30 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu31 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "PERSONA_ALARMA"
                   Text            =   "Alarmas de Personas"
                EndProperty
-               BeginProperty ButtonMenu31 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu32 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu32 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu33 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "ALARMA"
                   Text            =   "Alarmas Generales"
                EndProperty
-               BeginProperty ButtonMenu33 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu34 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Text            =   "-"
                EndProperty
-               BeginProperty ButtonMenu34 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+               BeginProperty ButtonMenu35 {66833FEE-8583-11D1-B16A-00C0F0283628} 
                   Key             =   "CONTACTO_GRUPO"
                   Text            =   "Grupos de Contactos"
                EndProperty
@@ -1342,6 +1347,16 @@ Private Sub tlbMain_ButtonMenuClick(ByVal ButtonMenu As MSComctlLib.ButtonMenu)
                     frmRutaDetalle.WindowState = vbNormal
                 End If
                 frmRutaDetalle.SetFocus
+                Screen.MousePointer = vbDefault
+            End If
+        Case "DATOS_INICIALES_RUTA_LUGARGRUPO"
+            If pCPermiso.GotPermission(PERMISO_RUTALUGARGRUPO) Then
+                Screen.MousePointer = vbHourglass
+                frmRutaLugarGrupo.Show
+                If frmRutaLugarGrupo.WindowState = vbMinimized Then
+                    frmRutaLugarGrupo.WindowState = vbNormal
+                End If
+                frmRutaLugarGrupo.SetFocus
                 Screen.MousePointer = vbDefault
             End If
         Case "DATOS_INICIALES_CONDUCTOR_RUTA"

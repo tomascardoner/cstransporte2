@@ -253,6 +253,11 @@ Public Sub Load()
     Add PERMISO_RUTA_DETALLE_MODIFY, "Detalle de Rutas", "Modificar"
     Add PERMISO_RUTA_DETALLE_DELETE, "Detalle de Rutas", "Eliminar"
     
+    Add PERMISO_RUTALUGARGRUPO, "Rutas-Grupos de Lugares", "Ver"
+    Add PERMISO_RUTALUGARGRUPO_ADD, "Rutas-Grupos de Lugares", "Agregar"
+    Add PERMISO_RUTALUGARGRUPO_MODIFY, "Rutas-Grupos de Lugares", "Modificar"
+    Add PERMISO_RUTALUGARGRUPO_DELETE, "Rutas-Grupos de Lugares", "Eliminar"
+    
     Add PERMISO_LISTA_PRECIO, "Listas de Precios", "Ver"
     Add PERMISO_LISTA_PRECIO_ADD, "Listas de Precios", "Agregar"
     Add PERMISO_LISTA_PRECIO_MODIFY, "Listas de Precios", "Modificar"

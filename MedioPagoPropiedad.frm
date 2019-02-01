@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "msdatlst.ocx"
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmMedioPagoPropiedad 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Propiedades"
@@ -286,7 +286,7 @@ Private Sub cmdOK_Click()
     End If
     
     With mMedioPago
-    .Abreviatura = Trim(txtAbreviatura.Text)
+        .Abreviatura = Trim(txtAbreviatura.Text)
         .Nombre = txtNombre.Text
         .UtilizaOperacion = (chkUtilizaOperacion.Value = vbChecked)
         If .UtilizaOperacion Then

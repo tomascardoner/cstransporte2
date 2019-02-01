@@ -8,6 +8,7 @@ Public Const MODULE_LUGAR = "LU"
 Public Const MODULE_LUGAR_GRUPO = "LG"
 Public Const MODULE_RUTA = "RU"
 Public Const MODULE_RUTA_DETALLE = "RD"
+Public Const MODULE_RUTA_LUGARGRUPO = "RL"
 Public Const MODULE_LISTA_PRECIO = "LP"
 Public Const MODULE_LISTA_PRECIO_DETALLE = "LD"
 Public Const MODULE_VEHICULO = "VE"
@@ -347,6 +348,9 @@ Public Sub RefreshList_RefreshLugar(ByVal IDLugar As Long, Optional ByVal Update
     If CSM_Forms.IsLoaded("frmViajeDetallePropiedad") Then
         frmViajeDetallePropiedad.FillComboBoxLugar
     End If
+    If CSM_Forms.IsLoaded("frmRutaLugarGrupoPropiedad") Then
+        frmRutaLugarGrupoPropiedad.FillComboBoxLugar
+    End If
 End Sub
 
 Public Sub RefreshList_RefreshLugarGrupo(ByVal IDLugarGrupo As Long, Optional ByVal UpdateRefreshValue As Boolean = True)
@@ -358,6 +362,9 @@ Public Sub RefreshList_RefreshLugarGrupo(ByVal IDLugarGrupo As Long, Optional By
     End If
     If CSM_Forms.IsLoaded("frmRutaDetallePropiedad") Then
         frmRutaDetallePropiedad.FillComboBoxLugarGrupo
+    End If
+    If CSM_Forms.IsLoaded("frmRutaLugarGrupoPropiedad") Then
+        frmRutaLugarGrupoPropiedad.FillComboBoxLugarGrupo
     End If
 End Sub
 
@@ -373,6 +380,9 @@ Public Sub RefreshList_RefreshRuta(ByVal IDRuta As String, Optional ByVal Update
     End If
     If CSM_Forms.IsLoaded("frmRutaDetallePropiedad") Then
         frmRutaDetallePropiedad.FillComboBoxRuta
+    End If
+    If CSM_Forms.IsLoaded("frmRutaLugarGrupoPropiedad") Then
+        frmRutaLugarGrupoPropiedad.FillComboBoxRuta
     End If
     If CSM_Forms.IsLoaded("frmHorario") Then
         frmHorario.FillComboBoxRuta
@@ -413,6 +423,15 @@ Public Sub RefreshList_RefreshRutaDetalle(ByVal IDRuta As String, ByVal IDLugar 
         Else
             frmRutaDetalle.FillListView IDRuta, IDLugar
         End If
+    End If
+End Sub
+
+Public Sub RefreshList_RefreshRutaLugarGrupo(ByVal IDRuta As String, ByVal IDLugarGrupo As Long, Optional ByVal UpdateRefreshValue As Boolean = True)
+    If UpdateRefreshValue Then
+        RefreshList_UpdateValue MODULE_RUTA_LUGARGRUPO
+    End If
+    If CSM_Forms.IsLoaded("frmRutaLugarGrupo") Then
+        frmRutaLugarGrupo.FillListView IDRuta, IDLugarGrupo
     End If
 End Sub
 

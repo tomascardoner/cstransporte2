@@ -373,7 +373,7 @@ Begin VB.Form frmViaje
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   151257089
+            Format          =   96796673
             CurrentDate     =   36950
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -395,7 +395,7 @@ Begin VB.Form frmViaje
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   151257089
+            Format          =   96796673
             CurrentDate     =   36950
          End
          Begin VB.Label lblFechaAnd 
@@ -881,7 +881,7 @@ Public Sub FillComboBoxRuta()
     End If
     recRuta.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     cboRuta.Clear
-    cboRuta.AddItem "<Todas>"
+    cboRuta.AddItem ITEM_ALL_FEMALE
     Do While Not recRuta.EOF
         cboRuta.AddItem RTrim(recRuta("IDRuta").Value)
         recRuta.MoveNext
