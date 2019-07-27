@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmViajeDetallePropiedad 
@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   92667905
+      Format          =   107151361
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   92667907
+      Format          =   107151363
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   92667905
+      Format          =   107151361
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -2019,6 +2019,10 @@ Private Sub cmdSaldoActual_Click()
     Dim Persona As Persona
     
     If Val(txtPersona.Tag) > 0 Then
+        If Not pCPermiso.GotPermission(PERMISO_CUENTA_CORRIENTE) Then
+            Exit Sub
+        End If
+        
         Set Persona = New Persona
         If Val(txtPersonaCuentaCorriente.Tag) = 0 Then
             Persona.IDPersona = Val(txtPersona.Tag)
@@ -2047,6 +2051,9 @@ Private Sub cmdSaldoActual_Click()
         
         Screen.MousePointer = vbHourglass
         Load frmCuentaCorriente
+        frmCuentaCorriente.DatabaseName = pParametro.Database_Database
+        frmCuentaCorriente.IsHistory = False
+        frmCuentaCorriente.Caption = "Cuenta Corriente Actual"
         If Val(txtPersonaCuentaCorriente.Tag) = 0 Then
             frmCuentaCorriente.txtPersona.Tag = Val(txtPersona.Tag)
             frmCuentaCorriente.txtPersona.Text = txtPersona.Text
@@ -3113,7 +3120,11 @@ Private Sub cmdOK_Click()
                 .Cuotas = 0
                 .Operacion = ""
             End If
-            .ImporteCuentaCorriente = CCur(txtImporteCuentaCorriente.Text)
+            If mEsRutaEspecial Then
+                .ImporteCuentaCorriente = 0
+            Else
+                .ImporteCuentaCorriente = CCur(txtImporteCuentaCorriente.Text)
+            End If
             .ImprimirSaldo = (chkImprimirSaldo.Value = vbChecked)
             If CCur(txtImporteContado.Text) > 0 Then
                 If mMedioPago.IDCuentaCorrienteCaja = 0 Then

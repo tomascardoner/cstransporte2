@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form frmCuentaCorriente 
@@ -335,7 +335,7 @@ Begin VB.Form frmCuentaCorriente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   116916225
+            Format          =   107151361
             CurrentDate     =   36950
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -357,7 +357,7 @@ Begin VB.Form frmCuentaCorriente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   116916225
+            Format          =   107151361
             CurrentDate     =   36950
          End
          Begin VB.Label lblFechaAnd 
@@ -788,7 +788,7 @@ Public Function FillListView(ByVal IDMovimiento As Long) As Boolean
     
     Set mrecData = New ADODB.Recordset
     If SQL_Select_SaldoAnterior <> "" Then
-        mrecData.Source = "(" & SQL_Select_SaldoAnterior & SQL_From_SaldoAnterior & SQL_Where_SaldoAnterior & ")" & "UNION" & vbCr & SQL_Select & SQL_From & SQL_Where & "ORDER BY FechaHora, IDMovimiento"
+        mrecData.Source = "(" & SQL_Select_SaldoAnterior & SQL_From_SaldoAnterior & SQL_Where_SaldoAnterior & ") UNION" & vbCr & SQL_Select & SQL_From & SQL_Where & "ORDER BY FechaHora, IDMovimiento"
     Else
         mrecData.Source = SQL_Select & SQL_From & SQL_Where & "ORDER BY CuentaCorriente.FechaHora, CuentaCorriente.IDMovimiento"
     End If
