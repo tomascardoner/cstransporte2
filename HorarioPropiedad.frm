@@ -139,8 +139,8 @@ Begin VB.Form frmHorarioPropiedad
       Left            =   1200
       TabIndex        =   3
       Top             =   1440
-      Width           =   1395
-      _ExtentX        =   2461
+      Width           =   915
+      _ExtentX        =   1614
       _ExtentY        =   556
       _Version        =   393216
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -153,7 +153,7 @@ Begin VB.Form frmHorarioPropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   16711682
+      Format          =   107151363
       CurrentDate     =   36494
    End
    Begin VB.TextBox txtNotas 

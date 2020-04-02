@@ -20,6 +20,8 @@ Public IDLugarGrupo As Long
 Public Kilometro As Integer
 Public Duracion As Integer
 Public Espera As Integer
+Public HoraInicio As Date
+Public HoraFin As Date
 Public FechaHoraCreacion As Date
 Public IDUsuarioCreacion As Integer
 Public FechaHoraModificacion As Date
@@ -83,6 +85,8 @@ Public Function Load() As Boolean
         Kilometro = IIf(IsNull(mrecData("Kilometro").Value), -1, mrecData("Kilometro").Value)
         Duracion = IIf(IsNull(mrecData("Duracion").Value), -1, mrecData("Duracion").Value)
         Espera = IIf(IsNull(mrecData("Espera").Value), -1, mrecData("Espera").Value)
+        HoraInicio = IIf(IsNull(mrecData("HoraInicio").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("HoraInicio").Value)
+        HoraFin = IIf(IsNull(mrecData("HoraFin").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("HoraFin").Value)
         FechaHoraCreacion = mrecData("FechaHoraCreacion").Value
         IDUsuarioCreacion = mrecData("IDUsuarioCreacion").Value
         FechaHoraModificacion = mrecData("FechaHoraModificacion").Value
@@ -133,6 +137,8 @@ Public Function AddNew() As Boolean
     mrecData("Kilometro").Value = IIf(Kilometro = -1, Null, Kilometro)
     mrecData("Duracion").Value = IIf(Duracion = -1, Null, Duracion)
     mrecData("Espera").Value = IIf(Espera = -1, Null, Espera)
+    mrecData("HoraInicio").Value = IIf(HoraInicio = DATE_TIME_FIELD_NULL_VALUE, Null, HoraInicio)
+    mrecData("HoraFin").Value = IIf(HoraFin = DATE_TIME_FIELD_NULL_VALUE, Null, HoraFin)
     mrecData("FechaHoraCreacion").Value = Now
     mrecData("IDUsuarioCreacion").Value = pUsuario.IDUsuario
     mrecData("FechaHoraModificacion").Value = Now
@@ -177,6 +183,8 @@ Public Function Update() As Boolean
     mrecData("Kilometro").Value = IIf(Kilometro = -1, Null, Kilometro)
     mrecData("Duracion").Value = IIf(Duracion = -1, Null, Duracion)
     mrecData("Espera").Value = IIf(Espera = -1, Null, Espera)
+    mrecData("HoraInicio").Value = IIf(HoraInicio = DATE_TIME_FIELD_NULL_VALUE, Null, CStr(HoraInicio))
+    mrecData("HoraFin").Value = IIf(HoraFin = DATE_TIME_FIELD_NULL_VALUE, Null, CStr(HoraFin))
     mrecData("FechaHoraModificacion").Value = Now
     mrecData("IDUsuarioModificacion").Value = pUsuario.IDUsuario
     mrecData.Update
@@ -242,6 +250,8 @@ Private Sub InitializeValues()
     Kilometro = -1
     Duracion = -1
     Espera = -1
+    HoraInicio = DATE_TIME_FIELD_NULL_VALUE
+    HoraFin = DATE_TIME_FIELD_NULL_VALUE
     FechaHoraCreacion = DATE_TIME_FIELD_NULL_VALUE
     IDUsuarioCreacion = 0
     FechaHoraCreacion = DATE_TIME_FIELD_NULL_VALUE

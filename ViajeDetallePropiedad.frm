@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107151361
+      Format          =   107347969
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   107151363
+      Format          =   107347971
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107151361
+      Format          =   107347969
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -1456,6 +1456,10 @@ Private mCPagosToAdd As Collection
 Private mCPagosToUpdate As Collection
 Private mCPagosToDelete As Collection
 
+Private mTramo2_IDRuta As String
+Private mRutaDetalleOrigen As RutaDetalle
+Private mRutaDetalleDestino As RutaDetalle
+
 Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As ViajeDetalle)
     Dim Persona As Persona
     Dim Feriado As Feriado
@@ -1837,6 +1841,8 @@ Private Sub Form_Unload(Cancel As Integer)
     If CSM_Forms.IsLoaded("frmPersonaSaldo") Then
         Unload frmPersonaSaldo
     End If
+    Set mRutaDetalleOrigen = Nothing
+    Set mRutaDetalleDestino = Nothing
     Set mCPagosToAdd = Nothing
     Set mCPagosToUpdate = Nothing
     Set mCPagosToDelete = Nothing
@@ -2340,11 +2346,8 @@ Private Sub datcboRutaConexion_Change()
 End Sub
 
 Private Sub datcboOrigen_Change()
-    Dim RutaDetalle As RutaDetalle
-    Dim RutaDetalleIndice As Long
     Dim RutaConexion As RutaConexion
     Dim RutaConexionDetalle As RutaConexionDetalle
-    Dim Tramo2_IDRuta As String
     
     If mEsRutaEspecial Or mEsRutaPaquete Then
         Exit Sub
@@ -2367,35 +2370,29 @@ Private Sub datcboOrigen_Change()
         RutaConexionDetalle.IDRutaConexion = Val(datcboRutaConexion.BoundText)
         RutaConexionDetalle.Tramo1_IDRuta = datcboRuta.BoundText
         If RutaConexionDetalle.LoadFirstWhereTramo1() Then
-            Tramo2_IDRuta = RutaConexionDetalle.Tramo2_IDRuta
+            mTramo2_IDRuta = RutaConexionDetalle.Tramo2_IDRuta
         End If
         Set RutaConexionDetalle = Nothing
         
-        Set RutaDetalle = New RutaDetalle
-        RutaDetalle.IDRuta = Tramo2_IDRuta
-        RutaDetalle.IDLugar = mTramo1_Tramo2_IDLugar
-        If RutaDetalle.Load() Then
-            RutaDetalleIndice = RutaDetalle.Indice
+        Set mRutaDetalleOrigen = New RutaDetalle
+        mRutaDetalleOrigen.IDRuta = mTramo2_IDRuta
+        mRutaDetalleOrigen.IDLugar = mTramo1_Tramo2_IDLugar
+        If mRutaDetalleOrigen.Load() Then
         End If
-        Set RutaDetalle = Nothing
         
-        Call CSM_Control_DataCombo.FillFromSQL(datcboDestino, "SELECT RutaDetalle.IDLugar, Lugar.Nombre FROM RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar WHERE RutaDetalle.IDRuta = '" & ReplaceQuote(Tramo2_IDRuta) & "' AND RutaDetalle.Indice > " & RutaDetalleIndice & " AND (Lugar.Activo = 1 OR Lugar.IDLugar = " & mIDDestino & ") ORDER BY RutaDetalle.Indice, Lugar.Nombre", "IDLugar", "Nombre", "Destinos", cscpCurrentOrLast)
+        Call CSM_Control_DataCombo.FillFromSQL(datcboDestino, "SELECT RutaDetalle.IDLugar, Lugar.Nombre FROM RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar WHERE RutaDetalle.IDRuta = '" & ReplaceQuote(mTramo2_IDRuta) & "' AND RutaDetalle.Indice > " & mRutaDetalleOrigen.Indice & " AND (Lugar.Activo = 1 OR Lugar.IDLugar = " & mIDDestino & ") ORDER BY RutaDetalle.Indice, Lugar.Nombre", "IDLugar", "Nombre", "Destinos", cscpCurrentOrLast)
     Else
         mTramo1_Tramo2_IDLugar = 0
         
         'Busco el Detalle de la Ruta para filtrar el ComboBox de Destino a partir del Origen
-        Set RutaDetalle = New RutaDetalle
-        RutaDetalle.IDRuta = datcboRuta.BoundText
-        RutaDetalle.IDLugar = Val(datcboOrigen.BoundText)
-        RutaDetalle.NoMatchRaiseError = False
-        If RutaDetalle.Load() Then
-            If RutaDetalle.NoMatch Then
-                RutaDetalleIndice = RutaDetalle.Indice
-            End If
+        Set mRutaDetalleOrigen = New RutaDetalle
+        mRutaDetalleOrigen.IDRuta = datcboRuta.BoundText
+        mRutaDetalleOrigen.IDLugar = Val(datcboOrigen.BoundText)
+        mRutaDetalleOrigen.NoMatchRaiseError = False
+        If mRutaDetalleOrigen.Load() Then
         End If
-        Set RutaDetalle = Nothing
         
-        Call CSM_Control_DataCombo.FillFromSQL(datcboDestino, "SELECT RutaDetalle.IDLugar, Lugar.Nombre FROM RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar WHERE RutaDetalle.IDRuta = '" & ReplaceQuote(datcboRuta.BoundText) & "' AND RutaDetalle.Indice > " & RutaDetalleIndice & " AND (Lugar.Activo = 1 OR Lugar.IDLugar = " & mIDDestino & ") ORDER BY RutaDetalle.Indice, Lugar.Nombre", "IDLugar", "Nombre", "Destinos", cscpCurrentOrLast)
+        Call CSM_Control_DataCombo.FillFromSQL(datcboDestino, "SELECT RutaDetalle.IDLugar, Lugar.Nombre FROM RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar WHERE RutaDetalle.IDRuta = '" & ReplaceQuote(datcboRuta.BoundText) & "' AND RutaDetalle.Indice > " & mRutaDetalleOrigen.Indice & " AND (Lugar.Activo = 1 OR Lugar.IDLugar = " & mIDDestino & ") ORDER BY RutaDetalle.Indice, Lugar.Nombre", "IDLugar", "Nombre", "Destinos", cscpCurrentOrLast)
     End If
     
     CalcularImporte
@@ -2406,6 +2403,30 @@ Private Sub txtSube_GotFocus()
 End Sub
 
 Private Sub datcboDestino_Change()
+    If mEsRutaEspecial Or mEsRutaPaquete Then
+        Exit Sub
+    End If
+    
+    If Val(datcboDestino.BoundText) = 0 Then
+        Exit Sub
+    End If
+    
+    If chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked Then
+        Set mRutaDetalleDestino = New RutaDetalle
+        mRutaDetalleDestino.IDRuta = mTramo2_IDRuta
+        mRutaDetalleDestino.IDLugar = Val(datcboDestino.BoundText)
+        mRutaDetalleOrigen.NoMatchRaiseError = False
+        If mRutaDetalleDestino.Load() Then
+        End If
+    Else
+        Set mRutaDetalleDestino = New RutaDetalle
+        mRutaDetalleDestino.IDRuta = datcboRuta.BoundText
+        mRutaDetalleDestino.IDLugar = Val(datcboDestino.BoundText)
+        mRutaDetalleDestino.NoMatchRaiseError = False
+        If mRutaDetalleDestino.Load() Then
+        End If
+    End If
+    
     CalcularImporte
 End Sub
 
@@ -2941,6 +2962,8 @@ Private Sub cmdOK_Click()
         End If
     End If
     
+    ' UPDATE 2020-04-01
+    ' Verifico el Origen y el Destino para ver si están disponibles en ese horario
     If Val(datcboOrigen.BoundText) = 0 Then
         MsgBox "Debe seleccionar el Origen.", vbInformation, App.Title
         datcboOrigen.SetFocus
@@ -2951,6 +2974,21 @@ Private Sub cmdOK_Click()
         datcboDestino.SetFocus
         Exit Sub
     End If
+    If (Not mRutaDetalleOrigen.HoraInicio = DATE_TIME_FIELD_NULL_VALUE) And (Not mRutaDetalleOrigen.HoraFin = DATE_TIME_FIELD_NULL_VALUE) Then
+        If Not (CDate(datcboHora.Text) >= mRutaDetalleOrigen.HoraInicio And CDate(datcboHora.Text) <= mRutaDetalleOrigen.HoraFin) Then
+            MsgBox "El Origen no está disponible para este Horario." & vbCr & vbCr & "Solo está disponible de " & Format(mRutaDetalleOrigen.HoraInicio, "HH:mm") & " a " & Format(mRutaDetalleOrigen.HoraFin, "HH:mm"), vbExclamation, App.Title
+            datcboOrigen.SetFocus
+            Exit Sub
+        End If
+    End If
+    If (Not mRutaDetalleDestino.HoraInicio = DATE_TIME_FIELD_NULL_VALUE) And (Not mRutaDetalleDestino.HoraFin = DATE_TIME_FIELD_NULL_VALUE) Then
+        If Not (CDate(datcboHora.Text) >= mRutaDetalleDestino.HoraInicio And CDate(datcboHora.Text) <= mRutaDetalleDestino.HoraFin) Then
+            MsgBox "El Destino no está disponible para este Horario." & vbCr & vbCr & "Solo está disponible de " & Format(mRutaDetalleDestino.HoraInicio, "HH:mm") & " a " & Format(mRutaDetalleDestino.HoraFin, "HH:mm"), vbExclamation, App.Title
+            datcboDestino.SetFocus
+            Exit Sub
+        End If
+    End If
+    
     If Val(txtPersona.Tag) = Val(txtPersonaCuentaCorriente.Tag) Then
         MsgBox "No se puede especificar la misma Persona para Facturar.", vbExclamation, App.Title
         cmdPersonaCuentaCorriente.SetFocus

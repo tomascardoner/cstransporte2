@@ -1,19 +1,19 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Begin VB.Form frmRutaDetalle 
    Caption         =   "Detalle de Rutas"
-   ClientHeight    =   6975
+   ClientHeight    =   5400
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   13095
+   ClientWidth     =   10740
    Icon            =   "RutaDetalle.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MDIChild        =   -1  'True
-   ScaleHeight     =   6975
-   ScaleWidth      =   13095
+   ScaleHeight     =   5400
+   ScaleWidth      =   10740
    Begin MSComctlLib.Toolbar tlbPin 
       Height          =   330
       Left            =   15
@@ -42,16 +42,16 @@ Begin VB.Form frmRutaDetalle
       Left            =   0
       TabIndex        =   2
       Top             =   0
-      Width           =   13095
-      _ExtentX        =   23098
+      Width           =   10740
+      _ExtentX        =   18944
       _ExtentY        =   1111
       BandCount       =   2
       FixedOrder      =   -1  'True
-      _CBWidth        =   13095
+      _CBWidth        =   10740
       _CBHeight       =   630
       _Version        =   "6.7.9782"
       Child1          =   "tlbMain"
-      MinWidth1       =   6600
+      MinWidth1       =   7380
       MinHeight1      =   570
       Width1          =   6600
       FixedBackground1=   0   'False
@@ -68,7 +68,7 @@ Begin VB.Form frmRutaDetalle
       Begin VB.PictureBox picFilterRuta 
          BorderStyle     =   0  'None
          Height          =   360
-         Left            =   9990
+         Left            =   7635
          ScaleHeight     =   360
          ScaleWidth      =   3015
          TabIndex        =   4
@@ -115,8 +115,8 @@ Begin VB.Form frmRutaDetalle
          Left            =   30
          TabIndex        =   3
          Top             =   30
-         Width           =   9735
-         _ExtentX        =   17171
+         Width           =   7380
+         _ExtentX        =   13018
          _ExtentY        =   1005
          ButtonWidth     =   2170
          ButtonHeight    =   1005
@@ -160,9 +160,9 @@ Begin VB.Form frmRutaDetalle
       Height          =   360
       Left            =   0
       TabIndex        =   1
-      Top             =   6615
-      Width           =   13095
-      _ExtentX        =   23098
+      Top             =   5040
+      Width           =   10740
+      _ExtentX        =   18944
       _ExtentY        =   635
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -175,7 +175,7 @@ Begin VB.Form frmRutaDetalle
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   21881
+            Object.Width           =   17727
             Key             =   "TEXT"
          EndProperty
       EndProperty
@@ -190,13 +190,13 @@ Begin VB.Form frmRutaDetalle
       EndProperty
    End
    Begin MSComctlLib.ListView lvwData 
-      Height          =   4095
-      Left            =   60
+      Height          =   3015
+      Left            =   180
       TabIndex        =   0
-      Top             =   2100
-      Width           =   4875
-      _ExtentX        =   8599
-      _ExtentY        =   7223
+      Top             =   1620
+      Width           =   5055
+      _ExtentX        =   8916
+      _ExtentY        =   5318
       View            =   3
       LabelEdit       =   1
       LabelWrap       =   0   'False
@@ -217,7 +217,7 @@ Begin VB.Form frmRutaDetalle
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      NumItems        =   2
+      NumItems        =   4
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Key             =   "Lugar"
          Text            =   "Lugar"
@@ -227,6 +227,18 @@ Begin VB.Form frmRutaDetalle
          SubItemIndex    =   1
          Key             =   "Grupo"
          Text            =   "Grupo"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   2
+         Key             =   "HoraInicio"
+         Text            =   "Hora de inicio"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   3
+         Key             =   "HoraFin"
+         Text            =   "Hora de fin"
          Object.Width           =   2540
       EndProperty
    End
@@ -281,7 +293,7 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
     End If
     
     Set recData = New ADODB.Recordset
-    recData.Source = "SELECT RutaDetalle.IDLugar, Lugar.Nombre AS Lugar, LugarGrupo.Nombre AS LugarGrupo FROM (RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar) INNER JOIN LugarGrupo ON RutaDetalle.IDLugarGrupo = LugarGrupo.IDLugarGrupo" & SQL_Where & " ORDER BY RutaDetalle.Indice"
+    recData.Source = "SELECT RutaDetalle.IDLugar, Lugar.Nombre AS Lugar, LugarGrupo.Nombre AS LugarGrupo, RutaDetalle.HoraInicio, RutaDetalle.HoraFin FROM (RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar) INNER JOIN LugarGrupo ON RutaDetalle.IDLugarGrupo = LugarGrupo.IDLugarGrupo" & SQL_Where & " ORDER BY RutaDetalle.Indice"
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     
     With recData
@@ -289,6 +301,8 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
             Do While Not .EOF
                 Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDLugar").Value, .Fields("Lugar").Value)
                 ListItem.SubItems(1) = .Fields("LugarGrupo").Value
+                ListItem.SubItems(2) = IIf(IsNull(.Fields("HoraInicio").Value), "", Format(.Fields("HoraInicio").Value, "Short Time"))
+                ListItem.SubItems(3) = IIf(IsNull(.Fields("HoraFin").Value), "", Format(.Fields("HoraFin").Value, "Short Time"))
                 .MoveNext
             Loop
             
