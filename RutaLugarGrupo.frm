@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Begin VB.Form frmRutaLugarGrupo 
    Caption         =   "Rutas - Grupos de Lugares"
@@ -373,6 +373,10 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 Screen.MousePointer = vbHourglass
                 Set RutaLugarGrupo = New RutaLugarGrupo
                 frmRutaLugarGrupoPropiedad.LoadDataAndShow Me, RutaLugarGrupo
+                If cboRuta.ListIndex > 0 Then
+                    frmRutaLugarGrupoPropiedad.datcboRuta.BoundText = cboRuta.Text
+                    frmRutaLugarGrupoPropiedad.datcboLugarGrupo.SetFocus
+                End If
                 Set RutaLugarGrupo = Nothing
                 Screen.MousePointer = vbDefault
             End If
