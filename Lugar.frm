@@ -1,19 +1,19 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Begin VB.Form frmLugar 
    Caption         =   "Lugares"
    ClientHeight    =   5955
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   7410
+   ClientWidth     =   9990
    Icon            =   "Lugar.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MDIChild        =   -1  'True
    ScaleHeight     =   5955
-   ScaleWidth      =   7410
+   ScaleWidth      =   9990
    Begin MSComctlLib.Toolbar tlbPin 
       Height          =   330
       Left            =   15
@@ -42,12 +42,12 @@ Begin VB.Form frmLugar
       Left            =   0
       TabIndex        =   4
       Top             =   0
-      Width           =   7410
-      _ExtentX        =   13070
+      Width           =   9990
+      _ExtentX        =   17621
       _ExtentY        =   1111
       BandCount       =   2
       FixedOrder      =   -1  'True
-      _CBWidth        =   7410
+      _CBWidth        =   9990
       _CBHeight       =   630
       _Version        =   "6.7.9782"
       Child1          =   "tlbMain"
@@ -68,7 +68,7 @@ Begin VB.Form frmLugar
       Begin VB.PictureBox picFilterActivo 
          BorderStyle     =   0  'None
          Height          =   330
-         Left            =   5715
+         Left            =   8295
          ScaleHeight     =   330
          ScaleWidth      =   1605
          TabIndex        =   6
@@ -115,8 +115,8 @@ Begin VB.Form frmLugar
          Left            =   30
          TabIndex        =   5
          Top             =   30
-         Width           =   5460
-         _ExtentX        =   9631
+         Width           =   8040
+         _ExtentX        =   14182
          _ExtentY        =   1005
          ButtonWidth     =   2170
          ButtonHeight    =   1005
@@ -156,8 +156,8 @@ Begin VB.Form frmLugar
       Left            =   0
       TabIndex        =   3
       Top             =   5595
-      Width           =   7410
-      _ExtentX        =   13070
+      Width           =   9990
+      _ExtentX        =   17621
       _ExtentY        =   635
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -170,7 +170,7 @@ Begin VB.Form frmLugar
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   11853
+            Object.Width           =   16404
             Key             =   "TEXT"
          EndProperty
       EndProperty
@@ -189,8 +189,8 @@ Begin VB.Form frmLugar
       Left            =   60
       TabIndex        =   2
       Top             =   1200
-      Width           =   3735
-      _ExtentX        =   6588
+      Width           =   6555
+      _ExtentX        =   11562
       _ExtentY        =   7435
       View            =   3
       LabelEdit       =   1
@@ -213,7 +213,7 @@ Begin VB.Form frmLugar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      NumItems        =   2
+      NumItems        =   4
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Key             =   "Nombre"
          Text            =   "Nombre"
@@ -221,6 +221,18 @@ Begin VB.Form frmLugar
       EndProperty
       BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   1
+         Key             =   "Latitud"
+         Text            =   "Latitud"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   2
+         Key             =   "Longitud"
+         Text            =   "Longitud"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   3
          Key             =   "Activo"
          Text            =   "Activo"
          Object.Width           =   2540
@@ -306,14 +318,16 @@ Public Sub FillListView(ByVal IDLugar As Long)
     End If
     
     Set recData = New ADODB.Recordset
-    recData.Source = "SELECT Lugar.IDLugar, Lugar.Nombre, Lugar.Activo FROM Lugar" & SQL_Where
+    recData.Source = "SELECT Lugar.IDLugar, Lugar.Nombre, Lugar.UbicacionLatitud, Lugar.UbicacionLongitud, Lugar.Activo FROM Lugar" & SQL_Where
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     
     With recData
         If Not .EOF Then
             Do While Not .EOF
                 Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDLugar").Value, .Fields("Nombre").Value)
-                ListItem.SubItems(1) = GetBooleanString(.Fields("Activo").Value)
+                ListItem.SubItems(1) = IIf(IsNull(.Fields("UbicacionLatitud").Value), "", Format(.Fields("UbicacionLatitud").Value, "##.######"))
+                ListItem.SubItems(2) = IIf(IsNull(.Fields("UbicacionLongitud").Value), "", Format(.Fields("UbicacionLongitud").Value, "###.######"))
+                ListItem.SubItems(3) = GetBooleanString(.Fields("Activo").Value)
                 .MoveNext
             Loop
             
@@ -327,6 +341,7 @@ Public Sub FillListView(ByVal IDLugar As Long)
     
     On Error Resume Next
     Set lvwData.SelectedItem = lvwData.ListItems(KeySave)
+    lvwData.SelectedItem.EnsureVisible
 
     If frmMDI.ActiveForm.Name = Me.Name And GetForegroundWindow() = frmMDI.hwnd And frmMDI.WindowState <> vbMinimized Then
         lvwData.SetFocus

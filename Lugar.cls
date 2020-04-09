@@ -15,6 +15,8 @@ Option Explicit
 
 Public IDLugar As Long
 Public Nombre As String
+Public UbicacionLatitud As Double
+Public UbicacionLongitud As Double
 Public Notas As String
 Public Activo As Boolean
 Public FechaHoraCreacion As Date
@@ -75,6 +77,8 @@ Public Function Load() As Boolean
         NoMatch = False
         
         Nombre = mrecData("Nombre").Value
+        UbicacionLatitud = IIf(IsNull(mrecData("UbicacionLatitud").Value), LOCATION_LATITUDE_NULL_VALUE, mrecData("UbicacionLatitud").Value)
+        UbicacionLongitud = IIf(IsNull(mrecData("UbicacionLongitud").Value), LOCATION_LONGITUDE_NULL_VALUE, mrecData("UbicacionLongitud").Value)
         Notas = mrecData("Notas").Value & ""
         Activo = mrecData("Activo").Value
         FechaHoraCreacion = mrecData("FechaHoraCreacion").Value
@@ -121,6 +125,8 @@ Public Function AddNew() As Boolean
     mrecData.AddNew
     mrecData("IDLugar").Value = IDLugar
     mrecData("Nombre").Value = Nombre
+    mrecData("UbicacionLatitud").Value = IIf(UbicacionLatitud = LOCATION_LATITUDE_NULL_VALUE, Null, UbicacionLatitud)
+    mrecData("UbicacionLongitud").Value = IIf(UbicacionLongitud = LOCATION_LONGITUDE_NULL_VALUE, Null, UbicacionLongitud)
     mrecData("Notas").Value = IIf(Trim(Notas) = "", Null, Notas)
     mrecData("Activo").Value = Activo
     mrecData("FechaHoraCreacion").Value = Now
@@ -161,6 +167,8 @@ Public Function Update() As Boolean
     Screen.MousePointer = vbHourglass
     
     mrecData("Nombre").Value = Nombre
+    mrecData("UbicacionLatitud").Value = IIf(UbicacionLatitud = LOCATION_LATITUDE_NULL_VALUE, Null, UbicacionLatitud)
+    mrecData("UbicacionLongitud").Value = IIf(UbicacionLongitud = LOCATION_LONGITUDE_NULL_VALUE, Null, UbicacionLongitud)
     mrecData("Notas").Value = IIf(Trim(Notas) = "", Null, Notas)
     mrecData("Activo").Value = Activo
     mrecData("FechaHoraModificacion").Value = Now
@@ -226,6 +234,8 @@ End Function
 
 Private Sub InitializeValues()
     Nombre = ""
+    UbicacionLatitud = LOCATION_LATITUDE_NULL_VALUE
+    UbicacionLongitud = LOCATION_LONGITUDE_NULL_VALUE
     Notas = ""
     Activo = True
     FechaHoraCreacion = DATE_TIME_FIELD_NULL_VALUE
