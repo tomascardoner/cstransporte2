@@ -1,5 +1,5 @@
 frmMDI = 0, 0, 871, 350, C, 100, 100, 971, 434, C
-frmSplash = 0, 0, 0, 0, C, 150, 150, 1021, 484, C
+frmSplash = 52, 52, 911, 386, C, 150, 150, 1021, 484, C
 frmAbout = 25, 25, 896, 375, C, 0, 0, 871, 500, C
 frmAlarma = 100, 100, 971, 450, C, 25, 25, 896, 359, C
 frmPersonaRespuestaPropiedad = 0, 0, 0, 0, C, 50, 50, 921, 384, C
@@ -123,7 +123,7 @@ frmApplicationInfo = 0, 0, 0, 0, C, 25, 25, 896, 359, C
 frmViajePropiedadAuditoria = 26, 26, 1295, 568, C, 50, 50, 921, 384, C
 frmPersonaSaldo = 0, 0, 0, 0, C, 75, 75, 946, 409, C
 frmVehiculo = 104, 104, 1373, 646, C, 100, 100, 971, 434, C
-frmVehiculoPropiedad = 0, 0, 0, 0, C, 125, 125, 996, 459, C
+frmVehiculoPropiedad = 78, 78, 937, 412, C, 125, 125, 996, 459, C
 PersonaRespuesta = 26, 26, 1373, 594, C
 frmPasajeHistorico = 78, 78, 1350, 620, C, 150, 150, 1021, 484, C
 ConductorRuta = 75, 75, 946, 402, C

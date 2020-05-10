@@ -17,29 +17,17 @@ Begin VB.Form frmSplash
       Appearance      =   0  'Flat
       BackColor       =   &H80000005&
       ForeColor       =   &H80000008&
-      Height          =   1155
-      Left            =   1500
-      Picture         =   "Splash.frx":4983C
-      ScaleHeight     =   1125
-      ScaleWidth      =   1545
-      TabIndex        =   6
+      HasDC           =   0   'False
+      Height          =   1185
+      Left            =   1980
+      Picture         =   "Splash.frx":3132E
+      ScaleHeight     =   77
+      ScaleMode       =   0  'User
+      ScaleWidth      =   250
+      TabIndex        =   5
       TabStop         =   0   'False
-      Top             =   2100
-      Width           =   1575
-   End
-   Begin VB.PictureBox picLogo 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000005&
-      ForeColor       =   &H80000008&
-      Height          =   1155
-      Left            =   3120
-      Picture         =   "Splash.frx":4A343
-      ScaleHeight     =   1125
-      ScaleWidth      =   2745
-      TabIndex        =   3
-      TabStop         =   0   'False
-      Top             =   2100
-      Width           =   2775
+      Top             =   2040
+      Width           =   3780
    End
    Begin VB.Image imgCompany 
       BorderStyle     =   1  'Fixed Single
@@ -63,7 +51,7 @@ Begin VB.Form frmSplash
       EndProperty
       Height          =   225
       Left            =   270
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   1410
       Visible         =   0   'False
       Width           =   1845
@@ -82,7 +70,7 @@ Begin VB.Form frmSplash
       ForeColor       =   &H8000000D&
       Height          =   405
       Left            =   2040
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   1320
       Visible         =   0   'False
       Width           =   3750
@@ -151,12 +139,12 @@ Begin VB.Form frmSplash
       Width           =   5985
    End
    Begin VB.Image imgApp 
-      Height          =   1200
+      Height          =   720
       Left            =   180
-      Picture         =   "Splash.frx":540C5
+      Picture         =   "Splash.frx":362EC
       Stretch         =   -1  'True
-      Top             =   2100
-      Width           =   1200
+      Top             =   2280
+      Width           =   1680
    End
 End
 Attribute VB_Name = "frmSplash"
@@ -169,6 +157,11 @@ Option Explicit
 Private Sub Form_Load()
     Caption = App.Title
     lblTitle.Caption = App.Title
-    lblVersion.Caption = "Versión " & App.Major & "." & App.Minor & "     Revisión: " & App.Revision
+    
+    ' Version info
+    Dim ExeFileDate As Date
+    ExeFileDate = FileDateTime(App.Path & "\" & App.EXEName & ".exe")
+    lblVersion.Caption = "Versión " & App.Major & "." & App.Minor & "." & App.Revision & " (" & Format(ExeFileDate, "yyyyMMdd") & ")"
+
     lblCopyright.Caption = App.LegalCopyright
 End Sub

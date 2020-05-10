@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Begin VB.Form frmVehiculo 
    Caption         =   "Vehículos"
@@ -17,7 +17,7 @@ Begin VB.Form frmVehiculo
    Begin MSComctlLib.Toolbar tlbPin 
       Height          =   330
       Left            =   0
-      TabIndex        =   9
+      TabIndex        =   7
       Top             =   5520
       Width           =   360
       _ExtentX        =   635
@@ -40,7 +40,7 @@ Begin VB.Form frmVehiculo
       Align           =   1  'Align Top
       Height          =   630
       Left            =   0
-      TabIndex        =   4
+      TabIndex        =   2
       Top             =   0
       Width           =   9195
       _ExtentX        =   16219
@@ -71,7 +71,7 @@ Begin VB.Form frmVehiculo
          Left            =   7500
          ScaleHeight     =   330
          ScaleWidth      =   1605
-         TabIndex        =   6
+         TabIndex        =   4
          Top             =   150
          Width           =   1605
          Begin VB.ComboBox cboFilterActivo 
@@ -87,7 +87,7 @@ Begin VB.Form frmVehiculo
             Height          =   330
             Left            =   600
             Style           =   2  'Dropdown List
-            TabIndex        =   7
+            TabIndex        =   5
             Top             =   0
             Width           =   990
          End
@@ -105,7 +105,7 @@ Begin VB.Form frmVehiculo
             EndProperty
             Height          =   210
             Left            =   0
-            TabIndex        =   8
+            TabIndex        =   6
             Top             =   60
             Width           =   510
          End
@@ -113,7 +113,7 @@ Begin VB.Form frmVehiculo
       Begin MSComctlLib.Toolbar tlbMain 
          Height          =   570
          Left            =   30
-         TabIndex        =   5
+         TabIndex        =   3
          Top             =   30
          Width           =   7245
          _ExtentX        =   12779
@@ -154,7 +154,7 @@ Begin VB.Form frmVehiculo
       Align           =   2  'Align Bottom
       Height          =   360
       Left            =   0
-      TabIndex        =   3
+      TabIndex        =   1
       Top             =   5475
       Width           =   9195
       _ExtentX        =   16219
@@ -187,8 +187,8 @@ Begin VB.Form frmVehiculo
    Begin MSComctlLib.ListView lvwData 
       Height          =   4215
       Left            =   60
-      TabIndex        =   2
-      Top             =   1200
+      TabIndex        =   0
+      Top             =   720
       Width           =   4815
       _ExtentX        =   8493
       _ExtentY        =   7435
@@ -213,7 +213,7 @@ Begin VB.Form frmVehiculo
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      NumItems        =   2
+      NumItems        =   6
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Key             =   "Nombre"
          Text            =   "Nombre"
@@ -221,45 +221,34 @@ Begin VB.Form frmVehiculo
       EndProperty
       BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   1
+         Key             =   "Marca"
+         Text            =   "Marca"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   2
+         Key             =   "Modelo"
+         Text            =   "Modelo"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   3
+         Key             =   "Dominio"
+         Text            =   "Dominio"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   4
+         Key             =   "Configuracion"
+         Text            =   "Configuración"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   5
          Key             =   "Activo"
          Text            =   "Activo"
          Object.Width           =   2540
       EndProperty
-   End
-   Begin VB.TextBox txtFind 
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   315
-      Left            =   1260
-      MaxLength       =   10
-      TabIndex        =   1
-      Top             =   780
-      Width           =   3615
-   End
-   Begin VB.Label lblFind 
-      AutoSize        =   -1  'True
-      Caption         =   "&Buscar por ID:"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   210
-      Left            =   120
-      TabIndex        =   0
-      Top             =   840
-      Width           =   1035
    End
 End
 Attribute VB_Name = "frmVehiculo"
@@ -275,9 +264,9 @@ Public FormWaitingForSelect As String
 
 Public Sub FillListView(ByVal IDVehiculo As Long)
     Dim ListItem As MSComctlLib.ListItem
+    Dim cmdData As ADODB.command
     Dim recData As ADODB.Recordset
     Dim KeySave As String
-    Dim SQL_Where As String
     
     If mLoading Then
         Exit Sub
@@ -293,27 +282,31 @@ Public Sub FillListView(ByVal IDVehiculo As Long)
         KeySave = KEY_STRINGER & IDVehiculo
     End If
     
-    SQL_Where = ""
-    
-    If cboFilterActivo.ListIndex > 0 Then
-        SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Activo = " & IIf(cboFilterActivo.ListIndex = 1, 1, 0)
-    End If
-    
     lvwData.ListItems.Clear
     
     If pTrapErrors Then
         On Error GoTo ErrorHandler
     End If
     
+    Set cmdData = New ADODB.command
+    Set cmdData.ActiveConnection = pDatabase.Connection
+    cmdData.CommandText = "usp_Vehiculo_List"
+    cmdData.CommandType = adCmdStoredProc
+    cmdData.Parameters.Append cmdData.CreateParameter("Activo", adBoolean, adParamInput, , Choose(cboFilterActivo.ListIndex + 1, Null, 1, 0))
     Set recData = New ADODB.Recordset
-    recData.Source = "SELECT IDVehiculo, Nombre, Activo FROM Vehiculo" & SQL_Where
-    recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
+    Set recData.ActiveConnection = pDatabase.Connection
+    recData.Open cmdData, , adOpenForwardOnly, adLockReadOnly
+    Set cmdData = Nothing
     
     With recData
         If Not .EOF Then
             Do While Not .EOF
                 Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDVehiculo").Value, .Fields("Nombre").Value)
-                ListItem.SubItems(1) = GetBooleanString(.Fields("Activo").Value)
+                ListItem.SubItems(1) = .Fields("Marca").Value & ""
+                ListItem.SubItems(2) = .Fields("Modelo").Value & ""
+                ListItem.SubItems(3) = .Fields("Dominio").Value & ""
+                ListItem.SubItems(4) = .Fields("Configuracion").Value & ""
+                ListItem.SubItems(5) = GetBooleanString(.Fields("Activo").Value)
                 .MoveNext
             Loop
             
@@ -527,31 +520,6 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
     Set Vehiculo = Nothing
 End Sub
 
-Private Sub txtFind_Change()
-    If Trim(txtFind.Text) = "" Then
-        If lvwData.ListItems.Count > 0 Then
-            Set lvwData.SelectedItem = lvwData.ListItems(1)
-        End If
-    Else
-        Set lvwData.SelectedItem = lvwData.FindItem(Trim(txtFind.Text), lvwText, , lvwPartial)
-        If lvwData.SelectedItem Is Nothing Then
-            If lvwData.ListItems.Count > 0 Then
-                Set lvwData.SelectedItem = lvwData.ListItems(1)
-            End If
-        End If
-    End If
-End Sub
-
-Private Sub txtFind_GotFocus()
-    CSM_Control_TextBox.SelAllText txtFind
-End Sub
-
-Private Sub txtFind_KeyPress(KeyAscii As Integer)
-    If KeyAscii = vbKeyReturn Then
-        lvwData.SetFocus
-    End If
-End Sub
-
 Private Sub tlbPin_ButtonClick(ByVal Button As MSComctlLib.Button)
     If Button.Value = tbrUnpressed Then
         Button.Image = 1
@@ -565,11 +533,7 @@ Private Sub ResizeControls(ByVal CoolBarHeight As Single)
     
     On Error Resume Next
     
-    lblFind.Top = CoolBarHeight + (CONTROL_SPACE * 2)
-    txtFind.Top = CoolBarHeight + CONTROL_SPACE
-    txtFind.Width = ScaleWidth - txtFind.Left - CONTROL_SPACE
-    
-    lvwData.Top = txtFind.Top + txtFind.Height + CONTROL_SPACE
+    lvwData.Top = CoolBarHeight + (CONTROL_SPACE * 2)
     lvwData.Left = CONTROL_SPACE
     lvwData.Width = ScaleWidth - (CONTROL_SPACE * 2)
     lvwData.Height = ScaleHeight - lvwData.Top - CONTROL_SPACE - stbMain.Height

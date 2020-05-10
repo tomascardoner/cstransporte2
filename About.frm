@@ -35,15 +35,15 @@ Begin VB.Form frmAbout
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1155
-      Left            =   180
+      Height          =   1215
+      Left            =   1800
       Picture         =   "About.frx":000C
-      ScaleHeight     =   1095
-      ScaleWidth      =   1515
-      TabIndex        =   11
+      ScaleHeight     =   1155
+      ScaleWidth      =   3795
+      TabIndex        =   9
       TabStop         =   0   'False
-      Top             =   1380
-      Width           =   1575
+      Top             =   1260
+      Width           =   3855
    End
    Begin VB.CommandButton cmdApplicationInfo 
       Caption         =   "App &Info..."
@@ -61,50 +61,6 @@ Begin VB.Form frmAbout
       Top             =   4260
       Width           =   1275
    End
-   Begin VB.PictureBox picLogo 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   1155
-      Left            =   2820
-      Picture         =   "About.frx":0B13
-      ScaleHeight     =   1095
-      ScaleWidth      =   2715
-      TabIndex        =   5
-      TabStop         =   0   'False
-      Top             =   1380
-      Width           =   2775
-   End
-   Begin VB.PictureBox picIcon 
-      AutoSize        =   -1  'True
-      BorderStyle     =   0  'None
-      ClipControls    =   0   'False
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   480
-      Left            =   120
-      Picture         =   "About.frx":A895
-      ScaleHeight     =   337.12
-      ScaleMode       =   0  'User
-      ScaleWidth      =   337.12
-      TabIndex        =   3
-      TabStop         =   0   'False
-      Top             =   120
-      Width           =   480
-   End
    Begin VB.CommandButton cmdOK 
       Cancel          =   -1  'True
       Caption         =   "&Aceptar"
@@ -114,6 +70,14 @@ Begin VB.Form frmAbout
       TabIndex        =   0
       Top             =   3300
       Width           =   1275
+   End
+   Begin VB.Image imgApp 
+      Height          =   720
+      Left            =   60
+      Picture         =   "About.frx":4FCA
+      Stretch         =   -1  'True
+      Top             =   1560
+      Width           =   1680
    End
    Begin VB.Line Line1 
       BorderColor     =   &H00808080&
@@ -137,7 +101,7 @@ Begin VB.Form frmAbout
       ForeColor       =   &H8000000D&
       Height          =   405
       Left            =   2010
-      TabIndex        =   10
+      TabIndex        =   8
       Top             =   2760
       Width           =   3690
    End
@@ -154,23 +118,23 @@ Begin VB.Form frmAbout
       EndProperty
       Height          =   225
       Left            =   120
-      TabIndex        =   9
+      TabIndex        =   7
       Top             =   2850
       Width           =   1845
    End
    Begin VB.Label lblCopyright 
       Alignment       =   2  'Center
       Height          =   255
-      Left            =   720
-      TabIndex        =   8
+      Left            =   120
+      TabIndex        =   6
       Top             =   720
-      Width           =   4935
+      Width           =   5535
    End
    Begin VB.Label lblCopyrightNotice 
-      Caption         =   $"About.frx":B15F
+      Caption         =   $"About.frx":5E3F
       Height          =   1275
       Left            =   120
-      TabIndex        =   7
+      TabIndex        =   5
       Top             =   3360
       Width           =   4095
    End
@@ -188,10 +152,10 @@ Begin VB.Form frmAbout
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   240
-      Left            =   720
-      TabIndex        =   6
+      Left            =   120
+      TabIndex        =   4
       Top             =   120
-      Width           =   4980
+      Width           =   5580
    End
    Begin VB.Line Line1 
       BorderColor     =   &H00808080&
@@ -215,10 +179,10 @@ Begin VB.Form frmAbout
       Alignment       =   2  'Center
       Caption         =   "Version"
       Height          =   225
-      Left            =   720
-      TabIndex        =   4
+      Left            =   120
+      TabIndex        =   3
       Top             =   360
-      Width           =   4980
+      Width           =   5580
    End
    Begin VB.Line Line1 
       BorderColor     =   &H00FFFFFF&
@@ -278,7 +242,13 @@ End Sub
 
 Private Sub Form_Load()
     Me.Caption = "Acerca de " & App.Title
-    lblVersion.Caption = "Versión " & App.Major & "." & App.Minor & "     Revisión: " & App.Revision
+    
+    ' Version info
+    Dim ExeFileDate As Date
+    ExeFileDate = FileDateTime(App.Path & "\" & App.EXEName & ".exe")
+    lblVersion.Caption = "Versión " & App.Major & "." & App.Minor & "." & App.Revision & " (" & Format(ExeFileDate, "yyyyMMdd") & ")"
+    
+    
     lblTitle.Caption = App.Title
     lblCopyright.Caption = App.LegalCopyright
     lblCompanyName.Caption = pParametro.CompanyName

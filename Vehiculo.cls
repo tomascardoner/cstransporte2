@@ -26,6 +26,7 @@ Private mAsiento As Integer
 Private mPasajero As Integer
 Private mTelefonoArea As String
 Private mTelefonoNumero As String
+Private mIDVehiculoConfiguracion As Byte
 Private mNotas As String
 Private mActivo As Integer
 Private mFechaHoraCreacion As Date
@@ -216,6 +217,20 @@ Public Property Let TelefonoNumero(ByVal Value As String)
         mIsDirty = True
     End If
     mTelefonoNumero = Value
+End Property
+
+'////////////////////////////////////////////////////////////////////////
+'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Public Property Get IDVehiculoConfiguracion() As Byte
+    IDVehiculoConfiguracion = mIDVehiculoConfiguracion
+End Property
+
+Public Property Let IDVehiculoConfiguracion(ByVal Value As Byte)
+    If Value <> mIDVehiculoConfiguracion Then
+        mIsDirty = True
+    End If
+    mIDVehiculoConfiguracion = Value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -439,6 +454,7 @@ Public Function Load() As Boolean
         mPasajero = mrecData("Pasajero").Value
         mTelefonoArea = mrecData("TelefonoArea").Value & ""
         mTelefonoNumero = mrecData("TelefonoNumero").Value & ""
+        mIDVehiculoConfiguracion = Val(mrecData("IDVehiculoConfiguracion").Value & "")
         mNotas = mrecData("Notas").Value & ""
         mActivo = mrecData("Activo").Value
         mFechaHoraCreacion = mrecData("FechaHoraCreacion").Value
@@ -518,6 +534,7 @@ Public Function Update() As Boolean
     mrecData("Pasajero").Value = mPasajero
     mrecData("TelefonoArea").Value = IIf(Trim(mTelefonoArea) = "", Null, mTelefonoArea)
     mrecData("TelefonoNumero").Value = IIf(Trim(mTelefonoNumero) = "", Null, mTelefonoNumero)
+    mrecData("IDVehiculoConfiguracion").Value = IIf(mIDVehiculoConfiguracion = 0, Null, mIDVehiculoConfiguracion)
     mrecData("Notas").Value = IIf(Trim(mNotas) = "", Null, mNotas)
     mrecData("Activo").Value = mActivo
     If mIsNew Then
@@ -621,6 +638,7 @@ Private Sub InitializeValues()
     mPasajero = 0
     mTelefonoArea = ""
     mTelefonoNumero = ""
+    mIDVehiculoConfiguracion = 0
     mNotas = ""
     mActivo = True
     mFechaHoraCreacion = DATE_TIME_FIELD_NULL_VALUE

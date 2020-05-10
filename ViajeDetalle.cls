@@ -1686,8 +1686,8 @@ Public Function Update() As Boolean
     cmdData.Parameters.Append cmdData.CreateParameter("@FechaHora", adDate, adParamInput, , mFechaHora)
     cmdData.Parameters.Append cmdData.CreateParameter("@IDRuta", adChar, adParamInput, 20, mIDRuta)
     cmdData.Parameters.Append cmdData.CreateParameter("@Indice", adInteger, adParamInputOutput, , mIndice)
-    cmdData.Parameters.Append cmdData.CreateParameter("@GrupoNumero", adTinyInt, adParamInput, , mGrupoNumero)
-    cmdData.Parameters.Append cmdData.CreateParameter("@ReservaCodigo", adChar, adParamInput, 8, mReservaCodigo)
+    cmdData.Parameters.Append cmdData.CreateParameter("@GrupoNumero", adTinyInt, adParamInput, , IIf(mGrupoNumero = 0, Null, mGrupoNumero))
+    cmdData.Parameters.Append cmdData.CreateParameter("@ReservaCodigo", adChar, adParamInput, 8, IIf(Trim(mReservaCodigo) = "", Null, mReservaCodigo))
     cmdData.Parameters.Append cmdData.CreateParameter("@OcupanteTipo", adChar, adParamInput, 2, mOcupanteTipo)
     If mIsNew Then
         If mOcupanteTipo = OCUPANTE_TIPO_COMISION Then

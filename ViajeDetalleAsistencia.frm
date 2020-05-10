@@ -329,7 +329,7 @@ Begin VB.Form frmViajeDetalleAsistencia
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   92930050
+      Format          =   114163714
       CurrentDate     =   36494
    End
    Begin MSComCtl2.DTPicker dtpEntregadaFecha 
@@ -351,7 +351,7 @@ Begin VB.Form frmViajeDetalleAsistencia
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   92930049
+      Format          =   114163713
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboMedioPago 
@@ -1004,6 +1004,8 @@ Private Sub cmdOK_Click()
         .FacturaNumero = txtFacturaNumero.Text
         If mViajeDetalle.OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
             .Realizado = cboRealizado.ListIndex
+            If .Realizado = 0 Then
+            End If
             .ForzarDebito = (chkForzarDebito.Value = vbChecked)
             .Retira = ""
         Else

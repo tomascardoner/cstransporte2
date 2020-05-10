@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Begin VB.Form frmViajeDetalle 
    Caption         =   "Detalle del Viaje"
@@ -456,6 +456,7 @@ Begin VB.Form frmViajeDetalle
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(9) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Alignment       =   2
          SubItemIndex    =   8
          Key             =   "Asiento"
          Text            =   "Asiento"
@@ -679,7 +680,7 @@ RESTART:
         Case 7  'ESTADO
             OrderBy = "OcupanteTipo DESC, Estado" & IIf(lvwData.SortOrder = lvwAscending, "", " DESC") & ", Orden" & IIf(lvwData.SortOrder = lvwAscending, "", " DESC")
         Case 8  'ASIENTO
-            OrderBy = "OcupanteTipo DESC, Estado" & IIf(lvwData.SortOrder = lvwAscending, "", " DESC") & ", Asiento" & IIf(lvwData.SortOrder = lvwAscending, "", " DESC")
+            OrderBy = "OcupanteTipo DESC, Estado" & IIf(lvwData.SortOrder = lvwAscending, "", " DESC") & ", AsientoIdentificacion" & IIf(lvwData.SortOrder = lvwAscending, "", " DESC")
         Case 9  'REALIZADO
             OrderBy = "OcupanteTipo DESC, Estado" & IIf(lvwData.SortOrder = lvwAscending, "", " DESC") & ", Realizado" & IIf(lvwData.SortOrder = lvwAscending, "", " DESC")
         Case 10  'ORIGEN
@@ -775,7 +776,7 @@ RESTART:
                 End If
                 ViajeDetalle.Estado = .Fields("Estado").Value & ""
                 ListItem.SubItems(7) = ViajeDetalle.Estado_ToString
-                ListItem.SubItems(8) = .Fields("Asiento").Value & ""
+                 ListItem.SubItems(8) = .Fields("AsientoIdentificacion").Value & ""
                 ListItem.SubItems(10) = .Fields("Origen").Value
                 ListItem.SubItems(11) = .Fields("Destino").Value
                 ViajeDetalle.ReservaTipo = .Fields("ReservaTipo").Value

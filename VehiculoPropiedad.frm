@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmVehiculoPropiedad 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Propiedades"
@@ -22,13 +23,25 @@ Begin VB.Form frmVehiculoPropiedad
    MDIChild        =   -1  'True
    ScaleHeight     =   4185
    ScaleWidth      =   10170
+   Begin MSDataListLib.DataCombo datcboConfiguracion 
+      Height          =   330
+      Left            =   6900
+      TabIndex        =   19
+      Top             =   1380
+      Width           =   3135
+      _ExtentX        =   5530
+      _ExtentY        =   582
+      _Version        =   393216
+      Style           =   2
+      Text            =   "DataCombo1"
+   End
    Begin VB.CommandButton cmdAuditoria 
       Caption         =   "Auditoría"
       Height          =   615
       Left            =   9060
       Picture         =   "VehiculoPropiedad.frx":054A
       Style           =   1  'Graphical
-      TabIndex        =   29
+      TabIndex        =   31
       Top             =   60
       Width           =   975
    End
@@ -43,32 +56,32 @@ Begin VB.Form frmVehiculoPropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   8160
+      Left            =   8640
       Picture         =   "VehiculoPropiedad.frx":0B74
       Style           =   1  'Graphical
-      TabIndex        =   21
+      TabIndex        =   23
       TabStop         =   0   'False
       ToolTipText     =   "Llamar"
-      Top             =   1680
+      Top             =   1800
       Visible         =   0   'False
       Width           =   315
    End
    Begin VB.TextBox txtTelefonoNumero 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   7020
+      Left            =   7500
       MaxLength       =   16
-      TabIndex        =   20
-      Top             =   1680
+      TabIndex        =   22
+      Top             =   1800
       Width           =   1095
    End
    Begin VB.TextBox txtTelefonoArea 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   6420
+      Left            =   6900
       MaxLength       =   5
-      TabIndex        =   19
-      Top             =   1680
+      TabIndex        =   21
+      Top             =   1800
       Width           =   615
    End
    Begin VB.TextBox txtKilometrajeEstimado 
@@ -92,16 +105,16 @@ Begin VB.Form frmVehiculoPropiedad
    Begin VB.TextBox txtPasajero 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   6420
+      Left            =   9540
       MaxLength       =   3
       TabIndex        =   17
-      Top             =   1320
+      Top             =   960
       Width           =   495
    End
    Begin VB.TextBox txtAsiento 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   6420
+      Left            =   6900
       MaxLength       =   3
       TabIndex        =   15
       Top             =   960
@@ -132,13 +145,13 @@ Begin VB.Form frmVehiculoPropiedad
       Width           =   3615
    End
    Begin VB.TextBox txtNotas 
-      Height          =   945
-      Left            =   6420
+      Height          =   1305
+      Left            =   6900
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   23
-      Top             =   2160
-      Width           =   3615
+      TabIndex        =   25
+      Top             =   2220
+      Width           =   3135
    End
    Begin VB.TextBox txtMarca 
       Height          =   315
@@ -153,10 +166,10 @@ Begin VB.Form frmVehiculoPropiedad
       Caption         =   "&Activo"
       Height          =   210
       Left            =   4800
-      TabIndex        =   24
-      Top             =   3240
+      TabIndex        =   26
+      Top             =   3780
       Value           =   1  'Checked
-      Width           =   1815
+      Width           =   855
    End
    Begin VB.TextBox txtNombre 
       Height          =   315
@@ -178,7 +191,7 @@ Begin VB.Form frmVehiculoPropiedad
       EndProperty
       Height          =   75
       Left            =   120
-      TabIndex        =   28
+      TabIndex        =   30
       Top             =   780
       Width           =   9915
    End
@@ -187,7 +200,7 @@ Begin VB.Form frmVehiculoPropiedad
       Caption         =   "Cancelar"
       Height          =   375
       Left            =   8820
-      TabIndex        =   26
+      TabIndex        =   28
       Top             =   3660
       Width           =   1215
    End
@@ -196,9 +209,18 @@ Begin VB.Form frmVehiculoPropiedad
       Default         =   -1  'True
       Height          =   375
       Left            =   7500
-      TabIndex        =   25
+      TabIndex        =   27
       Top             =   3660
       Width           =   1215
+   End
+   Begin VB.Label lblConfiguracion 
+      AutoSize        =   -1  'True
+      Caption         =   "Configuración de asientos:"
+      Height          =   210
+      Left            =   4800
+      TabIndex        =   18
+      Top             =   1440
+      Width           =   1935
    End
    Begin VB.Label lblKilometrajeEstimado 
       AutoSize        =   -1  'True
@@ -229,27 +251,27 @@ Begin VB.Form frmVehiculoPropiedad
       Caption         =   "Teléfono:"
       Height          =   210
       Left            =   4800
-      TabIndex        =   18
-      Top             =   1740
+      TabIndex        =   20
+      Top             =   1860
       Width           =   675
    End
    Begin VB.Label lblPasajero 
       AutoSize        =   -1  'True
-      Caption         =   "Cantidad Pasajeros:"
+      Caption         =   "Cantidad de pasajeros:"
       Height          =   210
-      Left            =   4800
+      Left            =   7680
       TabIndex        =   16
-      Top             =   1380
-      Width           =   1440
+      Top             =   1020
+      Width           =   1665
    End
    Begin VB.Label lblAsiento 
       AutoSize        =   -1  'True
-      Caption         =   "Cantidad Asientos:"
+      Caption         =   "Cantidad de asientos:"
       Height          =   210
       Left            =   4800
       TabIndex        =   14
       Top             =   1020
-      Width           =   1365
+      Width           =   1560
    End
    Begin VB.Label lblDominio 
       AutoSize        =   -1  'True
@@ -283,8 +305,8 @@ Begin VB.Form frmVehiculoPropiedad
       Caption         =   "Notas:"
       Height          =   210
       Left            =   4800
-      TabIndex        =   22
-      Top             =   2220
+      TabIndex        =   24
+      Top             =   2280
       Width           =   465
    End
    Begin VB.Label lblMarca 
@@ -310,7 +332,7 @@ Begin VB.Form frmVehiculoPropiedad
       Caption         =   "Ingrese aquí los Datos del Vehículo"
       Height          =   210
       Left            =   780
-      TabIndex        =   27
+      TabIndex        =   29
       Top             =   300
       Width           =   2535
    End
@@ -359,6 +381,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Vehiculo As Vehiculo)
             txtKilometrajeEstimado.Text = ""
             txtAsiento.Text = ""
             txtPasajero.Text = ""
+            datcboConfiguracion.BoundText = 0
             txtTelefonoArea.Text = ""
             txtTelefonoNumero.Text = ""
             txtNotas.Text = ""
@@ -373,6 +396,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Vehiculo As Vehiculo)
             txtKilometrajeEstimado.Text = IIf(.KilometrajeEstimado = 0, "", .KilometrajeEstimado)
             txtAsiento.Text = .Asiento
             txtPasajero.Text = .Pasajero
+            datcboConfiguracion.BoundText = .IDVehiculoConfiguracion
             txtTelefonoArea.Text = .TelefonoArea
             txtTelefonoNumero.Text = .TelefonoNumero
             txtNotas = .Notas
@@ -435,6 +459,7 @@ Private Sub cmdOK_Click()
         .Pasajero = Int(Val(txtPasajero.Text))
         .TelefonoArea = txtTelefonoArea.Text
         .TelefonoNumero = txtTelefonoNumero.Text
+        .IDVehiculoConfiguracion = Val(datcboConfiguracion.BoundText)
         .Notas = txtNotas.Text
         .Activo = (chkActivo.Value = vbChecked)
         If Not .Update() Then
@@ -444,6 +469,13 @@ Private Sub cmdOK_Click()
     
     Screen.MousePointer = vbDefault
     Unload Me
+End Sub
+
+Private Sub Form_Load()
+    If Not CSM_Control_DataCombo.FillFromSQL(datcboConfiguracion, "usp_VehiculoConfiguracion_List 1", "IDVehiculoConfiguracion", "Nombre", "Configuraciones de Vehículo", cscpItemOrfirst) Then
+        Unload Me
+        Exit Sub
+    End If
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -607,4 +639,15 @@ Private Sub cmdTelefonoDial_Click()
         End If
         Set TelefonoTipo = Nothing
     End If
+End Sub
+
+Public Sub FillComboBoxVehiculoConfiguracion()
+    Dim KeySave As Long
+    Dim recData As ADODB.Recordset
+    
+    KeySave = Val(datcboConfiguracion.BoundText)
+    Set recData = datcboConfiguracion.RowSource
+    recData.Requery
+    Set recData = Nothing
+    datcboConfiguracion.BoundText = KeySave
 End Sub
