@@ -1,0 +1,10 @@
+IDMovimiento	Long		
+FechaHora	DateTime		
+CuentaCorrienteGrupo	String	50	
+CuentaCorrienteCaja	String	50	
+Descripcion	String	255	
+Persona	String	152	
+Realizado	Boolean		
+Referencia	String	20	
+Importe	Currency		
+PersonaOrigen	String	152	
