@@ -2,10 +2,10 @@ VERSION 5.00
 Begin VB.Form frmLugarPropiedad 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Propiedades"
-   ClientHeight    =   4665
+   ClientHeight    =   5160
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   4680
+   ClientWidth     =   6030
    BeginProperty Font 
       Name            =   "Arial Narrow"
       Size            =   8.25
@@ -20,8 +20,25 @@ Begin VB.Form frmLugarPropiedad
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   4665
-   ScaleWidth      =   4680
+   ScaleHeight     =   5160
+   ScaleWidth      =   6030
+   Begin VB.TextBox txtNombreCorto 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   315
+      Left            =   1260
+      MaxLength       =   20
+      TabIndex        =   3
+      Top             =   1500
+      Width           =   2475
+   End
    Begin VB.TextBox txtUbicacionLongitud 
       BeginProperty Font 
          Name            =   "Arial"
@@ -33,11 +50,11 @@ Begin VB.Form frmLugarPropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   330
-      Left            =   900
+      Left            =   1260
       MaxLength       =   11
-      TabIndex        =   5
+      TabIndex        =   7
       Tag             =   "DECIMAL|EMPTY|ZERO|NEGATIVE|999.999999"
-      Top             =   1980
+      Top             =   2460
       Width           =   1695
    End
    Begin VB.TextBox txtUbicacionLatitud 
@@ -51,11 +68,11 @@ Begin VB.Form frmLugarPropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   330
-      Left            =   900
+      Left            =   1260
       MaxLength       =   10
-      TabIndex        =   3
+      TabIndex        =   5
       Tag             =   "DECIMAL|EMPTY|ZERO|NEGATIVE|99.999999"
-      Top             =   1500
+      Top             =   1980
       Width           =   1695
    End
    Begin VB.TextBox txtNotas 
@@ -69,12 +86,12 @@ Begin VB.Form frmLugarPropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   945
-      Left            =   900
+      Left            =   1260
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   7
-      Top             =   2460
-      Width           =   3615
+      TabIndex        =   9
+      Top             =   2940
+      Width           =   4635
    End
    Begin VB.CheckBox chkActivo 
       Alignment       =   1  'Right Justify
@@ -88,12 +105,12 @@ Begin VB.Form frmLugarPropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   210
       Left            =   120
-      TabIndex        =   8
-      Top             =   3600
+      TabIndex        =   10
+      Top             =   4080
       Value           =   1  'Checked
-      Width           =   975
+      Width           =   1335
    End
    Begin VB.TextBox txtNombre 
       BeginProperty Font 
@@ -106,11 +123,11 @@ Begin VB.Form frmLugarPropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   900
-      MaxLength       =   50
+      Left            =   1260
+      MaxLength       =   100
       TabIndex        =   1
       Top             =   1020
-      Width           =   3615
+      Width           =   4635
    End
    Begin VB.Frame fraLine 
       BeginProperty Font 
@@ -124,9 +141,9 @@ Begin VB.Form frmLugarPropiedad
       EndProperty
       Height          =   75
       Left            =   120
-      TabIndex        =   12
+      TabIndex        =   14
       Top             =   780
-      Width           =   4455
+      Width           =   5775
    End
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
@@ -141,13 +158,14 @@ Begin VB.Form frmLugarPropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3300
-      TabIndex        =   10
-      Top             =   4140
+      Left            =   4680
+      TabIndex        =   12
+      Top             =   4620
       Width           =   1215
    End
    Begin VB.CommandButton cmdOK 
       Caption         =   "Aceptar"
+      Default         =   -1  'True
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   8.25
@@ -158,10 +176,28 @@ Begin VB.Form frmLugarPropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   1980
-      TabIndex        =   9
-      Top             =   4140
+      Left            =   3360
+      TabIndex        =   11
+      Top             =   4620
       Width           =   1215
+   End
+   Begin VB.Label lblNombreCorto 
+      AutoSize        =   -1  'True
+      Caption         =   "Nombre &corto:"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   210
+      Left            =   120
+      TabIndex        =   2
+      Top             =   1560
+      Width           =   1020
    End
    Begin VB.Label lblLongitud 
       AutoSize        =   -1  'True
@@ -177,8 +213,8 @@ Begin VB.Form frmLugarPropiedad
       EndProperty
       Height          =   210
       Left            =   120
-      TabIndex        =   4
-      Top             =   2040
+      TabIndex        =   6
+      Top             =   2520
       Width           =   660
    End
    Begin VB.Label lblUbicacionLatitud 
@@ -195,8 +231,8 @@ Begin VB.Form frmLugarPropiedad
       EndProperty
       Height          =   210
       Left            =   120
-      TabIndex        =   2
-      Top             =   1560
+      TabIndex        =   4
+      Top             =   2040
       Width           =   525
    End
    Begin VB.Label lblNotas 
@@ -213,8 +249,8 @@ Begin VB.Form frmLugarPropiedad
       EndProperty
       Height          =   210
       Left            =   120
-      TabIndex        =   6
-      Top             =   2520
+      TabIndex        =   8
+      Top             =   3000
       Width           =   465
    End
    Begin VB.Label lblNombre 
@@ -249,7 +285,7 @@ Begin VB.Form frmLugarPropiedad
       EndProperty
       Height          =   210
       Left            =   780
-      TabIndex        =   11
+      TabIndex        =   13
       Top             =   300
       Width           =   2325
    End
@@ -281,6 +317,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Lugar As Lugar)
     
     With mLugar
         txtNombre.Text = .Nombre
+        txtNombreCorto.Text = .NombreCorto
         txtUbicacionLatitud.Text = IIf(.UbicacionLatitud = LOCATION_LATITUDE_NULL_VALUE, "", Format(.UbicacionLatitud, "##.######"))
         txtUbicacionLongitud.Text = IIf(.UbicacionLongitud = LOCATION_LONGITUDE_NULL_VALUE, "", Format(.UbicacionLongitud, "###.######"))
         txtNotas.Text = .Notas
@@ -323,8 +360,9 @@ Private Sub cmdOK_Click()
     
     With mLugar
         .Nombre = txtNombre.Text
-        .UbicacionLatitud = txtUbicacionLatitud.Text
-        .UbicacionLongitud = txtUbicacionLongitud.Text
+        .NombreCorto = txtNombreCorto.Text
+        .UbicacionLatitud = IIf(Trim(txtUbicacionLatitud.Text) = "", LOCATION_LATITUDE_NULL_VALUE, Trim(txtUbicacionLatitud.Text))
+        .UbicacionLongitud = IIf(Trim(txtUbicacionLongitud.Text) = "", LOCATION_LONGITUDE_NULL_VALUE, Trim(txtUbicacionLongitud.Text))
         .Notas = txtNotas.Text
         .Activo = (chkActivo.Value = vbChecked)
         If mNew Then
@@ -352,6 +390,10 @@ End Sub
 
 Private Sub txtNombre_Change()
     Caption = "Propiedades" & IIf(Trim(txtNombre.Text) = "", "", " de " & txtNombre.Text)
+End Sub
+
+Private Sub txtNombreCorto_GotFocus()
+    CSM_Control_TextBox.SelAllText txtNombreCorto
 End Sub
 
 Private Sub txtUbicacionLatitud_GotFocus()

@@ -186,7 +186,7 @@ Begin VB.Form frmLugar
    End
    Begin MSComctlLib.ListView lvwData 
       Height          =   4215
-      Left            =   60
+      Left            =   120
       TabIndex        =   2
       Top             =   1200
       Width           =   6555
@@ -213,7 +213,7 @@ Begin VB.Form frmLugar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      NumItems        =   4
+      NumItems        =   5
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Key             =   "Nombre"
          Text            =   "Nombre"
@@ -221,18 +221,24 @@ Begin VB.Form frmLugar
       EndProperty
       BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   1
-         Key             =   "Latitud"
-         Text            =   "Latitud"
+         Key             =   "NombreCorto"
+         Text            =   "Nombre corto"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   2
-         Key             =   "Longitud"
-         Text            =   "Longitud"
+         Key             =   "Latitud"
+         Text            =   "Latitud"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   3
+         Key             =   "Longitud"
+         Text            =   "Longitud"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   4
          Key             =   "Activo"
          Text            =   "Activo"
          Object.Width           =   2540
@@ -253,7 +259,7 @@ Begin VB.Form frmLugar
       MaxLength       =   10
       TabIndex        =   1
       Top             =   780
-      Width           =   2535
+      Width           =   4395
    End
    Begin VB.Label lblFind 
       AutoSize        =   -1  'True
@@ -318,16 +324,17 @@ Public Sub FillListView(ByVal IDLugar As Long)
     End If
     
     Set recData = New ADODB.Recordset
-    recData.Source = "SELECT Lugar.IDLugar, Lugar.Nombre, Lugar.UbicacionLatitud, Lugar.UbicacionLongitud, Lugar.Activo FROM Lugar" & SQL_Where
+    recData.Source = "SELECT IDLugar, Nombre, NombreCorto, UbicacionLatitud, UbicacionLongitud, Activo FROM Lugar" & SQL_Where
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     
     With recData
         If Not .EOF Then
             Do While Not .EOF
                 Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDLugar").Value, .Fields("Nombre").Value)
-                ListItem.SubItems(1) = IIf(IsNull(.Fields("UbicacionLatitud").Value), "", Format(.Fields("UbicacionLatitud").Value, "##.######"))
-                ListItem.SubItems(2) = IIf(IsNull(.Fields("UbicacionLongitud").Value), "", Format(.Fields("UbicacionLongitud").Value, "###.######"))
-                ListItem.SubItems(3) = GetBooleanString(.Fields("Activo").Value)
+                ListItem.SubItems(1) = IIf(IsNull(.Fields("NombreCorto").Value), "", .Fields("NombreCorto").Value)
+                ListItem.SubItems(2) = IIf(IsNull(.Fields("UbicacionLatitud").Value), "", Format(.Fields("UbicacionLatitud").Value, "##.######"))
+                ListItem.SubItems(3) = IIf(IsNull(.Fields("UbicacionLongitud").Value), "", Format(.Fields("UbicacionLongitud").Value, "###.######"))
+                ListItem.SubItems(4) = GetBooleanString(.Fields("Activo").Value)
                 .MoveNext
             Loop
             

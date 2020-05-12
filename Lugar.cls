@@ -15,6 +15,7 @@ Option Explicit
 
 Public IDLugar As Long
 Public Nombre As String
+Public NombreCorto As String
 Public UbicacionLatitud As Double
 Public UbicacionLongitud As Double
 Public Notas As String
@@ -77,6 +78,7 @@ Public Function Load() As Boolean
         NoMatch = False
         
         Nombre = mrecData("Nombre").Value
+        NombreCorto = mrecData("NombreCorto").Value & ""
         UbicacionLatitud = IIf(IsNull(mrecData("UbicacionLatitud").Value), LOCATION_LATITUDE_NULL_VALUE, mrecData("UbicacionLatitud").Value)
         UbicacionLongitud = IIf(IsNull(mrecData("UbicacionLongitud").Value), LOCATION_LONGITUDE_NULL_VALUE, mrecData("UbicacionLongitud").Value)
         Notas = mrecData("Notas").Value & ""
@@ -125,6 +127,7 @@ Public Function AddNew() As Boolean
     mrecData.AddNew
     mrecData("IDLugar").Value = IDLugar
     mrecData("Nombre").Value = Nombre
+    mrecData("NombreCorto").Value = IIf(Trim(NombreCorto) = "", Null, Trim(NombreCorto))
     mrecData("UbicacionLatitud").Value = IIf(UbicacionLatitud = LOCATION_LATITUDE_NULL_VALUE, Null, UbicacionLatitud)
     mrecData("UbicacionLongitud").Value = IIf(UbicacionLongitud = LOCATION_LONGITUDE_NULL_VALUE, Null, UbicacionLongitud)
     mrecData("Notas").Value = IIf(Trim(Notas) = "", Null, Notas)
@@ -167,6 +170,7 @@ Public Function Update() As Boolean
     Screen.MousePointer = vbHourglass
     
     mrecData("Nombre").Value = Nombre
+    mrecData("NombreCorto").Value = IIf(Trim(NombreCorto) = "", Null, Trim(NombreCorto))
     mrecData("UbicacionLatitud").Value = IIf(UbicacionLatitud = LOCATION_LATITUDE_NULL_VALUE, Null, UbicacionLatitud)
     mrecData("UbicacionLongitud").Value = IIf(UbicacionLongitud = LOCATION_LONGITUDE_NULL_VALUE, Null, UbicacionLongitud)
     mrecData("Notas").Value = IIf(Trim(Notas) = "", Null, Notas)
@@ -234,6 +238,7 @@ End Function
 
 Private Sub InitializeValues()
     Nombre = ""
+    NombreCorto = ""
     UbicacionLatitud = LOCATION_LATITUDE_NULL_VALUE
     UbicacionLongitud = LOCATION_LONGITUDE_NULL_VALUE
     Notas = ""

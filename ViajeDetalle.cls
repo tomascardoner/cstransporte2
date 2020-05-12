@@ -109,7 +109,7 @@ Public Property Get IDViajeDetalle() As Long
 End Property
 
 Public Property Get IDViajeDetalle_Formatted() As String
-    IDViajeDetalle_Formatted = Format(mIDViaje, "#,###")
+    IDViajeDetalle_Formatted = Format(mIDViajeDetalle, "#,###")
 End Property
 
 Public Property Let IDViajeDetalle(ByVal Value As Long)

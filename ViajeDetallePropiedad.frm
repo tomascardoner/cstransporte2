@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107347969
+      Format          =   111607809
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   107347971
+      Format          =   111607811
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107347969
+      Format          =   111607809
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -1134,7 +1134,7 @@ Begin VB.Form frmViajeDetallePropiedad
       Height          =   210
       Left            =   4860
       TabIndex        =   81
-      Top             =   5280
+      Top             =   5640
       Width           =   465
    End
    Begin VB.Label lblForzarDebito 
@@ -1377,7 +1377,7 @@ Begin VB.Form frmViajeDetallePropiedad
       Height          =   210
       Left            =   4860
       TabIndex        =   83
-      Top             =   5640
+      Top             =   6000
       Width           =   465
    End
    Begin VB.Label lblImporte 
