@@ -78,13 +78,15 @@ Private Sub Main()
     
     'INIT LOGGING
     'Verifico que exista el path especificado en el INI para el log
-    If FileSystem.Dir(pParametro.Logs_Path, vbDirectory) = "" Then
-        MsgBox "La carpeta especificada para los archivos de Log no existe.", vbCritical, App.Title
-        TerminateApplication
-        Exit Sub
+    If pParametro.Logs_MonthsToKeep > 0 Then
+        If FileSystem.Dir(pParametro.Logs_Path, vbDirectory) = "" Then
+            MsgBox "La carpeta especificada para los archivos de Log no existe.", vbCritical, App.Title
+            TerminateApplication
+            Exit Sub
+        End If
+        Call CSM_ApplicationLog.InitLogging(pParametro.Logs_Path, pParametro.Logs_FileNameTemplate, pParametro.Logs_MonthsToKeep)
+        Call CSM_ApplicationLog.WriteLogEvent("*** Application Starts ***", vbLogEventTypeInformation, True)
     End If
-    Call CSM_ApplicationLog.InitLogging(pParametro.Logs_Path, pParametro.Logs_FileNameTemplate, pParametro.Logs_MonthsToKeep)
-    WriteLogEvent "*** Application Starts ***", vbLogEventTypeInformation
     
     frmSplash.MousePointer = vbHourglass
     frmSplash.Show
@@ -242,7 +244,7 @@ Private Sub Main()
             Exit Sub
         End If
         If Not pUsuario.LogIn() Then
-            WriteLogEvent "Usuario Not Logged In - Exiting", vbLogEventTypeInformation
+            Call CSM_ApplicationLog.WriteLogEvent("Usuario Not Logged In - Exiting", vbLogEventTypeInformation, pParametro.LogAccion_Enabled)
             Unload frmMDI
             Exit Sub
         End If
@@ -258,7 +260,7 @@ Private Sub Main()
         End If
     End If
         
-    WriteLogEvent "Application Loading, Startup and Login: DONE", vbLogEventTypeInformation
+    WriteLogEvent "Application Loading, Startup and Login: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
 End Sub
 
 
@@ -293,10 +295,10 @@ Public Sub TerminateApplication()
     
     Running = True
     
-    WriteLogEvent "Starting Application Terminate Routine", vbLogEventTypeInformation
+    WriteLogEvent "Starting Application Terminate Routine", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     
     'Unload All Forms in memory
-    WriteLogEvent "Unloading All Forms from Memory", vbLogEventTypeInformation
+    WriteLogEvent "Unloading All Forms from Memory", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     CSM_Forms.UnloadAll
     
     '///////////////////////////////////////////////////////////////////
@@ -304,7 +306,7 @@ Public Sub TerminateApplication()
     pDatabase.Disconnect
     Set pDatabase = Nothing
     
-    WriteLogEvent "Cleaning Public Objects References", vbLogEventTypeInformation
+    WriteLogEvent "Cleaning Public Objects References", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     '///////////////////////////////////////////////////////////////////
     'REFRESH FLAGS
     Set pCSemaforoGeneral = Nothing
@@ -325,6 +327,8 @@ Public Sub TerminateApplication()
     Set pUsuario = Nothing
     Set pCPermiso = Nothing
     
+    WriteLogEvent "*** Application Terminate ***", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
+    
     '///////////////////////////////////////////////////////////////////
     'CONFIGURATION
     Set pSucursal = Nothing
@@ -333,7 +337,6 @@ Public Sub TerminateApplication()
     Set pRegionalSettings = Nothing
     Set pSpecialFolders = Nothing
     
-    WriteLogEvent "*** Application Terminate ***", vbLogEventTypeInformation
     Running = False
     
     Screen.MousePointer = vbDefault

@@ -159,7 +159,7 @@ Private Sub cmdOK_Click()
     pUsuario.NoMatchRaiseError = True
     If pUsuario.NoMatch Then
         mIntentos = mIntentos + 1
-        WriteLogEvent "User Login Failed: User Unknown - LoginName: " & pUsuario.LoginName, vbLogEventTypeWarning
+        WriteLogEvent "User Login Failed: User Unknown - LoginName: " & pUsuario.LoginName, vbLogEventTypeWarning, pParametro.LogAccion_Enabled
         MsgBox "El Usuario ingresado no existe.", vbExclamation, App.Title
         txtIDUsuario.SetFocus
         txtIDUsuario_GotFocus
@@ -174,7 +174,7 @@ Private Sub cmdOK_Click()
     
     If Not pUsuario.Activo Then
         mIntentos = mIntentos + 1
-        WriteLogEvent "User Login Failed: User Not Active - LoginName: " & pUsuario.LoginName, vbLogEventTypeWarning
+        WriteLogEvent "User Login Failed: User Not Active - LoginName: " & pUsuario.LoginName, vbLogEventTypeWarning, pParametro.LogAccion_Enabled
         MsgBox "El Usuario está desactivado.", vbExclamation, App.Title
         txtIDUsuario.SetFocus
         txtIDUsuario_GotFocus
@@ -189,7 +189,7 @@ Private Sub cmdOK_Click()
     
     If txtPassword.Text <> pUsuario.Password Then
         mIntentos = mIntentos + 1
-        WriteLogEvent "User Login Failed: Wrong Password - LoginName: " & pUsuario.LoginName, vbLogEventTypeWarning
+        WriteLogEvent "User Login Failed: Wrong Password - LoginName: " & pUsuario.LoginName, vbLogEventTypeWarning, pParametro.LogAccion_Enabled
         MsgBox "La Contraseña ingresada es incorrecta.", vbExclamation, App.Title
         txtPassword.SetFocus
         txtPassword_GotFocus
@@ -210,7 +210,7 @@ Private Sub cmdOK_Click()
     End If
     If Not UsuarioGrupo.Activo Then
         mIntentos = mIntentos + 1
-        WriteLogEvent "User Login Failed: User Group Not Active - LogiName: " & pUsuario.LoginName, vbLogEventTypeWarning
+        WriteLogEvent "User Login Failed: User Group Not Active - LogiName: " & pUsuario.LoginName, vbLogEventTypeWarning, pParametro.LogAccion_Enabled
         MsgBox "El Grupo de Usuarios está desactivado.", vbExclamation, App.Title
         txtIDUsuario.SetFocus
         txtIDUsuario_GotFocus

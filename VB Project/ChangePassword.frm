@@ -226,8 +226,8 @@ Private Sub cmdOK_Click()
         Exit Sub
     End If
     
-    WriteLogEvent "El Usuario ha cambiado su contraseña:", vbLogEventTypeInformation
-    WriteLogEvent "     Usuario: " & pUsuario.IDUsuario, vbLogEventTypeInformation
+    WriteLogEvent "El Usuario ha cambiado su contraseña:", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
+    WriteLogEvent "     Usuario: " & pUsuario.IDUsuario, vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     mUsuario.Password = txtNew.Text
     
     If Not mUsuario.Update Then

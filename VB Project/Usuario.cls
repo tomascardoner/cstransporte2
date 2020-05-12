@@ -787,7 +787,7 @@ Public Function LogIn() As Boolean
     
     Dim Reporte As Reporte
     
-    WriteLogEvent "User Login Succesfully - LoginName: " & LoginName, vbLogEventTypeInformation
+    WriteLogEvent "User Login Succesfully - LoginName: " & LoginName, vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     Call CSM_Registry.SetValue_ToApplication_CurrentUser("", "LastUserID", LoginName)
     frmMDI.stbMain.Panels("USUARIO").Text = Nombre
     
@@ -808,14 +808,14 @@ Public Function LogIn() As Boolean
     
     '//////////////////////////////////////////////////////////////////
     'OBTENGO LA CAJA DE CUENTA CORRIENTE
-    WriteLogEvent "Reading Cuenta Corriente Caja of User: INIT", vbLogEventTypeInformation
+    WriteLogEvent "Reading Cuenta Corriente Caja of User: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     Set CuentaCorrienteCaja = New CuentaCorrienteCaja
     CuentaCorrienteCaja.IDPersona = pUsuario.IDPersona
     CuentaCorrienteCaja.NoMatchRaiseError = False
     CuentaCorrienteCaja.LoadByPersona
     mIDCuentaCorrienteCaja = CuentaCorrienteCaja.IDCuentaCorrienteCaja
     Set CuentaCorrienteCaja = Nothing
-    WriteLogEvent "Reading Cuenta Corriente Caja of User: DONE", vbLogEventTypeInformation
+    WriteLogEvent "Reading Cuenta Corriente Caja of User: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
 
     '//////////////////////////////////////////////////////////////////
     'SINCRONIZO LA HORA CON EL SERVER
@@ -826,7 +826,7 @@ Public Function LogIn() As Boolean
     
     '//////////////////////////////////////////////////////////////////
     'SHOW/HIDE MENU ITEMS AND BUTTONS
-    WriteLogEvent "Showing/Hiding Utility menu: INIT", vbLogEventTypeInformation
+    WriteLogEvent "Showing/Hiding Utility menu: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     frmMDI.mnuUtility.Visible = pCPermiso.GotPermission(PERMISO_UTILIDAD, False)
     frmMDI.mnuUtilityParameter.Enabled = pCPermiso.GotPermission(PERMISO_UTILIDAD_EDITOR_DIRECTO_PARAMETRO, False)
     frmMDI.mnuUtilityCallerIDSimulate.Enabled = (IDUsuario = 0)
@@ -836,13 +836,13 @@ Public Function LogIn() As Boolean
     frmMDI.mnuUtilityUpdateSueldo.Enabled = pCPermiso.GotPermission(PERMISO_UTILIDAD_ACTUALIZAR_SUELDO_VIAJE, False)
     frmMDI.tlbMain.Buttons("MESSENGER").Visible = pMessengerEnabled
     frmMDI.tlbMain.Buttons("SEPARATOR_7").Visible = pMessengerEnabled
-    WriteLogEvent "Showing/Hiding Utility menu: DONE", vbLogEventTypeInformation
+    WriteLogEvent "Showing/Hiding Utility menu: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     
     LogIn = True
     
     'AVISOS DE MANTENIMIENTO DE VEHICULOS
     If pParametro.VehiculoMantenimiento_Aviso Then
-        WriteLogEvent "Verifying Mantenimiento de Vehículos Alerts: INIT", vbLogEventTypeInformation
+        WriteLogEvent "Verifying Mantenimiento de Vehículos Alerts: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         Set VehiculoMantenimiento = New VehiculoMantenimiento
         Avisos = VehiculoMantenimiento.Check
         Set VehiculoMantenimiento = Nothing
@@ -861,12 +861,12 @@ Public Function LogIn() As Boolean
                 End If
             End If
         End If
-        WriteLogEvent "Verifying Mantenimiento de Vehículos Alerts: DONE", vbLogEventTypeInformation
+        WriteLogEvent "Verifying Mantenimiento de Vehículos Alerts: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     End If
 
     'AVISOS DE ALARMAS DE PERSONAS
     If pParametro.PersonaAlarma_Aviso Then
-        WriteLogEvent "Verifying Alarmas de Personas Alerts: INIT", vbLogEventTypeInformation
+        WriteLogEvent "Verifying Alarmas de Personas Alerts: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         Set PersonaAlarma = New PersonaAlarma
         Avisos = PersonaAlarma.Check
         Set PersonaAlarma = Nothing
@@ -885,12 +885,12 @@ Public Function LogIn() As Boolean
                 End If
             End If
         End If
-        WriteLogEvent "Verifying Alarmas de Personas Alerts: DONE", vbLogEventTypeInformation
+        WriteLogEvent "Verifying Alarmas de Personas Alerts: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     End If
 
     'AVISOS DE ALARMAS GENERALES
     If pParametro.Alarma_Aviso Then
-        WriteLogEvent "Verifying Alarmas Generales Alerts: INIT", vbLogEventTypeInformation
+        WriteLogEvent "Verifying Alarmas Generales Alerts: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         Set Alarma = New Alarma
         Avisos = Alarma.Check
         Set Alarma = Nothing
@@ -909,14 +909,14 @@ Public Function LogIn() As Boolean
                 End If
             End If
         End If
-        WriteLogEvent "Verifying Alarmas Generales Alerts: DONE", vbLogEventTypeInformation
+        WriteLogEvent "Verifying Alarmas Generales Alerts: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     End If
     
     'AVISO DE VIAJES CON ESTADO VENCIDO
     If pParametro.Viaje_EstadoVencido_Check Then
-        WriteLogEvent "Verifying Viaje Estado Vencido Alerts: INIT", vbLogEventTypeInformation
+        WriteLogEvent "Verifying Viaje Estado Vencido Alerts: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         Call Viaje_EstadoVencido_List
-        WriteLogEvent "Verifying Viaje Estado Vencido Alerts: DONE", vbLogEventTypeInformation
+        WriteLogEvent "Verifying Viaje Estado Vencido Alerts: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     End If
     
     'MENSAJES GENERALES
@@ -930,5 +930,5 @@ End Function
 Public Sub LogOut()
     CSM_Forms.UnloadAll "frmMDI"
     frmMDI.stbMain.Panels("USUARIO").Text = ""
-    WriteLogEvent "User Logout Succesfully - Username: " & IDUsuario, vbLogEventTypeInformation
+    WriteLogEvent "User Logout Succesfully - Username: " & IDUsuario, vbLogEventTypeInformation, pParametro.LogAccion_Enabled
 End Sub

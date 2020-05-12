@@ -108,7 +108,7 @@ CREATE PROCEDURE dbo.sp_Report_Viaje_Planilla_Comision
 			INNER JOIN Lugar AS LugarOrigen ON ViajeDetalle.IDOrigen = LugarOrigen.IDLugar)
 			INNER JOIN Lugar AS LugarDestino ON ViajeDetalle.IDDestino = LugarDestino.IDLugar)
 			LEFT JOIN Persona AS PersonaRecibe ON ViajeDetalle.IDPersonaRecibe = PersonaRecibe.IDPersona)
-			LEFT JOIN ListaPrecio ON ViajeDetalle.IDListaPrecio = ListaPrecio.IDListaPrecio, Parametro
+			LEFT JOIN ListaPrecio ON ViajeDetalle.IDListaPrecio = ListaPrecio.IDListaPrecio
 		WHERE ViajeDetalle.FechaHora = @FechaHora_FILTER
 			AND ViajeDetalle.IDRuta = @IDRuta_FILTER
 			AND ViajeDetalle.OcupanteTipo = 'CO'

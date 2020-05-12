@@ -119,7 +119,7 @@ Private Sub TAPI_Initialize()
     DeviceGUID = CSM_Registry.GetValue_FromApplication_CurrentUser("Options\Telephony", "DeviceGUID", "", csrdtString)
     CallerIDEnabled = CSM_Registry.GetValue_FromApplication_CurrentUser("Options\Telephony", "CallerIDEnabled", True, csrdtBoolean)
     
-    WriteLogEvent "TAPI Initialization: INIT", vbLogEventTypeInformation
+    WriteLogEvent "TAPI Initialization: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     
     On Error GoTo ErrorHandler
     
@@ -129,7 +129,7 @@ Private Sub TAPI_Initialize()
     
     Initialized = True
     
-    WriteLogEvent "TAPI Initialization: DONE", vbLogEventTypeInformation
+    WriteLogEvent "TAPI Initialization: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
 
     TAPI_SelectAddress DeviceGUID
     
@@ -160,7 +160,7 @@ Private Function TAPI_SelectAddress(ByVal DeviceGUID As String) As Boolean
     If DeviceGUID = "" Then
         If TAPI.Addresses.Count > 0 Then
             Set Address = TAPI.Addresses(1)
-            WriteLogEvent "TAPI: Select Address Not Specifed, Default Selected - " & Address.AddressName, vbLogEventTypeInformation
+            WriteLogEvent "TAPI: Select Address Not Specifed, Default Selected - " & Address.AddressName, vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         End If
     Else
         For Each AddressCurrent In TAPI.Addresses
@@ -168,7 +168,7 @@ Private Function TAPI_SelectAddress(ByVal DeviceGUID As String) As Boolean
                 Set AddressCapabilities = AddressCurrent
                 If AddressCapabilities.AddressCapabilityString(ACS_PERMANENTDEVICEGUID) = DeviceGUID Then
                     Set Address = AddressCurrent
-                    WriteLogEvent "TAPI: Select Address Succesfully - " & Address.AddressName, vbLogEventTypeInformation
+                    WriteLogEvent "TAPI: Select Address Succesfully - " & Address.AddressName, vbLogEventTypeInformation, pParametro.LogAccion_Enabled
                 End If
                 Set AddressCapabilities = Nothing
             End If
@@ -176,10 +176,10 @@ Private Function TAPI_SelectAddress(ByVal DeviceGUID As String) As Boolean
         If Address Is Nothing Then
             If TAPI.Addresses.Count > 0 Then
                 Set Address = TAPI.Addresses(1)
-                WriteLogEvent "TAPI: Select Address Not Found, Default Selected - " & Address.AddressName, vbLogEventTypeInformation
+                WriteLogEvent "TAPI: Select Address Not Found, Default Selected - " & Address.AddressName, vbLogEventTypeInformation, pParametro.LogAccion_Enabled
                 MsgBox "El Dispotivio de Telefonía especificado en la Estación de Trabajo, no existe. Se ha seleccionado el primer Dispositivo disponible.", vbInformation, App.Title
             Else
-                WriteLogEvent "TAPI: Select Address Not Found, Default Selected - " & Address.AddressName, vbLogEventTypeInformation
+                WriteLogEvent "TAPI: Select Address Not Found, Default Selected - " & Address.AddressName, vbLogEventTypeInformation, pParametro.LogAccion_Enabled
             End If
         End If
     End If
@@ -239,7 +239,7 @@ Public Sub COMM_Initialize()
 
     With frmMDI.comTelephony
         'MODEM INIT
-        WriteLogEvent "COMM Initialization: INIT", vbLogEventTypeInformation
+        WriteLogEvent "COMM Initialization: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         
         On Error GoTo ErrorHandlerOpenPort
         
@@ -252,11 +252,11 @@ Public Sub COMM_Initialize()
         
         Initialized = True
         
-        WriteLogEvent "COMM Initialization: DONE", vbLogEventTypeInformation
+        WriteLogEvent "COMM Initialization: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         
         'CALLER ID
         If CallerIDEnabled Then
-            WriteLogEvent "COMM Caller ID: INIT", vbLogEventTypeInformation
+            WriteLogEvent "COMM Caller ID: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
             
             On Error GoTo ErrorHandlerCallerID
             
@@ -264,7 +264,7 @@ Public Sub COMM_Initialize()
             
             CallerIDSupported = True
             
-            WriteLogEvent "COMM Caller ID: DONE", vbLogEventTypeInformation
+            WriteLogEvent "COMM Caller ID: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         End If
     End With
     

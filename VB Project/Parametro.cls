@@ -262,7 +262,7 @@ Public Function LoadSystemParameters() As Boolean
     Dim recParametro As ADODB.Recordset
     Dim DES As CSC_Encryption_DES
     
-    WriteLogEvent "Load System Parameters: INIT", vbLogEventTypeInformation
+    WriteLogEvent "Load System Parameters: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     
     If pTrapErrors Then
         On Error GoTo ErrorHandler
@@ -456,7 +456,7 @@ Public Function LoadSystemParameters() As Boolean
     Set recParametro = Nothing
     
     LoadSystemParameters = True
-    WriteLogEvent "Load System Parameters: DONE", vbLogEventTypeInformation
+    WriteLogEvent "Load System Parameters: DONE", vbLogEventTypeInformation, Logs_MonthsToKeep
     Exit Function
     
 ErrorHandler:
@@ -598,7 +598,7 @@ End Function
 Public Function InitializeUserParameters() As Boolean
     Screen.MousePointer = vbHourglass
     
-    WriteLogEvent "Initialize User Parameters: INIT", vbLogEventTypeInformation
+    WriteLogEvent "Initialize User Parameters: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
 
     If pTrapErrors Then
         On Error GoTo ErrorHandler
@@ -611,7 +611,7 @@ Public Function InitializeUserParameters() As Boolean
     Screen.MousePointer = vbDefault
     InitializeUserParameters = True
     
-    WriteLogEvent "Initialize User Parameters: DONE", vbLogEventTypeInformation
+    WriteLogEvent "Initialize User Parameters: DONE", vbLogEventTypeInformation, LogAccion_Enabled
     Exit Function
     
 ErrorHandler:
@@ -619,7 +619,7 @@ ErrorHandler:
 End Function
 
 Public Function LoadUserParameters() As Boolean
-    WriteLogEvent "Load User Parameters: INIT", vbLogEventTypeInformation
+    WriteLogEvent "Load User Parameters: INIT", vbLogEventTypeInformation, LogAccion_Enabled
 
     ListView_GridLines = Usuario_LeerSiNo("ListView_GridLines", True)
     Usuario_Messenger_Enabled = Usuario_LeerSiNo("Messenger_Enabled", True)
@@ -642,7 +642,7 @@ Public Function LoadUserParameters() As Boolean
     GridOddRowForeColor = Usuario_LeerNumero("GridOddRowForeColor", vbWindowText)
     
     LoadUserParameters = True
-    WriteLogEvent "Load User Parameters: DONE", vbLogEventTypeInformation
+    WriteLogEvent "Load User Parameters: DONE", vbLogEventTypeInformation, LogAccion_Enabled
 End Function
 
 Public Sub LoadParameters()
