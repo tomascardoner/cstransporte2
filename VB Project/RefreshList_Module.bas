@@ -8,6 +8,7 @@ Public Const MODULE_LUGAR = "LU"
 Public Const MODULE_LUGAR_GRUPO = "LG"
 Public Const MODULE_RUTA = "RU"
 Public Const MODULE_RUTA_DETALLE = "RD"
+Public Const MODULE_RUTA_DETALLE_HORARIO = "RH"
 Public Const MODULE_RUTA_LUGARGRUPO = "RL"
 Public Const MODULE_LISTA_PRECIO = "LP"
 Public Const MODULE_LISTA_PRECIO_DETALLE = "LD"
@@ -109,6 +110,8 @@ Public Sub RefreshList_Slowest_CheckForRefreshs()
                             RefreshList_RefreshRuta "", False
                         Case MODULE_RUTA_DETALLE
                             RefreshList_RefreshRutaDetalle "", 0, True, False
+                        Case MODULE_RUTA_DETALLE_HORARIO
+                            RefreshList_RefreshRutaDetalleHorario 0, True, False
                         Case MODULE_LISTA_PRECIO
                             RefreshList_RefreshListaPrecio 0, False
                         Case MODULE_LISTA_PRECIO_DETALLE
@@ -424,6 +427,19 @@ Public Sub RefreshList_RefreshRutaDetalle(ByVal IDRuta As String, ByVal IDLugar 
             frmRutaDetalle.FillListView IDRuta, IDLugar
         End If
     End If
+End Sub
+
+Public Sub RefreshList_RefreshRutaDetalleHorario(ByVal IDRutaDetalleHorario As Long, Optional ByVal Force As Boolean = False, Optional ByVal UpdateRefreshValue As Boolean = True)
+    If UpdateRefreshValue Then
+        RefreshList_UpdateValue MODULE_RUTA_DETALLE_HORARIO
+    End If
+'    If CSM_Forms.IsLoaded("frmRutaDetalleHorario") Then
+'        If Force Then
+'            frmRutaDetalleHorario.ForceRefresh
+'        Else
+'            frmRutaDetalleHorario.FillListView IDRutaDetalleHorario
+'        End If
+'    End If
 End Sub
 
 Public Sub RefreshList_RefreshRutaLugarGrupo(ByVal IDRuta As String, ByVal IDLugarGrupo As Long, Optional ByVal UpdateRefreshValue As Boolean = True)

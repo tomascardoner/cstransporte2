@@ -222,3 +222,121 @@ BEGIN
 
 END
 GO
+
+
+
+-- =============================================
+-- Author: Tomás A. Cardoner
+-- Created:	02/06/2020
+-- Updated:	
+-- Description: Obtiene los datos de la RutaDetalleHorario
+-- =============================================
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_RutaDetalleHorario_Get') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE usp_RutaDetalleHorario_Get
+GO
+
+CREATE PROCEDURE dbo.usp_RutaDetalleHorario_Get
+	@IDRutaDetalleHorario int
+AS
+
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT IDRutaDetalleHorario, IDRuta, IDLugar, DiaSemanaNumero, DiaSemana, HoraInicio, HoraFin
+		FROM RutaDetalleHorario
+		WHERE IDRutaDetalleHorario = @IDRutaDetalleHorario
+
+END
+GO
+
+
+
+-- =============================================
+-- Author: Tomás A. Cardoner
+-- Created:	02/06/2020
+-- Updated:	
+-- Description: Agrega un Horario al Detalle de Ruta
+-- =============================================
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_RutaDetalleHorario_Add') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE usp_RutaDetalleHorario_Add
+GO
+
+CREATE PROCEDURE dbo.usp_RutaDetalleHorario_Add
+	@IDRutaDetalleHorario int OUT,
+	@IDRuta char(20),
+	@IDLugar int,
+	@DiaSemanaNumero int,
+	@DiaSemana varchar(50),
+	@HoraInicio time(7),
+	@HoraFin time(7)
+AS
+
+BEGIN
+	SET NOCOUNT ON;
+
+    INSERT INTO RutaDetalleHorario
+        (IDRuta, IDLugar, DiaSemanaNumero, DiaSemana, HoraInicio, HoraFin)
+        VALUES (@IDRuta, @IDLugar, @DiaSemanaNumero, @DiaSemana, @HoraInicio, @HoraFin)
+
+	SET @IDRutaDetalleHorario = @@IDENTITY
+
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Created:	02/06/2020
+-- Updated:	
+-- Description: Actualiza los datos del Horario del Detalle de Ruta
+-- =============================================
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_RutaLugarGrupo_Update') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE usp_RutaLugarGrupo_Update
+GO
+
+CREATE PROCEDURE dbo.usp_RutaLugarGrupo_Update
+	@IDRutaDetalleHorario int,
+	@IDRuta char(20),
+	@IDLugar int,
+	@DiaSemanaNumero int,
+	@DiaSemana varchar(50),
+	@HoraInicio time(7),
+	@HoraFin time(7)
+AS
+
+BEGIN
+	SET NOCOUNT ON;
+
+    UPDATE RutaDetalleHorario
+        SET IDRuta = @IDRuta, IDLugar = @IDLugar, DiaSemanaNumero = @DiaSemanaNumero, DiaSemana = @DiaSemana, HoraInicio = @HoraInicio, HoraFin = @HoraFin
+        WHERE IDRutaDetalleHorario = @IDRutaDetalleHorario
+
+END
+GO
+
+
+
+-- =============================================
+-- Author: Tomás A. Cardoner
+-- Created:	02/06/2020
+-- Updated:	
+-- Description: Elimina el Horario del Detalle de Ruta
+-- =============================================
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_RutaLugarGrupo_Delete') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE usp_RutaLugarGrupo_Delete
+GO
+
+CREATE PROCEDURE dbo.usp_RutaLugarGrupo_Delete
+	@IDRutaDetalleHorario int
+AS
+	
+BEGIN
+	SET NOCOUNT ON;
+
+    DELETE
+        FROM RutaDetalleHorario
+        WHERE IDRutaDetalleHorario = @IDRutaDetalleHorario
+
+END
+GO

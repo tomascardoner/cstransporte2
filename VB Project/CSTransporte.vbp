@@ -232,12 +232,13 @@ Class=RutaLugarGrupo; RutaLugarGrupo.cls
 Form=MedioPago.frm
 Form=MedioPagoPropiedad.frm
 ResFile32="Resources.res"
+Class=RutaDetalleHorario; RutaDetalleHorario.cls
 IconForm="frmMDI"
 Startup="Sub Main"
 HelpFile=""
 Title="CS-Transporte 2006"
 ExeName32="CSTransporte.exe"
-Command32="CONFIG=LENOVO"
+Command32="CONFIG=CSTransporte"
 Name="CSTransporte"
 HelpContextID="0"
 Description="CS-Transporte 2006"
