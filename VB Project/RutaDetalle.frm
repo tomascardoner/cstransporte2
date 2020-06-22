@@ -2,18 +2,18 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Begin VB.Form frmRutaDetalle 
-   Caption         =   "Detalle de Rutas"
+   Caption         =   "Detalle de Ruta"
    ClientHeight    =   5400
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   10740
+   ClientWidth     =   8955
    Icon            =   "RutaDetalle.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MDIChild        =   -1  'True
    ScaleHeight     =   5400
-   ScaleWidth      =   10740
+   ScaleWidth      =   8955
    Begin MSComctlLib.Toolbar tlbPin 
       Height          =   330
       Left            =   15
@@ -38,22 +38,22 @@ Begin VB.Form frmRutaDetalle
    End
    Begin ComCtl3.CoolBar cbrMain 
       Align           =   1  'Align Top
-      Height          =   630
+      Height          =   1020
       Left            =   0
       TabIndex        =   2
       Top             =   0
-      Width           =   10740
-      _ExtentX        =   18944
-      _ExtentY        =   1111
+      Width           =   8955
+      _ExtentX        =   15796
+      _ExtentY        =   1799
       BandCount       =   2
       FixedOrder      =   -1  'True
-      _CBWidth        =   10740
-      _CBHeight       =   630
+      _CBWidth        =   8955
+      _CBHeight       =   1020
       _Version        =   "6.7.9782"
       Child1          =   "tlbMain"
-      MinWidth1       =   7380
+      MinWidth1       =   8670
       MinHeight1      =   570
-      Width1          =   6600
+      Width1          =   8670
       FixedBackground1=   0   'False
       Key1            =   "Toolbar"
       NewRow1         =   0   'False
@@ -68,12 +68,12 @@ Begin VB.Form frmRutaDetalle
       Begin VB.PictureBox picFilterRuta 
          BorderStyle     =   0  'None
          Height          =   360
-         Left            =   7635
+         Left            =   165
          ScaleHeight     =   360
-         ScaleWidth      =   3015
+         ScaleWidth      =   8700
          TabIndex        =   4
-         Top             =   135
-         Width           =   3015
+         Top             =   630
+         Width           =   8700
          Begin VB.ComboBox cboRuta 
             BeginProperty Font 
                Name            =   "Arial"
@@ -115,15 +115,15 @@ Begin VB.Form frmRutaDetalle
          Left            =   30
          TabIndex        =   3
          Top             =   30
-         Width           =   7380
-         _ExtentX        =   13018
+         Width           =   8835
+         _ExtentX        =   15584
          _ExtentY        =   1005
          ButtonWidth     =   2170
          ButtonHeight    =   1005
          Style           =   1
          _Version        =   393216
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-            NumButtons      =   6
+            NumButtons      =   7
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Caption         =   "&Nuevo"
                Key             =   "NEW"
@@ -152,6 +152,10 @@ Begin VB.Form frmRutaDetalle
                Caption         =   "Bajar"
                Key             =   "DOWN"
             EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Caption         =   "Horarios"
+               Key             =   "HORARIO"
+            EndProperty
          EndProperty
       End
    End
@@ -161,8 +165,8 @@ Begin VB.Form frmRutaDetalle
       Left            =   0
       TabIndex        =   1
       Top             =   5040
-      Width           =   10740
-      _ExtentX        =   18944
+      Width           =   8955
+      _ExtentX        =   15796
       _ExtentY        =   635
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -175,7 +179,7 @@ Begin VB.Form frmRutaDetalle
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   17727
+            Object.Width           =   14579
             Key             =   "TEXT"
          EndProperty
       EndProperty
@@ -190,13 +194,13 @@ Begin VB.Form frmRutaDetalle
       EndProperty
    End
    Begin MSComctlLib.ListView lvwData 
-      Height          =   3015
+      Height          =   2955
       Left            =   180
       TabIndex        =   0
-      Top             =   1620
-      Width           =   5055
-      _ExtentX        =   8916
-      _ExtentY        =   5318
+      Top             =   1560
+      Width           =   6915
+      _ExtentX        =   12197
+      _ExtentY        =   5212
       View            =   3
       LabelEdit       =   1
       LabelWrap       =   0   'False
@@ -299,10 +303,10 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
     With recData
         If Not .EOF Then
             Do While Not .EOF
-                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDLugar").Value, .Fields("Lugar").Value)
-                ListItem.SubItems(1) = .Fields("LugarGrupo").Value
-                ListItem.SubItems(2) = IIf(IsNull(.Fields("HoraInicio").Value), "", Format(.Fields("HoraInicio").Value, "Short Time"))
-                ListItem.SubItems(3) = IIf(IsNull(.Fields("HoraFin").Value), "", Format(.Fields("HoraFin").Value, "Short Time"))
+                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDLugar").value, .Fields("Lugar").value)
+                ListItem.SubItems(1) = .Fields("LugarGrupo").value
+                ListItem.SubItems(2) = IIf(IsNull(.Fields("HoraInicio").value), "", Format(.Fields("HoraInicio").value, "Short Time"))
+                ListItem.SubItems(3) = IIf(IsNull(.Fields("HoraFin").value), "", Format(.Fields("HoraFin").value, "Short Time"))
                 .MoveNext
             Loop
             
@@ -345,7 +349,7 @@ Public Sub FillComboBoxRuta()
     
     cboRuta.Clear
     Do While Not recRuta.EOF
-        cboRuta.AddItem RTrim(recRuta("IDRuta").Value)
+        cboRuta.AddItem RTrim(recRuta("IDRuta").value)
         recRuta.MoveNext
     Loop
     recRuta.Close
@@ -397,6 +401,7 @@ Private Sub Form_Load()
     tlbMain.Buttons("SELECT").Image = "SELECT"
     tlbMain.Buttons("UP").Image = "UP"
     tlbMain.Buttons("DOWN").Image = "DOWN"
+    tlbMain.Buttons("HORARIO").Image = "HORARIO"
     '//////////////////////////////////////////////////////////
     
     '//////////////////////////////////////////////////////////
@@ -415,8 +420,8 @@ Private Sub Form_Load()
     CSM_Forms.ResizeAndPosition frmMDI, Me
     pParametro.GetCoolBarSettings "RutaDetalle", cbrMain
     pParametro.GetListViewSettings "RutaDetalle", lvwData
-    tlbPin.Buttons("PIN").Value = pParametro.Usuario_LeerNumero("RutaDetalle_Pin", tlbPin.Buttons("PIN").Value)
-    If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+    tlbPin.Buttons("PIN").value = pParametro.Usuario_LeerNumero("RutaDetalle_Pin", tlbPin.Buttons("PIN").value)
+    If tlbPin.Buttons("PIN").value = tbrUnpressed Then
         tlbPin.Buttons("PIN").Image = 1
     Else
         tlbPin.Buttons("PIN").Image = 2
@@ -436,7 +441,7 @@ Private Sub Form_Unload(Cancel As Integer)
     WindowState = vbNormal
     pParametro.SaveCoolBarSettings "RutaDetalle", cbrMain
     pParametro.SaveListViewSettings "RutaDetalle", lvwData
-    pParametro.Usuario_GuardarNumero "RutaDetalle_Pin", tlbPin.Buttons("PIN").Value
+    pParametro.Usuario_GuardarNumero "RutaDetalle_Pin", tlbPin.Buttons("PIN").value
     Set frmRutaDetalle = Nothing
 End Sub
 
@@ -522,7 +527,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 Screen.MousePointer = vbHourglass
                 Forms(FormIndex).HorarioSelected Val(GetSubString(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1), 1, KEY_DELIMITER)), CDate(GetSubString(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1), 2, KEY_DELIMITER)), CSM_String.GetSubString(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1), 3, KEY_DELIMITER)
                 Forms(FormIndex).SetFocus
-                If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+                If tlbPin.Buttons("PIN").value = tbrUnpressed Then
                     Unload Me
                 End If
                 Screen.MousePointer = vbDefault
@@ -581,11 +586,23 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 
                 Screen.MousePointer = vbDefault
             End If
+        Case "HORARIO"
+            If pCPermiso.GotPermission(PERMISO_RUTA_DETALLE_HORARIO) Then
+                If lvwData.SelectedItem Is Nothing Then
+                    MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title
+                    lvwData.SetFocus
+                    Exit Sub
+                End If
+                
+                Screen.MousePointer = vbHourglass
+                frmRutaDetalleHorario.LoadDataAndShow cboRuta.Text, Val(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1)), lvwData.SelectedItem.Text
+                Screen.MousePointer = vbDefault
+            End If
     End Select
 End Sub
 
 Private Sub tlbPin_ButtonClick(ByVal Button As MSComctlLib.Button)
-    If Button.Value = tbrUnpressed Then
+    If Button.value = tbrUnpressed Then
         Button.Image = 1
     Else
         Button.Image = 2

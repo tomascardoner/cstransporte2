@@ -232,7 +232,7 @@ Private Sub cmdDestination_Click()
 End Sub
 
 Private Sub cmdOK_Click()
-    Dim cmdData As ADODB.Command
+    Dim cmdData As ADODB.command
     
     If datcboSource.BoundText = "" Then
         MsgBox "Debe seleccionar el Vehículo de Origen.", vbInformation, App.Title
@@ -256,7 +256,7 @@ Private Sub cmdOK_Click()
     
     Screen.MousePointer = vbHourglass
     
-    Set cmdData = New ADODB.Command
+    Set cmdData = New ADODB.command
     Set cmdData.ActiveConnection = pDatabase.Connection
     cmdData.CommandText = "sp_VehiculoMantenimiento_Copy"
     cmdData.CommandType = adCmdStoredProc

@@ -164,9 +164,9 @@ Public Function OpenReport() As Boolean
     With Report
         .ApplicationName = App.Title
         If PrinterSetupBeforeShow Then
-            .PrinterSetup frmMDI.hWnd
+            .PrinterSetup frmMDI.hwnd
         End If
-        .SetDialogParentWindow frmMDI.hWnd
+        .SetDialogParentWindow frmMDI.hwnd
     End With
     
     errorMessage = "Error al abrir el Reporte."

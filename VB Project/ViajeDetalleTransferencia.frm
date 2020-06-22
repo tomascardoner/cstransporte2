@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Begin VB.Form frmViajeDetalleTransferencia 
    Caption         =   "Transferencia de Pasajeros entre Viajes"
    ClientHeight    =   5130
@@ -497,7 +497,7 @@ Public Function FillListViewLeft(ByVal FechaHora As Date, ByVal IDRuta As String
     On Error Resume Next
     Set lvwDataLeft.SelectedItem = lvwDataLeft.ListItems(KeySave)
     
-    If frmMDI.ActiveForm.Name = Me.Name And GetForegroundWindow() = frmMDI.hWnd And frmMDI.WindowState <> vbMinimized Then
+    If frmMDI.ActiveForm.Name = Me.Name And GetForegroundWindow() = frmMDI.hwnd And frmMDI.WindowState <> vbMinimized Then
         lvwDataLeft.SetFocus
     End If
     
@@ -597,7 +597,7 @@ Public Function FillListViewRight(ByVal FechaHora As Date, ByVal IDRuta As Strin
     On Error Resume Next
     Set lvwDataRight.SelectedItem = lvwDataRight.ListItems(KeySave)
     
-    If frmMDI.ActiveForm.Name = Me.Name And GetForegroundWindow() = frmMDI.hWnd And frmMDI.WindowState <> vbMinimized Then
+    If frmMDI.ActiveForm.Name = Me.Name And GetForegroundWindow() = frmMDI.hwnd And frmMDI.WindowState <> vbMinimized Then
         lvwDataRight.SetFocus
     End If
     

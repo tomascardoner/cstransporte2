@@ -234,7 +234,7 @@ Begin VB.Form frmRutaDetallePropiedad
       EndProperty
       CheckBox        =   -1  'True
       CustomFormat    =   "HH:mm"
-      Format          =   107151363
+      Format          =   108527619
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -258,7 +258,7 @@ Begin VB.Form frmRutaDetallePropiedad
       EndProperty
       CheckBox        =   -1  'True
       CustomFormat    =   "HH:mm"
-      Format          =   107151363
+      Format          =   108527619
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -574,7 +574,7 @@ Private Sub cmdOK_Click()
         dtpHoraFin.SetFocus
         Exit Sub
     End If
-    If dtpHoraFin.Value <= dtpHoraInicio.Value Then
+    If dtpHoraFin.Value < dtpHoraInicio.Value Then
         MsgBox "La Hora de fin debe ser mayor a la Hora de inicio.", vbInformation, App.Title
         dtpHoraFin.SetFocus
         Exit Sub

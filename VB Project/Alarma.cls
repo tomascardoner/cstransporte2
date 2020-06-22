@@ -294,5 +294,5 @@ Public Function Check() As Long
     Exit Function
     
 ErrorHandler:
-    ShowErrorMessage "Classes.Alarma.Check", "Error verificar los Avisos de las Alarmas Generales."
+    ShowErrorMessage "Classes.Alarma.Check", "Error al verificar los Avisos de las Alarmas Generales."
 End Function

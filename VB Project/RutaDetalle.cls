@@ -291,7 +291,7 @@ Public Sub ReIndex(ByVal Ascending As Boolean)
     
     Set cmdData = New ADODB.command
     Set cmdData.ActiveConnection = pDatabase.Connection
-    cmdData.CommandText = "sp_RutaDetalle_List"
+    cmdData.CommandText = "usp_RutaDetalle_List"
     cmdData.CommandType = adCmdStoredProc
     cmdData.Parameters.Append cmdData.CreateParameter("IDRuta_FILTER", adChar, adParamInput, 20, IDRuta)
     Set recData = New ADODB.Recordset

@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   111607809
+      Format          =   108527617
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   111607811
+      Format          =   108527619
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   111607809
+      Format          =   108527617
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -2962,10 +2962,23 @@ Private Sub cmdOK_Click()
         End If
     End If
     
-    ' UPDATE 2020-04-01
+    ' UPDATE 2020-06-20
     ' Verifico el Origen y el Destino para ver si están disponibles en ese horario
+    ' Necesito convertir el número de día de la semana a Lunes=1 y Domingo=7 porque así se hizo en la aplicación de reservas web
+    Dim DiaSemanaNumero As Byte
+    DiaSemanaNumero = Weekday(dtpFecha.Value)
+    If DiaSemanaNumero = 1 Then
+        DiaSemanaNumero = 7
+    Else
+        DiaSemanaNumero = DiaSemanaNumero - 1
+    End If
     If Val(datcboOrigen.BoundText) = 0 Then
         MsgBox "Debe seleccionar el Origen.", vbInformation, App.Title
+        datcboOrigen.SetFocus
+        Exit Sub
+    End If
+    If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboOrigen.BoundText, DiaSemanaNumero, datcboHora.Text) Then
+        MsgBox "El Origen no está disponible para este Horario.", vbExclamation, App.Title
         datcboOrigen.SetFocus
         Exit Sub
     End If
@@ -2974,21 +2987,12 @@ Private Sub cmdOK_Click()
         datcboDestino.SetFocus
         Exit Sub
     End If
-    If (Not mRutaDetalleOrigen.HoraInicio = DATE_TIME_FIELD_NULL_VALUE) And (Not mRutaDetalleOrigen.HoraFin = DATE_TIME_FIELD_NULL_VALUE) Then
-        If Not (CDate(datcboHora.Text) >= mRutaDetalleOrigen.HoraInicio And CDate(datcboHora.Text) <= mRutaDetalleOrigen.HoraFin) Then
-            MsgBox "El Origen no está disponible para este Horario." & vbCr & vbCr & "Solo está disponible de " & Format(mRutaDetalleOrigen.HoraInicio, "HH:mm") & " a " & Format(mRutaDetalleOrigen.HoraFin, "HH:mm"), vbExclamation, App.Title
-            datcboOrigen.SetFocus
-            Exit Sub
-        End If
+    If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboDestino.BoundText, Weekday(dtpFecha.Value) - 1, datcboHora.Text) Then
+        MsgBox "El Destino no está disponible para este Horario.", vbExclamation, App.Title
+        datcboDestino.SetFocus
+        Exit Sub
     End If
-    If (Not mRutaDetalleDestino.HoraInicio = DATE_TIME_FIELD_NULL_VALUE) And (Not mRutaDetalleDestino.HoraFin = DATE_TIME_FIELD_NULL_VALUE) Then
-        If Not (CDate(datcboHora.Text) >= mRutaDetalleDestino.HoraInicio And CDate(datcboHora.Text) <= mRutaDetalleDestino.HoraFin) Then
-            MsgBox "El Destino no está disponible para este Horario." & vbCr & vbCr & "Solo está disponible de " & Format(mRutaDetalleDestino.HoraInicio, "HH:mm") & " a " & Format(mRutaDetalleDestino.HoraFin, "HH:mm"), vbExclamation, App.Title
-            datcboDestino.SetFocus
-            Exit Sub
-        End If
-    End If
-    
+        
     If Val(txtPersona.Tag) = Val(txtPersonaCuentaCorriente.Tag) Then
         MsgBox "No se puede especificar la misma Persona para Facturar.", vbExclamation, App.Title
         cmdPersonaCuentaCorriente.SetFocus
@@ -3876,3 +3880,32 @@ Private Sub Pago_Delete(ByVal Pago As CuentaCorriente)
         mCPagosToDelete.Add Pago
     End If
 End Sub
+
+Private Function VerificarLugarDisponiblePorHorario(ByVal IDRuta As String, ByVal IDLugar As Integer, ByVal DiaSemana As Byte, ByVal Hora As Date) As Boolean
+    Dim cmdData As ADODB.command
+    
+    Screen.MousePointer = vbHourglass
+
+    On Error GoTo ErrorHandler
+    
+    Set cmdData = New ADODB.command
+    Set cmdData.ActiveConnection = pDatabase.Connection
+    cmdData.CommandText = "usp_RutaDetalle_HorarioDisponible"
+    cmdData.CommandType = adCmdStoredProc
+    cmdData.Parameters.Append cmdData.CreateParameter("IDRuta", adChar, adParamInput, 20, IDRuta)
+    cmdData.Parameters.Append cmdData.CreateParameter("IDLugar", adInteger, adParamInput, , IDLugar)
+    cmdData.Parameters.Append cmdData.CreateParameter("DiaSemana", adTinyInt, adParamInput, , DiaSemana)
+    cmdData.Parameters.Append cmdData.CreateParameter("Hora", adDBTime, adParamInput, , Hora)
+    cmdData.Parameters.Append cmdData.CreateParameter("Disponible", adBoolean, adParamOutput)
+    cmdData.Execute
+    
+    VerificarLugarDisponiblePorHorario = cmdData.Parameters("Disponible").Value
+
+    Set cmdData = Nothing
+
+    Screen.MousePointer = vbDefault
+    Exit Function
+    
+ErrorHandler:
+    ShowErrorMessage "Forms.ViajeDetallePropiedad.VerificarLugarDisponiblePorHorario", "Error al verificar la disponibilidad el Lugar."
+End Function

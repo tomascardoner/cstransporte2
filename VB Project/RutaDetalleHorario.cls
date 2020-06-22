@@ -41,11 +41,11 @@ Public Property Get IDRutaDetalleHorario() As Long
     IDRutaDetalleHorario = mIDRutaDetalleHorario
 End Property
 
-Public Property Let IDRutaDetalleHorario(ByVal Value As Long)
-    If Value <> mIDRutaDetalleHorario Then
+Public Property Let IDRutaDetalleHorario(ByVal value As Long)
+    If value <> mIDRutaDetalleHorario Then
         mIsDirty = True
     End If
-    mIDRutaDetalleHorario = Value
+    mIDRutaDetalleHorario = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -55,11 +55,28 @@ Public Property Get IDRuta() As String
     IDRuta = mIDRuta
 End Property
 
-Public Property Let IDRuta(ByVal Value As String)
-    If Value <> mIDRuta Then
+Public Property Let IDRuta(ByVal value As String)
+    If value <> mIDRuta Then
         mIsDirty = True
     End If
-    mIDRuta = Value
+    mIDRuta = value
+End Property
+
+Public Property Get Ruta() As Ruta
+    Static oRuta As Ruta
+    
+    If mIDRuta = 0 Then
+        Set Ruta = Nothing
+    Else
+        If oRuta Is Nothing Then
+            Set oRuta = New Ruta
+        End If
+        If oRuta.IDRuta <> mIDRuta Then
+            oRuta.IDRuta = mIDRuta
+            Call oRuta.Load
+        End If
+        Set Ruta = oRuta
+    End If
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -69,11 +86,28 @@ Public Property Get IDLugar() As Long
     IDLugar = mIDLugar
 End Property
 
-Public Property Let IDLugar(ByVal Value As Long)
-    If Value <> mIDLugar Then
+Public Property Let IDLugar(ByVal value As Long)
+    If value <> mIDLugar Then
         mIsDirty = True
     End If
-    mIDLugar = Value
+    mIDLugar = value
+End Property
+
+Public Property Get Lugar() As Lugar
+    Static oLugar As Lugar
+    
+    If mIDLugar = 0 Then
+        Set Lugar = Nothing
+    Else
+        If oLugar Is Nothing Then
+            Set oLugar = New Lugar
+        End If
+        If oLugar.IDLugar <> mIDLugar Then
+            oLugar.IDLugar = mIDLugar
+            Call oLugar.Load
+        End If
+        Set Lugar = oLugar
+    End If
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -83,11 +117,11 @@ Public Property Get DiaSemanaNumero() As Long
     DiaSemanaNumero = mDiaSemanaNumero
 End Property
 
-Public Property Let DiaSemanaNumero(ByVal Value As Long)
-    If Value <> mDiaSemanaNumero Then
+Public Property Let DiaSemanaNumero(ByVal value As Long)
+    If value <> mDiaSemanaNumero Then
         mIsDirty = True
     End If
-    mDiaSemanaNumero = Value
+    mDiaSemanaNumero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -97,11 +131,11 @@ Public Property Get DiaSemana() As String
     DiaSemana = mDiaSemana
 End Property
 
-Public Property Let DiaSemana(ByVal Value As String)
-    If Value <> mDiaSemana Then
+Public Property Let DiaSemana(ByVal value As String)
+    If value <> mDiaSemana Then
         mIsDirty = True
     End If
-    mDiaSemana = Value
+    mDiaSemana = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -111,11 +145,11 @@ Public Property Get HoraInicio() As Date
     HoraInicio = mHoraInicio
 End Property
 
-Public Property Let HoraInicio(ByVal Value As Date)
-    If Value <> mHoraInicio Then
+Public Property Let HoraInicio(ByVal value As Date)
+    If value <> mHoraInicio Then
         mIsDirty = True
     End If
-    mHoraInicio = Value
+    mHoraInicio = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -125,11 +159,11 @@ Public Property Get HoraFin() As Date
     HoraFin = mHoraFin
 End Property
 
-Public Property Let HoraFin(ByVal Value As Date)
-    If Value <> mHoraFin Then
+Public Property Let HoraFin(ByVal value As Date)
+    If value <> mHoraFin Then
         mIsDirty = True
     End If
-    mHoraFin = Value
+    mHoraFin = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -162,8 +196,8 @@ Public Property Get NoMatchRaiseError() As Boolean
     NoMatchRaiseError = mNoMatchRaiseError
 End Property
 
-Public Property Let NoMatchRaiseError(ByVal Value As Boolean)
-    mNoMatchRaiseError = Value
+Public Property Let NoMatchRaiseError(ByVal value As Boolean)
+    mNoMatchRaiseError = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -173,12 +207,12 @@ Public Property Get RefreshListSkip() As Boolean
     RefreshListSkip = mRefreshListSkip
 End Property
 
-Public Property Let RefreshListSkip(ByVal Value As Boolean)
-    mRefreshListSkip = Value
+Public Property Let RefreshListSkip(ByVal value As Boolean)
+    mRefreshListSkip = value
 End Property
 
 Public Sub RefreshList()
-    RefreshList_Module.RefreshList_RefreshRutaDetalleHorario IDRutaDetalleHorario
+    RefreshList_Module.RefreshList_RefreshRutaDetalleHorario IDRuta, IDLugar, IDRutaDetalleHorario
 End Sub
 
 '////////////////////////////////////////////////////////////////////////
@@ -229,13 +263,21 @@ Private Function GetDataFromRecordset(ByRef recData As ADODB.Recordset) As Boole
         mNoMatch = False
         mIsNew = False
 
-        mIDRutaDetalleHorario = recData("IDRutaDetalleHorario").Value
-        mIDRuta = Trim(recData("IDRuta").Value)
-        mIDLugar = recData("IDLugar").Value
-        mDiaSemanaNumero = recData("DiaSemanaNumero").Value
-        mDiaSemana = recData("DiaSemana").Value
-        mHoraInicio = recData("HoraInicio").Value
-        mHoraFin = recData("HoraFin").Value
+        mIDRutaDetalleHorario = recData("IDRutaDetalleHorario").value
+        mIDRuta = Trim(recData("IDRuta").value)
+        mIDLugar = recData("IDLugar").value
+        ' Necesito convertir el dia de semana porque en la base de la app web, el lunes = 1 y domingo = 7
+        Select Case recData("DiaSemanaNumero").value
+            Case 1 To 6
+                mDiaSemanaNumero = recData("DiaSemanaNumero").value + 1
+            Case 7
+                mDiaSemanaNumero = 1
+            Case Else
+                mDiaSemanaNumero = 0
+        End Select
+        mDiaSemana = recData("DiaSemana").value
+        mHoraInicio = recData("HoraInicio").value
+        mHoraFin = recData("HoraFin").value
     End If
 
     Screen.MousePointer = vbDefault
@@ -272,6 +314,7 @@ Public Function Update() As Boolean
         Set .ActiveConnection = pDatabase.Connection
         If mIsNew Then
             .CommandText = "usp_RutaDetalleHorario_Add"
+            .Parameters.Append .CreateParameter("IDRutaDetalleHorario", adInteger, adParamOutput)
         Else
             .CommandText = "usp_RutaDetalleHorario_Update"
             .Parameters.Append .CreateParameter("IDRutaDetalleHorario", adInteger, adParamInput, , mIDRutaDetalleHorario)
@@ -280,12 +323,20 @@ Public Function Update() As Boolean
 
         .Parameters.Append .CreateParameter("IDRuta", adChar, adParamInput, 20, mIDRuta)
         .Parameters.Append .CreateParameter("IDLugar", adInteger, adParamInput, , mIDLugar)
-        .Parameters.Append .CreateParameter("DiaSemanaNumero", adInteger, adParamInput, , mDiaSemanaNumero)
+        ' Necesito convertir el dia de semana porque en la base de la app web, el lunes = 1 y domingo = 7
+        Select Case DiaSemanaNumero
+            Case 1
+                .Parameters.Append .CreateParameter("DiaSemanaNumero", adInteger, adParamInput, , 7)
+            Case 2 To 7
+                .Parameters.Append .CreateParameter("DiaSemanaNumero", adInteger, adParamInput, , mDiaSemanaNumero - 1)
+            Case Else
+                .Parameters.Append .CreateParameter("DiaSemanaNumero", adInteger, adParamInput, , 0)
+        End Select
         .Parameters.Append .CreateParameter("DiaSemana", adVarChar, adParamInput, 50, mDiaSemana)
         .Parameters.Append .CreateParameter("HoraInicio", adDate, adParamInput, , mHoraInicio)
         .Parameters.Append .CreateParameter("HoraFin", adDate, adParamInput, , mHoraFin)
         If mIsNew Then
-            mIDRutaDetalleHorario = .Parameters("IDRutaDetalleHorario").Value
+            mIDRutaDetalleHorario = .Parameters("IDRutaDetalleHorario").value
         End If
 
         .Execute
@@ -318,7 +369,7 @@ Public Function Delete() As Boolean
     Set cmdSP = New ADODB.command
     With cmdSP
         Set .ActiveConnection = pDatabase.Connection
-        .CommandText = "usp_RutaLugarGrupo_Delete"
+        .CommandText = "usp_RutaDetalleHorario_Delete"
         .CommandType = adCmdStoredProc
 
         .Parameters.Append .CreateParameter("IDRutaDetalleHorario", adInteger, adParamInput, , mIDRutaDetalleHorario)
@@ -338,8 +389,11 @@ ErrorHandler:
     ShowErrorMessage "Classes.RutaLugarGrupo.Delete", "Error al eliminar el Horario del Detalle de Ruta."
 End Function
 
+Public Function VerificarDisponiblilidad(ByVal Fecha As Date, ByVal Hora As Date) As Boolean
+    
+End Function
+
 Private Sub InitializeValues()
-    mIDRutaDetalleHorario = 0
     mIDRuta = ""
     mIDLugar = 0
     mDiaSemanaNumero = 0

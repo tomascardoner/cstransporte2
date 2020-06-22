@@ -321,7 +321,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Lugar As Lugar)
         txtUbicacionLatitud.Text = IIf(.UbicacionLatitud = LOCATION_LATITUDE_NULL_VALUE, "", Format(.UbicacionLatitud, "##.######"))
         txtUbicacionLongitud.Text = IIf(.UbicacionLongitud = LOCATION_LONGITUDE_NULL_VALUE, "", Format(.UbicacionLongitud, "###.######"))
         txtNotas.Text = .Notas
-        chkActivo.Value = IIf(.Activo, vbChecked, vbUnchecked)
+        chkActivo.value = IIf(.Activo, vbChecked, vbUnchecked)
     End With
     
     If WindowState = vbMinimized Then
@@ -364,7 +364,7 @@ Private Sub cmdOK_Click()
         .UbicacionLatitud = IIf(Trim(txtUbicacionLatitud.Text) = "", LOCATION_LATITUDE_NULL_VALUE, Trim(txtUbicacionLatitud.Text))
         .UbicacionLongitud = IIf(Trim(txtUbicacionLongitud.Text) = "", LOCATION_LONGITUDE_NULL_VALUE, Trim(txtUbicacionLongitud.Text))
         .Notas = txtNotas.Text
-        .Activo = (chkActivo.Value = vbChecked)
+        .Activo = (chkActivo.value = vbChecked)
         If mNew Then
             If Not .AddNew Then
                 Exit Sub
@@ -389,7 +389,7 @@ Private Sub txtNombre_GotFocus()
 End Sub
 
 Private Sub txtNombre_Change()
-    Caption = "Propiedades" & IIf(Trim(txtNombre.Text) = "", "", " de " & txtNombre.Text)
+    Caption = "Propiedades " & IIf(mNew, "", " (" & mLugar.IDLugar & ")")
 End Sub
 
 Private Sub txtNombreCorto_GotFocus()

@@ -241,7 +241,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Form_Load()
-    Dim cmdData As ADODB.Command
+    Dim cmdData As ADODB.command
     Dim recData As ADODB.Recordset
 
     CSM_Forms.ResizeAndPosition frmMDI, Me
@@ -257,7 +257,7 @@ Private Sub Form_Load()
     
     Screen.MousePointer = vbHourglass
         
-    Set cmdData = New ADODB.Command
+    Set cmdData = New ADODB.command
     Set cmdData.ActiveConnection = pDatabase.Connection
     cmdData.CommandText = "SELECT * FROM Parametro ORDER BY IDParametro"
     cmdData.CommandType = adCmdText

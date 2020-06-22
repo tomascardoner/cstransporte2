@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form frmViajeGenerar 
    BorderStyle     =   1  'Fixed Single
@@ -385,7 +385,7 @@ Begin VB.Form frmViajeGenerar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   46989313
+      Format          =   108593153
       CurrentDate     =   36950
    End
    Begin VB.Line Line2 
@@ -547,7 +547,7 @@ Private Sub cmdOK_Click()
 End Sub
 
 Private Sub GenerarViajes(ByVal Fecha As Date, ByVal DiaSemana As Byte)
-    Dim cmdData As ADODB.Command
+    Dim cmdData As ADODB.command
     Dim recData As ADODB.Recordset
     
     Dim Viaje As Viaje
@@ -578,7 +578,7 @@ Private Sub GenerarViajes(ByVal Fecha As Date, ByVal DiaSemana As Byte)
     lblStatus.Refresh
     errorMessage = "Error al leer los Horarios."
     
-    Set cmdData = New ADODB.Command
+    Set cmdData = New ADODB.command
     Set cmdData.ActiveConnection = pDatabase.Connection
     cmdData.CommandText = "sp_Horario_List_DiaSemana"
     cmdData.CommandType = adCmdStoredProc

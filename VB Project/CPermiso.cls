@@ -253,6 +253,11 @@ Public Sub Load()
     Add PERMISO_RUTA_DETALLE_MODIFY, "Detalle de Rutas", "Modificar"
     Add PERMISO_RUTA_DETALLE_DELETE, "Detalle de Rutas", "Eliminar"
     
+    Add PERMISO_RUTA_DETALLE_HORARIO, "Horarios de Detalle de Ruta", "Ver"
+    Add PERMISO_RUTA_DETALLE_HORARIO_ADD, "Horarios de Detalle de Ruta", "Agregar"
+    Add PERMISO_RUTA_DETALLE_HORARIO_MODIFY, "Horarios de Detalle de Ruta", "Modificar"
+    Add PERMISO_RUTA_DETALLE_HORARIO_DELETE, "Horarios de Detalle de Ruta", "Eliminar"
+    
     Add PERMISO_RUTALUGARGRUPO, "Rutas-Grupos de Lugares", "Ver"
     Add PERMISO_RUTALUGARGRUPO_ADD, "Rutas-Grupos de Lugares", "Agregar"
     Add PERMISO_RUTALUGARGRUPO_MODIFY, "Rutas-Grupos de Lugares", "Modificar"

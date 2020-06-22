@@ -429,17 +429,17 @@ Public Sub RefreshList_RefreshRutaDetalle(ByVal IDRuta As String, ByVal IDLugar 
     End If
 End Sub
 
-Public Sub RefreshList_RefreshRutaDetalleHorario(ByVal IDRutaDetalleHorario As Long, Optional ByVal Force As Boolean = False, Optional ByVal UpdateRefreshValue As Boolean = True)
+Public Sub RefreshList_RefreshRutaDetalleHorario(ByVal IDRuta As String, ByVal IDLugar As Long, ByVal IDRutaDetalleHorario As Long, Optional ByVal Force As Boolean = False, Optional ByVal UpdateRefreshValue As Boolean = True)
     If UpdateRefreshValue Then
         RefreshList_UpdateValue MODULE_RUTA_DETALLE_HORARIO
     End If
-'    If CSM_Forms.IsLoaded("frmRutaDetalleHorario") Then
-'        If Force Then
-'            frmRutaDetalleHorario.ForceRefresh
-'        Else
-'            frmRutaDetalleHorario.FillListView IDRutaDetalleHorario
-'        End If
-'    End If
+    If CSM_Forms.IsLoaded("frmRutaDetalleHorario") Then
+        If Force Then
+            frmRutaDetalleHorario.ForceRefresh
+        Else
+            frmRutaDetalleHorario.FillListView IDRuta, IDLugar, IDRutaDetalleHorario
+        End If
+    End If
 End Sub
 
 Public Sub RefreshList_RefreshRutaLugarGrupo(ByVal IDRuta As String, ByVal IDLugarGrupo As Long, Optional ByVal UpdateRefreshValue As Boolean = True)

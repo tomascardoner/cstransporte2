@@ -256,7 +256,7 @@ Begin VB.Form frmLugar
       EndProperty
       Height          =   315
       Left            =   780
-      MaxLength       =   10
+      MaxLength       =   100
       TabIndex        =   1
       Top             =   780
       Width           =   4395

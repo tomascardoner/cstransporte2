@@ -38,6 +38,11 @@ Public Const PERMISO_RUTA_DETALLE_ADD = "RutaDetalle_Agregar"
 Public Const PERMISO_RUTA_DETALLE_MODIFY = "RutaDetalle_Modificar"
 Public Const PERMISO_RUTA_DETALLE_DELETE = "RutaDetalle_Eliminar"
 
+Public Const PERMISO_RUTA_DETALLE_HORARIO = "RutaDetalle_Horario"
+Public Const PERMISO_RUTA_DETALLE_HORARIO_ADD = "RutaDetalle_Horario_Agregar"
+Public Const PERMISO_RUTA_DETALLE_HORARIO_MODIFY = "RutaDetalle_Horario_Modificar"
+Public Const PERMISO_RUTA_DETALLE_HORARIO_DELETE = "RutaDetalle_Horario_Eliminar"
+
 Public Const PERMISO_RUTALUGARGRUPO = "RutaLugarGrupo"
 Public Const PERMISO_RUTALUGARGRUPO_ADD = "RutaLugarGrupo_Agregar"
 Public Const PERMISO_RUTALUGARGRUPO_MODIFY = "RutaLugarGrupo_Modificar"

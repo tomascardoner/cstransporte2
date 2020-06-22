@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmContactoPropiedad 
@@ -672,7 +672,7 @@ Begin VB.Form frmContactoPropiedad
             Strikethrough   =   0   'False
          EndProperty
          CheckBox        =   -1  'True
-         Format          =   47382529
+         Format          =   108593153
          CurrentDate     =   36950
       End
       Begin VB.Label lblSobreNombre 
@@ -1624,7 +1624,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Contacto As Contacto)
         txtCompania.Text = .Compania
         txtTituloLaboral.Text = .TituloLaboral
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(1), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono1Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(1), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono1Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1632,7 +1632,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Contacto As Contacto)
         txtTelefonoArea(1).Text = .Telefono1Area
         txtTelefonoNumero(1).Text = .Telefono1Numero
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(2), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono2Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(2), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono2Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1640,7 +1640,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Contacto As Contacto)
         txtTelefonoArea(2).Text = .Telefono2Area
         txtTelefonoNumero(2).Text = .Telefono2Numero
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(3), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono3Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(3), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono3Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1648,7 +1648,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Contacto As Contacto)
         txtTelefonoArea(3).Text = .Telefono3Area
         txtTelefonoNumero(3).Text = .Telefono3Numero
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(4), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono4Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(4), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono4Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1656,7 +1656,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Contacto As Contacto)
         txtTelefonoArea(4).Text = .Telefono4Area
         txtTelefonoNumero(4).Text = .Telefono4Numero
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(5), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono5Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(5), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono5Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1676,7 +1676,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Contacto As Contacto)
         txtDomicilioLaboralDepartamento.Text = .DomicilioLaboralDepartamento
         txtDomicilioLaboralCalle2.Text = .DomicilioLaboralCalle2
         txtDomicilioLaboralCalle3.Text = .DomicilioLaboralCalle3
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboDomicilioLaboralProvincia, "(SELECT ' ' AS IDProvincia, '----------' AS Nombre) UNION (SELECT IDProvincia, Nombre FROM Provincia) ORDER BY Nombre", "IDProvincia", "Nombre", "Provincias", cscpItemOrFirst, .DomicilioLaboralIDProvincia) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboDomicilioLaboralProvincia, "(SELECT ' ' AS IDProvincia, '----------' AS Nombre) UNION (SELECT IDProvincia, Nombre FROM Provincia) ORDER BY Nombre", "IDProvincia", "Nombre", "Provincias", cscpItemOrfirst, .DomicilioLaboralIDProvincia) Then
             Unload Me
             Exit Sub
         End If
@@ -1691,7 +1691,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Contacto As Contacto)
         txtDomicilioParticularDepartamento.Text = .DomicilioParticularDepartamento
         txtDomicilioParticularCalle2.Text = .DomicilioParticularCalle2
         txtDomicilioParticularCalle3.Text = .DomicilioParticularCalle3
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboDomicilioParticularProvincia, "(SELECT ' ' AS IDProvincia, '----------' AS Nombre) UNION (SELECT IDProvincia, Nombre FROM Provincia) ORDER BY Nombre", "IDProvincia", "Nombre", "Provincias", cscpItemOrFirst, .DomicilioParticularIDProvincia) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboDomicilioParticularProvincia, "(SELECT ' ' AS IDProvincia, '----------' AS Nombre) UNION (SELECT IDProvincia, Nombre FROM Provincia) ORDER BY Nombre", "IDProvincia", "Nombre", "Provincias", cscpItemOrfirst, .DomicilioParticularIDProvincia) Then
             Unload Me
             Exit Sub
         End If
@@ -1707,7 +1707,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Contacto As Contacto)
         txtDomicilioOtroDepartamento.Text = .DomicilioOtroDepartamento
         txtDomicilioOtroCalle2.Text = .DomicilioOtroCalle2
         txtDomicilioOtroCalle3.Text = .DomicilioOtroCalle3
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboDomicilioOtroProvincia, "(SELECT ' ' AS IDProvincia, '----------' AS Nombre) UNION (SELECT IDProvincia, Nombre FROM Provincia) ORDER BY Nombre", "IDProvincia", "Nombre", "Provincias", cscpItemOrFirst, .DomicilioOtroIDProvincia) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboDomicilioOtroProvincia, "(SELECT ' ' AS IDProvincia, '----------' AS Nombre) UNION (SELECT IDProvincia, Nombre FROM Provincia) ORDER BY Nombre", "IDProvincia", "Nombre", "Provincias", cscpItemOrfirst, .DomicilioOtroIDProvincia) Then
             Unload Me
             Exit Sub
         End If
@@ -1768,7 +1768,7 @@ Private Sub cmdContactoGrupo_Click()
 End Sub
 
 Private Sub cmdOK_Click()
-    Dim cmdTitulo As ADODB.Command
+    Dim cmdTitulo As ADODB.command
     Dim Index As Integer
     
     If Trim(txtApellido.Text) = "" And Trim(txtNombre.Text) = "" And Trim(txtCompania.Text) = "" Then
@@ -1896,7 +1896,7 @@ Private Sub cmdOK_Click()
         
         'VERIFICO SI EXISTE EL TITULO, PARA AGREGARLO SI NO
         If Trim(datcboTitulo.Text) <> "" Then
-            Set cmdTitulo = New ADODB.Command
+            Set cmdTitulo = New ADODB.command
             Set cmdTitulo.ActiveConnection = pDatabase.Connection
             cmdTitulo.CommandText = "sp_Titulo_Check"
             cmdTitulo.CommandType = adCmdStoredProc

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
 Begin VB.MDIForm frmMDI 
    Appearance      =   0  'Flat
@@ -109,7 +109,7 @@ Begin VB.MDIForm frmMDI
             AutoSize        =   2
             Object.Width           =   1588
             MinWidth        =   2
-            TextSave        =   "01/02/2019"
+            TextSave        =   "20/06/2020"
             Key             =   "DATE"
          EndProperty
          BeginProperty Panel9 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
@@ -118,7 +118,7 @@ Begin VB.MDIForm frmMDI
             AutoSize        =   2
             Object.Width           =   873
             MinWidth        =   2
-            TextSave        =   "13:58"
+            TextSave        =   "20:17"
             Key             =   "TIME"
          EndProperty
       EndProperty
