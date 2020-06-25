@@ -221,7 +221,7 @@ Begin VB.Form frmRutaDetalle
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      NumItems        =   4
+      NumItems        =   5
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Key             =   "Lugar"
          Text            =   "Lugar"
@@ -234,13 +234,20 @@ Begin VB.Form frmRutaDetalle
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Alignment       =   1
          SubItemIndex    =   2
-         Key             =   "HoraInicio"
-         Text            =   "Hora de inicio"
+         Key             =   "Duracion"
+         Text            =   "Duración"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   3
+         Key             =   "HoraInicio"
+         Text            =   "Hora de inicio"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   4
          Key             =   "HoraFin"
          Text            =   "Hora de fin"
          Object.Width           =   2540
@@ -297,7 +304,7 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
     End If
     
     Set recData = New ADODB.Recordset
-    recData.Source = "SELECT RutaDetalle.IDLugar, Lugar.Nombre AS Lugar, LugarGrupo.Nombre AS LugarGrupo, RutaDetalle.HoraInicio, RutaDetalle.HoraFin FROM (RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar) INNER JOIN LugarGrupo ON RutaDetalle.IDLugarGrupo = LugarGrupo.IDLugarGrupo" & SQL_Where & " ORDER BY RutaDetalle.Indice"
+    recData.Source = "SELECT RutaDetalle.IDLugar, Lugar.Nombre AS Lugar, LugarGrupo.Nombre AS LugarGrupo, RutaDetalle.Duracion, RutaDetalle.HoraInicio, RutaDetalle.HoraFin FROM (RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar) INNER JOIN LugarGrupo ON RutaDetalle.IDLugarGrupo = LugarGrupo.IDLugarGrupo" & SQL_Where & " ORDER BY RutaDetalle.Indice"
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     
     With recData
@@ -305,8 +312,9 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
             Do While Not .EOF
                 Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDLugar").value, .Fields("Lugar").value)
                 ListItem.SubItems(1) = .Fields("LugarGrupo").value
-                ListItem.SubItems(2) = IIf(IsNull(.Fields("HoraInicio").value), "", Format(.Fields("HoraInicio").value, "Short Time"))
-                ListItem.SubItems(3) = IIf(IsNull(.Fields("HoraFin").value), "", Format(.Fields("HoraFin").value, "Short Time"))
+                ListItem.SubItems(2) = CSM_Function.IfIsNull_Space(.Fields("Duracion").value)
+                ListItem.SubItems(3) = IIf(IsNull(.Fields("HoraInicio").value), "", Format(.Fields("HoraInicio").value, "Short Time"))
+                ListItem.SubItems(4) = IIf(IsNull(.Fields("HoraFin").value), "", Format(.Fields("HoraFin").value, "Short Time"))
                 .MoveNext
             Loop
             
