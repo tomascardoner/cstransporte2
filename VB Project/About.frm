@@ -246,7 +246,7 @@ Private Sub Form_Load()
     ' Version info
     Dim ExeFileDate As Date
     ExeFileDate = FileDateTime(App.Path & "\" & App.EXEName & ".exe")
-    lblVersion.Caption = "Versión " & App.Major & "." & App.Minor & "." & App.Revision & " (" & Format(ExeFileDate, "yyyyMMdd") & ")"
+    lblVersion.Caption = "Versión " & App.Major & "." & App.Minor & "." & App.Revision & " - (" & Format(ExeFileDate, "yyyyMMdd") & ")"
     
     
     lblTitle.Caption = App.Title
