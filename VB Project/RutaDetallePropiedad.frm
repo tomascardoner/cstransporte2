@@ -4,10 +4,10 @@ Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmRutaDetallePropiedad 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Propiedades"
-   ClientHeight    =   4935
+   ClientHeight    =   4905
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   5040
+   ClientWidth     =   5145
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -22,12 +22,12 @@ Begin VB.Form frmRutaDetallePropiedad
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   4935
-   ScaleWidth      =   5040
+   ScaleHeight     =   4905
+   ScaleWidth      =   5145
    Begin VB.TextBox txtEspera 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   1260
+      Left            =   1380
       MaxLength       =   5
       TabIndex        =   12
       Top             =   3060
@@ -36,7 +36,7 @@ Begin VB.Form frmRutaDetallePropiedad
    Begin VB.TextBox txtDuracion 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   1260
+      Left            =   1380
       MaxLength       =   5
       TabIndex        =   9
       Top             =   2640
@@ -54,7 +54,7 @@ Begin VB.Form frmRutaDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   4620
+      Left            =   4740
       TabIndex        =   20
       TabStop         =   0   'False
       ToolTipText     =   "Rutas"
@@ -73,7 +73,7 @@ Begin VB.Form frmRutaDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   4620
+      Left            =   4740
       TabIndex        =   22
       TabStop         =   0   'False
       ToolTipText     =   "Lugares"
@@ -92,7 +92,7 @@ Begin VB.Form frmRutaDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   4620
+      Left            =   4740
       TabIndex        =   21
       TabStop         =   0   'False
       ToolTipText     =   "Lugares"
@@ -102,7 +102,7 @@ Begin VB.Form frmRutaDetallePropiedad
    Begin VB.TextBox txtKilometro 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   1260
+      Left            =   1380
       MaxLength       =   4
       TabIndex        =   7
       Top             =   2220
@@ -122,13 +122,13 @@ Begin VB.Form frmRutaDetallePropiedad
       Left            =   120
       TabIndex        =   24
       Top             =   780
-      Width           =   4755
+      Width           =   4875
    End
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
       Caption         =   "Cancelar"
       Height          =   375
-      Left            =   3600
+      Left            =   3780
       TabIndex        =   19
       Top             =   4380
       Width           =   1215
@@ -137,14 +137,14 @@ Begin VB.Form frmRutaDetallePropiedad
       Caption         =   "Aceptar"
       Default         =   -1  'True
       Height          =   375
-      Left            =   2280
+      Left            =   2460
       TabIndex        =   18
       Top             =   4380
       Width           =   1215
    End
    Begin MSDataListLib.DataCombo datcboLugar 
       Height          =   330
-      Left            =   1260
+      Left            =   1380
       TabIndex        =   3
       Top             =   1380
       Width           =   3315
@@ -168,7 +168,7 @@ Begin VB.Form frmRutaDetallePropiedad
    End
    Begin MSDataListLib.DataCombo datcboLugarGrupo 
       Height          =   330
-      Left            =   1260
+      Left            =   1380
       TabIndex        =   5
       Top             =   1800
       Width           =   3315
@@ -192,7 +192,7 @@ Begin VB.Form frmRutaDetallePropiedad
    End
    Begin MSDataListLib.DataCombo datcboRuta 
       Height          =   330
-      Left            =   1260
+      Left            =   1380
       TabIndex        =   1
       Top             =   960
       Width           =   3315
@@ -216,7 +216,7 @@ Begin VB.Form frmRutaDetallePropiedad
    End
    Begin MSComCtl2.DTPicker dtpHoraInicio 
       Height          =   315
-      Left            =   1260
+      Left            =   1380
       TabIndex        =   15
       Top             =   3480
       Width           =   1155
@@ -234,13 +234,13 @@ Begin VB.Form frmRutaDetallePropiedad
       EndProperty
       CheckBox        =   -1  'True
       CustomFormat    =   "HH:mm"
-      Format          =   108527619
+      Format          =   61603843
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
    Begin MSComCtl2.DTPicker dtpHoraFin 
       Height          =   315
-      Left            =   1260
+      Left            =   1380
       TabIndex        =   17
       Top             =   3900
       Width           =   1155
@@ -258,33 +258,51 @@ Begin VB.Form frmRutaDetallePropiedad
       EndProperty
       CheckBox        =   -1  'True
       CustomFormat    =   "HH:mm"
-      Format          =   108527619
+      Format          =   61603843
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
+   Begin VB.Label lblHoraFinHoras 
+      AutoSize        =   -1  'True
+      Caption         =   "hs."
+      Height          =   210
+      Left            =   2640
+      TabIndex        =   26
+      Top             =   3960
+      Width           =   225
+   End
+   Begin VB.Label lblHoraInicioHoras 
+      AutoSize        =   -1  'True
+      Caption         =   "hs."
+      Height          =   210
+      Left            =   2640
+      TabIndex        =   25
+      Top             =   3540
+      Width           =   225
+   End
    Begin VB.Label lblHoraFin 
       AutoSize        =   -1  'True
-      Caption         =   "Hora de fin:"
+      Caption         =   "Excluído hasta:"
       Height          =   210
       Left            =   120
       TabIndex        =   16
       Top             =   3960
-      Width           =   840
+      Width           =   1095
    End
    Begin VB.Label lblHoraInicio 
       AutoSize        =   -1  'True
-      Caption         =   "Hora de inicio:"
+      Caption         =   "Excluído desde:"
       Height          =   210
       Left            =   120
       TabIndex        =   14
       Top             =   3540
-      Width           =   1020
+      Width           =   1140
    End
    Begin VB.Label lblEsperaMinutos 
       AutoSize        =   -1  'True
       Caption         =   "minutos"
       Height          =   210
-      Left            =   2160
+      Left            =   2280
       TabIndex        =   13
       Top             =   3120
       Width           =   555
@@ -311,7 +329,7 @@ Begin VB.Form frmRutaDetallePropiedad
       AutoSize        =   -1  'True
       Caption         =   "minutos"
       Height          =   210
-      Left            =   2160
+      Left            =   2280
       TabIndex        =   10
       Top             =   2700
       Width           =   555
@@ -404,14 +422,14 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef RutaDetalle As RutaDe
         txtDuracion.Text = IIf(.Duracion = -1, "", .Duracion)
         txtEspera.Text = IIf(.Espera = -1, "", .Espera)
         
-        dtpHoraInicio.Value = .HoraInicio
+        dtpHoraInicio.value = .HoraInicio
         If .HoraInicio = DATE_TIME_FIELD_NULL_VALUE Then
-            dtpHoraInicio.Value = Null
+            dtpHoraInicio.value = Null
         End If
         
-        dtpHoraFin.Value = .HoraFin
+        dtpHoraFin.value = .HoraFin
         If .HoraFin = DATE_TIME_FIELD_NULL_VALUE Then
-            dtpHoraFin.Value = Null
+            dtpHoraFin.value = Null
         End If
     End With
     
@@ -564,18 +582,18 @@ Private Sub cmdOK_Click()
         datcboLugarGrupo.SetFocus
         Exit Sub
     End If
-    If IsNull(dtpHoraInicio.Value) And (Not IsNull(dtpHoraFin.Value)) Then
-        MsgBox "Si especifica la Hora de fin, debe especificar también la Hora de inicio.", vbInformation, App.Title
+    If IsNull(dtpHoraInicio.value) And (Not IsNull(dtpHoraFin.value)) Then
+        MsgBox "Si especifica la Hora de Excluído hasta, debe especificar también la Hora de Excluído desde.", vbInformation, App.Title
         dtpHoraInicio.SetFocus
         Exit Sub
     End If
-    If (Not IsNull(dtpHoraInicio.Value)) And IsNull(dtpHoraFin.Value) Then
-        MsgBox "Si especifica la Hora de inicio, debe especificar también la Hora de fin.", vbInformation, App.Title
+    If (Not IsNull(dtpHoraInicio.value)) And IsNull(dtpHoraFin.value) Then
+        MsgBox "Si especifica la Hora de Excluído desde, debe especificar también la Hora de Excluído hasta.", vbInformation, App.Title
         dtpHoraFin.SetFocus
         Exit Sub
     End If
-    If dtpHoraFin.Value < dtpHoraInicio.Value Then
-        MsgBox "La Hora de fin debe ser mayor a la Hora de inicio.", vbInformation, App.Title
+    If dtpHoraFin.value < dtpHoraInicio.value Then
+        MsgBox "La Hora de Excluído hasta debe ser mayor a la Hora de Excluído desde.", vbInformation, App.Title
         dtpHoraFin.SetFocus
         Exit Sub
     End If
@@ -587,8 +605,8 @@ Private Sub cmdOK_Click()
         .Kilometro = IIf(Trim(txtKilometro.Text) = "", -1, Val(txtKilometro.Text))
         .Duracion = IIf(Trim(txtDuracion.Text) = "", -1, Val(txtDuracion.Text))
         .Espera = IIf(Trim(txtEspera.Text) = "", -1, Val(txtEspera.Text))
-        .HoraInicio = IIf(IsNull(dtpHoraInicio.Value), DATE_TIME_FIELD_NULL_VALUE, Format(dtpHoraInicio.Value, "HH:mm"))
-        .HoraFin = IIf(IsNull(dtpHoraFin.Value), DATE_TIME_FIELD_NULL_VALUE, Format(dtpHoraFin.Value, "HH:mm"))
+        .HoraInicio = IIf(IsNull(dtpHoraInicio.value), DATE_TIME_FIELD_NULL_VALUE, Format(dtpHoraInicio.value, "HH:mm"))
+        .HoraFin = IIf(IsNull(dtpHoraFin.value), DATE_TIME_FIELD_NULL_VALUE, Format(dtpHoraFin.value, "HH:mm"))
         If mNew Then
             If Not .AddNew() Then
                 Exit Sub

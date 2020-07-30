@@ -266,15 +266,7 @@ Private Function GetDataFromRecordset(ByRef recData As ADODB.Recordset) As Boole
         mIDRutaDetalleHorario = recData("IDRutaDetalleHorario").value
         mIDRuta = Trim(recData("IDRuta").value)
         mIDLugar = recData("IDLugar").value
-        ' Necesito convertir el dia de semana porque en la base de la app web, el lunes = 1 y domingo = 7
-        Select Case recData("DiaSemanaNumero").value
-            Case 1 To 6
-                mDiaSemanaNumero = recData("DiaSemanaNumero").value + 1
-            Case 7
-                mDiaSemanaNumero = 1
-            Case Else
-                mDiaSemanaNumero = 0
-        End Select
+        mDiaSemanaNumero = recData("DiaSemanaNumero").value
         mDiaSemana = recData("DiaSemana").value
         mHoraInicio = recData("HoraInicio").value
         mHoraFin = recData("HoraFin").value
@@ -323,15 +315,7 @@ Public Function Update() As Boolean
 
         .Parameters.Append .CreateParameter("IDRuta", adChar, adParamInput, 20, mIDRuta)
         .Parameters.Append .CreateParameter("IDLugar", adInteger, adParamInput, , mIDLugar)
-        ' Necesito convertir el dia de semana porque en la base de la app web, el lunes = 1 y domingo = 7
-        Select Case DiaSemanaNumero
-            Case 1
-                .Parameters.Append .CreateParameter("DiaSemanaNumero", adInteger, adParamInput, , 7)
-            Case 2 To 7
-                .Parameters.Append .CreateParameter("DiaSemanaNumero", adInteger, adParamInput, , mDiaSemanaNumero - 1)
-            Case Else
-                .Parameters.Append .CreateParameter("DiaSemanaNumero", adInteger, adParamInput, , 0)
-        End Select
+        .Parameters.Append .CreateParameter("DiaSemanaNumero", adInteger, adParamInput, , mDiaSemanaNumero)
         .Parameters.Append .CreateParameter("DiaSemana", adVarChar, adParamInput, 50, mDiaSemana)
         .Parameters.Append .CreateParameter("HoraInicio", adDate, adParamInput, , mHoraInicio)
         .Parameters.Append .CreateParameter("HoraFin", adDate, adParamInput, , mHoraFin)
@@ -396,7 +380,7 @@ End Function
 Private Sub InitializeValues()
     mIDRuta = ""
     mIDLugar = 0
-    mDiaSemanaNumero = 0
+    mDiaSemanaNumero = -1
     mDiaSemana = ""
     mHoraInicio = DATE_TIME_FIELD_NULL_VALUE
     mHoraFin = DATE_TIME_FIELD_NULL_VALUE

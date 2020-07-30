@@ -24,7 +24,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
    ScaleHeight     =   6240
    ScaleWidth      =   5040
    Begin VB.Frame fraDiaSemana 
-      Caption         =   "Días de la semana:"
+      Caption         =   "Días de exclusión:"
       Height          =   2535
       Left            =   120
       TabIndex        =   12
@@ -33,7 +33,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
       Begin VB.CheckBox chkDiaSemana 
          Caption         =   "DiaSemana"
          Height          =   210
-         Index           =   7
+         Index           =   6
          Left            =   2460
          TabIndex        =   21
          Top             =   960
@@ -42,7 +42,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
       Begin VB.CheckBox chkDiaSemana 
          Caption         =   "DiaSemana"
          Height          =   210
-         Index           =   6
+         Index           =   5
          Left            =   600
          TabIndex        =   20
          Top             =   2160
@@ -51,7 +51,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
       Begin VB.CheckBox chkDiaSemana 
          Caption         =   "DiaSemana"
          Height          =   210
-         Index           =   5
+         Index           =   4
          Left            =   600
          TabIndex        =   19
          Top             =   1860
@@ -60,7 +60,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
       Begin VB.CheckBox chkDiaSemana 
          Caption         =   "DiaSemana"
          Height          =   210
-         Index           =   4
+         Index           =   3
          Left            =   600
          TabIndex        =   18
          Top             =   1560
@@ -69,7 +69,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
       Begin VB.CheckBox chkDiaSemana 
          Caption         =   "DiaSemana"
          Height          =   210
-         Index           =   3
+         Index           =   2
          Left            =   600
          TabIndex        =   17
          Top             =   1260
@@ -78,7 +78,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
       Begin VB.CheckBox chkDiaSemana 
          Caption         =   "DiaSemana"
          Height          =   210
-         Index           =   2
+         Index           =   1
          Left            =   600
          TabIndex        =   16
          Top             =   960
@@ -87,7 +87,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
       Begin VB.CheckBox chkDiaSemana 
          Caption         =   "DiaSemana"
          Height          =   210
-         Index           =   1
+         Index           =   0
          Left            =   2460
          TabIndex        =   15
          Top             =   1260
@@ -157,7 +157,7 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
    End
    Begin MSComCtl2.DTPicker dtpHoraInicio 
       Height          =   315
-      Left            =   1260
+      Left            =   1380
       TabIndex        =   8
       Top             =   4620
       Width           =   975
@@ -174,13 +174,13 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   108593155
+      Format          =   61800451
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
    Begin MSComCtl2.DTPicker dtpHoraFin 
       Height          =   315
-      Left            =   1260
+      Left            =   1380
       TabIndex        =   9
       Top             =   5040
       Width           =   975
@@ -197,27 +197,45 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   108593155
+      Format          =   61800451
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
+   Begin VB.Label lblHoraInicioHoras 
+      AutoSize        =   -1  'True
+      Caption         =   "hs."
+      Height          =   210
+      Left            =   2460
+      TabIndex        =   23
+      Top             =   4680
+      Width           =   225
+   End
+   Begin VB.Label lblHoraFinHoras 
+      AutoSize        =   -1  'True
+      Caption         =   "hs."
+      Height          =   210
+      Left            =   2460
+      TabIndex        =   22
+      Top             =   5100
+      Width           =   225
+   End
    Begin VB.Label lblHoraInicio 
       AutoSize        =   -1  'True
-      Caption         =   "Hora de inicio:"
+      Caption         =   "Excluído desde:"
       Height          =   210
       Left            =   120
       TabIndex        =   11
       Top             =   4680
-      Width           =   1020
+      Width           =   1140
    End
    Begin VB.Label lblHoraFin 
       AutoSize        =   -1  'True
-      Caption         =   "Hora de fin:"
+      Caption         =   "Excluído hasta:"
       Height          =   210
       Left            =   120
       TabIndex        =   10
       Top             =   5100
-      Width           =   840
+      Width           =   1095
    End
    Begin VB.Label lblLugar 
       AutoSize        =   -1  'True
@@ -246,12 +264,12 @@ Begin VB.Form frmRutaDetalleHorarioAgregar
    End
    Begin VB.Label lblLegend 
       AutoSize        =   -1  'True
-      Caption         =   "Datos de los Horarios del Detalle de Ruta"
+      Caption         =   "Datos de la Exclusión del Detalle de Ruta"
       Height          =   210
       Left            =   840
       TabIndex        =   5
       Top             =   240
-      Width           =   2940
+      Width           =   2925
    End
 End
 Attribute VB_Name = "frmRutaDetalleHorarioAgregar"
@@ -289,8 +307,8 @@ End Sub
 Private Sub Form_Load()
     Dim Index As Byte
     
-    For Index = 1 To 7
-        chkDiaSemana(Index).Caption = WeekdayName(Index)
+    For Index = 0 To 6
+        chkDiaSemana(Index).Caption = WeekdayName(Index + 1)
     Next Index
 End Sub
 
@@ -311,61 +329,45 @@ Private Sub cmdOK_Click()
     Dim RutaDetalleHorario As RutaDetalleHorario
     
     If optDiaSemanaTodos.value = False And optDiaSemanaAlgunos.value = False Then
-        MsgBox "Debe especificar alguna de las opciones de Días de Semana.", vbInformation, App.Title
+        MsgBox "Debe especificar alguna de las opciones de Días de exclusión.", vbInformation, App.Title
         Exit Sub
     End If
     If optDiaSemanaAlgunos.value Then
-        For Index = 1 To 7
+        For Index = 0 To 6
             If chkDiaSemana(Index).value = vbChecked Then
                 Exit For
             End If
-            If Index = 7 Then
-                MsgBox "Debe seleccionar alguno de los Días de Semana.", vbInformation, App.Title
+            If Index = 6 Then
+                MsgBox "Debe seleccionar alguno de los Días de Exclusión.", vbInformation, App.Title
                 Exit Sub
             End If
         Next Index
     End If
     If dtpHoraFin.value < dtpHoraInicio.value Then
-        MsgBox "La Hora de fin debe ser mayor a la Hora de inicio.", vbInformation, App.Title
+        MsgBox "La Hora de Excluído hasta debe ser mayor a la Hora de Excluído desde.", vbInformation, App.Title
         dtpHoraFin.SetFocus
         Exit Sub
     End If
     
-    If optDiaSemanaTodos.value Then
-        Set RutaDetalleHorario = New RutaDetalleHorario
-        With RutaDetalleHorario
-            .IDRuta = mIDRuta
-            .IDLugar = mIDLugar
-            .DiaSemanaNumero = 0
-            .DiaSemana = CSM_Constant.ITEM_ALL_MALE
-            .HoraInicio = dtpHoraInicio.value
-            .HoraFin = dtpHoraFin.value
-            If Not .Update() Then
-                Exit Sub
-            End If
-        End With
-        Set RutaDetalleHorario = Nothing
-    Else
-        For Index = 1 To 7
-            If chkDiaSemana(Index).value = vbChecked Then
-                Set RutaDetalleHorario = New RutaDetalleHorario
-                With RutaDetalleHorario
-                    .RefreshListSkip = True
-                    .IDRuta = mIDRuta
-                    .IDLugar = mIDLugar
-                    .DiaSemanaNumero = Index
-                    .DiaSemana = WeekdayName(Index)
-                    .HoraInicio = dtpHoraInicio.value
-                    .HoraFin = dtpHoraFin.value
-                    If Not .Update() Then
-                        Exit Sub
-                    End If
-                End With
-                Set RutaDetalleHorario = Nothing
-            End If
-        Next Index
-        RefreshList_RefreshRutaDetalleHorario mIDRuta, mIDLugar, 0
-    End If
+    For Index = 0 To 6
+        If optDiaSemanaTodos.value Or chkDiaSemana(Index).value = vbChecked Then
+            Set RutaDetalleHorario = New RutaDetalleHorario
+            With RutaDetalleHorario
+                .RefreshListSkip = True
+                .IDRuta = mIDRuta
+                .IDLugar = mIDLugar
+                .DiaSemanaNumero = Index
+                .DiaSemana = WeekdayName(Index + 1)
+                .HoraInicio = dtpHoraInicio.value
+                .HoraFin = dtpHoraFin.value
+                If Not .Update() Then
+                    Exit Sub
+                End If
+            End With
+            Set RutaDetalleHorario = Nothing
+        End If
+    Next Index
+    RefreshList_RefreshRutaDetalleHorario mIDRuta, mIDLugar, 0
     
     Unload Me
 End Sub
@@ -377,7 +379,7 @@ End Sub
 Private Sub MakeCheckBoxesVisible()
     Dim Index As Byte
     
-    For Index = 1 To 7
+    For Index = 0 To 6
         chkDiaSemana(Index).Visible = optDiaSemanaAlgunos.value
     Next Index
 End Sub

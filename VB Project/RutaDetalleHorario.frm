@@ -176,7 +176,7 @@ Public Sub LoadDataAndShow(ByVal IDRuta As String, ByVal IDLugar As Integer, ByV
         Exit Sub
     End If
     
-    Caption = "Horarios del Detalle de Ruta: " & mIDRuta & " - Lugar: " & mLugarNombre
+    Caption = "Exclusiones del Detalle de Ruta: " & mIDRuta & " - Lugar: " & mLugarNombre
 
     If WindowState = vbMinimized Then
         WindowState = vbNormal
@@ -242,12 +242,8 @@ Public Function FillListView(ByVal IDRuta As String, ByVal IDLugar As Long, ByVa
         If Not .EOF Then
             Do While Not .EOF
                 Select Case .Fields("DiaSemanaNumero").value
-                    Case 0
-                        Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDRutaDetalleHorario").value, CSM_Constant.ITEM_ALL_MALE)
-                    Case 1 To 6
+                    Case 0 To 6
                         Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDRutaDetalleHorario").value, WeekdayName(.Fields("DiaSemanaNumero").value + 1))
-                    Case 7
-                        Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDRutaDetalleHorario").value, WeekdayName(1))
                     Case Else
                         Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("IDRutaDetalleHorario").value, CSM_Constant.ITEM_NOTSPECIFIED)
                 End Select
@@ -419,7 +415,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 Next ItemIndex
                 
                 If SelectedItemCount = 1 Then
-                    If MsgBox("¿Desea eliminar el Horario seleccionado?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                    If MsgBox("¿Desea eliminar la Exclusión seleccionada?", vbExclamation + vbYesNo, App.Title) = vbYes Then
                         Set RutaDetalleHorario = New RutaDetalleHorario
                         RutaDetalleHorario.IDRutaDetalleHorario = Val(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1))
                         If RutaDetalleHorario.Load() Then
@@ -428,7 +424,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                         Set RutaDetalleHorario = Nothing
                     End If
                 Else
-                    If MsgBox("¿Desea eliminar los " & SelectedItemCount & " Horarios seleccionados?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                    If MsgBox("¿Desea eliminar las " & SelectedItemCount & " Exclusiones seleccionadas?", vbExclamation + vbYesNo, App.Title) = vbYes Then
                         Set RutaDetalleHorario = New RutaDetalleHorario
                         RutaDetalleHorario.RefreshListSkip = True
                         For ItemIndex = 1 To lvwData.ListItems.Count
@@ -459,7 +455,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                     If lvwData.ListItems(ItemIndex).Selected Then
                         SelectedItemCount = SelectedItemCount + 1
                         If SelectedItemCount > 1 Then
-                            MsgBox "No se puede Seleccionar más de un Horario a la vez.", vbExclamation, App.Title
+                            MsgBox "No se puede Seleccionar más de una Exclusión a la vez.", vbExclamation, App.Title
                             Exit Sub
                         End If
                     End If

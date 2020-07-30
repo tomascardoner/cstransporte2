@@ -153,8 +153,8 @@ Begin VB.Form frmRutaDetalle
                Key             =   "DOWN"
             EndProperty
             BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Caption         =   "Horarios"
-               Key             =   "HORARIO"
+               Caption         =   "Exclusiones"
+               Key             =   "EXCLUSION"
             EndProperty
          EndProperty
       End
@@ -243,13 +243,13 @@ Begin VB.Form frmRutaDetalle
       BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   3
          Key             =   "HoraInicio"
-         Text            =   "Hora de inicio"
+         Text            =   "Excluído desde"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   4
          Key             =   "HoraFin"
-         Text            =   "Hora de fin"
+         Text            =   "Excluído hasta"
          Object.Width           =   2540
       EndProperty
    End
@@ -409,7 +409,7 @@ Private Sub Form_Load()
     tlbMain.Buttons("SELECT").Image = "SELECT"
     tlbMain.Buttons("UP").Image = "UP"
     tlbMain.Buttons("DOWN").Image = "DOWN"
-    tlbMain.Buttons("HORARIO").Image = "HORARIO"
+    tlbMain.Buttons("EXCLUSION").Image = "HORARIO"
     '//////////////////////////////////////////////////////////
     
     '//////////////////////////////////////////////////////////
@@ -594,7 +594,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 
                 Screen.MousePointer = vbDefault
             End If
-        Case "HORARIO"
+        Case "EXCLUSION"
             If pCPermiso.GotPermission(PERMISO_RUTA_DETALLE_HORARIO) Then
                 If lvwData.SelectedItem Is Nothing Then
                     MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title

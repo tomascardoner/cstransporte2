@@ -95,7 +95,7 @@ Begin VB.Form frmRutaDetalleHorarioPropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   108593155
+      Format          =   61603843
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -118,36 +118,54 @@ Begin VB.Form frmRutaDetalleHorarioPropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   108593155
+      Format          =   61603843
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
+   Begin VB.Label lblHoraFinHoras 
+      AutoSize        =   -1  'True
+      Caption         =   "hs."
+      Height          =   210
+      Left            =   2640
+      TabIndex        =   15
+      Top             =   2820
+      Width           =   225
+   End
+   Begin VB.Label lblHoraInicioHoras 
+      AutoSize        =   -1  'True
+      Caption         =   "hs."
+      Height          =   210
+      Left            =   2640
+      TabIndex        =   14
+      Top             =   2400
+      Width           =   225
+   End
    Begin VB.Label lblDiaSemana 
       AutoSize        =   -1  'True
-      Caption         =   "Día de la semana:"
+      Caption         =   "Día de exclusión:"
       Height          =   210
       Left            =   120
       TabIndex        =   0
       Top             =   1980
-      Width           =   1275
+      Width           =   1230
    End
    Begin VB.Label lblHoraInicio 
       AutoSize        =   -1  'True
-      Caption         =   "Hora de inicio:"
+      Caption         =   "Excluído desde:"
       Height          =   210
       Left            =   120
       TabIndex        =   2
       Top             =   2400
-      Width           =   1020
+      Width           =   1140
    End
    Begin VB.Label lblHoraFin 
       AutoSize        =   -1  'True
-      Caption         =   "Hora de fin:"
+      Caption         =   "Excluído hasta:"
       Height          =   210
       Left            =   120
       TabIndex        =   4
       Top             =   2820
-      Width           =   840
+      Width           =   1095
    End
    Begin VB.Label lblLugar 
       AutoSize        =   -1  'True
@@ -176,12 +194,12 @@ Begin VB.Form frmRutaDetalleHorarioPropiedad
    End
    Begin VB.Label lblLegend 
       AutoSize        =   -1  'True
-      Caption         =   "Datos del Horario del Detalle de Ruta"
+      Caption         =   "Datos de la Exclusión del Detalle de Ruta"
       Height          =   210
       Left            =   840
       TabIndex        =   13
       Top             =   240
-      Width           =   2625
+      Width           =   2925
    End
 End
 Attribute VB_Name = "frmRutaDetalleHorarioPropiedad"
@@ -221,12 +239,12 @@ End Sub
 
 Private Sub cmdOK_Click()
     If cboDiaSemana.ListIndex = -1 Then
-        MsgBox "Debe seleccionar el día de la semana.", vbInformation, App.Title
+        MsgBox "Debe seleccionar el Día de Exclusión.", vbInformation, App.Title
         cboDiaSemana.SetFocus
         Exit Sub
     End If
     If dtpHoraFin.value < dtpHoraInicio.value Then
-        MsgBox "La Hora de fin debe ser mayor a la Hora de inicio.", vbInformation, App.Title
+        MsgBox "La Hora de Excluído hasta debe ser mayor a la Hora de Excluído desde.", vbInformation, App.Title
         dtpHoraFin.SetFocus
         Exit Sub
     End If
@@ -247,7 +265,6 @@ End Sub
 Private Sub Form_Load()
     Dim Index As Byte
     
-    cboDiaSemana.AddItem CSM_Constant.ITEM_ALL_MALE
     For Index = 1 To 7
         cboDiaSemana.AddItem WeekdayName(Index)
     Next Index
