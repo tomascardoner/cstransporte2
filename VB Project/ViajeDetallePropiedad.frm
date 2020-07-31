@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   108527617
+      Format          =   93388801
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   108527619
+      Format          =   93388803
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   108527617
+      Format          =   93388801
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -1487,7 +1487,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
     chkForzarDebito.Enabled = pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_INASISTENCIA_NODEBITAR, False)
 
     With mViajeDetalle
-        dtpFecha.Value = .FechaHora_FormattedAsDate
+        dtpFecha.value = .FechaHora_FormattedAsDate
         dtpFecha_Change
         datcboHora.BoundText = Format(.FechaHora, "HH:nn")
 
@@ -1532,13 +1532,13 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
         End If
         
         If mNew Then
-            optTipoPasajero.Value = True
+            optTipoPasajero.value = True
         Else
             Select Case .OcupanteTipo
                 Case OCUPANTE_TIPO_COMISION
-                    optTipoComision.Value = True
+                    optTipoComision.value = True
                 Case OCUPANTE_TIPO_PASAJERO
-                    optTipoPasajero.Value = True
+                    optTipoPasajero.value = True
             End Select
         End If
         txtOrden.Text = IIf(.Orden = 0, "", .Orden)
@@ -1566,8 +1566,8 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
                     txtPersonaRecibe.Text = Persona.ApellidoNombre
                 End If
             End If
-            optPagaEnvia.Value = Not .PagaQuienRecibe
-            optPagaRecibe.Value = .PagaQuienRecibe
+            optPagaEnvia.value = Not .PagaQuienRecibe
+            optPagaRecibe.value = .PagaQuienRecibe
             
             txtDescripcion.Text = .Descripcion
             txtDomicilio.Text = .Domicilio
@@ -1576,8 +1576,8 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
             cboDejarTraer.ListIndex = IIf(.DejarTraer = "", 0, IIf(.DejarTraer = "D", 1, 2))
         Else
             txtPersonaRecibe.Text = ""
-            optPagaEnvia.Value = True
-            optPagaRecibe.Value = False
+            optPagaEnvia.value = True
+            optPagaRecibe.value = False
             txtDescripcion.Text = ""
             txtDomicilio.Text = ""
             txtHorario.Text = ""
@@ -1690,17 +1690,17 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
         
         cboRealizado.ListIndex = .Realizado
         
-        chkForzarDebito.Value = IIf(.ForzarDebito, vbChecked, vbUnchecked)
+        chkForzarDebito.value = IIf(.ForzarDebito, vbChecked, vbUnchecked)
         txtCanceladoPor.Text = .CanceladoPor
         
-        chkEntregada.Value = IIf(.Entregada, vbChecked, vbUnchecked)
+        chkEntregada.value = IIf(.Entregada, vbChecked, vbUnchecked)
         If .Entregada Then
-            dtpEntregadaFecha.Value = .EntregadaFechaHora
-            dtpEntregadaHora.Value = .EntregadaFechaHora
+            dtpEntregadaFecha.value = .EntregadaFechaHora
+            dtpEntregadaHora.value = .EntregadaFechaHora
             txtRetira.Text = .Retira
         Else
-            dtpEntregadaFecha.Value = Date
-            dtpEntregadaHora.Value = Time
+            dtpEntregadaFecha.value = Date
+            dtpEntregadaHora.value = Time
             txtRetira.Text = ""
         End If
         
@@ -1724,7 +1724,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
         Persona.ViajeActual_Indice = .Indice
         Persona.LoadSaldoActual
         txtSaldoActual.Tag = Persona.SaldoActual
-        chkImprimirSaldo.Value = IIf(.ImprimirSaldo, vbChecked, vbUnchecked)
+        chkImprimirSaldo.value = IIf(.ImprimirSaldo, vbChecked, vbUnchecked)
         Call CalcularImporteCuentaCorriente
         
         'AVISA QUE DEBE
@@ -1742,7 +1742,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
         
         '//////////////////////////////////////////////////////////
         'FACTURACION
-        chkFacturar.Value = IIf(.Facturar, vbChecked, vbUnchecked)
+        chkFacturar.value = IIf(.Facturar, vbChecked, vbUnchecked)
         txtFacturarNotas.Text = .FacturarNotas
         txtFacturaNumero.Text = .FacturaNumero
         
@@ -1851,52 +1851,52 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub dtpFecha_Change()
-    txtDiaSemana.Text = WeekdayName(Weekday(dtpFecha.Value))
-    Call CSM_Control_DataCombo.FillFromSQL(datcboHora, "SELECT DISTINCT convert(char(5), FechaHora, 108) AS Hora FROM Viaje WHERE convert(char(10), FechaHora, 111) = '" & Format(dtpFecha.Value, "yyyy/mm/dd") & "' ORDER BY convert(char(5), FechaHora, 108)", "Hora", "Hora", "Horas", cscpItemOrfirst, datcboHora.BoundText)
+    txtDiaSemana.Text = WeekdayName(Weekday(dtpFecha.value))
+    Call CSM_Control_DataCombo.FillFromSQL(datcboHora, "SELECT DISTINCT convert(char(5), FechaHora, 108) AS Hora FROM Viaje WHERE convert(char(10), FechaHora, 111) = '" & Format(dtpFecha.value, "yyyy/mm/dd") & "' ORDER BY convert(char(5), FechaHora, 108)", "Hora", "Hora", "Horas", cscpItemOrfirst, datcboHora.BoundText)
 End Sub
 
 Private Sub datcboHora_Change()
-    Call CSM_Control_DataCombo.FillFromSQL(datcboRuta, "SELECT RTRIM(IDRuta) AS IDRuta, Nombre = RTRIM(IDRuta) + CASE IDRuta WHEN '" & ReplaceQuote(pParametro.Ruta_ID_Otra) & "' THEN ': ' + RutaOtra WHEN '" & ReplaceQuote(pParametro.Ruta_Paquete_ID) & "' THEN ': ' + RutaOtra ELSE '' END FROM Viaje WHERE convert(char(10), FechaHora, 111) = '" & Format(dtpFecha.Value, "yyyy/mm/dd") & "' AND convert(char(5), FechaHora, 108) = '" & datcboHora.Text & "'" & IIf(pCPermiso.RutaWhere <> "", " AND " & Replace(pCPermiso.RutaWhere, "%TABLENAME%", "Viaje"), "") & " ORDER BY IDRuta", "IDRuta", "Nombre", "Rutas", cscpItemOrfirst, datcboRuta.BoundText)
+    Call CSM_Control_DataCombo.FillFromSQL(datcboRuta, "SELECT RTRIM(IDRuta) AS IDRuta, Nombre = RTRIM(IDRuta) + CASE IDRuta WHEN '" & ReplaceQuote(pParametro.Ruta_ID_Otra) & "' THEN ': ' + RutaOtra WHEN '" & ReplaceQuote(pParametro.Ruta_Paquete_ID) & "' THEN ': ' + RutaOtra ELSE '' END FROM Viaje WHERE convert(char(10), FechaHora, 111) = '" & Format(dtpFecha.value, "yyyy/mm/dd") & "' AND convert(char(5), FechaHora, 108) = '" & datcboHora.Text & "'" & IIf(pCPermiso.RutaWhere <> "", " AND " & Replace(pCPermiso.RutaWhere, "%TABLENAME%", "Viaje"), "") & " ORDER BY IDRuta", "IDRuta", "Nombre", "Rutas", cscpItemOrfirst, datcboRuta.BoundText)
 End Sub
 
 Private Sub cboRealizado_Click()
-    lblForzarDebito.Visible = (optTipoPasajero.Value And cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO)
-    chkForzarDebito.Visible = (optTipoPasajero.Value And cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO)
+    lblForzarDebito.Visible = (optTipoPasajero.value And cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO)
+    chkForzarDebito.Visible = (optTipoPasajero.value And cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO)
     If cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO Then
-        chkForzarDebito.Value = vbChecked
+        chkForzarDebito.value = vbChecked
     End If
 End Sub
 
 Private Sub chkEntregada_Click()
-    dtpEntregadaFecha.Visible = (optTipoComision.Value And chkEntregada.Value = vbChecked)
-    dtpEntregadaHora.Visible = (optTipoComision.Value And chkEntregada.Value = vbChecked)
-    lblRetira.Visible = (optTipoComision.Value And chkEntregada.Value = vbChecked)
-    txtRetira.Visible = (optTipoComision.Value And chkEntregada.Value = vbChecked)
+    dtpEntregadaFecha.Visible = (optTipoComision.value And chkEntregada.value = vbChecked)
+    dtpEntregadaHora.Visible = (optTipoComision.value And chkEntregada.value = vbChecked)
+    lblRetira.Visible = (optTipoComision.value And chkEntregada.value = vbChecked)
+    txtRetira.Visible = (optTipoComision.value And chkEntregada.value = vbChecked)
 End Sub
 
 Private Sub cmdAnterior_Click()
-    dtpFecha.Value = DateAdd("d", -1, dtpFecha.Value)
+    dtpFecha.value = DateAdd("d", -1, dtpFecha.value)
     dtpFecha.SetFocus
     dtpFecha_Change
 End Sub
 
 Private Sub cmdAuditoria_Click()
-    mViajeDetalle.ForzarDebito = (chkForzarDebito.Value = vbChecked)
+    mViajeDetalle.ForzarDebito = (chkForzarDebito.value = vbChecked)
     mViajeDetalle.CanceladoPor = txtCanceladoPor.Text
     
     frmViajeDetallePropiedadAuditoria.LoadDataAndShow mViajeDetalle
 
-    chkForzarDebito.Value = IIf(mViajeDetalle.ForzarDebito, vbChecked, vbUnchecked)
+    chkForzarDebito.value = IIf(mViajeDetalle.ForzarDebito, vbChecked, vbUnchecked)
     txtCanceladoPor.Text = mViajeDetalle.CanceladoPor
 End Sub
 
 Private Sub cmdHoy_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFecha.Value
-    dtpFecha.Value = Date
+    OldValue = dtpFecha.value
+    dtpFecha.value = Date
     dtpFecha.SetFocus
-    If OldValue <> dtpFecha.Value Then
+    If OldValue <> dtpFecha.value Then
         dtpFecha_Change
     End If
 End Sub
@@ -2068,7 +2068,7 @@ Private Sub cmdSaldoActual_Click()
             frmCuentaCorriente.txtPersona.Text = txtPersonaCuentaCorriente.Text
         End If
         frmCuentaCorriente.cboFecha.ListIndex = 2
-        frmCuentaCorriente.dtpFechaDesde.Value = DateAdd("d", -30, Date)
+        frmCuentaCorriente.dtpFechaDesde.value = DateAdd("d", -30, Date)
         frmCuentaCorriente.LoadDataAndShow
         On Error Resume Next
         If frmCuentaCorriente.WindowState = vbMinimized Then
@@ -2080,7 +2080,7 @@ Private Sub cmdSaldoActual_Click()
 End Sub
 
 Private Sub cmdSiguiente_Click()
-    dtpFecha.Value = DateAdd("d", 1, dtpFecha.Value)
+    dtpFecha.value = DateAdd("d", 1, dtpFecha.value)
     dtpFecha.SetFocus
     dtpFecha_Change
 End Sub
@@ -2174,12 +2174,12 @@ Private Sub cmdVerificarAsiento_Click()
     AsientoAsignado = -3
     AsientoAsignadoCombinado = -3
     
-    If chkRutaConexion.Visible = False Or chkRutaConexion.Value = vbUnchecked Then
+    If chkRutaConexion.Visible = False Or chkRutaConexion.value = vbUnchecked Then
         '//////////////////////////////////
         'RUTA SIMPLE
         '//////////////////////////////////
         Set Viaje = New Viaje
-        Viaje.FechaHora = CDate(dtpFecha.Value & " " & datcboHora.Text)
+        Viaje.FechaHora = CDate(dtpFecha.value & " " & datcboHora.Text)
         Viaje.IDRuta = datcboRuta.BoundText
         Viaje.IDOrigen = Val(datcboOrigen.BoundText)
         Viaje.IDDestino = Val(datcboDestino.BoundText)
@@ -2211,7 +2211,7 @@ Private Sub cmdVerificarAsiento_Click()
         
         'PRIMERO VERIFICO LA RUTA SIMPLE
         Set Viaje = New Viaje
-        Viaje.FechaHora = CDate(dtpFecha.Value & " " & datcboHora.Text)
+        Viaje.FechaHora = CDate(dtpFecha.value & " " & datcboHora.Text)
         Viaje.IDRuta = datcboRuta.BoundText
         Viaje.IDOrigen = Val(datcboOrigen.BoundText)
         Viaje.IDDestino = Tramo1_Tramo2_IDLugar
@@ -2227,7 +2227,7 @@ Private Sub cmdVerificarAsiento_Click()
         AsientoAsignadoCombinado = Viaje.Asiento_Asignar_GetAsiento(0)
         Set Viaje = Nothing
                 
-        MsgBox VerificarAsientoMensaje(AsientoAsignado, Format(CDate(dtpFecha.Value & " " & datcboHora.Text), "hh:nn") & " - " & RTrim(datcboRuta.Text) & " --> ") & vbCr & vbCr & VerificarAsientoMensaje(AsientoAsignado, datcboViajeConexion.Text & " --> "), vbExclamation, App.Title
+        MsgBox VerificarAsientoMensaje(AsientoAsignado, Format(CDate(dtpFecha.value & " " & datcboHora.Text), "hh:nn") & " - " & RTrim(datcboRuta.Text) & " --> ") & vbCr & vbCr & VerificarAsientoMensaje(AsientoAsignado, datcboViajeConexion.Text & " --> "), vbExclamation, App.Title
     End If
 End Sub
 
@@ -2268,9 +2268,9 @@ Private Sub datcboRuta_Change()
             Set recRutaConexion = datcboRutaConexion.RowSource
             If recRutaConexion.RecordCount > 0 Then
                 chkRutaConexion.Visible = True
-                datcboRutaConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked)
-                lblViajeConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked And datcboRutaConexion.BoundText <> "")
-                datcboViajeConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked And datcboRutaConexion.BoundText <> "")
+                datcboRutaConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.value = vbChecked)
+                lblViajeConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.value = vbChecked And datcboRutaConexion.BoundText <> "")
+                datcboViajeConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.value = vbChecked And datcboRutaConexion.BoundText <> "")
             Else
                 chkRutaConexion.Visible = False
                 datcboRutaConexion.Visible = False
@@ -2292,12 +2292,12 @@ Private Sub datcboRuta_Change()
     
     If datcboRuta.BoundText <> "" And Val(txtPersona.Tag) > 0 Then
         Set ViajeDetalle = New ViajeDetalle
-        ViajeDetalle.FechaHora = CDate(dtpFecha.Value & " " & datcboHora.BoundText)
+        ViajeDetalle.FechaHora = CDate(dtpFecha.value & " " & datcboHora.BoundText)
         ViajeDetalle.IDPersona = Val(txtPersona.Tag)
         ViajeDetalle.IDRuta = datcboRuta.BoundText
-        ViajeDetalle.OcupanteTipo = IIf(optTipoComision.Value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
+        ViajeDetalle.OcupanteTipo = IIf(optTipoComision.value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
         Set Viaje = New Viaje
-        Viaje.FechaHora = CDate(dtpFecha.Value & " " & datcboHora.BoundText)
+        Viaje.FechaHora = CDate(dtpFecha.value & " " & datcboHora.BoundText)
         Viaje.IDRuta = datcboRuta.BoundText
         If Viaje.Load() Then
             If Not ViajeDetalle.GetNewValues(Viaje.DiaSemanaBase) Then
@@ -2330,9 +2330,9 @@ Private Sub cmdRuta_Click()
 End Sub
 
 Private Sub chkRutaConexion_Click()
-    datcboRutaConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked)
-    lblViajeConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked And datcboRutaConexion.BoundText <> "")
-    datcboViajeConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked And datcboRutaConexion.BoundText <> "")
+    datcboRutaConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.value = vbChecked)
+    lblViajeConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.value = vbChecked And datcboRutaConexion.BoundText <> "")
+    datcboViajeConexion.Visible = (chkRutaConexion.Visible And chkRutaConexion.value = vbChecked And datcboRutaConexion.BoundText <> "")
     datcboOrigen_Change
     Call FillComboBoxViajes
 End Sub
@@ -2357,7 +2357,7 @@ Private Sub datcboOrigen_Change()
         Exit Sub
     End If
     
-    If chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked Then
+    If chkRutaConexion.Visible And chkRutaConexion.value = vbChecked Then
         'Se utiliza una conexión de Ruta, por lo tanto se llenará el ComboBox de Destino a partir de la Conexión
         Set RutaConexion = New RutaConexion
         RutaConexion.IDRutaConexion = Val(datcboRutaConexion.BoundText)
@@ -2411,7 +2411,7 @@ Private Sub datcboDestino_Change()
         Exit Sub
     End If
     
-    If chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked Then
+    If chkRutaConexion.Visible And chkRutaConexion.value = vbChecked Then
         Set mRutaDetalleDestino = New RutaDetalle
         mRutaDetalleDestino.IDRuta = mTramo2_IDRuta
         mRutaDetalleDestino.IDLugar = Val(datcboDestino.BoundText)
@@ -2739,7 +2739,7 @@ Private Sub cmdOK_Click()
     ' UPDATE 2018-04-21
     ' Cargo el Viaje actual
     Set Viaje = New Viaje
-    Viaje.FechaHora = CDate(dtpFecha.Value & " " & datcboHora.Text)
+    Viaje.FechaHora = CDate(dtpFecha.value & " " & datcboHora.Text)
     Viaje.IDRuta = datcboRuta.BoundText
     If Not Viaje.Load() Then
         MsgBox "No se pudieron obtener los datos del Viaje.", vbCritical, App.Title
@@ -2757,23 +2757,23 @@ Private Sub cmdOK_Click()
         Exit Sub
     End If
     
-    If (Not optTipoComision.Value) And (Not optTipoPasajero.Value) Then
+    If (Not optTipoComision.value) And (Not optTipoPasajero.value) Then
         MsgBox "Debe seleccionar el Tipo.", vbInformation, App.Title
         optTipoComision.SetFocus
         Exit Sub
     End If
     If Val(txtPersona.Tag) = 0 Then
-        MsgBox IIf(optTipoComision.Value, "Debe indicar quién envía la Comisión.", "Debe seleccionar el Pasajero."), vbInformation, App.Title
+        MsgBox IIf(optTipoComision.value, "Debe indicar quién envía la Comisión.", "Debe seleccionar el Pasajero."), vbInformation, App.Title
         cmdPersona.SetFocus
         Exit Sub
     End If
-    If optTipoPasajero.Value And Val(datcboListaPrecio.BoundText) = 0 Then
+    If optTipoPasajero.value And Val(datcboListaPrecio.BoundText) = 0 Then
         MsgBox "Debe seleccionar la Lista de Precios.", vbInformation, App.Title
         datcboListaPrecio.SetFocus
         Exit Sub
     End If
     
-    If chkRutaConexion.Visible = True And chkRutaConexion.Value = vbChecked Then
+    If chkRutaConexion.Visible = True And chkRutaConexion.value = vbChecked Then
         If datcboRutaConexion.BoundText = "" Then
             MsgBox "Debe seleccionar la Conexión de Rutas.", vbInformation, App.Title
             datcboRutaConexion.SetFocus
@@ -2787,7 +2787,7 @@ Private Sub cmdOK_Click()
     End If
     
     If Not mEsRutaEspecial Then
-        If chkRutaConexion.Visible = False Or chkRutaConexion.Value = vbUnchecked Then
+        If chkRutaConexion.Visible = False Or chkRutaConexion.value = vbUnchecked Then
             If txtImporte.Text = "" Then
                 MsgBox "No se puede cargar una Reserva con el Importe Vacío.", vbInformation, App.Title
                 datcboListaPrecio.SetFocus
@@ -2799,7 +2799,7 @@ Private Sub cmdOK_Click()
                 Exit Sub
             End If
             If CCur(txtImporte.Text) = 0 Then
-                If optTipoComision.Value Then
+                If optTipoComision.value Then
                     If mNew Then
                         If MsgBox("Esta Comisión tiene Importe Cero." & vbCr & "¿Desea cargar esta Comisión de todos modos?", vbExclamation + vbYesNo, App.Title) = vbNo Then
                             txtImporte.SetFocus
@@ -2837,7 +2837,7 @@ Private Sub cmdOK_Click()
                     Exit Sub
                 End If
                 If Tramo1_Importe = 0 Then
-                    If optTipoComision.Value Then
+                    If optTipoComision.value Then
                         If mNew Then
                             If MsgBox("Esta Comisión tiene Importe Cero." & vbCr & "¿Desea cargar esta Comisión de todos modos?", vbExclamation + vbYesNo, App.Title) = vbNo Then
                                 txtImporte.SetFocus
@@ -2866,7 +2866,7 @@ Private Sub cmdOK_Click()
                     Exit Sub
                 End If
                 If CCur(txtImporte.Text) = 0 Then
-                    If optTipoComision.Value Then
+                    If optTipoComision.value Then
                         If mNew Then
                             If MsgBox("Esta Comisión tiene Importe Cero." & vbCr & "¿Desea cargar esta Comisión de todos modos?", vbExclamation + vbYesNo, App.Title) = vbNo Then
                                 txtImporte.SetFocus
@@ -2890,7 +2890,7 @@ Private Sub cmdOK_Click()
             If Tramo2_IDListaPrecio = 0 Then
                 Tramo2_IDListaPrecio = Val(datcboListaPrecio.BoundText)
             End If
-            If optTipoComision.Value Then
+            If optTipoComision.value Then
                 Tramo2_Importe = 0
             Else
                 Tramo2_Importe = CalcularImporte_Function(Tramo2_IDListaPrecio, Mid(datcboViajeConexion.BoundText, 18), Tramo1_Tramo2_IDLugar, Val(datcboDestino.BoundText))
@@ -2904,7 +2904,7 @@ Private Sub cmdOK_Click()
         Tramo1_IDListaPrecio = Val(datcboListaPrecio.BoundText)
     End If
     
-    If optTipoComision.Value And pParametro.Comision_Seguro_Habilitar Then
+    If optTipoComision.value And pParametro.Comision_Seguro_Habilitar Then
         If Trim(txtValorDeclarado.Text) = "" Then
             MsgBox "Debe ingresar el Valor Declarado.", vbInformation, App.Title
             txtValorDeclarado.SetFocus
@@ -2964,20 +2964,12 @@ Private Sub cmdOK_Click()
     
     ' UPDATE 2020-06-20
     ' Verifico el Origen y el Destino para ver si están disponibles en ese horario
-    ' Necesito convertir el número de día de la semana a Lunes=1 y Domingo=7 porque así se hizo en la aplicación de reservas web
-    Dim DiaSemanaNumero As Byte
-    DiaSemanaNumero = Weekday(dtpFecha.Value)
-    If DiaSemanaNumero = 1 Then
-        DiaSemanaNumero = 7
-    Else
-        DiaSemanaNumero = DiaSemanaNumero - 1
-    End If
     If Val(datcboOrigen.BoundText) = 0 Then
         MsgBox "Debe seleccionar el Origen.", vbInformation, App.Title
         datcboOrigen.SetFocus
         Exit Sub
     End If
-    If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboOrigen.BoundText, DiaSemanaNumero, datcboHora.Text) Then
+    If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboOrigen.BoundText, Weekday(dtpFecha.value), datcboHora.Text) Then
         MsgBox "El Origen no está disponible para este Horario.", vbExclamation, App.Title
         datcboOrigen.SetFocus
         Exit Sub
@@ -2987,7 +2979,7 @@ Private Sub cmdOK_Click()
         datcboDestino.SetFocus
         Exit Sub
     End If
-    If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboDestino.BoundText, Weekday(dtpFecha.Value) - 1, datcboHora.Text) Then
+    If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboDestino.BoundText, Weekday(dtpFecha.value), datcboHora.Text) Then
         MsgBox "El Destino no está disponible para este Horario.", vbExclamation, App.Title
         datcboDestino.SetFocus
         Exit Sub
@@ -3014,21 +3006,21 @@ Private Sub cmdOK_Click()
     
     'CONFIRMACION
     With frmViajeDetalleConfirmacion
-        .txtTipo.Text = IIf(optTipoComision.Value, OCUPANTE_TIPO_COMISION_NOMBRE, OCUPANTE_TIPO_PASAJERO_NOMBRE)
+        .txtTipo.Text = IIf(optTipoComision.value, OCUPANTE_TIPO_COMISION_NOMBRE, OCUPANTE_TIPO_PASAJERO_NOMBRE)
         .txtDia.Text = UCase(txtDiaSemana.Text)
-        .txtFecha.Text = dtpFecha.Value
+        .txtFecha.Text = dtpFecha.value
         .txtHora.Text = datcboHora.Text
         .txtRuta.Text = datcboRuta.Text
         
-        .lblPasajeroEnvia.Caption = IIf(optTipoComision.Value, "Envía:", "Pasajero:")
+        .lblPasajeroEnvia.Caption = IIf(optTipoComision.value, "Envía:", "Pasajero:")
         .txtPasajeroEnvia.Text = txtPersona.Text
         
-        .lblRecibe.Visible = optTipoComision.Value
-        .txtRecibe.Visible = optTipoComision.Value
+        .lblRecibe.Visible = optTipoComision.value
+        .txtRecibe.Visible = optTipoComision.value
         .txtRecibe.Text = txtPersonaRecibe.Text
         
-        .lblCombinacion.Visible = (chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked)
-        .txtCombinacion.Visible = (chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked)
+        .lblCombinacion.Visible = (chkRutaConexion.Visible And chkRutaConexion.value = vbChecked)
+        .txtCombinacion.Visible = (chkRutaConexion.Visible And chkRutaConexion.value = vbChecked)
         .txtCombinacion.Text = datcboViajeConexion.Text
         
         .Show vbModal, frmMDI
@@ -3057,7 +3049,7 @@ Private Sub cmdOK_Click()
         Call ViajeDetalle_ShowViajeVuelta(mViajeDetalle, "Hay %1 Reserva(s) sin Asistencia para este Pasajero en el mismo Día.")
     End If
     
-    If chkRutaConexion.Visible = False Or chkRutaConexion.Value = vbUnchecked Then
+    If chkRutaConexion.Visible = False Or chkRutaConexion.value = vbUnchecked Then
         Conexion_Tramo1_IDDestino = Val(datcboDestino.BoundText)
         Conexion_Tramo1_Baja = txtBaja.Text
     Else
@@ -3067,8 +3059,8 @@ Private Sub cmdOK_Click()
     
     'SI ES NUEVO O CAMBIO LA FECHA-HORA/RUTA O PASO DE NO REALIZADO A OTRO ESTADO DE REALIZADO,
     'Y NO PERMITE RESERVAS CONDICIONALES, VERIFICO QUE HAYA LUGAR
-    If optTipoPasajero.Value And Not pParametro.Permitir_Reservas_Condicionales And Not mEsRutaPaquete Then
-        If ((mNew And cboRealizado.ListIndex <> VIAJE_DETALLE_REALIZADO_NO) Or mViajeDetalle.FechaHora <> CDate(dtpFecha.Value & " " & datcboHora.Text) Or mViajeDetalle.IDRuta <> datcboRuta.BoundText Or mViajeDetalle.IDOrigen <> Val(datcboOrigen.BoundText) Or mViajeDetalle.IDDestino <> Val(datcboDestino.BoundText) Or (mViajeDetalle.Realizado = VIAJE_DETALLE_REALIZADO_NO And cboRealizado.ListIndex <> VIAJE_DETALLE_REALIZADO_NO)) Then
+    If optTipoPasajero.value And Not pParametro.Permitir_Reservas_Condicionales And Not mEsRutaPaquete Then
+        If ((mNew And cboRealizado.ListIndex <> VIAJE_DETALLE_REALIZADO_NO) Or mViajeDetalle.FechaHora <> CDate(dtpFecha.value & " " & datcboHora.Text) Or mViajeDetalle.IDRuta <> datcboRuta.BoundText Or mViajeDetalle.IDOrigen <> Val(datcboOrigen.BoundText) Or mViajeDetalle.IDDestino <> Val(datcboDestino.BoundText) Or (mViajeDetalle.Realizado = VIAJE_DETALLE_REALIZADO_NO And cboRealizado.ListIndex <> VIAJE_DETALLE_REALIZADO_NO)) Then
             Viaje.IDOrigen = Val(datcboOrigen.BoundText)
             Viaje.IDDestino = Conexion_Tramo1_IDDestino
             AsientoAsignado = Viaje.Asiento_Asignar_GetAsiento(mViajeDetalle.Indice)
@@ -3117,7 +3109,7 @@ Private Sub cmdOK_Click()
         .IDViaje = Viaje.IDViaje
         
         If mNew Then
-            .OcupanteTipo = IIf(optTipoComision.Value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
+            .OcupanteTipo = IIf(optTipoComision.value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
             If cboRealizado.ListIndex <> VIAJE_DETALLE_REALIZADO_NO Then
                 .Asiento = AsientoAsignado
             Else
@@ -3126,13 +3118,13 @@ Private Sub cmdOK_Click()
         End If
         .IDPersona = Val(txtPersona.Tag)
         
-        .IDPersonaRecibe = IIf(optTipoComision.Value, Val(txtPersonaRecibe.Tag), 0)
-        .PagaQuienRecibe = IIf(optTipoComision.Value, optPagaRecibe.Value, False)
-        .Descripcion = IIf(optTipoComision.Value, txtDescripcion.Text, "")
-        .Domicilio = IIf(optTipoComision.Value, txtDomicilio.Text, "")
-        .Horario = IIf(optTipoComision.Value, txtHorario.Text, "")
-        .Telefono = IIf(optTipoComision.Value, txtTelefono.Text, "")
-        .DejarTraer = IIf(optTipoComision.Value, IIf(cboDejarTraer.ListIndex = 0, "", IIf(cboDejarTraer.ListIndex = 1, "D", "T")), "")
+        .IDPersonaRecibe = IIf(optTipoComision.value, Val(txtPersonaRecibe.Tag), 0)
+        .PagaQuienRecibe = IIf(optTipoComision.value, optPagaRecibe.value, False)
+        .Descripcion = IIf(optTipoComision.value, txtDescripcion.Text, "")
+        .Domicilio = IIf(optTipoComision.value, txtDomicilio.Text, "")
+        .Horario = IIf(optTipoComision.value, txtHorario.Text, "")
+        .Telefono = IIf(optTipoComision.value, txtTelefono.Text, "")
+        .DejarTraer = IIf(optTipoComision.value, IIf(cboDejarTraer.ListIndex = 0, "", IIf(cboDejarTraer.ListIndex = 1, "D", "T")), "")
         
         .IDOrigen = Val(datcboOrigen.BoundText)
         .Sube = txtSube.Text
@@ -3140,7 +3132,7 @@ Private Sub cmdOK_Click()
         .Baja = Conexion_Tramo1_Baja
         
         .IDListaPrecio = Tramo1_IDListaPrecio
-        If optTipoComision.Value And pParametro.Comision_Seguro_Habilitar Then
+        If optTipoComision.value And pParametro.Comision_Seguro_Habilitar Then
             .ValorDeclarado = CCur(txtValorDeclarado.Text)
             .ImporteSeguro = CCur(txtImporteSeguro.Text)
         Else
@@ -3167,7 +3159,7 @@ Private Sub cmdOK_Click()
             Else
                 .ImporteCuentaCorriente = CCur(txtImporteCuentaCorriente.Text)
             End If
-            .ImprimirSaldo = (chkImprimirSaldo.Value = vbChecked)
+            .ImprimirSaldo = (chkImprimirSaldo.value = vbChecked)
             If CCur(txtImporteContado.Text) > 0 Then
                 If mMedioPago.IDCuentaCorrienteCaja = 0 Then
                     .IDCuentaCorrienteCaja = Val(datcboCuentaCorrienteCaja.BoundText)
@@ -3187,12 +3179,12 @@ Private Sub cmdOK_Click()
             .IDCuentaCorrienteCaja = 0
         End If
         .Realizado = cboRealizado.ListIndex
-        .ForzarDebito = (chkForzarDebito.Value = vbChecked)
+        .ForzarDebito = (chkForzarDebito.value = vbChecked)
         .CanceladoPor = (txtCanceladoPor.Text)
-        .Entregada = (chkEntregada.Value = vbChecked)
-        If optTipoComision.Value Then
+        .Entregada = (chkEntregada.value = vbChecked)
+        If optTipoComision.value Then
             If .Entregada Then
-                .EntregadaFechaHora = CDate(Format(dtpEntregadaFecha.Value, "Short Date") & " " & Format(dtpEntregadaHora.Value, "Short Time"))
+                .EntregadaFechaHora = CDate(Format(dtpEntregadaFecha.value, "Short Date") & " " & Format(dtpEntregadaHora.value, "Short Time"))
                 .Retira = txtRetira.Text
             Else
                 .EntregadaFechaHora = DATE_TIME_FIELD_NULL_VALUE
@@ -3204,7 +3196,7 @@ Private Sub cmdOK_Click()
         End If
         
         .IDPersonaCuentaCorriente = Val(txtPersonaCuentaCorriente.Tag)
-        .Facturar = (chkFacturar.Value = vbChecked)
+        .Facturar = (chkFacturar.value = vbChecked)
         .FacturarNotas = txtFacturarNotas.Text
         .FacturaNumero = txtFacturaNumero.Text
         .Notas = txtNotas.Text
@@ -3218,12 +3210,12 @@ Private Sub cmdOK_Click()
     
     '//////////////////////////////////////////////
     'LA CONEXION
-    If chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked Then
+    If chkRutaConexion.Visible And chkRutaConexion.value = vbChecked Then
         Set ViajeDetalle = New ViajeDetalle
         With ViajeDetalle
             .FechaHora = Left(datcboViajeConexion.BoundText, 16)
             .IDRuta = Mid(datcboViajeConexion.BoundText, 18)
-            .OcupanteTipo = IIf(optTipoComision.Value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
+            .OcupanteTipo = IIf(optTipoComision.value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
             If cboRealizado.ListIndex <> VIAJE_DETALLE_REALIZADO_NO Then
                 .Asiento = AsientoAsignado
             Else
@@ -3231,13 +3223,13 @@ Private Sub cmdOK_Click()
             End If
             .IDPersona = Val(txtPersona.Tag)
             
-            .IDPersonaRecibe = IIf(optTipoComision.Value, Val(txtPersonaRecibe.Tag), 0)
-            .PagaQuienRecibe = IIf(optTipoComision.Value, optPagaRecibe.Value, False)
-            .Descripcion = IIf(optTipoComision.Value, txtDescripcion.Text, "")
-            .Domicilio = IIf(optTipoComision.Value, txtDomicilio.Text, "")
-            .Horario = IIf(optTipoComision.Value, txtHorario.Text, "")
-            .Telefono = IIf(optTipoComision.Value, txtTelefono.Text, "")
-            .DejarTraer = IIf(optTipoComision.Value, IIf(cboDejarTraer.ListIndex = 0, "", IIf(cboDejarTraer.ListIndex = 1, "D", "T")), "")
+            .IDPersonaRecibe = IIf(optTipoComision.value, Val(txtPersonaRecibe.Tag), 0)
+            .PagaQuienRecibe = IIf(optTipoComision.value, optPagaRecibe.value, False)
+            .Descripcion = IIf(optTipoComision.value, txtDescripcion.Text, "")
+            .Domicilio = IIf(optTipoComision.value, txtDomicilio.Text, "")
+            .Horario = IIf(optTipoComision.value, txtHorario.Text, "")
+            .Telefono = IIf(optTipoComision.value, txtTelefono.Text, "")
+            .DejarTraer = IIf(optTipoComision.value, IIf(cboDejarTraer.ListIndex = 0, "", IIf(cboDejarTraer.ListIndex = 1, "D", "T")), "")
             
             .IDOrigen = Tramo1_Tramo2_IDLugar
             .Sube = ""
@@ -3245,7 +3237,7 @@ Private Sub cmdOK_Click()
             .Baja = txtBaja.Text
             
             .IDListaPrecio = Tramo2_IDListaPrecio
-            If optTipoComision.Value And pParametro.Comision_Seguro_Habilitar Then
+            If optTipoComision.value And pParametro.Comision_Seguro_Habilitar Then
                 .ValorDeclarado = CCur(txtValorDeclarado.Text)
                 .ImporteSeguro = CCur(txtImporteSeguro.Text)
             Else
@@ -3261,15 +3253,15 @@ Private Sub cmdOK_Click()
             .IDMedioPago = Val(datcboMedioPago.BoundText)
             .Operacion = txtOperacion.Text
             .ImporteCuentaCorriente = CCur(txtImporteCuentaCorriente.Text)
-            .ImprimirSaldo = (chkImprimirSaldo.Value = vbChecked)
+            .ImprimirSaldo = (chkImprimirSaldo.value = vbChecked)
             .IDCuentaCorrienteCaja = IIf(datcboCuentaCorrienteCaja.Visible, Val(datcboCuentaCorrienteCaja.BoundText), 0)
             .Realizado = cboRealizado.ListIndex
-            .ForzarDebito = (chkForzarDebito.Value = vbChecked)
+            .ForzarDebito = (chkForzarDebito.value = vbChecked)
             .CanceladoPor = (txtCanceladoPor.Text)
-            .Entregada = (chkEntregada.Value = vbChecked)
-            If optTipoComision.Value Then
+            .Entregada = (chkEntregada.value = vbChecked)
+            If optTipoComision.value Then
                 If .Entregada Then
-                    .EntregadaFechaHora = CDate(Format(dtpEntregadaFecha.Value, "Short Date") & " " & Format(dtpEntregadaHora.Value, "Short Time"))
+                    .EntregadaFechaHora = CDate(Format(dtpEntregadaFecha.value, "Short Date") & " " & Format(dtpEntregadaHora.value, "Short Time"))
                     .Retira = txtRetira.Text
                 Else
                     .EntregadaFechaHora = DATE_TIME_FIELD_NULL_VALUE
@@ -3281,7 +3273,7 @@ Private Sub cmdOK_Click()
             End If
             
             .IDPersonaCuentaCorriente = Val(txtPersonaCuentaCorriente.Tag)
-            .Facturar = (chkFacturar.Value = vbChecked)
+            .Facturar = (chkFacturar.value = vbChecked)
             .FacturarNotas = txtFacturarNotas.Text
             .FacturaNumero = txtFacturaNumero.Text
             .Notas = txtNotas.Text
@@ -3346,13 +3338,13 @@ End Function
 
 Private Sub SetCaption()
     If mNew Then
-        If optTipoComision.Value Then
+        If optTipoComision.value Then
             Caption = "Propiedades de Nueva Comisión" & IIf(txtPersona.Text <> "", " de " & txtPersona.Text, "")
         Else
             Caption = "Propiedades de Nuevo Pasajero" & IIf(txtPersona.Text <> "", ": " & txtPersona.Text, "")
         End If
     Else
-        If optTipoComision.Value Then
+        If optTipoComision.value Then
             Caption = "Propiedades de la Comisión de " & txtPersona.Text
         Else
             Caption = "Propiedades del Pasajero " & txtPersona.Text
@@ -3397,13 +3389,13 @@ Public Sub PersonaSelected(ByVal IDPersona As Long, ByVal Tag As String)
             
             If datcboRuta.BoundText <> "" And datcboRuta.BoundText <> pParametro.Ruta_ID_Otra And datcboRuta.BoundText <> pParametro.Ruta_Paquete_ID Then
                 Set ViajeDetalle = New ViajeDetalle
-                ViajeDetalle.FechaHora = CDate(dtpFecha.Value & " " & datcboHora.BoundText)
+                ViajeDetalle.FechaHora = CDate(dtpFecha.value & " " & datcboHora.BoundText)
                 ViajeDetalle.IDRuta = datcboRuta.BoundText
                 ViajeDetalle.IDPersona = IDPersona
                 ViajeDetalle.IDRuta = datcboRuta.BoundText
-                ViajeDetalle.OcupanteTipo = IIf(optTipoComision.Value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
+                ViajeDetalle.OcupanteTipo = IIf(optTipoComision.value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
                 Set Viaje = New Viaje
-                Viaje.FechaHora = CDate(dtpFecha.Value & " " & datcboHora.BoundText)
+                Viaje.FechaHora = CDate(dtpFecha.value & " " & datcboHora.BoundText)
                 Viaje.IDRuta = datcboRuta.BoundText
                 If Not Viaje.Load() Then
                     Set Persona = Nothing
@@ -3520,46 +3512,46 @@ Public Sub PersonaSelected(ByVal IDPersona As Long, ByVal Tag As String)
 End Sub
 
 Private Sub ShowControls()
-    lblPersona.Caption = IIf(optTipoComision.Value, "&Envía:", "&Pasajero:")
+    lblPersona.Caption = IIf(optTipoComision.value, "&Envía:", "&Pasajero:")
 
-    lblPersonaRecibe.Visible = optTipoComision.Value
-    txtPersonaRecibe.Visible = optTipoComision.Value
-    cmdPersonaRecibe.Visible = optTipoComision.Value
-    cmdPersonaRecibeUltimo.Visible = optTipoComision.Value
+    lblPersonaRecibe.Visible = optTipoComision.value
+    txtPersonaRecibe.Visible = optTipoComision.value
+    cmdPersonaRecibe.Visible = optTipoComision.value
+    cmdPersonaRecibeUltimo.Visible = optTipoComision.value
     
-    optPagaEnvia.Visible = optTipoComision.Value
-    optPagaRecibe.Visible = optTipoComision.Value
+    optPagaEnvia.Visible = optTipoComision.value
+    optPagaRecibe.Visible = optTipoComision.value
     
-    lblDescripcion.Visible = optTipoComision.Value
-    txtDescripcion.Visible = optTipoComision.Value
-    lblDomicilio.Visible = optTipoComision.Value
-    txtDomicilio.Visible = optTipoComision.Value
-    lblHorario.Visible = optTipoComision.Value
-    txtHorario.Visible = optTipoComision.Value
-    lblTelefono.Visible = optTipoComision.Value
-    txtTelefono.Visible = optTipoComision.Value
-    cboDejarTraer.Visible = optTipoComision.Value
+    lblDescripcion.Visible = optTipoComision.value
+    txtDescripcion.Visible = optTipoComision.value
+    lblDomicilio.Visible = optTipoComision.value
+    txtDomicilio.Visible = optTipoComision.value
+    lblHorario.Visible = optTipoComision.value
+    txtHorario.Visible = optTipoComision.value
+    lblTelefono.Visible = optTipoComision.value
+    txtTelefono.Visible = optTipoComision.value
+    cboDejarTraer.Visible = optTipoComision.value
     
-    lblRealizado.Visible = optTipoPasajero.Value
-    cboRealizado.Visible = optTipoPasajero.Value
-    lblForzarDebito.Visible = (optTipoPasajero.Value And cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO)
-    chkForzarDebito.Visible = (optTipoPasajero.Value And cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO)
-    chkEntregada.Visible = optTipoComision.Value
-    dtpEntregadaFecha.Visible = (optTipoComision.Value And chkEntregada.Value = vbChecked)
-    dtpEntregadaHora.Visible = (optTipoComision.Value And chkEntregada.Value = vbChecked)
-    lblRetira.Visible = (optTipoComision.Value And chkEntregada.Value = vbChecked)
-    txtRetira.Visible = (optTipoComision.Value And chkEntregada.Value = vbChecked)
+    lblRealizado.Visible = optTipoPasajero.value
+    cboRealizado.Visible = optTipoPasajero.value
+    lblForzarDebito.Visible = (optTipoPasajero.value And cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO)
+    chkForzarDebito.Visible = (optTipoPasajero.value And cboRealizado.ListIndex = VIAJE_DETALLE_REALIZADO_NO)
+    chkEntregada.Visible = optTipoComision.value
+    dtpEntregadaFecha.Visible = (optTipoComision.value And chkEntregada.value = vbChecked)
+    dtpEntregadaHora.Visible = (optTipoComision.value And chkEntregada.value = vbChecked)
+    lblRetira.Visible = (optTipoComision.value And chkEntregada.value = vbChecked)
+    txtRetira.Visible = (optTipoComision.value And chkEntregada.value = vbChecked)
     
     lblListaPrecio.Visible = Not (mEsRutaEspecial Or mEsRutaPaquete)
     datcboListaPrecio.Visible = Not (mEsRutaEspecial Or mEsRutaPaquete)
     cmdListaPrecio.Visible = Not (mEsRutaEspecial Or mEsRutaPaquete)
     
-    lblValorDeclarado.Visible = (optTipoComision.Value And pParametro.Comision_Seguro_Habilitar)
-    txtValorDeclarado.Visible = (optTipoComision.Value And pParametro.Comision_Seguro_Habilitar)
-    lblImporteSeguro.Visible = (optTipoComision.Value And pParametro.Comision_Seguro_Habilitar)
-    txtImporteSeguro.Visible = (optTipoComision.Value And pParametro.Comision_Seguro_Habilitar)
-    lblImporteTotal.Visible = (optTipoComision.Value And pParametro.Comision_Seguro_Habilitar)
-    txtImporteTotal.Visible = (optTipoComision.Value And pParametro.Comision_Seguro_Habilitar)
+    lblValorDeclarado.Visible = (optTipoComision.value And pParametro.Comision_Seguro_Habilitar)
+    txtValorDeclarado.Visible = (optTipoComision.value And pParametro.Comision_Seguro_Habilitar)
+    lblImporteSeguro.Visible = (optTipoComision.value And pParametro.Comision_Seguro_Habilitar)
+    txtImporteSeguro.Visible = (optTipoComision.value And pParametro.Comision_Seguro_Habilitar)
+    lblImporteTotal.Visible = (optTipoComision.value And pParametro.Comision_Seguro_Habilitar)
+    txtImporteTotal.Visible = (optTipoComision.value And pParametro.Comision_Seguro_Habilitar)
     
     lblImporte.Visible = Not mEsRutaEspecial
     txtImporte.Visible = Not mEsRutaEspecial
@@ -3581,7 +3573,7 @@ Private Sub ShowControls()
     txtSaldoActual.Visible = Not mEsRutaEspecial
     cmdSaldoActual.Visible = Not mEsRutaEspecial
     
-    If (optTipoComision.Value And pParametro.ViajeDetalle_Comision_Precio_PermitirModificar And pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_COMISION_IMPORTE_ALLOWMODIFY, False)) Or (optTipoPasajero.Value And pParametro.ViajeDetalle_Pasajero_Precio_PermitirModificar And pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_PASAJERO_IMPORTE_ALLOWMODIFY, False)) Or (mEsRutaPaquete And pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_PAQUETE_PASAJERO_IMPORTE_ALLOWMODIFY, False)) Then
+    If (optTipoComision.value And pParametro.ViajeDetalle_Comision_Precio_PermitirModificar And pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_COMISION_IMPORTE_ALLOWMODIFY, False)) Or (optTipoPasajero.value And pParametro.ViajeDetalle_Pasajero_Precio_PermitirModificar And pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_PASAJERO_IMPORTE_ALLOWMODIFY, False)) Or (mEsRutaPaquete And pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_PAQUETE_PASAJERO_IMPORTE_ALLOWMODIFY, False)) Then
         txtImporte.Locked = False
         txtImporte.TabStop = True
         txtImporte.BackColor = vbWindowBackground
@@ -3590,69 +3582,69 @@ Private Sub ShowControls()
         txtImporte.TabStop = False
         txtImporte.BackColor = vbButtonFace
     End If
-    cmdVerificarAsiento.Visible = optTipoPasajero.Value
+    cmdVerificarAsiento.Visible = optTipoPasajero.value
 End Sub
 
-Private Sub EnableControls(ByVal Value As Boolean)
-    cmdAnterior.Visible = Value
-    dtpFecha.Enabled = Value
-    cmdSiguiente.Visible = Value
-    cmdHoy.Visible = Value
-    datcboHora.Enabled = Value
-    datcboRuta.Enabled = Value
-    cmdRuta.Visible = Value
+Private Sub EnableControls(ByVal value As Boolean)
+    cmdAnterior.Visible = value
+    dtpFecha.Enabled = value
+    cmdSiguiente.Visible = value
+    cmdHoy.Visible = value
+    datcboHora.Enabled = value
+    datcboRuta.Enabled = value
+    cmdRuta.Visible = value
     
-    optPagaEnvia.Enabled = Value
-    cmdPersona.Visible = Value
-    cmdPersonaUltimo.Visible = Value
+    optPagaEnvia.Enabled = value
+    cmdPersona.Visible = value
+    cmdPersonaUltimo.Visible = value
     
-    optPagaRecibe.Enabled = Value
-    cmdPersonaRecibe.Visible = Value
-    cmdPersonaRecibeUltimo.Visible = Value
-    txtDescripcion.Enabled = Value
-    txtDomicilio.Enabled = Value
-    txtHorario.Enabled = Value
-    txtTelefono.Enabled = Value
-    cboDejarTraer.Enabled = Value
+    optPagaRecibe.Enabled = value
+    cmdPersonaRecibe.Visible = value
+    cmdPersonaRecibeUltimo.Visible = value
+    txtDescripcion.Enabled = value
+    txtDomicilio.Enabled = value
+    txtHorario.Enabled = value
+    txtTelefono.Enabled = value
+    cboDejarTraer.Enabled = value
     
-    datcboOrigen.Enabled = Value
-    cmdLugarOrigen.Visible = Value
-    txtSube.Enabled = Value
-    datcboDestino.Enabled = Value
-    cmdLugarDestino.Visible = Value
-    txtBaja.Enabled = Value
+    datcboOrigen.Enabled = value
+    cmdLugarOrigen.Visible = value
+    txtSube.Enabled = value
+    datcboDestino.Enabled = value
+    cmdLugarDestino.Visible = value
+    txtBaja.Enabled = value
     
-    cmdVerificarAsiento.Visible = Value
+    cmdVerificarAsiento.Visible = value
     
-    datcboListaPrecio.Enabled = Value
-    cmdListaPrecio.Visible = Value
+    datcboListaPrecio.Enabled = value
+    cmdListaPrecio.Visible = value
     
-    txtImporte.Enabled = Value
-    txtImporteContado.Enabled = Value
-    datcboMedioPago.Enabled = Value
-    txtOperacion.Enabled = Value
+    txtImporte.Enabled = value
+    txtImporteContado.Enabled = value
+    datcboMedioPago.Enabled = value
+    txtOperacion.Enabled = value
     
-    chkImprimirSaldo.Enabled = Value
-    datcboCuentaCorrienteCaja.Enabled = Value
-    cmdCuentaCorrienteCaja.Visible = Value
+    chkImprimirSaldo.Enabled = value
+    datcboCuentaCorrienteCaja.Enabled = value
+    cmdCuentaCorrienteCaja.Visible = value
     
-    cmdPersonaCuentaCorriente.Visible = Value
-    cmdPersonaCuentaCorrienteClear.Visible = Value
+    cmdPersonaCuentaCorriente.Visible = value
+    cmdPersonaCuentaCorrienteClear.Visible = value
     
-    txtReservadoPor.Enabled = Value
-    cboRealizado.Enabled = Value
-    chkForzarDebito.Enabled = Value
-    chkEntregada.Enabled = Value
-    dtpEntregadaFecha.Enabled = Value
-    dtpEntregadaHora.Enabled = Value
+    txtReservadoPor.Enabled = value
+    cboRealizado.Enabled = value
+    chkForzarDebito.Enabled = value
+    chkEntregada.Enabled = value
+    dtpEntregadaFecha.Enabled = value
+    dtpEntregadaHora.Enabled = value
     
-    chkFacturar.Enabled = Value
-    txtFacturarNotas.Enabled = Value
+    chkFacturar.Enabled = value
+    txtFacturarNotas.Enabled = value
     
-    txtNotas.Enabled = Value
+    txtNotas.Enabled = value
     
-    cmdOK.Visible = Value
-    If Value Then
+    cmdOK.Visible = value
+    If value Then
         cmdCancel.Caption = "Cancelar"
     Else
         cmdCancel.Caption = "Cerrar"
@@ -3664,7 +3656,7 @@ Private Sub CambioPersona()
     Dim SaldoActual As Currency
     
     Set Persona = New Persona
-    If optPagaEnvia.Value Then
+    If optPagaEnvia.value Then
         Persona.IDPersona = Val(txtPersona.Tag)
     Else
         Persona.IDPersona = Val(txtPersonaRecibe.Tag)
@@ -3717,7 +3709,7 @@ Private Function CalcularImporte_Function(ByVal IDListaPrecio As Long, ByVal IDR
     
     Set ListaPrecioDetalle = New ListaPrecioDetalle
     ListaPrecioDetalle.IDListaPrecio = IDListaPrecio
-    ListaPrecioDetalle.OcupanteTipo = IIf(optTipoComision.Value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
+    ListaPrecioDetalle.OcupanteTipo = IIf(optTipoComision.value, OCUPANTE_TIPO_COMISION, OCUPANTE_TIPO_PASAJERO)
     ListaPrecioDetalle.IDRuta = IDRuta
     ListaPrecioDetalle.IDOrigen = IDOrigen
     ListaPrecioDetalle.IDDestino = IDDestino
@@ -3733,7 +3725,7 @@ Private Sub CalcularImporte()
     Dim Importe As Currency
     
     If Val(datcboListaPrecio.BoundText) <> 0 And Val(datcboOrigen.BoundText) <> 0 And Val(datcboDestino.BoundText) <> 0 Then
-        Importe = CalcularImporte_Function(Val(datcboListaPrecio.BoundText), datcboRuta.BoundText, Val(datcboOrigen.BoundText), IIf(chkRutaConexion.Visible And chkRutaConexion.Value = vbChecked, mTramo1_Tramo2_IDLugar, Val(datcboDestino.BoundText)))
+        Importe = CalcularImporte_Function(Val(datcboListaPrecio.BoundText), datcboRuta.BoundText, Val(datcboOrigen.BoundText), IIf(chkRutaConexion.Visible And chkRutaConexion.value = vbChecked, mTramo1_Tramo2_IDLugar, Val(datcboDestino.BoundText)))
         If Importe > -1 Then
             txtImporte.Text = Format(Importe, "Currency")
         Else
@@ -3797,7 +3789,7 @@ Private Sub FillComboBoxViajes()
         
         SQLStatement = "SELECT DISTINCT Viaje.FechaHora, CONVERT(CHAR(10), Viaje.FechaHora, 111) + ' ' + CONVERT(CHAR(5), Viaje.FechaHora, 108) + '|' + RTrim(Viaje.IDRuta) AS BoundField, CONVERT(CHAR(5), Viaje.FechaHora, 108) + ' - ' + RTrim(Viaje.IDRuta) AS ListField" & vbCr
         SQLStatement = SQLStatement & "FROM (Viaje INNER JOIN RutaConexionDetalle ON Viaje.IDRuta = RutaConexionDetalle.Tramo2_IDRuta) INNER JOIN RutaDetalle ON Viaje.IDRuta = RutaDetalle.IDRuta" & vbCr
-        SQLStatement = SQLStatement & "WHERE RutaDetalle.IDLugar = " & Tramo1_Tramo2_IDLugar & " AND RutaConexionDetalle.IDRutaConexion = " & Val(datcboRutaConexion.BoundText) & " AND dateadd(minute, RutaDetalle.Duracion + RutaDetalle.Espera, Viaje.FechaHora) BETWEEN '" & Format(DateAdd("n", RutaDetalle_Duracion, CDate(dtpFecha.Value & " " & datcboHora.Text)), "yyyy/mm/dd hh:nn") & "' AND '" & Format(DateAdd("n", RutaDetalle_Duracion + pParametro.Viaje_RutaConexion_TiempoEsperaMaximo_Minutos, CDate(dtpFecha.Value & " " & datcboHora.Text)), "yyyy/mm/dd hh:nn") & "' AND (Viaje.Estado = 'AC' OR Viaje.Estado = 'EP')" & vbCr
+        SQLStatement = SQLStatement & "WHERE RutaDetalle.IDLugar = " & Tramo1_Tramo2_IDLugar & " AND RutaConexionDetalle.IDRutaConexion = " & Val(datcboRutaConexion.BoundText) & " AND dateadd(minute, RutaDetalle.Duracion + RutaDetalle.Espera, Viaje.FechaHora) BETWEEN '" & Format(DateAdd("n", RutaDetalle_Duracion, CDate(dtpFecha.value & " " & datcboHora.Text)), "yyyy/mm/dd hh:nn") & "' AND '" & Format(DateAdd("n", RutaDetalle_Duracion + pParametro.Viaje_RutaConexion_TiempoEsperaMaximo_Minutos, CDate(dtpFecha.value & " " & datcboHora.Text)), "yyyy/mm/dd hh:nn") & "' AND (Viaje.Estado = 'AC' OR Viaje.Estado = 'EP')" & vbCr
         SQLStatement = SQLStatement & "ORDER BY Viaje.FechaHora"
         
         Call CSM_Control_DataCombo.FillFromSQL(datcboViajeConexion, SQLStatement, "BoundField", "ListField", "Conexiones de Viajes", cscpCurrentOrFirst)
@@ -3894,12 +3886,12 @@ Private Function VerificarLugarDisponiblePorHorario(ByVal IDRuta As String, ByVa
     cmdData.CommandType = adCmdStoredProc
     cmdData.Parameters.Append cmdData.CreateParameter("IDRuta", adChar, adParamInput, 20, IDRuta)
     cmdData.Parameters.Append cmdData.CreateParameter("IDLugar", adInteger, adParamInput, , IDLugar)
-    cmdData.Parameters.Append cmdData.CreateParameter("DiaSemana", adTinyInt, adParamInput, , DiaSemana)
+    cmdData.Parameters.Append cmdData.CreateParameter("DiaSemana", adTinyInt, adParamInput, , DiaSemana - 1)
     cmdData.Parameters.Append cmdData.CreateParameter("Hora", adDBTime, adParamInput, , Hora)
     cmdData.Parameters.Append cmdData.CreateParameter("Disponible", adBoolean, adParamOutput)
     cmdData.Execute
     
-    VerificarLugarDisponiblePorHorario = cmdData.Parameters("Disponible").Value
+    VerificarLugarDisponiblePorHorario = cmdData.Parameters("Disponible").value
 
     Set cmdData = Nothing
 

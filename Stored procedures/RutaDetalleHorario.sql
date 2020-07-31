@@ -141,3 +141,65 @@ BEGIN
 
 END
 GO
+
+
+
+-- =============================================
+-- Author: Tomás A. Cardoner
+-- Created:	20/06/2020
+-- Updated:	31/07/2020 - se cambio la funcionalidad ya que el horario es de exclusión y no de disponibilidad como estaba originalmente
+-- Description: Verifica si un lugar de un ruta está disponible para el horario especificado
+-- =============================================
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_RutaDetalle_HorarioDisponible') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE usp_RutaDetalle_HorarioDisponible
+GO
+
+CREATE PROCEDURE dbo.usp_RutaDetalle_HorarioDisponible
+	@IDRuta char(20),
+	@IDLugar int,
+	@DiaSemana tinyint,
+	@Hora time(0),
+	@Disponible bit OUT
+AS
+	
+BEGIN
+	SET NOCOUNT ON;
+
+	DECLARE @HoraInicio time(0)
+	DECLARE @HoraFin time(0)
+
+	-- Obtengo el horario en el detalle de la ruta
+    SELECT @HoraInicio = HoraInicio, @HoraFin = HoraFin
+		FROM RutaDetalle
+		WHERE IDRuta = @IDRuta AND IDLugar = @IDLugar
+
+	IF @HoraInicio IS NOT NULL AND @HoraFin IS NOT NULL
+		BEGIN
+		-- Se especificó un horario de exclusión
+		IF @Hora BETWEEN @HoraInicio AND @HoraFin
+			SET @Disponible = 0
+		ELSE
+			SET @Disponible = 1
+		END
+	ELSE
+		BEGIN
+		-- Busco si hay exclusiones especificadas en la tabla de Horarios del Detalle de la Ruta
+		IF (SELECT COUNT(*) FROM RutaDetalleHorario WHERE IDRuta = @IDRuta AND IDLugar = @IDLugar) > 0
+			-- Hay especificación de exclusiones de horarios, hay que buscar si está excluido para el horario del viaje
+			BEGIN
+			IF (SELECT COUNT(*)
+					FROM RutaDetalleHorario
+					WHERE IDRuta = @IDRuta AND IDLugar = @IDLugar
+						AND DiaSemanaNumero = @DiaSemana
+						AND @Hora BETWEEN HoraInicio AND HoraFin) > 0
+				SET @Disponible = 0
+			ELSE
+				SET @Disponible = 1
+			END
+		ELSE
+			-- No hay especificación de horarios para el lugar, por lo tanto está disponible siempre
+			SET @Disponible = 1
+		END
+
+END
+GO
