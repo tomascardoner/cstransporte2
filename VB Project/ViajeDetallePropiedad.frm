@@ -437,7 +437,7 @@ Begin VB.Form frmViajeDetallePropiedad
    End
    Begin VB.CommandButton cmdAuditoria 
       Height          =   375
-      Left            =   7020
+      Left            =   6780
       Picture         =   "ViajeDetallePropiedad.frx":0AD4
       Style           =   1  'Graphical
       TabIndex        =   94
@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   93388801
+      Format          =   62062593
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   93388803
+      Format          =   62062595
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   93388801
+      Format          =   62062593
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -1067,6 +1067,14 @@ Begin VB.Form frmViajeDetallePropiedad
          Width           =   885
       End
    End
+   Begin VB.Image imgInformacion 
+      Height          =   360
+      Left            =   7320
+      Picture         =   "ViajeDetallePropiedad.frx":3E98
+      Stretch         =   -1  'True
+      Top             =   6720
+      Width           =   360
+   End
    Begin VB.Line linImporte 
       X1              =   4740
       X2              =   9360
@@ -1260,7 +1268,7 @@ Begin VB.Form frmViajeDetallePropiedad
    Begin VB.Image imgPasajeroConfirmado 
       Height          =   480
       Left            =   4080
-      Picture         =   "ViajeDetallePropiedad.frx":3E98
+      Picture         =   "ViajeDetallePropiedad.frx":4119
       Top             =   1500
       Visible         =   0   'False
       Width           =   480
@@ -1401,7 +1409,7 @@ Begin VB.Form frmViajeDetallePropiedad
    Begin VB.Image imgPasajeroCancelado 
       Height          =   480
       Left            =   4080
-      Picture         =   "ViajeDetallePropiedad.frx":4762
+      Picture         =   "ViajeDetallePropiedad.frx":49E3
       Top             =   1500
       Visible         =   0   'False
       Width           =   480
@@ -1409,7 +1417,7 @@ Begin VB.Form frmViajeDetallePropiedad
    Begin VB.Image imgPasajeroCondicional 
       Height          =   480
       Left            =   4080
-      Picture         =   "ViajeDetallePropiedad.frx":502C
+      Picture         =   "ViajeDetallePropiedad.frx":52AD
       Top             =   1500
       Visible         =   0   'False
       Width           =   480
@@ -1417,7 +1425,7 @@ Begin VB.Form frmViajeDetallePropiedad
    Begin VB.Image imgComisionConfirmado 
       Height          =   480
       Left            =   4080
-      Picture         =   "ViajeDetallePropiedad.frx":58F6
+      Picture         =   "ViajeDetallePropiedad.frx":5B77
       Top             =   1500
       Visible         =   0   'False
       Width           =   480
@@ -1425,7 +1433,7 @@ Begin VB.Form frmViajeDetallePropiedad
    Begin VB.Image imgComisionCancelado 
       Height          =   480
       Left            =   4080
-      Picture         =   "ViajeDetallePropiedad.frx":61C0
+      Picture         =   "ViajeDetallePropiedad.frx":6441
       Top             =   1500
       Visible         =   0   'False
       Width           =   480
@@ -1888,6 +1896,18 @@ Private Sub cmdAuditoria_Click()
 
     chkForzarDebito.value = IIf(mViajeDetalle.ForzarDebito, vbChecked, vbUnchecked)
     txtCanceladoPor.Text = mViajeDetalle.CanceladoPor
+End Sub
+
+Private Sub imgInformacion_Click()
+    With frmViajeDetallePropiedadInformacion
+        .txtIDViaje.Text = mViajeDetalle.IDViaje_Formatted
+        .txtIDViajeDetalle.Text = mViajeDetalle.IDViajeDetalle_Formatted
+        .txtIndice.Text = mViajeDetalle.Indice
+        .txtReservaCodigo.Text = mViajeDetalle.ReservaCodigo
+        .txtIDPersona.Text = mViajeDetalle.IDPersona_Formatted
+        
+        .Show vbModal, frmMDI
+    End With
 End Sub
 
 Private Sub cmdHoy_Click()
