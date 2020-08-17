@@ -2,10 +2,10 @@ VERSION 5.00
 Begin VB.Form frmViajeDetallePropiedadInformacion 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Información"
-   ClientHeight    =   2625
+   ClientHeight    =   3585
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   3015
+   ClientWidth     =   4485
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   9
@@ -20,31 +20,11 @@ Begin VB.Form frmViajeDetallePropiedadInformacion
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   2625
-   ScaleWidth      =   3015
+   ScaleHeight     =   3585
+   ScaleWidth      =   4485
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
-   Begin VB.TextBox txtIDPersona 
-      Alignment       =   2  'Center
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H8000000D&
-      Height          =   330
-      Left            =   1560
-      Locked          =   -1  'True
-      TabIndex        =   9
-      TabStop         =   0   'False
-      Top             =   2100
-      Width           =   1215
-   End
-   Begin VB.TextBox txtReservaCodigo 
+   Begin VB.TextBox txtIDRuta 
       Alignment       =   2  'Center
       BeginProperty Font 
          Name            =   "Arial"
@@ -62,9 +42,9 @@ Begin VB.Form frmViajeDetallePropiedadInformacion
       TabIndex        =   7
       TabStop         =   0   'False
       Top             =   1620
-      Width           =   1215
+      Width           =   2715
    End
-   Begin VB.TextBox txtIndice 
+   Begin VB.TextBox txtFechaHora 
       Alignment       =   2  'Center
       BeginProperty Font 
          Name            =   "Arial"
@@ -82,6 +62,66 @@ Begin VB.Form frmViajeDetallePropiedadInformacion
       TabIndex        =   5
       TabStop         =   0   'False
       Top             =   1140
+      Width           =   1875
+   End
+   Begin VB.TextBox txtIDPersona 
+      Alignment       =   2  'Center
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000D&
+      Height          =   330
+      Left            =   1560
+      Locked          =   -1  'True
+      TabIndex        =   13
+      TabStop         =   0   'False
+      Top             =   3060
+      Width           =   1215
+   End
+   Begin VB.TextBox txtReservaCodigo 
+      Alignment       =   2  'Center
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000D&
+      Height          =   330
+      Left            =   1560
+      Locked          =   -1  'True
+      TabIndex        =   11
+      TabStop         =   0   'False
+      Top             =   2580
+      Width           =   1215
+   End
+   Begin VB.TextBox txtIndice 
+      Alignment       =   2  'Center
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000D&
+      Height          =   330
+      Left            =   1560
+      Locked          =   -1  'True
+      TabIndex        =   9
+      TabStop         =   0   'False
+      Top             =   2100
       Width           =   1215
    End
    Begin VB.TextBox txtIDViajeDetalle 
@@ -124,13 +164,31 @@ Begin VB.Form frmViajeDetallePropiedadInformacion
       Top             =   180
       Width           =   1215
    End
+   Begin VB.Label lblIDRuta 
+      AutoSize        =   -1  'True
+      Caption         =   "Ruta:"
+      Height          =   225
+      Left            =   180
+      TabIndex        =   6
+      Top             =   1680
+      Width           =   435
+   End
+   Begin VB.Label lblFechaHora 
+      AutoSize        =   -1  'True
+      Caption         =   "Fecha-hora:"
+      Height          =   225
+      Left            =   180
+      TabIndex        =   4
+      Top             =   1200
+      Width           =   990
+   End
    Begin VB.Label lblIDPersona 
       AutoSize        =   -1  'True
       Caption         =   "ID persona:"
       Height          =   225
       Left            =   180
-      TabIndex        =   8
-      Top             =   2160
+      TabIndex        =   12
+      Top             =   3120
       Width           =   960
    End
    Begin VB.Label lblReservaCodigo 
@@ -138,8 +196,8 @@ Begin VB.Form frmViajeDetallePropiedadInformacion
       Caption         =   "Reserva:"
       Height          =   225
       Left            =   180
-      TabIndex        =   6
-      Top             =   1680
+      TabIndex        =   10
+      Top             =   2640
       Width           =   735
    End
    Begin VB.Label lblIndice 
@@ -147,8 +205,8 @@ Begin VB.Form frmViajeDetallePropiedadInformacion
       Caption         =   "Indice:"
       Height          =   225
       Left            =   180
-      TabIndex        =   4
-      Top             =   1200
+      TabIndex        =   8
+      Top             =   2160
       Width           =   540
    End
    Begin VB.Label lblIDViajeDetalle 
@@ -176,4 +234,3 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-

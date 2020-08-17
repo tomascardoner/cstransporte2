@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   62062593
+      Format          =   84279297
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   62062595
+      Format          =   84279299
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   62062593
+      Format          =   84279297
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -1902,6 +1902,8 @@ Private Sub imgInformacion_Click()
     With frmViajeDetallePropiedadInformacion
         .txtIDViaje.Text = mViajeDetalle.IDViaje_Formatted
         .txtIDViajeDetalle.Text = mViajeDetalle.IDViajeDetalle_Formatted
+        .txtFechaHora.Text = mViajeDetalle.FechaHora_Formatted
+        .txtIDRuta.Text = mViajeDetalle.IDRuta
         .txtIndice.Text = mViajeDetalle.Indice
         .txtReservaCodigo.Text = mViajeDetalle.ReservaCodigo
         .txtIDPersona.Text = mViajeDetalle.IDPersona_Formatted
