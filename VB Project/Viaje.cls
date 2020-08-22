@@ -86,11 +86,11 @@ Public Property Get IDViaje_Formatted() As String
     IDViaje_Formatted = Format(mIDViaje, "#,###")
 End Property
 
-Public Property Let IDViaje(ByVal Value As Long)
-    If Value <> mIDViaje Then
+Public Property Let IDViaje(ByVal value As Long)
+    If value <> mIDViaje Then
         mIsDirty = True
     End If
-    mIDViaje = Value
+    mIDViaje = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -120,11 +120,11 @@ Public Property Get FechaHora_FormattedAsTime() As String
     FechaHora_FormattedAsTime = Format(mFechaHora, "Short Time")
 End Property
 
-Public Property Let FechaHora(ByVal Value As Date)
-    If Value <> mFechaHora Then
+Public Property Let FechaHora(ByVal value As Date)
+    If value <> mFechaHora Then
         mIsDirty = True
     End If
-    mFechaHora = Value
+    mFechaHora = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -134,11 +134,11 @@ Public Property Get IDRuta() As String
     IDRuta = mIDRuta
 End Property
 
-Public Property Let IDRuta(ByVal Value As String)
-    If Value <> mIDRuta Then
+Public Property Let IDRuta(ByVal value As String)
+    If value <> mIDRuta Then
         mIsDirty = True
     End If
-    mIDRuta = Value
+    mIDRuta = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -148,11 +148,11 @@ Public Property Get RutaOtra() As String
     RutaOtra = mRutaOtra
 End Property
 
-Public Property Let RutaOtra(ByVal Value As String)
-    If Value <> mRutaOtra Then
+Public Property Let RutaOtra(ByVal value As String)
+    If value <> mRutaOtra Then
         mIsDirty = True
     End If
-    mRutaOtra = Value
+    mRutaOtra = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -169,11 +169,11 @@ Public Property Get IDPersona() As Long
     IDPersona = mIDPersona
 End Property
 
-Public Property Let IDPersona(ByVal Value As Long)
-    If Value <> mIDPersona Then
+Public Property Let IDPersona(ByVal value As Long)
+    If value <> mIDPersona Then
         mIsDirty = True
     End If
-    mIDPersona = Value
+    mIDPersona = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -183,11 +183,11 @@ Public Property Get Kilometro() As Integer
     Kilometro = mKilometro
 End Property
 
-Public Property Let Kilometro(ByVal Value As Integer)
-    If Value <> mKilometro Then
+Public Property Let Kilometro(ByVal value As Integer)
+    If value <> mKilometro Then
         mIsDirty = True
     End If
-    mKilometro = Value
+    mKilometro = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -197,11 +197,11 @@ Public Property Get Duracion() As Integer
     Duracion = mDuracion
 End Property
 
-Public Property Let Duracion(ByVal Value As Integer)
-    If Value <> mDuracion Then
+Public Property Let Duracion(ByVal value As Integer)
+    If value <> mDuracion Then
         mIsDirty = True
     End If
-    mDuracion = Value
+    mDuracion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -215,11 +215,11 @@ Public Property Get Importe_Formatted() As String
     Importe_Formatted = Format(mImporte, "Currency")
 End Property
 
-Public Property Let Importe(ByVal Value As Currency)
-    If Value <> mImporte Then
+Public Property Let Importe(ByVal value As Currency)
+    If value <> mImporte Then
         mIsDirty = True
     End If
-    mImporte = Value
+    mImporte = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -233,11 +233,11 @@ Public Property Get ImporteContado_Formatted() As String
     ImporteContado_Formatted = Format(mImporteContado, "Currency")
 End Property
 
-Public Property Let ImporteContado(ByVal Value As Currency)
-    If Value <> mImporteContado Then
+Public Property Let ImporteContado(ByVal value As Currency)
+    If value <> mImporteContado Then
         mIsDirty = True
     End If
-    mImporteContado = Value
+    mImporteContado = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -247,11 +247,11 @@ Public Property Get IDMedioPago() As Byte
     IDMedioPago = mIDMedioPago
 End Property
 
-Public Property Let IDMedioPago(ByVal Value As Byte)
-    If Value <> mIDMedioPago Then
+Public Property Let IDMedioPago(ByVal value As Byte)
+    If value <> mIDMedioPago Then
         mIsDirty = True
     End If
-    mIDMedioPago = Value
+    mIDMedioPago = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -265,11 +265,11 @@ Public Property Get Cuotas_Formatted() As String
     Cuotas_Formatted = IIf(mCuotas = 0, "", mCuotas)
 End Property
 
-Public Property Let Cuotas(ByVal Value As Byte)
-    If Value <> mCuotas Then
+Public Property Let Cuotas(ByVal value As Byte)
+    If value <> mCuotas Then
         mIsDirty = True
     End If
-    mCuotas = Value
+    mCuotas = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -279,11 +279,11 @@ Public Property Get Operacion() As String
     Operacion = mOperacion
 End Property
 
-Public Property Let Operacion(ByVal Value As String)
-    If Value <> mOperacion Then
+Public Property Let Operacion(ByVal value As String)
+    If value <> mOperacion Then
         mIsDirty = True
     End If
-    mOperacion = Value
+    mOperacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -293,11 +293,11 @@ Public Property Get IDCuentaCorrienteCaja() As Long
     IDCuentaCorrienteCaja = mIDCuentaCorrienteCaja
 End Property
 
-Public Property Let IDCuentaCorrienteCaja(ByVal Value As Long)
-    If Value <> mIDCuentaCorrienteCaja Then
+Public Property Let IDCuentaCorrienteCaja(ByVal value As Long)
+    If value <> mIDCuentaCorrienteCaja Then
         mIsDirty = True
     End If
-    mIDCuentaCorrienteCaja = Value
+    mIDCuentaCorrienteCaja = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -307,11 +307,11 @@ Public Property Get Charter() As Boolean
     Charter = mCharter
 End Property
 
-Public Property Let Charter(ByVal Value As Boolean)
-    If Value <> mCharter Then
+Public Property Let Charter(ByVal value As Boolean)
+    If value <> mCharter Then
         mIsDirty = True
     End If
-    mCharter = Value
+    mCharter = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -321,11 +321,11 @@ Public Property Get IDVehiculo() As Long
     IDVehiculo = mIDVehiculo
 End Property
 
-Public Property Let IDVehiculo(ByVal Value As Long)
-    If Value <> mIDVehiculo Then
+Public Property Let IDVehiculo(ByVal value As Long)
+    If value <> mIDVehiculo Then
         mIsDirty = True
     End If
-    mIDVehiculo = Value
+    mIDVehiculo = value
 End Property
 
 Public Property Get Vehiculo() As Vehiculo
@@ -352,11 +352,11 @@ Public Property Get IDConductor() As Long
     IDConductor = mIDConductor
 End Property
 
-Public Property Let IDConductor(ByVal Value As Long)
-    If Value <> mIDConductor Then
+Public Property Let IDConductor(ByVal value As Long)
+    If value <> mIDConductor Then
         mIsDirty = True
     End If
-    mIDConductor = Value
+    mIDConductor = value
 End Property
 
 Public Property Get Conductor() As Persona
@@ -383,11 +383,11 @@ Public Property Get AcreditaSueldo() As Boolean
     AcreditaSueldo = mAcreditaSueldo
 End Property
 
-Public Property Let AcreditaSueldo(ByVal Value As Boolean)
-    If Value <> mAcreditaSueldo Then
+Public Property Let AcreditaSueldo(ByVal value As Boolean)
+    If value <> mAcreditaSueldo Then
         mIsDirty = True
     End If
-    mAcreditaSueldo = Value
+    mAcreditaSueldo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -397,11 +397,11 @@ Public Property Get IDConductor2() As Long
     IDConductor2 = mIDConductor2
 End Property
 
-Public Property Let IDConductor2(ByVal Value As Long)
-    If Value <> mIDConductor2 Then
+Public Property Let IDConductor2(ByVal value As Long)
+    If value <> mIDConductor2 Then
         mIsDirty = True
     End If
-    mIDConductor2 = Value
+    mIDConductor2 = value
 End Property
 
 Public Property Get Conductor2() As Persona
@@ -428,11 +428,11 @@ Public Property Get AcreditaSueldo2() As Boolean
     AcreditaSueldo2 = mAcreditaSueldo2
 End Property
 
-Public Property Let AcreditaSueldo2(ByVal Value As Boolean)
-    If Value <> mAcreditaSueldo2 Then
+Public Property Let AcreditaSueldo2(ByVal value As Boolean)
+    If value <> mAcreditaSueldo2 Then
         mIsDirty = True
     End If
-    mAcreditaSueldo2 = Value
+    mAcreditaSueldo2 = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -442,11 +442,11 @@ Public Property Get DiaSemanaBase() As Integer
     DiaSemanaBase = mDiaSemanaBase
 End Property
 
-Public Property Let DiaSemanaBase(ByVal Value As Integer)
-    If Value <> mDiaSemanaBase Then
+Public Property Let DiaSemanaBase(ByVal value As Integer)
+    If value <> mDiaSemanaBase Then
         mIsDirty = True
     End If
-    mDiaSemanaBase = Value
+    mDiaSemanaBase = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -501,11 +501,11 @@ Public Property Get Estado_ToBold() As Boolean
     End Select
 End Property
 
-Public Property Let Estado(ByVal Value As String)
-    If Value <> mEstado Then
+Public Property Let Estado(ByVal value As String)
+    If value <> mEstado Then
         mIsDirty = True
     End If
-    mEstado = Value
+    mEstado = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -515,11 +515,11 @@ Public Property Get AsientoOcupado() As Integer
     AsientoOcupado = mAsientoOcupado
 End Property
 
-Public Property Let AsientoOcupado(ByVal Value As Integer)
-    If Value <> mAsientoOcupado Then
+Public Property Let AsientoOcupado(ByVal value As Integer)
+    If value <> mAsientoOcupado Then
         mIsDirty = True
     End If
-    mAsientoOcupado = Value
+    mAsientoOcupado = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -540,11 +540,11 @@ Public Property Get Notas() As String
     Notas = mNotas
 End Property
 
-Public Property Let Notas(ByVal Value As String)
-    If Value <> mNotas Then
+Public Property Let Notas(ByVal value As String)
+    If value <> mNotas Then
         mIsDirty = True
     End If
-    mNotas = Value
+    mNotas = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -554,11 +554,11 @@ Public Property Get Personal() As Boolean
     Personal = mPersonal
 End Property
 
-Public Property Let Personal(ByVal Value As Boolean)
-    If Value <> mPersonal Then
+Public Property Let Personal(ByVal value As Boolean)
+    If value <> mPersonal Then
         mIsDirty = True
     End If
-    mPersonal = Value
+    mPersonal = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -568,11 +568,11 @@ Public Property Get FechaHoraCreacion() As Date
     FechaHoraCreacion = mFechaHoraCreacion
 End Property
 
-Public Property Let FechaHoraCreacion(ByVal Value As Date)
-    If Value <> mFechaHoraCreacion Then
+Public Property Let FechaHoraCreacion(ByVal value As Date)
+    If value <> mFechaHoraCreacion Then
         mIsDirty = True
     End If
-    mFechaHoraCreacion = Value
+    mFechaHoraCreacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -582,11 +582,11 @@ Public Property Get IDUsuarioCreacion() As String
     IDUsuarioCreacion = mIDUsuarioCreacion
 End Property
 
-Public Property Let IDUsuarioCreacion(ByVal Value As String)
-    If Value <> mIDUsuarioCreacion Then
+Public Property Let IDUsuarioCreacion(ByVal value As String)
+    If value <> mIDUsuarioCreacion Then
         mIsDirty = True
     End If
-    mIDUsuarioCreacion = Value
+    mIDUsuarioCreacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -596,11 +596,11 @@ Public Property Get FechaHoraModificacion() As Date
     FechaHoraModificacion = mFechaHoraModificacion
 End Property
 
-Public Property Let FechaHoraModificacion(ByVal Value As Date)
-    If Value <> mFechaHoraModificacion Then
+Public Property Let FechaHoraModificacion(ByVal value As Date)
+    If value <> mFechaHoraModificacion Then
         mIsDirty = True
     End If
-    mFechaHoraModificacion = Value
+    mFechaHoraModificacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -610,11 +610,11 @@ Public Property Get IDUsuarioModificacion() As String
     IDUsuarioModificacion = mIDUsuarioModificacion
 End Property
 
-Public Property Let IDUsuarioModificacion(ByVal Value As String)
-    If Value <> mIDUsuarioModificacion Then
+Public Property Let IDUsuarioModificacion(ByVal value As String)
+    If value <> mIDUsuarioModificacion Then
         mIsDirty = True
     End If
-    mIDUsuarioModificacion = Value
+    mIDUsuarioModificacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -624,11 +624,11 @@ Public Property Get FechaHoraEnProgreso() As Date
     FechaHoraEnProgreso = mFechaHoraEnProgreso
 End Property
 
-Public Property Let FechaHoraEnProgreso(ByVal Value As Date)
-    If Value <> mFechaHoraEnProgreso Then
+Public Property Let FechaHoraEnProgreso(ByVal value As Date)
+    If value <> mFechaHoraEnProgreso Then
         mIsDirty = True
     End If
-    mFechaHoraEnProgreso = Value
+    mFechaHoraEnProgreso = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -638,11 +638,11 @@ Public Property Get IDUsuarioEnProgreso() As String
     IDUsuarioEnProgreso = mIDUsuarioEnProgreso
 End Property
 
-Public Property Let IDUsuarioEnProgreso(ByVal Value As String)
-    If Value <> mIDUsuarioEnProgreso Then
+Public Property Let IDUsuarioEnProgreso(ByVal value As String)
+    If value <> mIDUsuarioEnProgreso Then
         mIsDirty = True
     End If
-    mIDUsuarioEnProgreso = Value
+    mIDUsuarioEnProgreso = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -652,11 +652,11 @@ Public Property Get FechaHoraFinalizado() As Date
     FechaHoraFinalizado = mFechaHoraFinalizado
 End Property
 
-Public Property Let FechaHoraFinalizado(ByVal Value As Date)
-    If Value <> mFechaHoraFinalizado Then
+Public Property Let FechaHoraFinalizado(ByVal value As Date)
+    If value <> mFechaHoraFinalizado Then
         mIsDirty = True
     End If
-    mFechaHoraFinalizado = Value
+    mFechaHoraFinalizado = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -666,11 +666,11 @@ Public Property Get IDUsuarioFinalizado() As String
     IDUsuarioFinalizado = mIDUsuarioFinalizado
 End Property
 
-Public Property Let IDUsuarioFinalizado(ByVal Value As String)
-    If Value <> mIDUsuarioFinalizado Then
+Public Property Let IDUsuarioFinalizado(ByVal value As String)
+    If value <> mIDUsuarioFinalizado Then
         mIsDirty = True
     End If
-    mIDUsuarioFinalizado = Value
+    mIDUsuarioFinalizado = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -680,11 +680,11 @@ Public Property Get FechaHoraCancelado() As Date
     FechaHoraCancelado = mFechaHoraCancelado
 End Property
 
-Public Property Let FechaHoraCancelado(ByVal Value As Date)
-    If Value <> mFechaHoraCancelado Then
+Public Property Let FechaHoraCancelado(ByVal value As Date)
+    If value <> mFechaHoraCancelado Then
         mIsDirty = True
     End If
-    mFechaHoraCancelado = Value
+    mFechaHoraCancelado = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -694,11 +694,11 @@ Public Property Get IDUsuarioCancelado() As String
     IDUsuarioCancelado = mIDUsuarioCancelado
 End Property
 
-Public Property Let IDUsuarioCancelado(ByVal Value As String)
-    If Value <> mIDUsuarioCancelado Then
+Public Property Let IDUsuarioCancelado(ByVal value As String)
+    If value <> mIDUsuarioCancelado Then
         mIsDirty = True
     End If
-    mIDUsuarioCancelado = Value
+    mIDUsuarioCancelado = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -727,8 +727,8 @@ Public Property Get NoMatchRaiseError() As Boolean
     NoMatchRaiseError = mNoMatchRaiseError
 End Property
 
-Public Property Let NoMatchRaiseError(ByVal Value As Boolean)
-    mNoMatchRaiseError = Value
+Public Property Let NoMatchRaiseError(ByVal value As Boolean)
+    mNoMatchRaiseError = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -738,8 +738,8 @@ Public Property Get RefreshListSkip() As Boolean
     RefreshListSkip = mRefreshListSkip
 End Property
 
-Public Property Let RefreshListSkip(ByVal Value As Boolean)
-    mRefreshListSkip = Value
+Public Property Let RefreshListSkip(ByVal value As Boolean)
+    mRefreshListSkip = value
 End Property
 
 Public Sub RefreshList()
@@ -754,8 +754,8 @@ Public Property Get IDOrigen() As Long
     IDOrigen = mIDOrigen
 End Property
 
-Public Property Let IDOrigen(ByVal Value As Long)
-    mIDOrigen = Value
+Public Property Let IDOrigen(ByVal value As Long)
+    mIDOrigen = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -765,8 +765,8 @@ Public Property Get IDDestino() As Long
     IDDestino = mIDDestino
 End Property
 
-Public Property Let IDDestino(ByVal Value As Long)
-    mIDDestino = Value
+Public Property Let IDDestino(ByVal value As Long)
+    mIDDestino = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -776,8 +776,8 @@ Public Property Get CuentaCorrienteAsignar() As Boolean
     CuentaCorrienteAsignar = mCuentaCorrienteAsignar
 End Property
 
-Public Property Let CuentaCorrienteAsignar(ByVal Value As Boolean)
-    mCuentaCorrienteAsignar = Value
+Public Property Let CuentaCorrienteAsignar(ByVal value As Boolean)
+    mCuentaCorrienteAsignar = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -801,7 +801,7 @@ Public Function OpenRecordset() As Boolean
     Set mrecData = New ADODB.Recordset
     mrecData.Open cmdData, , pParametro.Database_CursorType, adLockOptimistic
     If pParametro.Database_CursorLocation = adUseClient Then
-        mrecData.Properties("Update Criteria").Value = adCriteriaKey
+        mrecData.Properties("Update Criteria").value = adCriteriaKey
     End If
     Set cmdData = Nothing
 
@@ -835,38 +835,38 @@ Public Function Load() As Boolean
         mNoMatch = False
         mIsNew = False
     
-        mIDViaje = mrecData("IDViaje").Value
-        mRutaOtra = mrecData("RutaOtra").Value & ""
-        mIDPersona = Val(mrecData("IDPersona").Value & "")
-        mKilometro = Val(mrecData("Kilometro").Value & "")
-        mDuracion = Val(mrecData("Duracion").Value & "")
-        mImporte = IIf(IsNull(mrecData("Importe").Value), 0, mrecData("Importe").Value)
-        mImporteContado = IIf(IsNull(mrecData("ImporteContado").Value), 0, mrecData("ImporteContado").Value)
-        mIDMedioPago = Val(mrecData("IDMedioPago").Value & "")
-        mCuotas = Val(mrecData("Cuotas").Value & "")
-        mOperacion = mrecData("Operacion").Value & ""
-        mIDCuentaCorrienteCaja = Val(mrecData("IDCuentaCorrienteCaja").Value & "")
-        mCharter = mrecData("Charter").Value
-        mIDVehiculo = Val(mrecData("IDVehiculo").Value & "")
-        mIDConductor = Val(mrecData("IDConductor").Value & "")
-        mAcreditaSueldo = mrecData("AcreditaSueldo").Value
-        mIDConductor2 = Val(mrecData("IDConductor2").Value & "")
-        mAcreditaSueldo2 = mrecData("AcreditaSueldo2").Value
-        mDiaSemanaBase = mrecData("DiaSemanaBase").Value
-        mEstado = mrecData("Estado").Value
-        mAsientoOcupado = IIf(IsNull(mrecData("AsientoOcupado").Value), -1, mrecData("AsientoOcupado").Value)
-        mNotas = mrecData("Notas").Value & ""
-        mPersonal = mrecData("Personal").Value
-        mFechaHoraCreacion = mrecData("FechaHoraCreacion").Value
-        mIDUsuarioCreacion = mrecData("IDUsuarioCreacion").Value
-        mFechaHoraModificacion = mrecData("FechaHoraModificacion").Value
-        mIDUsuarioModificacion = mrecData("IDUsuarioModificacion").Value
-        mFechaHoraEnProgreso = IIf(IsNull(mrecData("FechaHoraEnProgreso").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaHoraEnProgreso").Value)
-        mIDUsuarioEnProgreso = mrecData("IDUsuarioEnProgreso").Value & ""
-        mFechaHoraFinalizado = IIf(IsNull(mrecData("FechaHoraFinalizado").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaHoraFinalizado").Value)
-        mIDUsuarioFinalizado = mrecData("IDUsuarioFinalizado").Value & ""
-        mFechaHoraCancelado = IIf(IsNull(mrecData("FechaHoraCancelado").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaHoraCancelado").Value)
-        mIDUsuarioCancelado = mrecData("IDUsuarioCancelado").Value & ""
+        mIDViaje = mrecData("IDViaje").value
+        mRutaOtra = mrecData("RutaOtra").value & ""
+        mIDPersona = Val(mrecData("IDPersona").value & "")
+        mKilometro = Val(mrecData("Kilometro").value & "")
+        mDuracion = Val(mrecData("Duracion").value & "")
+        mImporte = IIf(IsNull(mrecData("Importe").value), 0, mrecData("Importe").value)
+        mImporteContado = IIf(IsNull(mrecData("ImporteContado").value), 0, mrecData("ImporteContado").value)
+        mIDMedioPago = Val(mrecData("IDMedioPago").value & "")
+        mCuotas = Val(mrecData("Cuotas").value & "")
+        mOperacion = mrecData("Operacion").value & ""
+        mIDCuentaCorrienteCaja = Val(mrecData("IDCuentaCorrienteCaja").value & "")
+        mCharter = mrecData("Charter").value
+        mIDVehiculo = Val(mrecData("IDVehiculo").value & "")
+        mIDConductor = Val(mrecData("IDConductor").value & "")
+        mAcreditaSueldo = mrecData("AcreditaSueldo").value
+        mIDConductor2 = Val(mrecData("IDConductor2").value & "")
+        mAcreditaSueldo2 = mrecData("AcreditaSueldo2").value
+        mDiaSemanaBase = mrecData("DiaSemanaBase").value
+        mEstado = mrecData("Estado").value
+        mAsientoOcupado = IIf(IsNull(mrecData("AsientoOcupado").value), -1, mrecData("AsientoOcupado").value)
+        mNotas = mrecData("Notas").value & ""
+        mPersonal = mrecData("Personal").value
+        mFechaHoraCreacion = mrecData("FechaHoraCreacion").value
+        mIDUsuarioCreacion = mrecData("IDUsuarioCreacion").value
+        mFechaHoraModificacion = mrecData("FechaHoraModificacion").value
+        mIDUsuarioModificacion = mrecData("IDUsuarioModificacion").value
+        mFechaHoraEnProgreso = IIf(IsNull(mrecData("FechaHoraEnProgreso").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaHoraEnProgreso").value)
+        mIDUsuarioEnProgreso = mrecData("IDUsuarioEnProgreso").value & ""
+        mFechaHoraFinalizado = IIf(IsNull(mrecData("FechaHoraFinalizado").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaHoraFinalizado").value)
+        mIDUsuarioFinalizado = mrecData("IDUsuarioFinalizado").value & ""
+        mFechaHoraCancelado = IIf(IsNull(mrecData("FechaHoraCancelado").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaHoraCancelado").value)
+        mIDUsuarioCancelado = mrecData("IDUsuarioCancelado").value & ""
     End If
     mFechaHoraOriginal = mFechaHora
     mIDRutaOriginal = mIDRuta
@@ -1015,7 +1015,7 @@ Public Function Update() As Boolean
     End If
     cmdData.Execute 0
     If mIsNew Then
-        mIDViaje = cmdData.Parameters("@IDViaje").Value
+        mIDViaje = cmdData.Parameters("@IDViaje").value
     End If
     Set cmdData = Nothing
     
@@ -1171,7 +1171,7 @@ Public Function UpdateAsientoOcupado() As Boolean
     
     Screen.MousePointer = vbHourglass
     
-    mrecData("AsientoOcupado").Value = mAsientoOcupado
+    mrecData("AsientoOcupado").value = mAsientoOcupado
     mrecData.Update
 
     mIsCopy = False
@@ -1385,16 +1385,16 @@ RESTART:
         cmdViajeDetalle_Asiento_List.Parameters.Append cmdViajeDetalle_Asiento_List.CreateParameter("EstadoExclude_FILTER", adChar, adParamInput, 3, VIAJE_DETALLE_ESTADO_CANCELADO)
         Set recViajeDetalle_Asiento_List = New ADODB.Recordset
         recViajeDetalle_Asiento_List.Open cmdViajeDetalle_Asiento_List, , adOpenKeyset, adLockOptimistic
-        recViajeDetalle_Asiento_List.Properties("Update Criteria").Value = adCriteriaKey
+        recViajeDetalle_Asiento_List.Properties("Update Criteria").value = adCriteriaKey
         Set cmdViajeDetalle_Asiento_List = Nothing
         
         With recViajeDetalle_Asiento_List
             Do While Not .EOF
-                If Not IsNull(.Fields("Asiento").Value) Then
-                    .Fields("Asiento").Value = Null
+                If Not IsNull(.Fields("Asiento").value) Then
+                    .Fields("Asiento").value = Null
                 End If
-                If .Fields("Estado").Value & "" <> VIAJE_DETALLE_ESTADO_CONDICIONAL Then
-                    .Fields("Estado").Value = VIAJE_DETALLE_ESTADO_CONDICIONAL
+                If .Fields("Estado").value & "" <> VIAJE_DETALLE_ESTADO_CONDICIONAL Then
+                    .Fields("Estado").value = VIAJE_DETALLE_ESTADO_CONDICIONAL
                 End If
                 .Update
                 
@@ -1424,7 +1424,7 @@ RESTART:
         cmdViajeDetalle_Asiento_List.Parameters.Append cmdViajeDetalle_Asiento_List.CreateParameter("EstadoExclude_FILTER", adChar, adParamInput, 3, VIAJE_DETALLE_ESTADO_CANCELADO)
         Set recViajeDetalle_Asiento_List = New ADODB.Recordset
         recViajeDetalle_Asiento_List.Open cmdViajeDetalle_Asiento_List, , adOpenKeyset, adLockOptimistic
-        recViajeDetalle_Asiento_List.Properties("Update Criteria").Value = adCriteriaKey
+        recViajeDetalle_Asiento_List.Properties("Update Criteria").value = adCriteriaKey
         Set cmdViajeDetalle_Asiento_List = Nothing
         
         If Not recViajeDetalle_Asiento_List.EOF Then
@@ -1439,12 +1439,12 @@ RESTART:
             
             With recViajeDetalle_Asiento_List
                 Do While Not .EOF
-                    If .Fields("Realizado").Value = False Then
-                        If IsNull(.Fields("Estado").Value) Then
-                            .Fields("Estado").Value = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                    If .Fields("Realizado").value = False Then
+                        If IsNull(.Fields("Estado").value) Then
+                            .Fields("Estado").value = VIAJE_DETALLE_ESTADO_CONFIRMADO
                         End If
-                        If Not IsNull(.Fields("Asiento").Value) Then
-                            .Fields("Asiento").Value = Null
+                        If Not IsNull(.Fields("Asiento").value) Then
+                            .Fields("Asiento").value = Null
                         End If
                         If .EditMode = adEditInProgress Then
                             .Update
@@ -1453,11 +1453,11 @@ RESTART:
                         If mIDRuta = pParametro.Ruta_ID_Otra Or mIDRuta = pParametro.Ruta_Paquete_ID Then
                             'SI ES UNA RUTA ESPECIAL, ASIGNO LOS ASIENTOS UNO A UNO
                             If AsientoCurrent <= Vehiculo.Asiento Then
-                                If Val(.Fields("Asiento").Value & "") <> AsientoCurrent Then
-                                    .Fields("Asiento").Value = AsientoCurrent
+                                If Val(.Fields("Asiento").value & "") <> AsientoCurrent Then
+                                    .Fields("Asiento").value = AsientoCurrent
                                 End If
-                                If .Fields("Estado").Value & "" <> VIAJE_DETALLE_ESTADO_CONFIRMADO Then
-                                    .Fields("Estado").Value = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                                If .Fields("Estado").value & "" <> VIAJE_DETALLE_ESTADO_CONFIRMADO Then
+                                    .Fields("Estado").value = VIAJE_DETALLE_ESTADO_CONFIRMADO
                                 End If
                                 If .EditMode = adEditInProgress Then
                                     .Update
@@ -1472,8 +1472,8 @@ RESTART:
                             End If
                         Else
                             'ASIGNO LOS ASIENTOS EN BASE A DONDE SUBEN Y DONDE BAJAN
-                            IndiceOrigen = ((.Fields("IndiceOrigen").Value / 10) * 2) - 1
-                            IndiceDestino = ((.Fields("IndiceDestino").Value / 10) * 2) - 2
+                            IndiceOrigen = ((.Fields("IndiceOrigen").value / 10) * 2) - 1
+                            IndiceDestino = ((.Fields("IndiceDestino").value / 10) * 2) - 2
                             AsientoAsignado = False
                             For AsientoCurrent = 1 To Vehiculo.Asiento
                                 If DataGrid(AsientoCurrent, 0) <> 0 Then
@@ -1487,11 +1487,11 @@ RESTART:
                                         Next LugarCurrent
                                         If LugarCurrent - 1 = IndiceDestino Then
                                             'SI NO SALIO ANTES PORQUE EL LUGAR ESTABA OCUPADO, LO ASIGNO
-                                            If Val(.Fields("Asiento").Value & "") <> AsientoCurrent Then
-                                                .Fields("Asiento").Value = AsientoCurrent
+                                            If Val(.Fields("Asiento").value & "") <> AsientoCurrent Then
+                                                .Fields("Asiento").value = AsientoCurrent
                                             End If
-                                            If .Fields("Estado").Value & "" <> VIAJE_DETALLE_ESTADO_CONFIRMADO Then
-                                                .Fields("Estado").Value = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                                            If .Fields("Estado").value & "" <> VIAJE_DETALLE_ESTADO_CONFIRMADO Then
+                                                .Fields("Estado").value = VIAJE_DETALLE_ESTADO_CONFIRMADO
                                             End If
                                             If .EditMode = adEditInProgress Then
                                                 .Update
@@ -1501,18 +1501,18 @@ RESTART:
                                                 AsientoOcupado = AsientoCurrent
                                             End If
                                             For LugarCurrent = IndiceOrigen To IndiceDestino
-                                                DataGrid(AsientoCurrent, LugarCurrent) = .Fields("Indice").Value
+                                                DataGrid(AsientoCurrent, LugarCurrent) = .Fields("Indice").value
                                             Next LugarCurrent
                                             Exit For
                                         End If
                                     End If
                                 Else
-                                    'EL SIENTO ESTA LIBRE, POR LO TANTO, ASIGNO EL VIAJE
-                                    If Val(.Fields("Asiento").Value & "") <> AsientoCurrent Then
-                                        .Fields("Asiento").Value = AsientoCurrent
+                                    'EL ASIENTO ESTA LIBRE, POR LO TANTO, ASIGNO EL VIAJE
+                                    If Val(.Fields("Asiento").value & "") <> AsientoCurrent Then
+                                        .Fields("Asiento").value = AsientoCurrent
                                     End If
-                                    If .Fields("Estado").Value & "" <> VIAJE_DETALLE_ESTADO_CONFIRMADO Then
-                                        .Fields("Estado").Value = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                                    If .Fields("Estado").value & "" <> VIAJE_DETALLE_ESTADO_CONFIRMADO Then
+                                        .Fields("Estado").value = VIAJE_DETALLE_ESTADO_CONFIRMADO
                                     End If
                                     If .EditMode = adEditInProgress Then
                                         .Update
@@ -1523,7 +1523,7 @@ RESTART:
                                     End If
                                     DataGrid(AsientoCurrent, 0) = 1
                                     For LugarCurrent = IndiceOrigen To IndiceDestino
-                                        DataGrid(AsientoCurrent, LugarCurrent) = .Fields("Indice").Value
+                                        DataGrid(AsientoCurrent, LugarCurrent) = .Fields("Indice").value
                                     Next LugarCurrent
                                     Exit For
                                 End If
@@ -1536,22 +1536,22 @@ RESTART:
                             If PasajerosParados < (Vehiculo.Pasajero - Vehiculo.Asiento) Then
                                 'COMO QUEDAN LUGARES PARADOS, LE ASIGNO CERO
                                 PasajerosParados = PasajerosParados + 1
-                                If IsNull(.Fields("Asiento").Value) Or .Fields("Asiento").Value <> 0 Then
-                                    .Fields("Asiento").Value = 0
+                                If IsNull(.Fields("Asiento").value) Or .Fields("Asiento").value <> 0 Then
+                                    .Fields("Asiento").value = 0
                                 End If
-                                If .Fields("Estado").Value & "" <> VIAJE_DETALLE_ESTADO_CONFIRMADO Then
-                                    .Fields("Estado").Value = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                                If .Fields("Estado").value & "" <> VIAJE_DETALLE_ESTADO_CONFIRMADO Then
+                                    .Fields("Estado").value = VIAJE_DETALLE_ESTADO_CONFIRMADO
                                 End If
                                 If .EditMode = adEditInProgress Then
                                     .Update
                                 End If
                             Else
                                 'COMO NO HAY MAS LUGAR, LE ASIGNO NULL
-                                If Not IsNull(.Fields("Asiento").Value) Then
-                                    .Fields("Asiento").Value = Null
+                                If Not IsNull(.Fields("Asiento").value) Then
+                                    .Fields("Asiento").value = Null
                                 End If
-                                If .Fields("Estado").Value & "" <> VIAJE_DETALLE_ESTADO_CONDICIONAL Then
-                                    .Fields("Estado").Value = VIAJE_DETALLE_ESTADO_CONDICIONAL
+                                If .Fields("Estado").value & "" <> VIAJE_DETALLE_ESTADO_CONDICIONAL Then
+                                    .Fields("Estado").value = VIAJE_DETALLE_ESTADO_CONDICIONAL
                                 End If
                                 If .EditMode = adEditInProgress Then
                                     .Update
@@ -1667,7 +1667,7 @@ Public Function OrdenAndCuentaCorriente_Asignar() As Boolean
     cmdViajeDetalle_List.Parameters.Append cmdViajeDetalle_List.CreateParameter("IDRuta_FILTER", adVarChar, adParamInput, 20, mIDRuta)
     Set recViajeDetalle_List = New ADODB.Recordset
     recViajeDetalle_List.Open cmdViajeDetalle_List, , adOpenKeyset, adLockOptimistic
-    recViajeDetalle_List.Properties("Update Criteria").Value = adCriteriaKey
+    recViajeDetalle_List.Properties("Update Criteria").value = adCriteriaKey
     recViajeDetalle_List.Sort = "Prioridad, Indice"
     
 RESTART:
@@ -1677,40 +1677,40 @@ RESTART:
             ViajeDetalle.RefreshListSkip = mRefreshListSkip
             ViajeDetalle.FechaHora = mFechaHora
             ViajeDetalle.IDRuta = mIDRuta
-            ViajeDetalle.Indice = recViajeDetalle_List("Indice").Value
+            ViajeDetalle.Indice = recViajeDetalle_List("Indice").value
             If ViajeDetalle.Load() Then
                 '///////////////////////////////////////////////////////////////
                 'ASIGNO EL ORDEN
-                Select Case .Fields("OcupanteTipo").Value
+                Select Case .Fields("OcupanteTipo").value
                     Case OCUPANTE_TIPO_COMISION
-                        Select Case .Fields("Estado").Value
+                        Select Case .Fields("Estado").value
                             Case VIAJE_DETALLE_ESTADO_CONFIRMADO
                                 OrdenComisionConfirmado = OrdenComisionConfirmado + 1
-                                If Val(.Fields("Orden").Value & "") <> OrdenComisionConfirmado Then
-                                    .Fields("Orden").Value = OrdenComisionConfirmado
+                                If Val(.Fields("Orden").value & "") <> OrdenComisionConfirmado Then
+                                    .Fields("Orden").value = OrdenComisionConfirmado
                                 End If
                             Case VIAJE_DETALLE_ESTADO_CANCELADO
                                 OrdenComisionCancelado = OrdenComisionCancelado + 1
-                                If Val(.Fields("Orden").Value & "") <> OrdenComisionCancelado Then
-                                    .Fields("Orden").Value = OrdenComisionCancelado
+                                If Val(.Fields("Orden").value & "") <> OrdenComisionCancelado Then
+                                    .Fields("Orden").value = OrdenComisionCancelado
                                 End If
                         End Select
                     Case OCUPANTE_TIPO_PASAJERO
-                        Select Case .Fields("Estado").Value
+                        Select Case .Fields("Estado").value
                             Case VIAJE_DETALLE_ESTADO_CONFIRMADO
                                 OrdenPersonaConfirmado = OrdenPersonaConfirmado + 1
-                                If Val(.Fields("Orden").Value & "") <> OrdenPersonaConfirmado Then
-                                    .Fields("Orden").Value = OrdenPersonaConfirmado
+                                If Val(.Fields("Orden").value & "") <> OrdenPersonaConfirmado Then
+                                    .Fields("Orden").value = OrdenPersonaConfirmado
                                 End If
                             Case VIAJE_DETALLE_ESTADO_CONDICIONAL
                                 OrdenPersonaCondicional = OrdenPersonaCondicional + 1
-                                If Val(.Fields("Orden").Value & "") <> OrdenPersonaCondicional Then
-                                    .Fields("Orden").Value = OrdenPersonaCondicional
+                                If Val(.Fields("Orden").value & "") <> OrdenPersonaCondicional Then
+                                    .Fields("Orden").value = OrdenPersonaCondicional
                                 End If
                             Case VIAJE_DETALLE_ESTADO_CANCELADO
                                 OrdenPersonaCancelado = OrdenPersonaCancelado + 1
-                                If Val(.Fields("Orden").Value & "") <> OrdenPersonaCancelado Then
-                                    .Fields("Orden").Value = OrdenPersonaCancelado
+                                If Val(.Fields("Orden").value & "") <> OrdenPersonaCancelado Then
+                                    .Fields("Orden").value = OrdenPersonaCancelado
                                 End If
                         End Select
                 End Select
@@ -2110,7 +2110,7 @@ Public Function GenerarReservasFijas() As Boolean
             ViajeDetalle.FechaHora = mFechaHora
             ViajeDetalle.IDRuta = mIDRuta
             ViajeDetalle.OcupanteTipo = OCUPANTE_TIPO_PASAJERO
-            ViajeDetalle.IDPersona = recPersona("IDPersona").Value
+            ViajeDetalle.IDPersona = recPersona("IDPersona").value
             ViajeDetalle.ReservaTipo = VIAJE_DETALLE_RESERVA_TIPO_FIJA
             If ViajeDetalle.LoadByReservaTipo() Then
                 If ViajeDetalle.NoMatch Then
@@ -2235,7 +2235,7 @@ Public Function Asiento_Asignar_GetAsiento(ByVal IndiceActual As Long) As Long
         
             With recViajeDetalle_Asiento_List
                 Do While Not .EOF
-                    If .Fields("Realizado").Value = False Then
+                    If .Fields("Realizado").value = False Then
                     Else
                         If mIDRuta = pParametro.Ruta_ID_Otra Then
                             'SI ES UNA RUTA ESPECIAL, ASIGNO LOS ASIENTOS UNO A UNO
@@ -2247,10 +2247,10 @@ Public Function Asiento_Asignar_GetAsiento(ByVal IndiceActual As Long) As Long
                             End If
                         Else
                             'ASIGNO LOS ASIENTOS EN BASE A DONDE SUBEN Y DONDE BAJAN
-                            If IndiceActual > 0 And IndiceActual = .Fields("Indice").Value Then
+                            If IndiceActual > 0 And IndiceActual = .Fields("Indice").value Then
                             Else
-                                IndiceOrigen = ((.Fields("IndiceOrigen").Value / 10) * 2) - 1
-                                IndiceDestino = ((.Fields("IndiceDestino").Value / 10) * 2) - 2
+                                IndiceOrigen = ((.Fields("IndiceOrigen").value / 10) * 2) - 1
+                                IndiceDestino = ((.Fields("IndiceDestino").value / 10) * 2) - 2
                                 AsientoAsignado = False
                                 For AsientoCurrent = 1 To Vehiculo.Asiento
                                     If DataGrid(AsientoCurrent, 0) <> 0 Then
@@ -2266,7 +2266,7 @@ Public Function Asiento_Asignar_GetAsiento(ByVal IndiceActual As Long) As Long
                                                 'SI NO SALIO ANTES PORQUE EL LUGAR ESTABA OCUPADO, LO ASIGNO
                                                 AsientoAsignado = True
                                                 For LugarCurrent = IndiceOrigen To IndiceDestino
-                                                    DataGrid(AsientoCurrent, LugarCurrent) = .Fields("Indice").Value
+                                                    DataGrid(AsientoCurrent, LugarCurrent) = .Fields("Indice").value
                                                 Next LugarCurrent
                                                 Exit For
                                             End If
@@ -2276,7 +2276,7 @@ Public Function Asiento_Asignar_GetAsiento(ByVal IndiceActual As Long) As Long
                                         AsientoAsignado = True
                                         DataGrid(AsientoCurrent, 0) = 1
                                         For LugarCurrent = IndiceOrigen To IndiceDestino
-                                            DataGrid(AsientoCurrent, LugarCurrent) = .Fields("Indice").Value
+                                            DataGrid(AsientoCurrent, LugarCurrent) = .Fields("Indice").value
                                         Next LugarCurrent
                                         Exit For
                                     End If
@@ -2481,9 +2481,9 @@ Private Sub VerificarPrepagosOtrasReservas()
     
     Do While Not recViajeDetalle_List.EOF
         Set ViajeDetalle = New ViajeDetalle
-        ViajeDetalle.FechaHora = recViajeDetalle_List("FechaHora").Value
-        ViajeDetalle.IDRuta = recViajeDetalle_List("IDRuta").Value
-        ViajeDetalle.Indice = recViajeDetalle_List("Indice").Value
+        ViajeDetalle.FechaHora = recViajeDetalle_List("FechaHora").value
+        ViajeDetalle.IDRuta = recViajeDetalle_List("IDRuta").value
+        ViajeDetalle.Indice = recViajeDetalle_List("Indice").value
         If ViajeDetalle.Load() Then
             Call ViajeDetalle.VerificarPrepagoOtrasReservas
         End If
@@ -2524,9 +2524,9 @@ Private Sub VerificarPrepagosEstasReservas()
     
     Do While Not recViajeDetalle_List.EOF
         Set ViajeDetalle = New ViajeDetalle
-        ViajeDetalle.FechaHora = recViajeDetalle_List("FechaHora").Value
-        ViajeDetalle.IDRuta = recViajeDetalle_List("IDRuta").Value
-        ViajeDetalle.Indice = recViajeDetalle_List("Indice").Value
+        ViajeDetalle.FechaHora = recViajeDetalle_List("FechaHora").value
+        ViajeDetalle.IDRuta = recViajeDetalle_List("IDRuta").value
+        ViajeDetalle.Indice = recViajeDetalle_List("Indice").value
         If ViajeDetalle.Load() Then
             Call ViajeDetalle.VerificarPrepagoEstaReserva
         End If

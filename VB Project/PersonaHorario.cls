@@ -67,7 +67,7 @@ Private Function OpenRecordset() As Boolean
     cmdData.Parameters.Append cmdData.CreateParameter("IDRuta_FILTER", adChar, adParamInput, 20, IDRuta)
     Set mrecData = New ADODB.Recordset
     mrecData.Open cmdData, , adOpenKeyset, adLockOptimistic
-    mrecData.Properties("Update Criteria").Value = adCriteriaKey
+    mrecData.Properties("Update Criteria").value = adCriteriaKey
     Set cmdData = Nothing
     
     Screen.MousePointer = vbDefault
@@ -96,16 +96,16 @@ Public Function Load() As Boolean
     Else
         NoMatch = False
         
-        FechaDesde = IIf(IsNull(mrecData("FechaDesde").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaDesde").Value)
-        FechaHasta = IIf(IsNull(mrecData("FechaHasta").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaHasta").Value)
-        IDOrigen = Val(mrecData("IDOrigen").Value & "")
-        Sube = mrecData("Sube").Value & ""
-        IDDestino = Val(mrecData("IDDestino").Value & "")
-        Baja = mrecData("Baja").Value & ""
-        FechaHoraCreacion = mrecData("FechaHoraCreacion").Value
-        IDUsuarioCreacion = mrecData("IDUsuarioCreacion").Value
-        FechaHoraModificacion = mrecData("FechaHoraModificacion").Value
-        IDUsuarioModificacion = mrecData("IDUsuarioModificacion").Value
+        FechaDesde = IIf(IsNull(mrecData("FechaDesde").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaDesde").value)
+        FechaHasta = IIf(IsNull(mrecData("FechaHasta").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaHasta").value)
+        IDOrigen = Val(mrecData("IDOrigen").value & "")
+        Sube = mrecData("Sube").value & ""
+        IDDestino = Val(mrecData("IDDestino").value & "")
+        Baja = mrecData("Baja").value & ""
+        FechaHoraCreacion = mrecData("FechaHoraCreacion").value
+        IDUsuarioCreacion = mrecData("IDUsuarioCreacion").value
+        FechaHoraModificacion = mrecData("FechaHoraModificacion").value
+        IDUsuarioModificacion = mrecData("IDUsuarioModificacion").value
     End If
     
     Screen.MousePointer = vbDefault
@@ -130,20 +130,20 @@ Public Function AddNew() As Boolean
     Screen.MousePointer = vbHourglass
         
     mrecData.AddNew
-    mrecData("IDPersona").Value = IDPersona
-    mrecData("DiaSemana").Value = DiaSemana
-    mrecData("Hora").Value = DATE_TIME_FIELD_NULL_VALUE & " " & Hora
-    mrecData("IDRuta").Value = IDRuta
-    mrecData("FechaDesde").Value = IIf(FechaDesde = DATE_TIME_FIELD_NULL_VALUE, Null, FechaDesde)
-    mrecData("FechaHasta").Value = IIf(FechaHasta = DATE_TIME_FIELD_NULL_VALUE, Null, FechaHasta)
-    mrecData("IDOrigen").Value = IIf(IDOrigen = 0, Null, IDOrigen)
-    mrecData("Sube").Value = IIf(Trim(Sube) = "", Null, Sube)
-    mrecData("IDDestino").Value = IIf(IDDestino = 0, Null, IDDestino)
-    mrecData("Baja").Value = IIf(Trim(Baja) = "", Null, Baja)
-    mrecData("FechaHoraCreacion").Value = Now
-    mrecData("IDUsuarioCreacion").Value = pUsuario.IDUsuario
-    mrecData("FechaHoraModificacion").Value = Now
-    mrecData("IDUsuarioModificacion").Value = pUsuario.IDUsuario
+    mrecData("IDPersona").value = IDPersona
+    mrecData("DiaSemana").value = DiaSemana
+    mrecData("Hora").value = DATE_TIME_FIELD_NULL_VALUE & " " & Hora
+    mrecData("IDRuta").value = IDRuta
+    mrecData("FechaDesde").value = IIf(FechaDesde = DATE_TIME_FIELD_NULL_VALUE, Null, FechaDesde)
+    mrecData("FechaHasta").value = IIf(FechaHasta = DATE_TIME_FIELD_NULL_VALUE, Null, FechaHasta)
+    mrecData("IDOrigen").value = IIf(IDOrigen = 0, Null, IDOrigen)
+    mrecData("Sube").value = IIf(Trim(Sube) = "", Null, Sube)
+    mrecData("IDDestino").value = IIf(IDDestino = 0, Null, IDDestino)
+    mrecData("Baja").value = IIf(Trim(Baja) = "", Null, Baja)
+    mrecData("FechaHoraCreacion").value = Now
+    mrecData("IDUsuarioCreacion").value = pUsuario.IDUsuario
+    mrecData("FechaHoraModificacion").value = Now
+    mrecData("IDUsuarioModificacion").value = pUsuario.IDUsuario
     mrecData.Update
     
     Call GenerarReservasFijas
@@ -267,19 +267,19 @@ Private Function GenerarReservasFijas() As Boolean
     
     Do While Not recData.EOF
         'Si no existe la Reserva, la genero
-        If IsNull(recData("Indice").Value) Then
+        If IsNull(recData("Indice").value) Then
             Set ViajeDetalle = New ViajeDetalle
             With ViajeDetalle
                 .RefreshListSkip = True
                 .VerifyEstadoCondicionalOnAddNew = True
             
-                .FechaHora = recData("FechaHora").Value
+                .FechaHora = recData("FechaHora").value
                 .IDRuta = IDRuta
                 .OcupanteTipo = OCUPANTE_TIPO_PASAJERO
                 .IDPersona = IDPersona
                 .ReservaTipo = VIAJE_DETALLE_RESERVA_TIPO_FIJA
                 Set Viaje = New Viaje
-                Viaje.FechaHora = recData("FechaHora").Value
+                Viaje.FechaHora = recData("FechaHora").value
                 Viaje.IDRuta = IDRuta
                 If Viaje.Load() Then
                     If .GetNewValues(Viaje.DiaSemanaBase) Then
@@ -344,13 +344,13 @@ Public Function EliminarReservasFijas() As Boolean
     
     Do While Not recData.EOF
         'Si existe la Reserva, la elimino
-        If Not IsNull(recData("Indice").Value) Then
+        If Not IsNull(recData("Indice").value) Then
             Set ViajeDetalle = New ViajeDetalle
             ViajeDetalle.RefreshListSkip = True
             
-            ViajeDetalle.FechaHora = recData("FechaHora").Value
+            ViajeDetalle.FechaHora = recData("FechaHora").value
             ViajeDetalle.IDRuta = IDRuta
-            ViajeDetalle.Indice = recData("Indice").Value
+            ViajeDetalle.Indice = recData("Indice").value
             If ViajeDetalle.Load Then
                 Call ViajeDetalle.Delete
             End If
