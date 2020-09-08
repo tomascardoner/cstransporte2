@@ -2,11 +2,11 @@
 
 CLS
 
-SET ISQL_EXE="C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SQLCMD.exe"
-SET SERVER_NAME=192.168.30.1
+SET ISQL_EXE="sqlcmd"
+SET SERVER_NAME=localhost
 SET USERID=sa
-SET PASSWORD=
-SET DATABASE=CSTransporte_
+SET PASSWORD=Tai1802Pei
+SET DATABASE=CSTransporte_LobosBus_Sample
 
 ECHO ------------------------------------------
 ECHO - Generando Stored Procedures de Alarmas -
@@ -132,6 +132,18 @@ ECHO ----------------------------------------
 ECHO - Generando Stored Procedures de Rutas -
 ECHO ----------------------------------------
 CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Ruta.sql"
+ECHO.
+ECHO.
+ECHO ----------------------------------------------------
+ECHO - Generando Stored Procedures de Detalles de Rutas -
+ECHO ----------------------------------------------------
+CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "RutaDetalle.sql"
+ECHO.
+ECHO.
+ECHO ----------------------------------------------------------------
+ECHO - Generando Stored Procedures de Horarios de Detalles de Rutas -
+ECHO ----------------------------------------------------------------
+CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "RutaDetalleHorario.sql"
 ECHO.
 ECHO.
 ECHO ---------------------------------------------------
