@@ -587,3 +587,40 @@ CREATE PROCEDURE dbo.sp_Persona_DesactivarInactivos
 		WHERE IDPersona NOT IN (SELECT IDPersona FROM @Persona)
 
 GO
+
+
+
+------------------------------------------------------------------------------------------
+-- PERSONA BUSCAR POR DOCUMENTO
+------------------------------------------------------------------------------------------
+IF EXISTS (SELECT name FROM sysobjects WHERE name = N'uspPersonaBuscarPorDocumento' AND type = 'P')
+    DROP PROCEDURE uspPersonaBuscarPorDocumento
+GO
+
+CREATE PROCEDURE dbo.uspPersonaBuscarPorDocumento 
+	@IDDocumentoTipo tinyint,
+	@DocumentoNumero varchar(15) AS
+
+	SELECT IDPersona, Apellido, Nombre, Activo
+		FROM Persona
+		WHERE IDDocumentoTipo = @IDDocumentoTipo AND DocumentoNumero = @DocumentoNumero
+GO
+
+
+
+------------------------------------------------------------------------------------------
+-- PERSONA BUSCAR POR APELLIDO
+------------------------------------------------------------------------------------------
+IF EXISTS (SELECT name FROM sysobjects WHERE name = N'uspPersonaBuscarPorApellido' AND type = 'P')
+    DROP PROCEDURE uspPersonaBuscarPorApellido
+GO
+
+CREATE PROCEDURE dbo.uspPersonaBuscarPorApellido 
+	@Apellido varchar(100),
+	@Nombre varchar(100) AS
+
+	SELECT TOP 1 IDPersona, Apellido, Nombre, Activo
+		FROM Persona
+		WHERE Apellido LIKE @Apellido + '%' AND Nombre LIKE @Nombre + '%'
+		ORDER BY Apellido, Nombre
+GO

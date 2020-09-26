@@ -442,9 +442,9 @@ Begin VB.Form frmPersona
       _CBHeight       =   990
       _Version        =   "6.7.9782"
       Child1          =   "tlbMain"
-      MinWidth1       =   9915
+      MinWidth1       =   11010
       MinHeight1      =   570
-      Width1          =   9915
+      Width1          =   11010
       FixedBackground1=   0   'False
       Key1            =   "Toolbar"
       NewRow1         =   0   'False
@@ -543,7 +543,7 @@ Begin VB.Form frmPersona
          Width           =   11190
          _ExtentX        =   19738
          _ExtentY        =   1005
-         ButtonWidth     =   2170
+         ButtonWidth     =   2302
          ButtonHeight    =   1005
          ToolTips        =   0   'False
          AllowCustomize  =   0   'False
@@ -551,7 +551,7 @@ Begin VB.Form frmPersona
          Style           =   1
          _Version        =   393216
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-            NumButtons      =   9
+            NumButtons      =   10
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Caption         =   "&Nuevo"
                Key             =   "NEW"
@@ -573,23 +573,27 @@ Begin VB.Form frmPersona
                ImageIndex      =   5
             EndProperty
             BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Caption         =   "Buscar (Ctrl+B)"
+               Key             =   "FIND"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Caption         =   "Horarios"
                Key             =   "HORARIO"
             EndProperty
-            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Caption         =   "Rutas"
                Key             =   "RUTA"
             EndProperty
-            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Caption         =   "Información"
                Key             =   "INFO"
                ImageIndex      =   8
             EndProperty
-            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Caption         =   "Respuestas"
                Key             =   "RESPUESTA"
             EndProperty
-            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Caption         =   "Prepagos"
                Key             =   "PREPAGO"
             EndProperty
@@ -666,8 +670,8 @@ Public Sub FillData(ByVal IDPersona As Long)
     Screen.MousePointer = vbHourglass
     
     If IDPersona = 0 Then
-        If Val(tdbgrdData.FirstRow) <> 0 And Not IsNull(tdbgrdData.Columns("IDPersona").Value) Then
-            KeySave = tdbgrdData.Columns("IDPersona").Value
+        If Val(tdbgrdData.FirstRow) <> 0 And Not IsNull(tdbgrdData.Columns("IDPersona").value) Then
+            KeySave = tdbgrdData.Columns("IDPersona").value
         End If
     Else
         Set Persona = New Persona
@@ -794,6 +798,7 @@ Private Sub Form_Load()
     tlbMain.Buttons("PROPERTIES").Image = "PROPERTIES"
     tlbMain.Buttons("DELETE").Image = "DELETE"
     tlbMain.Buttons("SELECT").Image = "SELECT"
+    tlbMain.Buttons("FIND").Image = "FIND"
     tlbMain.Buttons("HORARIO").Image = "HORARIO"
     tlbMain.Buttons("RUTA").Image = "RUTA"
     tlbMain.Buttons("INFO").Image = "INFO"
@@ -827,10 +832,9 @@ Private Sub Form_Load()
     Call pParametro.GetTrueDBGridSettings("Persona", tdbgrdData, mSortColumn, mSortOrderAscending)
     
     tdbgrdData.Splits(0).Columns(mSortColumn).HeadingStyle.ForegroundPicturePosition = dbgFPLeftOfText
-    'tdbgrdData.Splits(0).Columns(mSortColumn).HeadingStyle.ForegroundPicture = frmMDI.ilsFormSortColumn.ListImages(Abs(mSortOrderAscending)).Picture
     
-    tlbPin.Buttons("PIN").Value = pParametro.Usuario_LeerNumero("Persona_Pin", tlbPin.Buttons("PIN").Value)
-    If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+    tlbPin.Buttons("PIN").value = pParametro.Usuario_LeerNumero("Persona_Pin", tlbPin.Buttons("PIN").value)
+    If tlbPin.Buttons("PIN").value = tbrUnpressed Then
         tlbPin.Buttons("PIN").Image = 1
     Else
         tlbPin.Buttons("PIN").Image = 2
@@ -862,6 +866,8 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
             Case vbKeyS
                 tlbMain_ButtonClick tlbMain.Buttons.Item("SELECT")
         End Select
+    ElseIf (Shift And vbCtrlMask) > 0 And KeyCode = vbKeyB Then
+        Call tlbMain_ButtonClick(tlbMain.Buttons("FIND"))
     Else
         If (KeyCode >= vbKeyA And KeyCode <= vbKeyZ) Or KeyCode = vbKeySpace Or KeyCode = 192 Then
             If tmrKeyDelay.Enabled Then
@@ -873,7 +879,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
                 
                 Set recData = tdbgrdData.DataSource
                 If Not (recData.BOF And recData.EOF) Then
-                    PreviousItem = tdbgrdData.Columns("IDPersona").Value
+                    PreviousItem = tdbgrdData.Columns("IDPersona").value
                     
                     recData.MoveFirst
                     recData.Find "Apellido LIKE '" & mSearchString & "*'"
@@ -909,7 +915,7 @@ Private Sub Form_Unload(Cancel As Integer)
     WindowState = vbNormal
     Call pParametro.SaveCoolBarSettings("Persona", cbrMain)
     Call pParametro.SaveTrueDBGridSettings("Persona", tdbgrdData, mSortColumn, mSortOrderAscending)
-    Call pParametro.Usuario_GuardarNumero("Persona_Pin", tlbPin.Buttons("PIN").Value)
+    Call pParametro.Usuario_GuardarNumero("Persona_Pin", tlbPin.Buttons("PIN").value)
 End Sub
 
 Private Sub cbrMain_HeightChanged(ByVal NewHeight As Single)
@@ -942,7 +948,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 Screen.MousePointer = vbHourglass
                 
                 Set Persona = New Persona
-                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").Value)
+                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").value)
                 If Persona.Load() Then
                     frmPersonaPropiedad.LoadDataAndShow Me, Persona
                 End If
@@ -959,7 +965,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 End If
                 If MsgBox("¿Desea eliminar la Persona seleccionada?", vbQuestion + vbYesNo, App.Title) = vbYes Then
                     Set Persona = New Persona
-                    Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").Value)
+                    Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").value)
                     If Persona.Load() Then
                         If Persona.Delete() Then
                             SetLastPersona 0, ""
@@ -980,7 +986,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 End If
                 
                 Set Persona = New Persona
-                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").Value)
+                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").value)
                 If Not Persona.Load() Then
                     Set Persona = Nothing
                     tdbgrdData.SetFocus
@@ -1008,7 +1014,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 
                 Forms(FormIndex).PersonaSelected Persona.IDPersona, SelectTag
                 Forms(FormIndex).SetFocus
-                If tlbPin.Buttons("PIN").Value = tbrUnpressed And Not FormKeepOpenOnSelect Then
+                If tlbPin.Buttons("PIN").value = tbrUnpressed And Not FormKeepOpenOnSelect Then
                     Unload frmPersona
                 End If
                 FormKeepOpenOnSelect = False
@@ -1020,6 +1026,21 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 
                 Screen.MousePointer = vbDefault
             End If
+            
+        Case "FIND"
+            frmPersonaBuscar.Show vbModal, frmMDI
+            With frmPersonaBuscar
+                If .Tag = "OK" Then
+                    If .optDocumento.value Then
+                        Call BuscarPersonaPorDocumento(Val(.datcboDocumentoTipo.BoundText), .txtDocumentoNumero.Text)
+                    ElseIf .optApellidoNombre.value Then
+                        Call BuscarPersonaPorApellidoNombre(.txtApellido.Text, .txtNombre.Text)
+                    End If
+                End If
+            End With
+            Unload frmPersonaBuscar
+            Set frmPersonaBuscar = Nothing
+        
         Case "HORARIO"
             If pCPermiso.GotPermission(PERMISO_PERSONA_HORARIO) Then
                 If Val(tdbgrdData.FirstRow) = 0 Then
@@ -1028,14 +1049,14 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                     Exit Sub
                 End If
                                 
-                SetLastPersona Val(tdbgrdData.Columns("IDPersona").Value)
+                SetLastPersona Val(tdbgrdData.Columns("IDPersona").value)
                 
                 Set Feriado = New Feriado
-                Feriado.VerificarReservasDelPasajero Val(tdbgrdData.Columns("IDPersona").Value)
+                Feriado.VerificarReservasDelPasajero Val(tdbgrdData.Columns("IDPersona").value)
                 Set Feriado = Nothing
                 
                 Screen.MousePointer = vbHourglass
-                frmPersonaHorario.LoadDataAndShow Val(tdbgrdData.Columns("IDPersona").Value)
+                frmPersonaHorario.LoadDataAndShow Val(tdbgrdData.Columns("IDPersona").value)
                 Screen.MousePointer = vbDefault
             End If
         Case "RUTA"
@@ -1047,7 +1068,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 End If
                 
                 Set Persona = New Persona
-                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").Value)
+                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").value)
                 If Not Persona.Load() Then
                     Set Persona = Nothing
                     tdbgrdData.SetFocus
@@ -1075,7 +1096,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 End If
                 
                 Set Persona = New Persona
-                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").Value)
+                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").value)
                 If Not Persona.Load() Then
                     Set Persona = Nothing
                     tdbgrdData.SetFocus
@@ -1103,7 +1124,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 End If
                 
                 Set Persona = New Persona
-                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").Value)
+                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").value)
                 If Not Persona.Load() Then
                     Set Persona = Nothing
                     tdbgrdData.SetFocus
@@ -1131,7 +1152,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 End If
                 
                 Set Persona = New Persona
-                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").Value)
+                Persona.IDPersona = Val(tdbgrdData.Columns("IDPersona").value)
                 If Not Persona.Load() Then
                     Set Persona = Nothing
                     tdbgrdData.SetFocus
@@ -1203,7 +1224,7 @@ Private Sub tdbgrdData_SelChange(Cancel As Integer)
 End Sub
 
 Private Sub tlbPin_ButtonClick(ByVal Button As MSComctlLib.Button)
-    If Button.Value = tbrUnpressed Then
+    If Button.value = tbrUnpressed Then
         Button.Image = 1
     Else
         Button.Image = 2
@@ -1236,3 +1257,166 @@ Private Sub tmrKeyDelay_Timer()
         mLastPressedKeyDelay = mLastPressedKeyDelay + tmrKeyDelay.Interval
     End If
 End Sub
+
+Private Function BuscarPersonaPorDocumento(ByVal IDDocumentoTipo As Byte, ByVal DocumentoNumero As String) As Boolean
+    Dim cmdSP As ADODB.command
+    Dim recData As ADODB.Recordset
+    Dim recDataTDBG As ADODB.Recordset
+    
+    Dim IDPersona As Long
+    Dim Apellido As String
+    Dim Nombre As String
+    Dim ApellidoPrimerLetraCodigo As Integer
+
+    If pTrapErrors Then
+        On Error GoTo ErrorHandler
+    End If
+
+    Screen.MousePointer = vbHourglass
+
+    Set cmdSP = New ADODB.command
+    With cmdSP
+        Set .ActiveConnection = pDatabase.Connection
+        .CommandText = "uspPersonaBuscarPorDocumento"
+        .CommandType = adCmdStoredProc
+
+        .Parameters.Append .CreateParameter("IDDocumentoTipo", adTinyInt, adParamInput, , IDDocumentoTipo)
+        .Parameters.Append .CreateParameter("DocumentoNumero", adVarChar, adParamInput, 15, DocumentoNumero)
+    End With
+
+    Set recData = New ADODB.Recordset
+    recData.Open cmdSP, , adOpenForwardOnly, adLockReadOnly, adCmdStoredProc
+
+    Screen.MousePointer = vbHourglass
+
+    If Not recData.EOF Then
+        IDPersona = recData("IDPersona").value
+        Apellido = recData("Apellido").value & ""
+        Nombre = recData("Nombre").value & ""
+        
+        If Not VerificarPersonaActiva(IDPersona, recData("Activo").value) Then
+            recData.Close
+            Set recData = Nothing
+            Screen.MousePointer = vbDefault
+            Exit Function
+        End If
+        
+        ApellidoPrimerLetraCodigo = Asc(Left(Apellido, 1))
+        
+        If ApellidoPrimerLetraCodigo <> vbKeySpace And ApellidoPrimerLetraCodigo <> 192 Then
+            If tabIndex.SelectedItem.Key <> Left(Apellido, 1) Then
+                Set tabIndex.SelectedItem = tabIndex.Tabs(UCase(Left(Apellido, 1)))
+                
+                Set recDataTDBG = tdbgrdData.DataSource
+                recDataTDBG.Find "IDPersona = " & IDPersona
+                If recDataTDBG.EOF Then
+                    recDataTDBG.MoveFirst
+                End If
+            
+            End If
+        End If
+    End If
+    
+    recData.Close
+    Set recData = Nothing
+    Set cmdSP = Nothing
+    
+    Screen.MousePointer = vbDefault
+    
+    Exit Function
+
+ErrorHandler:
+    ShowErrorMessage "Forms.Persona.BuscarPorDocumento", "Error al buscar los la Persona por Documento."
+End Function
+
+Private Function BuscarPersonaPorApellidoNombre(ByVal Apellido As String, ByVal Nombre As String) As Boolean
+    Dim cmdSP As ADODB.command
+    Dim recData As ADODB.Recordset
+    Dim recDataTDBG As ADODB.Recordset
+    
+    Dim IDPersona As Long
+    Dim ApellidoPrimerLetraCodigo As Integer
+
+    If pTrapErrors Then
+        On Error GoTo ErrorHandler
+    End If
+
+    Screen.MousePointer = vbHourglass
+
+    Set cmdSP = New ADODB.command
+    With cmdSP
+        Set .ActiveConnection = pDatabase.Connection
+        .CommandText = "uspPersonaBuscarPorApellido"
+        .CommandType = adCmdStoredProc
+
+        .Parameters.Append .CreateParameter("Apellido", adVarChar, adParamInput, 100, Apellido)
+        .Parameters.Append .CreateParameter("Nombre", adVarChar, adParamInput, 100, Nombre)
+    End With
+
+    Set recData = New ADODB.Recordset
+    recData.Open cmdSP, , adOpenForwardOnly, adLockReadOnly, adCmdStoredProc
+
+    Screen.MousePointer = vbHourglass
+
+    If Not recData.EOF Then
+        IDPersona = recData("IDPersona").value
+        
+        If Not VerificarPersonaActiva(IDPersona, recData("Activo").value) Then
+            recData.Close
+            Set recData = Nothing
+            Screen.MousePointer = vbDefault
+            Exit Function
+        End If
+        
+        ApellidoPrimerLetraCodigo = Asc(Left(Apellido, 1))
+        
+        If ApellidoPrimerLetraCodigo <> vbKeySpace And ApellidoPrimerLetraCodigo <> 192 Then
+            If tabIndex.SelectedItem.Key <> Left(Apellido, 1) Then
+                Set tabIndex.SelectedItem = tabIndex.Tabs(UCase(Left(Apellido, 1)))
+                
+                Set recDataTDBG = tdbgrdData.DataSource
+                recDataTDBG.Find "IDPersona = " & IDPersona
+                If recDataTDBG.EOF Then
+                    recDataTDBG.MoveFirst
+                End If
+            
+            End If
+        End If
+    End If
+    
+    recData.Close
+    Set recData = Nothing
+    Set cmdSP = Nothing
+    
+    Screen.MousePointer = vbDefault
+    
+    Exit Function
+
+ErrorHandler:
+    ShowErrorMessage "Forms.Persona.BuscarPorDocumento", "Error al buscar los la Persona por Documento."
+End Function
+
+Private Function VerificarPersonaActiva(ByVal IDPersona As Long, ByVal Activo As Boolean) As Boolean
+    If Activo Then
+        VerificarPersonaActiva = True
+    Else
+    
+        If MsgBox("Esta persona está en estado Inactivo." & vbCr & vbCr & "¿Desea activarla?", vbQuestion + vbYesNo, App.Title) = vbYes Then
+            Dim Persona As New Persona
+            
+            Persona.IDPersona = IDPersona
+            If Persona.Load() Then
+                Persona.Activo = True
+                If Not Persona.Update() Then
+                    Set Persona = Nothing
+                    Exit Function
+                End If
+            End If
+            Set Persona = Nothing
+            
+            VerificarPersonaActiva = True
+        Else
+            VerificarPersonaActiva = False
+        End If
+    End If
+End Function

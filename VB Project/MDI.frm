@@ -109,7 +109,7 @@ Begin VB.MDIForm frmMDI
             AutoSize        =   2
             Object.Width           =   1588
             MinWidth        =   2
-            TextSave        =   "20/06/2020"
+            TextSave        =   "25/09/2020"
             Key             =   "DATE"
          EndProperty
          BeginProperty Panel9 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
@@ -118,7 +118,7 @@ Begin VB.MDIForm frmMDI
             AutoSize        =   2
             Object.Width           =   873
             MinWidth        =   2
-            TextSave        =   "20:17"
+            TextSave        =   "21:40"
             Key             =   "TIME"
          EndProperty
       EndProperty
@@ -670,7 +670,7 @@ Begin VB.MDIForm frmMDI
       MaskColor       =   12632256
       _Version        =   393216
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-         NumListImages   =   23
+         NumListImages   =   24
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "MDI.frx":515A
             Key             =   "NEW"
@@ -763,6 +763,10 @@ Begin VB.MDIForm frmMDI
             Picture         =   "MDI.frx":D282
             Key             =   "PREPAGO"
          EndProperty
+         BeginProperty ListImage24 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "MDI.frx":D8BC
+            Key             =   "FIND"
+         EndProperty
       EndProperty
    End
    Begin MSComctlLib.ImageList ilsFormToolbar 
@@ -776,98 +780,102 @@ Begin VB.MDIForm frmMDI
       MaskColor       =   12632256
       _Version        =   393216
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-         NumListImages   =   23
+         NumListImages   =   24
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":D8BC
+            Picture         =   "MDI.frx":DEF6
             Key             =   "NEW"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":DE18
+            Picture         =   "MDI.frx":E452
             Key             =   "PROPERTIES"
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":E374
+            Picture         =   "MDI.frx":E9AE
             Key             =   "DELETE"
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":E8D0
+            Picture         =   "MDI.frx":EF0A
             Key             =   "SELECT"
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":EF0C
+            Picture         =   "MDI.frx":F546
             Key             =   "DETAIL"
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":F548
+            Picture         =   "MDI.frx":FB82
             Key             =   "VIAJE_GENERATE"
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":FB84
+            Picture         =   "MDI.frx":101BE
             Key             =   "PERMISSION"
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":101BE
+            Picture         =   "MDI.frx":107F8
             Key             =   "HORARIO"
          EndProperty
          BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":107F8
+            Picture         =   "MDI.frx":10E32
             Key             =   "RUTA"
          EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":109D2
+            Picture         =   "MDI.frx":1100C
             Key             =   "INFO"
          EndProperty
          BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":1100C
+            Picture         =   "MDI.frx":11646
             Key             =   "RESPUESTA"
          EndProperty
          BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":11646
+            Picture         =   "MDI.frx":11C80
             Key             =   "ACTIVATE"
          EndProperty
          BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":11C80
+            Picture         =   "MDI.frx":122BA
             Key             =   "DEACTIVATE"
          EndProperty
          BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":122BA
+            Picture         =   "MDI.frx":128F4
             Key             =   "PRINT"
          EndProperty
          BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":128F4
+            Picture         =   "MDI.frx":12F2E
             Key             =   "CHANGE_STATUS"
          EndProperty
          BeginProperty ListImage16 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":12F2E
+            Picture         =   "MDI.frx":13568
             Key             =   "ASISTENCIA"
          EndProperty
          BeginProperty ListImage17 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":13568
+            Picture         =   "MDI.frx":13BA2
             Key             =   "UP"
          EndProperty
          BeginProperty ListImage18 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":13BA2
+            Picture         =   "MDI.frx":141DC
             Key             =   "DOWN"
          EndProperty
          BeginProperty ListImage19 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":141DC
+            Picture         =   "MDI.frx":14816
             Key             =   "COPY"
          EndProperty
          BeginProperty ListImage20 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":14736
+            Picture         =   "MDI.frx":14D70
             Key             =   "EMAIL"
          EndProperty
          BeginProperty ListImage21 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":14D70
+            Picture         =   "MDI.frx":153AA
             Key             =   "PAGO_MULTIPLE"
          EndProperty
          BeginProperty ListImage22 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":153AA
+            Picture         =   "MDI.frx":159E4
             Key             =   "RENDIR"
          EndProperty
          BeginProperty ListImage23 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":159E4
+            Picture         =   "MDI.frx":1601E
             Key             =   "PREPAGO"
+         EndProperty
+         BeginProperty ListImage24 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "MDI.frx":16658
+            Key             =   "FIND"
          EndProperty
       EndProperty
    End
@@ -884,11 +892,11 @@ Begin VB.MDIForm frmMDI
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":1601E
+            Picture         =   "MDI.frx":16C92
             Key             =   "UP"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":165BA
+            Picture         =   "MDI.frx":1722E
             Key             =   "DOWN"
          EndProperty
       EndProperty
@@ -906,11 +914,11 @@ Begin VB.MDIForm frmMDI
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":16B56
+            Picture         =   "MDI.frx":177CA
             Key             =   "ASC"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDI.frx":16C28
+            Picture         =   "MDI.frx":1789C
             Key             =   "DESC"
          EndProperty
       EndProperty
@@ -2046,30 +2054,30 @@ Public Sub CallerID_BuscarPersonas()
     txtCallerIDTipo.Text = ""
     Set mCTelefonoTipoNombre = New Collection
     Do While Not recPersona.EOF
-        cboPersona.AddItem recPersona("Persona").Value
-        cboPersona.ItemData(cboPersona.NewIndex) = recPersona("IDPersona").Value
+        cboPersona.AddItem recPersona("Persona").value
+        cboPersona.ItemData(cboPersona.NewIndex) = recPersona("IDPersona").value
         
         'Busco el Tipo de Teléfono
         Select Case NumeroCompleto
-            Case IIf(IsNull(recPersona("Telefono1Area").Value), pTelephony.LocationCityCode, recPersona("Telefono1Area").Value) & recPersona("Telefono1Numero").Value
+            Case IIf(IsNull(recPersona("Telefono1Area").value), pTelephony.LocationCityCode, recPersona("Telefono1Area").value) & recPersona("Telefono1Numero").value
                 TelefonoIndex = 1
-            Case IIf(IsNull(recPersona("Telefono2Area").Value), pTelephony.LocationCityCode, recPersona("Telefono2Area").Value) & recPersona("Telefono2Numero").Value
+            Case IIf(IsNull(recPersona("Telefono2Area").value), pTelephony.LocationCityCode, recPersona("Telefono2Area").value) & recPersona("Telefono2Numero").value
                 TelefonoIndex = 2
-            Case IIf(IsNull(recPersona("Telefono3Area").Value), pTelephony.LocationCityCode, recPersona("Telefono3Area").Value) & recPersona("Telefono3Numero").Value
+            Case IIf(IsNull(recPersona("Telefono3Area").value), pTelephony.LocationCityCode, recPersona("Telefono3Area").value) & recPersona("Telefono3Numero").value
                 TelefonoIndex = 3
-            Case IIf(IsNull(recPersona("Telefono4Area").Value), pTelephony.LocationCityCode, recPersona("Telefono4Area").Value) & recPersona("Telefono4Numero").Value
+            Case IIf(IsNull(recPersona("Telefono4Area").value), pTelephony.LocationCityCode, recPersona("Telefono4Area").value) & recPersona("Telefono4Numero").value
                 TelefonoIndex = 4
-            Case IIf(IsNull(recPersona("Telefono5Area").Value), pTelephony.LocationCityCode, recPersona("Telefono5Area").Value) & recPersona("Telefono5Numero").Value
+            Case IIf(IsNull(recPersona("Telefono5Area").value), pTelephony.LocationCityCode, recPersona("Telefono5Area").value) & recPersona("Telefono5Numero").value
                 TelefonoIndex = 5
         End Select
         errorMessage = "Ha ocurrido un error al leer el Tipo de Teléfono."
         
-        IDTelefonoTipo = Val(recPersona("IDTelefono" & TelefonoIndex & "Tipo").Value & "")
+        IDTelefonoTipo = Val(recPersona("IDTelefono" & TelefonoIndex & "Tipo").value & "")
         Select Case IDTelefonoTipo
             Case 0
                 mCTelefonoTipoNombre.Add ""
             Case pParametro.TelefonoTipo_ID_Otro
-                mCTelefonoTipoNombre.Add recPersona("Telefono" & TelefonoIndex & "TipoOtro").Value & ""
+                mCTelefonoTipoNombre.Add recPersona("Telefono" & TelefonoIndex & "TipoOtro").value & ""
             Case Else
                 recTelefonoTipo.Filter = "IDTelefonoTipo = " & IDTelefonoTipo
                 If recTelefonoTipo.EOF Then
@@ -2078,7 +2086,7 @@ Public Sub CallerID_BuscarPersonas()
                     Screen.MousePointer = vbHourglass
                     mCTelefonoTipoNombre.Add ""
                 Else
-                    mCTelefonoTipoNombre.Add recTelefonoTipo("Nombre").Value & ""
+                    mCTelefonoTipoNombre.Add recTelefonoTipo("Nombre").value & ""
                 End If
         End Select
         
@@ -2118,9 +2126,9 @@ Public Sub CallerID_BuscarVehiculos()
     
     If Not recVehiculo.EOF Then
         If pCPermiso.GotPermission(PERMISO_VIAJE, False) Then
-            If MsgBox("Está ingresando una Llamada desde uno de los Vehículos." & vbCr & vbCr & "Vehículo: " & recVehiculo("Nombre").Value & vbCr & vbCr & "¿Desea abrir el Viaje que está realizando este Vehículo?", vbQuestion + vbYesNo, App.Title) = vbYes Then
+            If MsgBox("Está ingresando una Llamada desde uno de los Vehículos." & vbCr & vbCr & "Vehículo: " & recVehiculo("Nombre").value & vbCr & vbCr & "¿Desea abrir el Viaje que está realizando este Vehículo?", vbQuestion + vbYesNo, App.Title) = vbYes Then
                 'ABRO EL VIAJE
-                BuscarYAbrirViajeActualPorVehiculo recVehiculo("IDVehiculo").Value, recVehiculo("Nombre").Value
+                BuscarYAbrirViajeActualPorVehiculo recVehiculo("IDVehiculo").value, recVehiculo("Nombre").value
             End If
         End If
     End If

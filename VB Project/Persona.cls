@@ -103,11 +103,11 @@ Public Property Get IDPersona() As Long
     IDPersona = mIDPersona
 End Property
 
-Public Property Let IDPersona(ByVal Value As Long)
-    If Value <> mIDPersona Then
+Public Property Let IDPersona(ByVal value As Long)
+    If value <> mIDPersona Then
         mIsDirty = True
     End If
-    mIDPersona = Value
+    mIDPersona = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -117,11 +117,11 @@ Public Property Get Apellido() As String
     Apellido = mApellido
 End Property
 
-Public Property Let Apellido(ByVal Value As String)
-    If Value <> mApellido Then
+Public Property Let Apellido(ByVal value As String)
+    If value <> mApellido Then
         mIsDirty = True
     End If
-    mApellido = Value
+    mApellido = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -131,11 +131,11 @@ Public Property Get Nombre() As String
     Nombre = mNombre
 End Property
 
-Public Property Let Nombre(ByVal Value As String)
-    If Value <> mNombre Then
+Public Property Let Nombre(ByVal value As String)
+    If value <> mNombre Then
         mIsDirty = True
     End If
-    mNombre = Value
+    mNombre = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -145,11 +145,11 @@ Public Property Get DomicilioCalle1() As String
     DomicilioCalle1 = mDomicilioCalle1
 End Property
 
-Public Property Let DomicilioCalle1(ByVal Value As String)
-    If Value <> mDomicilioCalle1 Then
+Public Property Let DomicilioCalle1(ByVal value As String)
+    If value <> mDomicilioCalle1 Then
         mIsDirty = True
     End If
-    mDomicilioCalle1 = Value
+    mDomicilioCalle1 = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -159,11 +159,11 @@ Public Property Get DomicilioNumero() As String
     DomicilioNumero = mDomicilioNumero
 End Property
 
-Public Property Let DomicilioNumero(ByVal Value As String)
-    If Value <> mDomicilioNumero Then
+Public Property Let DomicilioNumero(ByVal value As String)
+    If value <> mDomicilioNumero Then
         mIsDirty = True
     End If
-    mDomicilioNumero = Value
+    mDomicilioNumero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -173,11 +173,11 @@ Public Property Get DomicilioPiso() As String
     DomicilioPiso = mDomicilioPiso
 End Property
 
-Public Property Let DomicilioPiso(ByVal Value As String)
-    If Value <> mDomicilioPiso Then
+Public Property Let DomicilioPiso(ByVal value As String)
+    If value <> mDomicilioPiso Then
         mIsDirty = True
     End If
-    mDomicilioPiso = Value
+    mDomicilioPiso = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -187,11 +187,11 @@ Public Property Get DomicilioDepartamento() As String
     DomicilioDepartamento = mDomicilioDepartamento
 End Property
 
-Public Property Let DomicilioDepartamento(ByVal Value As String)
-    If Value <> mDomicilioDepartamento Then
+Public Property Let DomicilioDepartamento(ByVal value As String)
+    If value <> mDomicilioDepartamento Then
         mIsDirty = True
     End If
-    mDomicilioDepartamento = Value
+    mDomicilioDepartamento = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -201,11 +201,11 @@ Public Property Get DomicilioCalle2() As String
     DomicilioCalle2 = mDomicilioCalle2
 End Property
 
-Public Property Let DomicilioCalle2(ByVal Value As String)
-    If Value <> mDomicilioCalle2 Then
+Public Property Let DomicilioCalle2(ByVal value As String)
+    If value <> mDomicilioCalle2 Then
         mIsDirty = True
     End If
-    mDomicilioCalle2 = Value
+    mDomicilioCalle2 = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -215,11 +215,11 @@ Public Property Get DomicilioCalle3() As String
     DomicilioCalle3 = mDomicilioCalle3
 End Property
 
-Public Property Let DomicilioCalle3(ByVal Value As String)
-    If Value <> mDomicilioCalle3 Then
+Public Property Let DomicilioCalle3(ByVal value As String)
+    If value <> mDomicilioCalle3 Then
         mIsDirty = True
     End If
-    mDomicilioCalle3 = Value
+    mDomicilioCalle3 = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -229,11 +229,11 @@ Public Property Get CodigoPostal() As String
     CodigoPostal = mCodigoPostal
 End Property
 
-Public Property Let CodigoPostal(ByVal Value As String)
-    If Value <> mCodigoPostal Then
+Public Property Let CodigoPostal(ByVal value As String)
+    If value <> mCodigoPostal Then
         mIsDirty = True
     End If
-    mCodigoPostal = Value
+    mCodigoPostal = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -243,11 +243,11 @@ Public Property Get IDProvincia() As String
     IDProvincia = mIDProvincia
 End Property
 
-Public Property Let IDProvincia(ByVal Value As String)
-    If Value <> mIDProvincia Then
+Public Property Let IDProvincia(ByVal value As String)
+    If value <> mIDProvincia Then
         mIsDirty = True
     End If
-    mIDProvincia = Value
+    mIDProvincia = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -257,11 +257,11 @@ Public Property Get IDLocalidad() As Long
     IDLocalidad = mIDLocalidad
 End Property
 
-Public Property Let IDLocalidad(ByVal Value As Long)
-    If Value <> mIDLocalidad Then
+Public Property Let IDLocalidad(ByVal value As Long)
+    If value <> mIDLocalidad Then
         mIsDirty = True
     End If
-    mIDLocalidad = Value
+    mIDLocalidad = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -271,11 +271,11 @@ Public Property Get IDDocumentoTipo() As Byte
     IDDocumentoTipo = mIDDocumentoTipo
 End Property
 
-Public Property Let IDDocumentoTipo(ByVal Value As Byte)
-    If Value <> mIDDocumentoTipo Then
+Public Property Let IDDocumentoTipo(ByVal value As Byte)
+    If value <> mIDDocumentoTipo Then
         mIsDirty = True
     End If
-    mIDDocumentoTipo = Value
+    mIDDocumentoTipo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -305,11 +305,11 @@ Public Property Get DocumentoNumero() As String
     DocumentoNumero = mDocumentoNumero
 End Property
 
-Public Property Let DocumentoNumero(ByVal Value As String)
-    If Value <> mDocumentoNumero Then
+Public Property Let DocumentoNumero(ByVal value As String)
+    If value <> mDocumentoNumero Then
         mIsDirty = True
     End If
-    mDocumentoNumero = Value
+    mDocumentoNumero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -319,11 +319,11 @@ Public Property Get IDCondicionIVA() As Byte
     IDCondicionIVA = mIDCondicionIVA
 End Property
 
-Public Property Let IDCondicionIVA(ByVal Value As Byte)
-    If Value <> mIDCondicionIVA Then
+Public Property Let IDCondicionIVA(ByVal value As Byte)
+    If value <> mIDCondicionIVA Then
         mIsDirty = True
     End If
-    mIDCondicionIVA = Value
+    mIDCondicionIVA = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -353,11 +353,11 @@ Public Property Get FechaNacimiento() As Date
     FechaNacimiento = mFechaNacimiento
 End Property
 
-Public Property Let FechaNacimiento(ByVal Value As Date)
-    If Value <> mFechaNacimiento Then
+Public Property Let FechaNacimiento(ByVal value As Date)
+    If value <> mFechaNacimiento Then
         mIsDirty = True
     End If
-    mFechaNacimiento = Value
+    mFechaNacimiento = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -367,11 +367,11 @@ Public Property Get Email() As String
     Email = mEmail
 End Property
 
-Public Property Let Email(ByVal Value As String)
-    If Value <> mEmail Then
+Public Property Let Email(ByVal value As String)
+    If value <> mEmail Then
         mIsDirty = True
     End If
-    mEmail = Value
+    mEmail = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -381,11 +381,11 @@ Public Property Get IDTelefono1Tipo() As Byte
     IDTelefono1Tipo = mIDTelefono1Tipo
 End Property
 
-Public Property Let IDTelefono1Tipo(ByVal Value As Byte)
-    If Value <> mIDTelefono1Tipo Then
+Public Property Let IDTelefono1Tipo(ByVal value As Byte)
+    If value <> mIDTelefono1Tipo Then
         mIsDirty = True
     End If
-    mIDTelefono1Tipo = Value
+    mIDTelefono1Tipo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -395,11 +395,11 @@ Public Property Get Telefono1TipoOtro() As String
     Telefono1TipoOtro = mTelefono1TipoOtro
 End Property
 
-Public Property Let Telefono1TipoOtro(ByVal Value As String)
-    If Value <> mTelefono1TipoOtro Then
+Public Property Let Telefono1TipoOtro(ByVal value As String)
+    If value <> mTelefono1TipoOtro Then
         mIsDirty = True
     End If
-    mTelefono1TipoOtro = Value
+    mTelefono1TipoOtro = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -409,11 +409,11 @@ Public Property Get Telefono1Area() As String
     Telefono1Area = mTelefono1Area
 End Property
 
-Public Property Let Telefono1Area(ByVal Value As String)
-    If Value <> mTelefono1Area Then
+Public Property Let Telefono1Area(ByVal value As String)
+    If value <> mTelefono1Area Then
         mIsDirty = True
     End If
-    mTelefono1Area = Value
+    mTelefono1Area = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -423,11 +423,11 @@ Public Property Get Telefono1Numero() As String
     Telefono1Numero = mTelefono1Numero
 End Property
 
-Public Property Let Telefono1Numero(ByVal Value As String)
-    If Value <> mTelefono1Numero Then
+Public Property Let Telefono1Numero(ByVal value As String)
+    If value <> mTelefono1Numero Then
         mIsDirty = True
     End If
-    mTelefono1Numero = Value
+    mTelefono1Numero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -437,11 +437,11 @@ Public Property Get IDTelefono2Tipo() As Byte
     IDTelefono2Tipo = mIDTelefono2Tipo
 End Property
 
-Public Property Let IDTelefono2Tipo(ByVal Value As Byte)
-    If Value <> mIDTelefono2Tipo Then
+Public Property Let IDTelefono2Tipo(ByVal value As Byte)
+    If value <> mIDTelefono2Tipo Then
         mIsDirty = True
     End If
-    mIDTelefono2Tipo = Value
+    mIDTelefono2Tipo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -451,11 +451,11 @@ Public Property Get Telefono2TipoOtro() As String
     Telefono2TipoOtro = mTelefono2TipoOtro
 End Property
 
-Public Property Let Telefono2TipoOtro(ByVal Value As String)
-    If Value <> mTelefono2TipoOtro Then
+Public Property Let Telefono2TipoOtro(ByVal value As String)
+    If value <> mTelefono2TipoOtro Then
         mIsDirty = True
     End If
-    mTelefono2TipoOtro = Value
+    mTelefono2TipoOtro = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -465,11 +465,11 @@ Public Property Get Telefono2Area() As String
     Telefono2Area = mTelefono2Area
 End Property
 
-Public Property Let Telefono2Area(ByVal Value As String)
-    If Value <> mTelefono2Area Then
+Public Property Let Telefono2Area(ByVal value As String)
+    If value <> mTelefono2Area Then
         mIsDirty = True
     End If
-    mTelefono2Area = Value
+    mTelefono2Area = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -479,11 +479,11 @@ Public Property Get Telefono2Numero() As String
     Telefono2Numero = mTelefono2Numero
 End Property
 
-Public Property Let Telefono2Numero(ByVal Value As String)
-    If Value <> mTelefono2Numero Then
+Public Property Let Telefono2Numero(ByVal value As String)
+    If value <> mTelefono2Numero Then
         mIsDirty = True
     End If
-    mTelefono2Numero = Value
+    mTelefono2Numero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -493,11 +493,11 @@ Public Property Get IDTelefono3Tipo() As Byte
     IDTelefono3Tipo = mIDTelefono3Tipo
 End Property
 
-Public Property Let IDTelefono3Tipo(ByVal Value As Byte)
-    If Value <> mIDTelefono3Tipo Then
+Public Property Let IDTelefono3Tipo(ByVal value As Byte)
+    If value <> mIDTelefono3Tipo Then
         mIsDirty = True
     End If
-    mIDTelefono3Tipo = Value
+    mIDTelefono3Tipo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -507,11 +507,11 @@ Public Property Get Telefono3TipoOtro() As String
     Telefono3TipoOtro = mTelefono3TipoOtro
 End Property
 
-Public Property Let Telefono3TipoOtro(ByVal Value As String)
-    If Value <> mTelefono3TipoOtro Then
+Public Property Let Telefono3TipoOtro(ByVal value As String)
+    If value <> mTelefono3TipoOtro Then
         mIsDirty = True
     End If
-    mTelefono3TipoOtro = Value
+    mTelefono3TipoOtro = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -521,11 +521,11 @@ Public Property Get Telefono3Area() As String
     Telefono3Area = mTelefono3Area
 End Property
 
-Public Property Let Telefono3Area(ByVal Value As String)
-    If Value <> mTelefono3Area Then
+Public Property Let Telefono3Area(ByVal value As String)
+    If value <> mTelefono3Area Then
         mIsDirty = True
     End If
-    mTelefono3Area = Value
+    mTelefono3Area = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -535,11 +535,11 @@ Public Property Get Telefono3Numero() As String
     Telefono3Numero = mTelefono3Numero
 End Property
 
-Public Property Let Telefono3Numero(ByVal Value As String)
-    If Value <> mTelefono3Numero Then
+Public Property Let Telefono3Numero(ByVal value As String)
+    If value <> mTelefono3Numero Then
         mIsDirty = True
     End If
-    mTelefono3Numero = Value
+    mTelefono3Numero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -549,11 +549,11 @@ Public Property Get IDTelefono4Tipo() As Byte
     IDTelefono4Tipo = mIDTelefono4Tipo
 End Property
 
-Public Property Let IDTelefono4Tipo(ByVal Value As Byte)
-    If Value <> mIDTelefono4Tipo Then
+Public Property Let IDTelefono4Tipo(ByVal value As Byte)
+    If value <> mIDTelefono4Tipo Then
         mIsDirty = True
     End If
-    mIDTelefono4Tipo = Value
+    mIDTelefono4Tipo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -563,11 +563,11 @@ Public Property Get Telefono4TipoOtro() As String
     Telefono4TipoOtro = mTelefono4TipoOtro
 End Property
 
-Public Property Let Telefono4TipoOtro(ByVal Value As String)
-    If Value <> mTelefono4TipoOtro Then
+Public Property Let Telefono4TipoOtro(ByVal value As String)
+    If value <> mTelefono4TipoOtro Then
         mIsDirty = True
     End If
-    mTelefono4TipoOtro = Value
+    mTelefono4TipoOtro = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -577,11 +577,11 @@ Public Property Get Telefono4Area() As String
     Telefono4Area = mTelefono4Area
 End Property
 
-Public Property Let Telefono4Area(ByVal Value As String)
-    If Value <> mTelefono4Area Then
+Public Property Let Telefono4Area(ByVal value As String)
+    If value <> mTelefono4Area Then
         mIsDirty = True
     End If
-    mTelefono4Area = Value
+    mTelefono4Area = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -591,11 +591,11 @@ Public Property Get Telefono4Numero() As String
     Telefono4Numero = mTelefono4Numero
 End Property
 
-Public Property Let Telefono4Numero(ByVal Value As String)
-    If Value <> mTelefono4Numero Then
+Public Property Let Telefono4Numero(ByVal value As String)
+    If value <> mTelefono4Numero Then
         mIsDirty = True
     End If
-    mTelefono4Numero = Value
+    mTelefono4Numero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -605,11 +605,11 @@ Public Property Get IDTelefono5Tipo() As Byte
     IDTelefono5Tipo = mIDTelefono5Tipo
 End Property
 
-Public Property Let IDTelefono5Tipo(ByVal Value As Byte)
-    If Value <> mIDTelefono5Tipo Then
+Public Property Let IDTelefono5Tipo(ByVal value As Byte)
+    If value <> mIDTelefono5Tipo Then
         mIsDirty = True
     End If
-    mIDTelefono5Tipo = Value
+    mIDTelefono5Tipo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -619,11 +619,11 @@ Public Property Get Telefono5TipoOtro() As String
     Telefono5TipoOtro = mTelefono5TipoOtro
 End Property
 
-Public Property Let Telefono5TipoOtro(ByVal Value As String)
-    If Value <> mTelefono5TipoOtro Then
+Public Property Let Telefono5TipoOtro(ByVal value As String)
+    If value <> mTelefono5TipoOtro Then
         mIsDirty = True
     End If
-    mTelefono5TipoOtro = Value
+    mTelefono5TipoOtro = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -633,11 +633,11 @@ Public Property Get Telefono5Area() As String
     Telefono5Area = mTelefono5Area
 End Property
 
-Public Property Let Telefono5Area(ByVal Value As String)
-    If Value <> mTelefono5Area Then
+Public Property Let Telefono5Area(ByVal value As String)
+    If value <> mTelefono5Area Then
         mIsDirty = True
     End If
-    mTelefono5Area = Value
+    mTelefono5Area = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -647,11 +647,11 @@ Public Property Get Telefono5Numero() As String
     Telefono5Numero = mTelefono5Numero
 End Property
 
-Public Property Let Telefono5Numero(ByVal Value As String)
-    If Value <> mTelefono5Numero Then
+Public Property Let Telefono5Numero(ByVal value As String)
+    If value <> mTelefono5Numero Then
         mIsDirty = True
     End If
-    mTelefono5Numero = Value
+    mTelefono5Numero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -661,11 +661,11 @@ Public Property Get EntidadTipo() As String
     EntidadTipo = mEntidadTipo
 End Property
 
-Public Property Let EntidadTipo(ByVal Value As String)
-    If Value <> mEntidadTipo Then
+Public Property Let EntidadTipo(ByVal value As String)
+    If value <> mEntidadTipo Then
         mIsDirty = True
     End If
-    mEntidadTipo = Value
+    mEntidadTipo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -675,11 +675,11 @@ Public Property Get IDPersonaCuentaCorriente() As Long
     IDPersonaCuentaCorriente = mIDPersonaCuentaCorriente
 End Property
 
-Public Property Let IDPersonaCuentaCorriente(ByVal Value As Long)
-    If Value <> mIDPersonaCuentaCorriente Then
+Public Property Let IDPersonaCuentaCorriente(ByVal value As Long)
+    If value <> mIDPersonaCuentaCorriente Then
         mIsDirty = True
     End If
-    mIDPersonaCuentaCorriente = Value
+    mIDPersonaCuentaCorriente = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -689,11 +689,11 @@ Public Property Get IDPersonaACargo() As Long
     IDPersonaACargo = mIDPersonaACargo
 End Property
 
-Public Property Let IDPersonaACargo(ByVal Value As Long)
-    If Value <> mIDPersonaACargo Then
+Public Property Let IDPersonaACargo(ByVal value As Long)
+    If value <> mIDPersonaACargo Then
         mIsDirty = True
     End If
-    mIDPersonaACargo = Value
+    mIDPersonaACargo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -718,11 +718,11 @@ Public Property Get SueldoImporte() As Currency
     SueldoImporte = mSueldoImporte
 End Property
 
-Public Property Let SueldoImporte(ByVal Value As Currency)
-    If Value <> mSueldoImporte Then
+Public Property Let SueldoImporte(ByVal value As Currency)
+    If value <> mSueldoImporte Then
         mIsDirty = True
     End If
-    mSueldoImporte = Value
+    mSueldoImporte = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -732,11 +732,11 @@ Public Property Get SueldoDia() As Integer
     SueldoDia = mSueldoDia
 End Property
 
-Public Property Let SueldoDia(ByVal Value As Integer)
-    If Value <> mSueldoDia Then
+Public Property Let SueldoDia(ByVal value As Integer)
+    If value <> mSueldoDia Then
         mIsDirty = True
     End If
-    mSueldoDia = Value
+    mSueldoDia = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -746,11 +746,11 @@ Public Property Get PermiteViajarSinPagar() As Boolean
     PermiteViajarSinPagar = mPermiteViajarSinPagar
 End Property
 
-Public Property Let PermiteViajarSinPagar(ByVal Value As Boolean)
-    If Value <> mPermiteViajarSinPagar Then
+Public Property Let PermiteViajarSinPagar(ByVal value As Boolean)
+    If value <> mPermiteViajarSinPagar Then
         mIsDirty = True
     End If
-    mPermiteViajarSinPagar = Value
+    mPermiteViajarSinPagar = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -760,11 +760,11 @@ Public Property Get HabilitadoViajar() As Boolean
     HabilitadoViajar = mHabilitadoViajar
 End Property
 
-Public Property Let HabilitadoViajar(ByVal Value As Boolean)
-    If Value <> mHabilitadoViajar Then
+Public Property Let HabilitadoViajar(ByVal value As Boolean)
+    If value <> mHabilitadoViajar Then
         mIsDirty = True
     End If
-    mHabilitadoViajar = Value
+    mHabilitadoViajar = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -774,11 +774,11 @@ Public Property Get HabilitadoInternet() As Boolean
     HabilitadoInternet = mHabilitadoInternet
 End Property
 
-Public Property Let HabilitadoInternet(ByVal Value As Boolean)
-    If Value <> mHabilitadoInternet Then
+Public Property Let HabilitadoInternet(ByVal value As Boolean)
+    If value <> mHabilitadoInternet Then
         mIsDirty = True
     End If
-    mHabilitadoInternet = Value
+    mHabilitadoInternet = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -788,11 +788,11 @@ Public Property Get Password() As String
     Password = mPassword
 End Property
 
-Public Property Let Password(ByVal Value As String)
-    If Value <> mPassword Then
+Public Property Let Password(ByVal value As String)
+    If value <> mPassword Then
         mIsDirty = True
     End If
-    mPassword = Value
+    mPassword = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -802,11 +802,11 @@ Public Property Get Notas() As String
     Notas = mNotas
 End Property
 
-Public Property Let Notas(ByVal Value As String)
-    If Value <> mNotas Then
+Public Property Let Notas(ByVal value As String)
+    If value <> mNotas Then
         mIsDirty = True
     End If
-    mNotas = Value
+    mNotas = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -816,11 +816,11 @@ Public Property Get Activo() As Boolean
     Activo = mActivo
 End Property
 
-Public Property Let Activo(ByVal Value As Boolean)
-    If Value <> mActivo Then
+Public Property Let Activo(ByVal value As Boolean)
+    If value <> mActivo Then
         mIsDirty = True
     End If
-    mActivo = Value
+    mActivo = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -830,11 +830,11 @@ Public Property Get ListaPasajero() As Boolean
     ListaPasajero = mListaPasajero
 End Property
 
-Public Property Let ListaPasajero(ByVal Value As Boolean)
-    If Value <> mListaPasajero Then
+Public Property Let ListaPasajero(ByVal value As Boolean)
+    If value <> mListaPasajero Then
         mIsDirty = True
     End If
-    mListaPasajero = Value
+    mListaPasajero = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -844,11 +844,11 @@ Public Property Get FechaHoraCreacion() As Date
     FechaHoraCreacion = mFechaHoraCreacion
 End Property
 
-Public Property Let FechaHoraCreacion(ByVal Value As Date)
-    If Value <> mFechaHoraCreacion Then
+Public Property Let FechaHoraCreacion(ByVal value As Date)
+    If value <> mFechaHoraCreacion Then
         mIsDirty = True
     End If
-    mFechaHoraCreacion = Value
+    mFechaHoraCreacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -858,11 +858,11 @@ Public Property Get IDUsuarioCreacion() As String
     IDUsuarioCreacion = mIDUsuarioCreacion
 End Property
 
-Public Property Let IDUsuarioCreacion(ByVal Value As String)
-    If Value <> mIDUsuarioCreacion Then
+Public Property Let IDUsuarioCreacion(ByVal value As String)
+    If value <> mIDUsuarioCreacion Then
         mIsDirty = True
     End If
-    mIDUsuarioCreacion = Value
+    mIDUsuarioCreacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -872,11 +872,11 @@ Public Property Get FechaHoraModificacion() As Date
     FechaHoraModificacion = mFechaHoraModificacion
 End Property
 
-Public Property Let FechaHoraModificacion(ByVal Value As Date)
-    If Value <> mFechaHoraModificacion Then
+Public Property Let FechaHoraModificacion(ByVal value As Date)
+    If value <> mFechaHoraModificacion Then
         mIsDirty = True
     End If
-    mFechaHoraModificacion = Value
+    mFechaHoraModificacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -886,11 +886,11 @@ Public Property Get IDUsuarioModificacion() As String
     IDUsuarioModificacion = mIDUsuarioModificacion
 End Property
 
-Public Property Let IDUsuarioModificacion(ByVal Value As String)
-    If Value <> mIDUsuarioModificacion Then
+Public Property Let IDUsuarioModificacion(ByVal value As String)
+    If value <> mIDUsuarioModificacion Then
         mIsDirty = True
     End If
-    mIDUsuarioModificacion = Value
+    mIDUsuarioModificacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -900,8 +900,8 @@ Public Property Get ViajeActual_FechaHora() As Date
     ViajeActual_FechaHora = mViajeActual_FechaHora
 End Property
 
-Public Property Let ViajeActual_FechaHora(ByVal Value As Date)
-    mViajeActual_FechaHora = Value
+Public Property Let ViajeActual_FechaHora(ByVal value As Date)
+    mViajeActual_FechaHora = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -911,8 +911,8 @@ Public Property Get ViajeActual_IDRuta() As String
     ViajeActual_IDRuta = mViajeActual_IDRuta
 End Property
 
-Public Property Let ViajeActual_IDRuta(ByVal Value As String)
-    mViajeActual_IDRuta = Value
+Public Property Let ViajeActual_IDRuta(ByVal value As String)
+    mViajeActual_IDRuta = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -922,8 +922,8 @@ Public Property Get ViajeActual_Indice() As Long
     ViajeActual_Indice = mViajeActual_Indice
 End Property
 
-Public Property Let ViajeActual_Indice(ByVal Value As Long)
-    mViajeActual_Indice = Value
+Public Property Let ViajeActual_Indice(ByVal value As Long)
+    mViajeActual_Indice = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -952,8 +952,8 @@ Public Property Get NoMatchRaiseError() As Boolean
     NoMatchRaiseError = mNoMatchRaiseError
 End Property
 
-Public Property Let NoMatchRaiseError(ByVal Value As Boolean)
-    mNoMatchRaiseError = Value
+Public Property Let NoMatchRaiseError(ByVal value As Boolean)
+    mNoMatchRaiseError = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -963,8 +963,8 @@ Public Property Get RefreshListSkip() As Boolean
     RefreshListSkip = mRefreshListSkip
 End Property
 
-Public Property Let RefreshListSkip(ByVal Value As Boolean)
-    mRefreshListSkip = Value
+Public Property Let RefreshListSkip(ByVal value As Boolean)
+    mRefreshListSkip = value
 End Property
 
 Public Sub RefreshList()
@@ -978,8 +978,8 @@ Public Property Get Database() As CSC_Database_ADO_SQL
     Set Database = mDatabase
 End Property
 
-Public Property Set Database(ByRef Value As CSC_Database_ADO_SQL)
-    Set mDatabase = Value
+Public Property Set Database(ByRef value As CSC_Database_ADO_SQL)
+    Set mDatabase = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -1013,7 +1013,7 @@ Private Function OpenRecordset() As Boolean
     Set mrecData = New ADODB.Recordset
     mrecData.Open cmdData, , adOpenKeyset, adLockOptimistic
     If pParametro.Database_CursorLocation = adUseClient Then
-        mrecData.Properties("Update Criteria").Value = adCriteriaKey
+        mrecData.Properties("Update Criteria").value = adCriteriaKey
     End If
     Set cmdData = Nothing
     
@@ -1048,66 +1048,66 @@ Public Function Load() As Boolean
     Else
         mNoMatch = False
         
-        mApellido = mrecData("Apellido").Value
-        mNombre = mrecData("Nombre").Value & ""
-        mDomicilioCalle1 = mrecData("DomicilioCalle1").Value & ""
-        mDomicilioNumero = mrecData("DomicilioNumero").Value & ""
-        mDomicilioPiso = mrecData("DomicilioPiso").Value & ""
-        mDomicilioDepartamento = mrecData("DomicilioDepartamento").Value & ""
-        mDomicilioCalle2 = mrecData("DomicilioCalle2").Value & ""
-        mDomicilioCalle3 = mrecData("DomicilioCalle3").Value & ""
-        mCodigoPostal = mrecData("CodigoPostal").Value & ""
-        mIDProvincia = mrecData("IDProvincia").Value & ""
-        mIDLocalidad = Val(mrecData("IDLocalidad").Value & "")
-        mIDDocumentoTipo = Val(mrecData("IDDocumentoTipo").Value & "")
-        mDocumentoNumero = mrecData("DocumentoNumero").Value & ""
-        mIDCondicionIVA = Val(mrecData("IDCondicionIVA").Value & "")
-        mFechaNacimiento = IIf(IsNull(mrecData("FechaNacimiento").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaNacimiento").Value)
-        mEmail = mrecData("Email").Value & ""
-        mIDTelefono1Tipo = Val(mrecData("IDTelefono1Tipo").Value & "")
-        mTelefono1TipoOtro = mrecData("Telefono1TipoOtro").Value & ""
-        mTelefono1Area = mrecData("Telefono1Area").Value & ""
-        mTelefono1Numero = mrecData("Telefono1Numero").Value & ""
-        mIDTelefono2Tipo = Val(mrecData("IDTelefono2Tipo").Value & "")
-        mTelefono2TipoOtro = mrecData("Telefono2TipoOtro").Value & ""
-        mTelefono2Area = mrecData("Telefono2Area").Value & ""
-        mTelefono2Numero = mrecData("Telefono2Numero").Value & ""
-        mIDTelefono3Tipo = Val(mrecData("IDTelefono3Tipo").Value & "")
-        mTelefono3TipoOtro = mrecData("Telefono3TipoOtro").Value & ""
-        mTelefono3Area = mrecData("Telefono3Area").Value & ""
-        mTelefono3Numero = mrecData("Telefono3Numero").Value & ""
-        mIDTelefono4Tipo = Val(mrecData("IDTelefono4Tipo").Value & "")
-        mTelefono4TipoOtro = mrecData("Telefono4TipoOtro").Value & ""
-        mTelefono4Area = mrecData("Telefono4Area").Value & ""
-        mTelefono4Numero = mrecData("Telefono4Numero").Value & ""
-        mIDTelefono5Tipo = Val(mrecData("IDTelefono5Tipo").Value & "")
-        mTelefono5TipoOtro = mrecData("Telefono5TipoOtro").Value & ""
-        mTelefono5Area = mrecData("Telefono5Area").Value & ""
-        mTelefono5Numero = mrecData("Telefono5Numero").Value & ""
-        mEntidadTipo = mrecData("EntidadTipo").Value
-        mIDPersonaACargo = Val(mrecData("IDPersonaACargo").Value & "")
-        mIDPersonaCuentaCorriente = Val(mrecData("IDPersonaCuentaCorriente").Value & "")
-        mSueldoImporte = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, 0, IIf(IsNull(mrecData("SueldoImporte").Value), 0, mrecData("SueldoImporte").Value))
-        mSueldoDia = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, 0, IIf(IsNull(mrecData("SueldoDia").Value), 0, mrecData("SueldoDia").Value))
-        mPermiteViajarSinPagar = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE, False, mrecData("PermiteViajarSinPagar").Value)
-        mHabilitadoViajar = mrecData("HabilitadoViajar").Value
-        mHabilitadoInternet = mrecData("HabilitadoInternet").Value
+        mApellido = mrecData("Apellido").value
+        mNombre = mrecData("Nombre").value & ""
+        mDomicilioCalle1 = mrecData("DomicilioCalle1").value & ""
+        mDomicilioNumero = mrecData("DomicilioNumero").value & ""
+        mDomicilioPiso = mrecData("DomicilioPiso").value & ""
+        mDomicilioDepartamento = mrecData("DomicilioDepartamento").value & ""
+        mDomicilioCalle2 = mrecData("DomicilioCalle2").value & ""
+        mDomicilioCalle3 = mrecData("DomicilioCalle3").value & ""
+        mCodigoPostal = mrecData("CodigoPostal").value & ""
+        mIDProvincia = mrecData("IDProvincia").value & ""
+        mIDLocalidad = Val(mrecData("IDLocalidad").value & "")
+        mIDDocumentoTipo = Val(mrecData("IDDocumentoTipo").value & "")
+        mDocumentoNumero = mrecData("DocumentoNumero").value & ""
+        mIDCondicionIVA = Val(mrecData("IDCondicionIVA").value & "")
+        mFechaNacimiento = IIf(IsNull(mrecData("FechaNacimiento").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("FechaNacimiento").value)
+        mEmail = mrecData("Email").value & ""
+        mIDTelefono1Tipo = Val(mrecData("IDTelefono1Tipo").value & "")
+        mTelefono1TipoOtro = mrecData("Telefono1TipoOtro").value & ""
+        mTelefono1Area = mrecData("Telefono1Area").value & ""
+        mTelefono1Numero = mrecData("Telefono1Numero").value & ""
+        mIDTelefono2Tipo = Val(mrecData("IDTelefono2Tipo").value & "")
+        mTelefono2TipoOtro = mrecData("Telefono2TipoOtro").value & ""
+        mTelefono2Area = mrecData("Telefono2Area").value & ""
+        mTelefono2Numero = mrecData("Telefono2Numero").value & ""
+        mIDTelefono3Tipo = Val(mrecData("IDTelefono3Tipo").value & "")
+        mTelefono3TipoOtro = mrecData("Telefono3TipoOtro").value & ""
+        mTelefono3Area = mrecData("Telefono3Area").value & ""
+        mTelefono3Numero = mrecData("Telefono3Numero").value & ""
+        mIDTelefono4Tipo = Val(mrecData("IDTelefono4Tipo").value & "")
+        mTelefono4TipoOtro = mrecData("Telefono4TipoOtro").value & ""
+        mTelefono4Area = mrecData("Telefono4Area").value & ""
+        mTelefono4Numero = mrecData("Telefono4Numero").value & ""
+        mIDTelefono5Tipo = Val(mrecData("IDTelefono5Tipo").value & "")
+        mTelefono5TipoOtro = mrecData("Telefono5TipoOtro").value & ""
+        mTelefono5Area = mrecData("Telefono5Area").value & ""
+        mTelefono5Numero = mrecData("Telefono5Numero").value & ""
+        mEntidadTipo = mrecData("EntidadTipo").value
+        mIDPersonaACargo = Val(mrecData("IDPersonaACargo").value & "")
+        mIDPersonaCuentaCorriente = Val(mrecData("IDPersonaCuentaCorriente").value & "")
+        mSueldoImporte = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, 0, IIf(IsNull(mrecData("SueldoImporte").value), 0, mrecData("SueldoImporte").value))
+        mSueldoDia = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, 0, IIf(IsNull(mrecData("SueldoDia").value), 0, mrecData("SueldoDia").value))
+        mPermiteViajarSinPagar = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE, False, mrecData("PermiteViajarSinPagar").value)
+        mHabilitadoViajar = mrecData("HabilitadoViajar").value
+        mHabilitadoInternet = mrecData("HabilitadoInternet").value
         
-        If IsNull(mrecData("Password").Value) Or Trim(DocumentoNumero) = "" Then
+        If IsNull(mrecData("Password").value) Or Trim(DocumentoNumero) = "" Then
             mPassword = ""
         Else
             Set DES = New CSC_Encryption_DES
-            mPassword = DES.DecryptString(mrecData("Password").Value, PASSWORD_ENCRYPTION_KEY)
+            mPassword = DES.DecryptString(mrecData("Password").value, PASSWORD_ENCRYPTION_KEY)
             Set DES = Nothing
         End If
         
-        mNotas = mrecData("Notas").Value & ""
-        mActivo = mrecData("Activo").Value
-        mListaPasajero = mrecData("ListaPasajero").Value
-        mFechaHoraCreacion = mrecData("FechaHoraCreacion").Value
-        mIDUsuarioCreacion = mrecData("IDUsuarioCreacion").Value
-        mFechaHoraModificacion = mrecData("FechaHoraModificacion").Value
-        mIDUsuarioModificacion = mrecData("IDUsuarioModificacion").Value
+        mNotas = mrecData("Notas").value & ""
+        mActivo = mrecData("Activo").value
+        mListaPasajero = mrecData("ListaPasajero").value
+        mFechaHoraCreacion = mrecData("FechaHoraCreacion").value
+        mIDUsuarioCreacion = mrecData("IDUsuarioCreacion").value
+        mFechaHoraModificacion = mrecData("FechaHoraModificacion").value
+        mIDUsuarioModificacion = mrecData("IDUsuarioModificacion").value
         
         mIDDocumentoTipoOriginal = IDDocumentoTipo
         mDocumentoNumeroOriginal = DocumentoNumero
@@ -1182,7 +1182,7 @@ Public Function AddNew() As Boolean
         Set cmdData = Nothing
         If Not recData.EOF Then
             Screen.MousePointer = vbDefault
-            MsgBox "Ya existe una Persona con el mismo Tipo y Número de Documento." & vbCr & vbCr & (recData("Apellido").Value & ", " + recData("Nombre").Value), vbExclamation, App.Title
+            MsgBox "Ya existe una Persona con el mismo Tipo y Número de Documento." & vbCr & vbCr & (recData("Apellido").value & ", " + recData("Nombre").value), vbExclamation, App.Title
             recData.Close
             Set recData = Nothing
             Exit Function
@@ -1199,72 +1199,72 @@ Public Function AddNew() As Boolean
     Set recData = New ADODB.Recordset
     recData.Open cmdData, , adOpenForwardOnly, adLockReadOnly
     Set cmdData = Nothing
-    IDPersona = Val(recData("IDPersonaMax").Value & "") + 1
+    IDPersona = Val(recData("IDPersonaMax").value & "") + 1
     recData.Close
     Set recData = Nothing
     
     mrecData.AddNew
-    mrecData("IDPersona").Value = IDPersona
-    mrecData("Apellido").Value = Apellido
-    mrecData("Nombre").Value = IIf(Nombre = "", Null, Nombre)
-    mrecData("DomicilioCalle1").Value = IIf(Trim(DomicilioCalle1) = "", Null, DomicilioCalle1)
-    mrecData("DomicilioNumero").Value = IIf(Trim(DomicilioNumero) = "", Null, DomicilioNumero)
-    mrecData("DomicilioPiso").Value = IIf(Trim(DomicilioPiso) = "", Null, DomicilioPiso)
-    mrecData("DomicilioDepartamento").Value = IIf(Trim(DomicilioDepartamento) = "", Null, DomicilioDepartamento)
-    mrecData("DomicilioCalle2").Value = IIf(Trim(DomicilioCalle2) = "", Null, DomicilioCalle2)
-    mrecData("DomicilioCalle3").Value = IIf(Trim(DomicilioCalle3) = "", Null, DomicilioCalle3)
-    mrecData("CodigoPostal").Value = IIf(Trim(CodigoPostal) = "", Null, CodigoPostal)
-    mrecData("IDProvincia").Value = IIf(Trim(IDProvincia) = "", Null, IDProvincia)
-    mrecData("IDLocalidad").Value = IIf(IDLocalidad = 0, Null, IDLocalidad)
-    mrecData("IDDocumentoTipo").Value = IIf(IDDocumentoTipo = 0, Null, IDDocumentoTipo)
-    mrecData("DocumentoNumero").Value = IIf(Trim(DocumentoNumero) = "", Null, DocumentoNumero)
-    mrecData("IDCondicionIVA").Value = IIf(IDCondicionIVA = 0, Null, IDCondicionIVA)
-    mrecData("FechaNacimiento").Value = IIf(FechaNacimiento = DATE_TIME_FIELD_NULL_VALUE, Null, FechaNacimiento)
-    mrecData("Email").Value = IIf(Trim(Email) = "", Null, Trim(Email))
-    mrecData("IDTelefono1Tipo").Value = IIf(IDTelefono1Tipo = 0, Null, IDTelefono1Tipo)
-    mrecData("Telefono1TipoOtro").Value = IIf(IDTelefono1Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono1TipoOtro) = "", Null, Telefono1TipoOtro)
-    mrecData("Telefono1Area").Value = IIf(Trim(Telefono1Area) = "", Null, Trim(Telefono1Area))
-    mrecData("Telefono1Numero").Value = IIf(Trim(Telefono1Numero) = "", Null, Trim(Telefono1Numero))
-    mrecData("IDTelefono2Tipo").Value = IIf(IDTelefono2Tipo = 0, Null, IDTelefono2Tipo)
-    mrecData("Telefono2TipoOtro").Value = IIf(IDTelefono2Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono2TipoOtro) = "", Null, Telefono2TipoOtro)
-    mrecData("Telefono2Area").Value = IIf(Trim(Telefono2Area) = "", Null, Trim(Telefono2Area))
-    mrecData("Telefono2Numero").Value = IIf(Trim(Telefono2Numero) = "", Null, Trim(Telefono2Numero))
-    mrecData("IDTelefono3Tipo").Value = IIf(IDTelefono3Tipo = 0, Null, IDTelefono3Tipo)
-    mrecData("Telefono3TipoOtro").Value = IIf(IDTelefono3Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono3TipoOtro) = "", Null, Telefono3TipoOtro)
-    mrecData("Telefono3Area").Value = IIf(Trim(Telefono3Area) = "", Null, Trim(Telefono3Area))
-    mrecData("Telefono3Numero").Value = IIf(Trim(Telefono3Numero) = "", Null, Trim(Telefono3Numero))
-    mrecData("IDTelefono4Tipo").Value = IIf(IDTelefono4Tipo = 0, Null, IDTelefono4Tipo)
-    mrecData("Telefono4TipoOtro").Value = IIf(IDTelefono4Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono4TipoOtro) = "", Null, Telefono4TipoOtro)
-    mrecData("Telefono4Area").Value = IIf(Trim(Telefono4Area) = "", Null, Trim(Telefono4Area))
-    mrecData("Telefono4Numero").Value = IIf(Trim(Telefono4Numero) = "", Null, Trim(Telefono4Numero))
-    mrecData("IDTelefono5Tipo").Value = IIf(IDTelefono5Tipo = 0, Null, IDTelefono5Tipo)
-    mrecData("Telefono5TipoOtro").Value = IIf(IDTelefono5Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono5TipoOtro) = "", Null, Telefono5TipoOtro)
-    mrecData("Telefono5Area").Value = IIf(Trim(Telefono5Area) = "", Null, Trim(Telefono5Area))
-    mrecData("Telefono5Numero").Value = IIf(Trim(Telefono5Numero) = "", Null, Trim(Telefono5Numero))
-    mrecData("EntidadTipo").Value = EntidadTipo
-    mrecData("IDPersonaACargo").Value = IIf(IDPersonaACargo = 0, Null, IDPersonaACargo)
-    mrecData("IDPersonaCuentaCorriente").Value = IIf(IDPersonaCuentaCorriente = 0, Null, IDPersonaCuentaCorriente)
-    mrecData("SueldoImporte").Value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, Null, IIf(SueldoImporte = 0, Null, SueldoImporte))
-    mrecData("SueldoDia").Value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, Null, IIf(SueldoDia = 0, Null, SueldoDia))
-    mrecData("PermiteViajarSinPagar").Value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE, False, PermiteViajarSinPagar)
-    mrecData("Notas").Value = IIf(Trim(Notas) = "", Null, Notas)
-    mrecData("HabilitadoViajar").Value = mHabilitadoViajar
-    mrecData("HabilitadoInternet").Value = HabilitadoInternet
+    mrecData("IDPersona").value = IDPersona
+    mrecData("Apellido").value = Apellido
+    mrecData("Nombre").value = IIf(Nombre = "", Null, Nombre)
+    mrecData("DomicilioCalle1").value = IIf(Trim(DomicilioCalle1) = "", Null, DomicilioCalle1)
+    mrecData("DomicilioNumero").value = IIf(Trim(DomicilioNumero) = "", Null, DomicilioNumero)
+    mrecData("DomicilioPiso").value = IIf(Trim(DomicilioPiso) = "", Null, DomicilioPiso)
+    mrecData("DomicilioDepartamento").value = IIf(Trim(DomicilioDepartamento) = "", Null, DomicilioDepartamento)
+    mrecData("DomicilioCalle2").value = IIf(Trim(DomicilioCalle2) = "", Null, DomicilioCalle2)
+    mrecData("DomicilioCalle3").value = IIf(Trim(DomicilioCalle3) = "", Null, DomicilioCalle3)
+    mrecData("CodigoPostal").value = IIf(Trim(CodigoPostal) = "", Null, CodigoPostal)
+    mrecData("IDProvincia").value = IIf(Trim(IDProvincia) = "", Null, IDProvincia)
+    mrecData("IDLocalidad").value = IIf(IDLocalidad = 0, Null, IDLocalidad)
+    mrecData("IDDocumentoTipo").value = IIf(IDDocumentoTipo = 0, Null, IDDocumentoTipo)
+    mrecData("DocumentoNumero").value = IIf(Trim(DocumentoNumero) = "", Null, DocumentoNumero)
+    mrecData("IDCondicionIVA").value = IIf(IDCondicionIVA = 0, Null, IDCondicionIVA)
+    mrecData("FechaNacimiento").value = IIf(FechaNacimiento = DATE_TIME_FIELD_NULL_VALUE, Null, FechaNacimiento)
+    mrecData("Email").value = IIf(Trim(Email) = "", Null, Trim(Email))
+    mrecData("IDTelefono1Tipo").value = IIf(IDTelefono1Tipo = 0, Null, IDTelefono1Tipo)
+    mrecData("Telefono1TipoOtro").value = IIf(IDTelefono1Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono1TipoOtro) = "", Null, Telefono1TipoOtro)
+    mrecData("Telefono1Area").value = IIf(Trim(Telefono1Area) = "", Null, Trim(Telefono1Area))
+    mrecData("Telefono1Numero").value = IIf(Trim(Telefono1Numero) = "", Null, Trim(Telefono1Numero))
+    mrecData("IDTelefono2Tipo").value = IIf(IDTelefono2Tipo = 0, Null, IDTelefono2Tipo)
+    mrecData("Telefono2TipoOtro").value = IIf(IDTelefono2Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono2TipoOtro) = "", Null, Telefono2TipoOtro)
+    mrecData("Telefono2Area").value = IIf(Trim(Telefono2Area) = "", Null, Trim(Telefono2Area))
+    mrecData("Telefono2Numero").value = IIf(Trim(Telefono2Numero) = "", Null, Trim(Telefono2Numero))
+    mrecData("IDTelefono3Tipo").value = IIf(IDTelefono3Tipo = 0, Null, IDTelefono3Tipo)
+    mrecData("Telefono3TipoOtro").value = IIf(IDTelefono3Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono3TipoOtro) = "", Null, Telefono3TipoOtro)
+    mrecData("Telefono3Area").value = IIf(Trim(Telefono3Area) = "", Null, Trim(Telefono3Area))
+    mrecData("Telefono3Numero").value = IIf(Trim(Telefono3Numero) = "", Null, Trim(Telefono3Numero))
+    mrecData("IDTelefono4Tipo").value = IIf(IDTelefono4Tipo = 0, Null, IDTelefono4Tipo)
+    mrecData("Telefono4TipoOtro").value = IIf(IDTelefono4Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono4TipoOtro) = "", Null, Telefono4TipoOtro)
+    mrecData("Telefono4Area").value = IIf(Trim(Telefono4Area) = "", Null, Trim(Telefono4Area))
+    mrecData("Telefono4Numero").value = IIf(Trim(Telefono4Numero) = "", Null, Trim(Telefono4Numero))
+    mrecData("IDTelefono5Tipo").value = IIf(IDTelefono5Tipo = 0, Null, IDTelefono5Tipo)
+    mrecData("Telefono5TipoOtro").value = IIf(IDTelefono5Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono5TipoOtro) = "", Null, Telefono5TipoOtro)
+    mrecData("Telefono5Area").value = IIf(Trim(Telefono5Area) = "", Null, Trim(Telefono5Area))
+    mrecData("Telefono5Numero").value = IIf(Trim(Telefono5Numero) = "", Null, Trim(Telefono5Numero))
+    mrecData("EntidadTipo").value = EntidadTipo
+    mrecData("IDPersonaACargo").value = IIf(IDPersonaACargo = 0, Null, IDPersonaACargo)
+    mrecData("IDPersonaCuentaCorriente").value = IIf(IDPersonaCuentaCorriente = 0, Null, IDPersonaCuentaCorriente)
+    mrecData("SueldoImporte").value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, Null, IIf(SueldoImporte = 0, Null, SueldoImporte))
+    mrecData("SueldoDia").value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, Null, IIf(SueldoDia = 0, Null, SueldoDia))
+    mrecData("PermiteViajarSinPagar").value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE, False, PermiteViajarSinPagar)
+    mrecData("Notas").value = IIf(Trim(Notas) = "", Null, Notas)
+    mrecData("HabilitadoViajar").value = mHabilitadoViajar
+    mrecData("HabilitadoInternet").value = HabilitadoInternet
     
     If Trim(Password) = "" Then
-        mrecData("Password").Value = Null
+        mrecData("Password").value = Null
     Else
         Set DES = New CSC_Encryption_DES
-        mrecData("Password").Value = DES.EncryptString(Password, PASSWORD_ENCRYPTION_KEY, False)
+        mrecData("Password").value = DES.EncryptString(Password, PASSWORD_ENCRYPTION_KEY, False)
         Set DES = Nothing
     End If
     
-    mrecData("Activo").Value = Activo
-    mrecData("ListaPasajero").Value = ListaPasajero
-    mrecData("FechaHoraCreacion").Value = Now
-    mrecData("IDUsuarioCreacion").Value = pUsuario.IDUsuario
-    mrecData("FechaHoraModificacion").Value = Now
-    mrecData("IDUsuarioModificacion").Value = pUsuario.IDUsuario
+    mrecData("Activo").value = Activo
+    mrecData("ListaPasajero").value = ListaPasajero
+    mrecData("FechaHoraCreacion").value = Now
+    mrecData("IDUsuarioCreacion").value = pUsuario.IDUsuario
+    mrecData("FechaHoraModificacion").value = Now
+    mrecData("IDUsuarioModificacion").value = pUsuario.IDUsuario
     mrecData.Update
     
     If EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE Then
@@ -1311,7 +1311,7 @@ ErrorHandler:
     If pDatabase.Connection.Errors.Count > 0 Then
         If pDatabase.Connection.Errors(0).NativeError = pDatabase.ERROR_DUPLICATE_PRIMARYKEY Or pDatabase.Connection.Errors(0).NativeError = pDatabase.ERROR_DUPLICATE_ALTERNATEKEY Then
             Screen.MousePointer = vbDefault
-            MsgBox "Ya existe una Persona con el mismo Apellido y Nombre.", vbExclamation, App.Title
+            MsgBox "Ya existe una Persona con el mismo Tipo y Número de Documento.", vbExclamation, App.Title
         Else
             ShowErrorMessage "Classes.Persona.AddNew", "Error al Agregar la Persona." & vbCr & vbCr & "IDPersona: " & IDPersona
         End If
@@ -1353,7 +1353,7 @@ Public Function Update() As Boolean
         Set cmdData = Nothing
         If Not recData.EOF Then
             Screen.MousePointer = vbDefault
-            MsgBox "Ya existe una Persona con el mismo Tipo y Número de Documento." & vbCr & vbCr & (recData("Apellido").Value & ", " + recData("Nombre").Value), vbExclamation, App.Title
+            MsgBox "Ya existe una Persona con el mismo Tipo y Número de Documento." & vbCr & vbCr & (recData("Apellido").value & ", " + recData("Nombre").value), vbExclamation, App.Title
             recData.Close
             Set recData = Nothing
             Exit Function
@@ -1362,64 +1362,64 @@ Public Function Update() As Boolean
         Set recData = Nothing
     End If
     
-    mrecData("Apellido").Value = Apellido
-    mrecData("Nombre").Value = IIf(Nombre = "", Null, Nombre)
-    mrecData("DomicilioCalle1").Value = IIf(Trim(DomicilioCalle1) = "", Null, DomicilioCalle1)
-    mrecData("DomicilioNumero").Value = IIf(Trim(DomicilioNumero) = "", Null, DomicilioNumero)
-    mrecData("DomicilioPiso").Value = IIf(Trim(DomicilioPiso) = "", Null, DomicilioPiso)
-    mrecData("DomicilioDepartamento").Value = IIf(Trim(DomicilioDepartamento) = "", Null, DomicilioDepartamento)
-    mrecData("DomicilioCalle2").Value = IIf(Trim(DomicilioCalle2) = "", Null, DomicilioCalle2)
-    mrecData("DomicilioCalle3").Value = IIf(Trim(DomicilioCalle3) = "", Null, DomicilioCalle3)
-    mrecData("CodigoPostal").Value = IIf(Trim(CodigoPostal) = "", Null, CodigoPostal)
-    mrecData("IDProvincia").Value = IIf(Trim(IDProvincia) = "", Null, IDProvincia)
-    mrecData("IDLocalidad").Value = IIf(IDLocalidad = 0, Null, IDLocalidad)
-    mrecData("IDDocumentoTipo").Value = IIf(IDDocumentoTipo = 0, Null, IDDocumentoTipo)
-    mrecData("DocumentoNumero").Value = IIf(Trim(DocumentoNumero) = "", Null, DocumentoNumero)
-    mrecData("IDCondicionIVA").Value = IIf(IDCondicionIVA = 0, Null, IDCondicionIVA)
-    mrecData("FechaNacimiento").Value = IIf(FechaNacimiento = DATE_TIME_FIELD_NULL_VALUE, Null, FechaNacimiento)
-    mrecData("Email").Value = IIf(Trim(Email) = "", Null, Trim(Email))
-    mrecData("IDTelefono1Tipo").Value = IIf(IDTelefono1Tipo = 0, Null, IDTelefono1Tipo)
-    mrecData("Telefono1TipoOtro").Value = IIf(IDTelefono1Tipo = 0 Or IDTelefono1Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono1TipoOtro) = "", Null, Telefono1TipoOtro)
-    mrecData("Telefono1Area").Value = IIf(IDTelefono1Tipo = 0 Or Trim(Telefono1Area) = "", Null, Trim(Telefono1Area))
-    mrecData("Telefono1Numero").Value = IIf(IDTelefono1Tipo = 0 Or Trim(Telefono1Numero) = "", Null, Trim(Telefono1Numero))
-    mrecData("IDTelefono2Tipo").Value = IIf(IDTelefono2Tipo = 0, Null, IDTelefono2Tipo)
-    mrecData("Telefono2TipoOtro").Value = IIf(IDTelefono2Tipo = 0 Or IDTelefono2Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono2TipoOtro) = "", Null, Telefono2TipoOtro)
-    mrecData("Telefono2Area").Value = IIf(IDTelefono2Tipo = 0 Or Trim(Telefono2Area) = "", Null, Trim(Telefono2Area))
-    mrecData("Telefono2Numero").Value = IIf(IDTelefono2Tipo = 0 Or Trim(Telefono2Numero) = "", Null, Trim(Telefono2Numero))
-    mrecData("IDTelefono3Tipo").Value = IIf(IDTelefono3Tipo = 0, Null, IDTelefono3Tipo)
-    mrecData("Telefono3TipoOtro").Value = IIf(IDTelefono3Tipo = 0 Or IDTelefono3Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono3TipoOtro) = "", Null, Telefono3TipoOtro)
-    mrecData("Telefono3Area").Value = IIf(IDTelefono3Tipo = 0 Or Trim(Telefono3Area) = "", Null, Trim(Telefono3Area))
-    mrecData("Telefono3Numero").Value = IIf(IDTelefono3Tipo = 0 Or Trim(Telefono3Numero) = "", Null, Trim(Telefono3Numero))
-    mrecData("IDTelefono4Tipo").Value = IIf(IDTelefono4Tipo = 0, Null, IDTelefono4Tipo)
-    mrecData("Telefono4TipoOtro").Value = IIf(IDTelefono4Tipo = 0 Or IDTelefono4Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono4TipoOtro) = "", Null, Telefono4TipoOtro)
-    mrecData("Telefono4Area").Value = IIf(IDTelefono4Tipo = 0 Or Trim(Telefono4Area) = "", Null, Trim(Telefono4Area))
-    mrecData("Telefono4Numero").Value = IIf(IDTelefono4Tipo = 0 Or Trim(Telefono4Numero) = "", Null, Trim(Telefono4Numero))
-    mrecData("IDTelefono5Tipo").Value = IIf(IDTelefono5Tipo = 0, Null, IDTelefono5Tipo)
-    mrecData("Telefono5TipoOtro").Value = IIf(IDTelefono5Tipo = 0 Or IDTelefono5Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono5TipoOtro) = "", Null, Telefono5TipoOtro)
-    mrecData("Telefono5Area").Value = IIf(IDTelefono5Tipo = 0 Or Trim(Telefono5Area) = "", Null, Trim(Telefono5Area))
-    mrecData("Telefono5Numero").Value = IIf(IDTelefono5Tipo = 0 Or Trim(Telefono5Numero) = "", Null, Trim(Telefono5Numero))
-    mrecData("EntidadTipo").Value = EntidadTipo
-    mrecData("IDPersonaACargo").Value = IIf(IDPersonaACargo = 0, Null, IDPersonaACargo)
-    mrecData("IDPersonaCuentaCorriente").Value = IIf(IDPersonaCuentaCorriente = 0, Null, IDPersonaCuentaCorriente)
-    mrecData("SueldoImporte").Value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, Null, IIf(SueldoImporte = 0, Null, SueldoImporte))
-    mrecData("SueldoDia").Value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, Null, IIf(SueldoDia = 0, Null, SueldoDia))
-    mrecData("PermiteViajarSinPagar").Value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE, False, PermiteViajarSinPagar)
-    mrecData("Notas").Value = IIf(Trim(Notas) = "", Null, Notas)
-    mrecData("HabilitadoViajar").Value = mHabilitadoViajar
-    mrecData("HabilitadoInternet").Value = HabilitadoInternet
+    mrecData("Apellido").value = Apellido
+    mrecData("Nombre").value = IIf(Nombre = "", Null, Nombre)
+    mrecData("DomicilioCalle1").value = IIf(Trim(DomicilioCalle1) = "", Null, DomicilioCalle1)
+    mrecData("DomicilioNumero").value = IIf(Trim(DomicilioNumero) = "", Null, DomicilioNumero)
+    mrecData("DomicilioPiso").value = IIf(Trim(DomicilioPiso) = "", Null, DomicilioPiso)
+    mrecData("DomicilioDepartamento").value = IIf(Trim(DomicilioDepartamento) = "", Null, DomicilioDepartamento)
+    mrecData("DomicilioCalle2").value = IIf(Trim(DomicilioCalle2) = "", Null, DomicilioCalle2)
+    mrecData("DomicilioCalle3").value = IIf(Trim(DomicilioCalle3) = "", Null, DomicilioCalle3)
+    mrecData("CodigoPostal").value = IIf(Trim(CodigoPostal) = "", Null, CodigoPostal)
+    mrecData("IDProvincia").value = IIf(Trim(IDProvincia) = "", Null, IDProvincia)
+    mrecData("IDLocalidad").value = IIf(IDLocalidad = 0, Null, IDLocalidad)
+    mrecData("IDDocumentoTipo").value = IIf(IDDocumentoTipo = 0, Null, IDDocumentoTipo)
+    mrecData("DocumentoNumero").value = IIf(Trim(DocumentoNumero) = "", Null, DocumentoNumero)
+    mrecData("IDCondicionIVA").value = IIf(IDCondicionIVA = 0, Null, IDCondicionIVA)
+    mrecData("FechaNacimiento").value = IIf(FechaNacimiento = DATE_TIME_FIELD_NULL_VALUE, Null, FechaNacimiento)
+    mrecData("Email").value = IIf(Trim(Email) = "", Null, Trim(Email))
+    mrecData("IDTelefono1Tipo").value = IIf(IDTelefono1Tipo = 0, Null, IDTelefono1Tipo)
+    mrecData("Telefono1TipoOtro").value = IIf(IDTelefono1Tipo = 0 Or IDTelefono1Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono1TipoOtro) = "", Null, Telefono1TipoOtro)
+    mrecData("Telefono1Area").value = IIf(IDTelefono1Tipo = 0 Or Trim(Telefono1Area) = "", Null, Trim(Telefono1Area))
+    mrecData("Telefono1Numero").value = IIf(IDTelefono1Tipo = 0 Or Trim(Telefono1Numero) = "", Null, Trim(Telefono1Numero))
+    mrecData("IDTelefono2Tipo").value = IIf(IDTelefono2Tipo = 0, Null, IDTelefono2Tipo)
+    mrecData("Telefono2TipoOtro").value = IIf(IDTelefono2Tipo = 0 Or IDTelefono2Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono2TipoOtro) = "", Null, Telefono2TipoOtro)
+    mrecData("Telefono2Area").value = IIf(IDTelefono2Tipo = 0 Or Trim(Telefono2Area) = "", Null, Trim(Telefono2Area))
+    mrecData("Telefono2Numero").value = IIf(IDTelefono2Tipo = 0 Or Trim(Telefono2Numero) = "", Null, Trim(Telefono2Numero))
+    mrecData("IDTelefono3Tipo").value = IIf(IDTelefono3Tipo = 0, Null, IDTelefono3Tipo)
+    mrecData("Telefono3TipoOtro").value = IIf(IDTelefono3Tipo = 0 Or IDTelefono3Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono3TipoOtro) = "", Null, Telefono3TipoOtro)
+    mrecData("Telefono3Area").value = IIf(IDTelefono3Tipo = 0 Or Trim(Telefono3Area) = "", Null, Trim(Telefono3Area))
+    mrecData("Telefono3Numero").value = IIf(IDTelefono3Tipo = 0 Or Trim(Telefono3Numero) = "", Null, Trim(Telefono3Numero))
+    mrecData("IDTelefono4Tipo").value = IIf(IDTelefono4Tipo = 0, Null, IDTelefono4Tipo)
+    mrecData("Telefono4TipoOtro").value = IIf(IDTelefono4Tipo = 0 Or IDTelefono4Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono4TipoOtro) = "", Null, Telefono4TipoOtro)
+    mrecData("Telefono4Area").value = IIf(IDTelefono4Tipo = 0 Or Trim(Telefono4Area) = "", Null, Trim(Telefono4Area))
+    mrecData("Telefono4Numero").value = IIf(IDTelefono4Tipo = 0 Or Trim(Telefono4Numero) = "", Null, Trim(Telefono4Numero))
+    mrecData("IDTelefono5Tipo").value = IIf(IDTelefono5Tipo = 0, Null, IDTelefono5Tipo)
+    mrecData("Telefono5TipoOtro").value = IIf(IDTelefono5Tipo = 0 Or IDTelefono5Tipo <> pParametro.TelefonoTipo_ID_Otro Or Trim(Telefono5TipoOtro) = "", Null, Telefono5TipoOtro)
+    mrecData("Telefono5Area").value = IIf(IDTelefono5Tipo = 0 Or Trim(Telefono5Area) = "", Null, Trim(Telefono5Area))
+    mrecData("Telefono5Numero").value = IIf(IDTelefono5Tipo = 0 Or Trim(Telefono5Numero) = "", Null, Trim(Telefono5Numero))
+    mrecData("EntidadTipo").value = EntidadTipo
+    mrecData("IDPersonaACargo").value = IIf(IDPersonaACargo = 0, Null, IDPersonaACargo)
+    mrecData("IDPersonaCuentaCorriente").value = IIf(IDPersonaCuentaCorriente = 0, Null, IDPersonaCuentaCorriente)
+    mrecData("SueldoImporte").value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, Null, IIf(SueldoImporte = 0, Null, SueldoImporte))
+    mrecData("SueldoDia").value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO, Null, IIf(SueldoDia = 0, Null, SueldoDia))
+    mrecData("PermiteViajarSinPagar").value = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE, False, PermiteViajarSinPagar)
+    mrecData("Notas").value = IIf(Trim(Notas) = "", Null, Notas)
+    mrecData("HabilitadoViajar").value = mHabilitadoViajar
+    mrecData("HabilitadoInternet").value = HabilitadoInternet
     
     If Trim(Password) = "" Then
-        mrecData("Password").Value = Null
+        mrecData("Password").value = Null
     Else
         Set DES = New CSC_Encryption_DES
-        mrecData("Password").Value = DES.EncryptString(Password, PASSWORD_ENCRYPTION_KEY, False)
+        mrecData("Password").value = DES.EncryptString(Password, PASSWORD_ENCRYPTION_KEY, False)
         Set DES = Nothing
     End If
     
-    mrecData("Activo").Value = Activo
-    mrecData("ListaPasajero").Value = ListaPasajero
-    mrecData("FechaHoraModificacion").Value = Now
-    mrecData("IDUsuarioModificacion").Value = pUsuario.IDUsuario
+    mrecData("Activo").value = Activo
+    mrecData("ListaPasajero").value = ListaPasajero
+    mrecData("FechaHoraModificacion").value = Now
+    mrecData("IDUsuarioModificacion").value = pUsuario.IDUsuario
     mrecData.Update
     
     If EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE Then
@@ -1656,8 +1656,8 @@ Public Function LoadSaldoActual() As Boolean
     recData.Open cmdData, , adOpenForwardOnly, adLockReadOnly
     Set cmdData = Nothing
     
-    If Not IsNull(recData("SaldoActual").Value) Then
-        mSaldoActual = recData("SaldoActual").Value
+    If Not IsNull(recData("SaldoActual").value) Then
+        mSaldoActual = recData("SaldoActual").value
     End If
     recData.Close
     Set recData = Nothing
@@ -1691,7 +1691,7 @@ Public Function VerificarInasistencias() As Long
     recData.Open cmdData, , adOpenForwardOnly, adLockReadOnly
     Set cmdData = Nothing
     
-    VerificarInasistencias = recData("Inasistencias").Value
+    VerificarInasistencias = recData("Inasistencias").value
 
     recData.Close
     Set recData = Nothing
