@@ -16,7 +16,7 @@ CREATE PROCEDURE uspObtenerReservasWebPagadasConMP
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT vd.IDViajeDetalle, vd.FechaHora, vd.IDRuta, vd.Orden, dbo.udf_GetEntidadApellidoYNombre(p.Apellido, p.Nombre) AS ApellidoNombre, vd.FacturaNumero, pa.codigoPago AS CodigoPago
+		SELECT DISTINCT vd.IDViajeDetalle, vd.FechaHora, vd.IDRuta, vd.Orden, dbo.udf_GetEntidadApellidoYNombre(p.Apellido, p.Nombre) AS ApellidoNombre, vd.FacturaNumero, pa.codigoPago AS CodigoPago
 			FROM ViajeDetalle AS vd
                 INNER JOIN Persona AS p ON vd.IDPersona = p.IDPersona
 				INNER JOIN CSTransporte_Web_LobosBus.dbo.Reserva AS r ON vd.IDViajeDetalle = r.idViajeDetalle
