@@ -335,7 +335,7 @@ Begin VB.Form frmCuentaCorriente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   107151361
+            Format          =   85393409
             CurrentDate     =   36950
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -357,7 +357,7 @@ Begin VB.Form frmCuentaCorriente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   107151361
+            Format          =   85393409
             CurrentDate     =   36950
          End
          Begin VB.Label lblFechaAnd 
@@ -754,7 +754,7 @@ Public Function FillListView(ByVal IDMovimiento As Long) As Boolean
             Else
                 SQL_From_SaldoAnterior = "FROM [" & DatabaseName & "]..CuentaCorriente INNER JOIN CuentaCorrienteGrupo ON CuentaCorriente.IDCuentaCorrienteGrupo = CuentaCorrienteGrupo.IDCuentaCorrienteGrupo" & vbCr
             End If
-            SQL_Where_SaldoAnterior = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "convert(char(10), CuentaCorriente.FechaHora, 111) < '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & "')" & vbCr
+            SQL_Where_SaldoAnterior = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "convert(char(10), CuentaCorriente.FechaHora, 111) < '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & "')" & vbCr
         End If
     End If
     
@@ -762,13 +762,13 @@ Public Function FillListView(ByVal IDMovimiento As Long) As Boolean
     Select Case cboFecha.ListIndex
         Case 0  'ALL
         Case 1  'EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "CuentaCorriente.FechaHora BETWEEN '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "CuentaCorriente.FechaHora BETWEEN '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 2  'GREATER OR EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "CuentaCorriente.FechaHora >= '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "CuentaCorriente.FechaHora >= '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00'"
         Case 3  'MINOR OR EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "CuentaCorriente.FechaHora <= '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "CuentaCorriente.FechaHora <= '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 4  'BETWEEN
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "CuentaCorriente.FechaHora BETWEEN '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaHasta.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", "WHERE ", " AND ") & "CuentaCorriente.FechaHora BETWEEN '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaHasta.value, "yyyy/mm/dd") & " 23:59:00'"
     End Select
     
     If SQL_Where <> "" Then
@@ -798,19 +798,19 @@ Public Function FillListView(ByVal IDMovimiento As Long) As Boolean
     With mrecData
         If Not .EOF Then
             Do While Not .EOF
-                mCIDGrupos.Add .Fields("IDCuentaCorrienteGrupo").Value
-                mCIDCajas.Add .Fields("IDCuentaCorrienteCaja").Value
-                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & Val(.Fields("IDMovimiento").Value & ""), .Fields("IDMovimiento").Value & "")
-                ListItem.SubItems(1) = Format(.Fields("FechaHora").Value, "Short Date") & " " & Format(.Fields("FechaHora").Value, "Short Time")
-                ListItem.SubItems(2) = .Fields("CuentaCorrienteGrupo").Value & ""
-                ListItem.SubItems(3) = .Fields("CuentaCorrienteCaja").Value & ""
-                ListItem.SubItems(4) = .Fields("Persona").Value & ""
-                ListItem.SubItems(5) = .Fields("Descripcion").Value
-                ListItem.SubItems(6) = IIf(IsNull(.Fields("Realizado").Value), "", IIf(.Fields("Realizado").Value, "Sí", "No"))
-                ListItem.SubItems(7) = .Fields("PersonaOrigen").Value & ""
-                ListItem.SubItems(8) = Format(.Fields("Importe").Value, "Currency")
-                SaldoAcumulado = SaldoAcumulado + .Fields("Importe").Value
-                ListItem.SubItems(9) = .Fields("MedioPago").Value & ""
+                mCIDGrupos.Add .Fields("IDCuentaCorrienteGrupo").value
+                mCIDCajas.Add .Fields("IDCuentaCorrienteCaja").value
+                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & Val(.Fields("IDMovimiento").value & ""), .Fields("IDMovimiento").value & "")
+                ListItem.SubItems(1) = Format(.Fields("FechaHora").value, "Short Date") & " " & Format(.Fields("FechaHora").value, "Short Time")
+                ListItem.SubItems(2) = .Fields("CuentaCorrienteGrupo").value & ""
+                ListItem.SubItems(3) = .Fields("CuentaCorrienteCaja").value & ""
+                ListItem.SubItems(4) = .Fields("Persona").value & ""
+                ListItem.SubItems(5) = .Fields("Descripcion").value
+                ListItem.SubItems(6) = IIf(IsNull(.Fields("Realizado").value), "", IIf(.Fields("Realizado").value, "Sí", "No"))
+                ListItem.SubItems(7) = .Fields("PersonaOrigen").value & ""
+                ListItem.SubItems(8) = Format(.Fields("Importe").value, "Currency")
+                SaldoAcumulado = SaldoAcumulado + .Fields("Importe").value
+                ListItem.SubItems(9) = .Fields("MedioPago").value & ""
                 ListItem.SubItems(10) = Format(SaldoAcumulado, "Currency")
                 .MoveNext
             Loop
@@ -926,13 +926,13 @@ Private Sub dtpFechaDesde_Change()
 End Sub
 
 Private Sub cmdAnteriorDesde_Click()
-    dtpFechaDesde.Value = DateAdd("d", -1, dtpFechaDesde.Value)
+    dtpFechaDesde.value = DateAdd("d", -1, dtpFechaDesde.value)
     dtpFechaDesde.SetFocus
     dtpFechaDesde_Change
 End Sub
 
 Private Sub cmdSiguienteDesde_Click()
-    dtpFechaDesde.Value = DateAdd("d", 1, dtpFechaDesde.Value)
+    dtpFechaDesde.value = DateAdd("d", 1, dtpFechaDesde.value)
     dtpFechaDesde.SetFocus
     dtpFechaDesde_Change
 End Sub
@@ -940,10 +940,10 @@ End Sub
 Private Sub cmdHoyDesde_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFechaDesde.Value
-    dtpFechaDesde.Value = Date
+    OldValue = dtpFechaDesde.value
+    dtpFechaDesde.value = Date
     dtpFechaDesde.SetFocus
-    If OldValue <> dtpFechaDesde.Value Then
+    If OldValue <> dtpFechaDesde.value Then
         dtpFechaDesde_Change
     End If
 End Sub
@@ -953,13 +953,13 @@ Private Sub dtpFechaHasta_Change()
 End Sub
 
 Private Sub cmdAnteriorHasta_Click()
-    dtpFechaHasta.Value = DateAdd("d", -1, dtpFechaHasta.Value)
+    dtpFechaHasta.value = DateAdd("d", -1, dtpFechaHasta.value)
     dtpFechaHasta.SetFocus
     dtpFechaHasta_Change
 End Sub
 
 Private Sub cmdSiguienteHasta_Click()
-    dtpFechaHasta.Value = DateAdd("d", 1, dtpFechaHasta.Value)
+    dtpFechaHasta.value = DateAdd("d", 1, dtpFechaHasta.value)
     dtpFechaHasta.SetFocus
     dtpFechaHasta_Change
 End Sub
@@ -967,10 +967,10 @@ End Sub
 Private Sub cmdHoyHasta_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFechaHasta.Value
-    dtpFechaHasta.Value = Date
+    OldValue = dtpFechaHasta.value
+    dtpFechaHasta.value = Date
     dtpFechaHasta.SetFocus
-    If OldValue <> dtpFechaHasta.Value Then
+    If OldValue <> dtpFechaHasta.value Then
         dtpFechaHasta_Change
     End If
 End Sub
@@ -1030,8 +1030,8 @@ Private Sub Form_Load()
     cboFecha.AddItem "Entre"
     cboFecha.ListIndex = 1
     
-    dtpFechaDesde.Value = Date
-    dtpFechaHasta.Value = Date
+    dtpFechaDesde.value = Date
+    dtpFechaHasta.value = Date
     
     FillComboBoxCuentaCorrienteGrupo
     FillComboBoxCuentaCorrienteCaja
@@ -1046,8 +1046,8 @@ Private Sub Form_Load()
     pParametro.GetCoolBarSettings "CuentaCorriente", cbrMain
     pParametro.GetListViewSettings "CuentaCorriente", lvwData
     lvwData.ColumnHeaders(lvwData.SortKey + 1).Icon = lvwData.SortOrder + 1
-    tlbPin.Buttons("PIN").Value = pParametro.Usuario_LeerNumero("CuentaCorriente_Pin", tlbPin.Buttons("PIN").Value)
-    If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+    tlbPin.Buttons("PIN").value = pParametro.Usuario_LeerNumero("CuentaCorriente_Pin", tlbPin.Buttons("PIN").value)
+    If tlbPin.Buttons("PIN").value = tbrUnpressed Then
         tlbPin.Buttons("PIN").Image = 1
     Else
         tlbPin.Buttons("PIN").Image = 2
@@ -1093,7 +1093,7 @@ Private Sub Form_Unload(Cancel As Integer)
     WindowState = vbNormal
     pParametro.SaveCoolBarSettings "CuentaCorriente", cbrMain
     pParametro.SaveListViewSettings "CuentaCorriente", lvwData
-    pParametro.Usuario_GuardarNumero "CuentaCorriente_Pin", tlbPin.Buttons("PIN").Value
+    pParametro.Usuario_GuardarNumero "CuentaCorriente_Pin", tlbPin.Buttons("PIN").value
     If Not mrecData Is Nothing Then
         If mrecData.State = adStateOpen Then
             If Not (mrecData.BOF Or mrecData.EOF) Then
@@ -1113,7 +1113,7 @@ Public Sub FillComboBoxCuentaCorrienteGrupo()
     If cboGrupo.ListCount > 0 Then
         KeySave = cboGrupo.ItemData(cboGrupo.ListIndex)
     End If
-    Call CSM_Control_ComboBox.FillFromSQL(cboGrupo, "(SELECT 0 AS IDCuentaCorrienteGrupo, '<Todos>' AS Nombre, 1 AS Orden) UNION (SELECT IDCuentaCorrienteGrupo, Nombre, 2 AS Orden FROM CuentaCorrienteGrupo WHERE Activo = 1" & IIf(pCPermiso.GotPermission(PERMISO_CUENTA_CORRIENTE_GRUPO_HIDDEN_SHOW, False), "", " AND Ocultar = 0") & IIf(pCPermiso.CuentaCorrienteGrupoWhere <> "", " AND " & Replace(pCPermiso.CuentaCorrienteGrupoWhere, "%TABLENAME%", "ListaPrecio"), "") & ") ORDER BY Orden, Nombre", "IDCuentaCorrienteGrupo", "Nombre", "Grupos de Cuenta Corriente", cscpItemOrfirst, KeySave)
+    Call CSM_Control_ComboBox.FillFromSQL(cboGrupo, "(SELECT 0 AS IDCuentaCorrienteGrupo, '<Todos>' AS Nombre, 1 AS Orden) UNION (SELECT IDCuentaCorrienteGrupo, Nombre, 2 AS Orden FROM CuentaCorrienteGrupo WHERE Activo = 1" & IIf(pCPermiso.GotPermission(PERMISO_CUENTA_CORRIENTE_GRUPO_HIDDEN_SHOW, False), "", " AND Ocultar = 0") & IIf(pCPermiso.CuentaCorrienteGrupoWhere <> "", " AND " & Replace(pCPermiso.CuentaCorrienteGrupoWhere, "%TABLENAME%", "ListaPrecio"), "") & ") ORDER BY Orden, Nombre", "IDCuentaCorrienteGrupo", "Nombre", "Grupos de Cuenta Corriente", cscpItemOrFirst, KeySave)
 End Sub
 
 Public Sub FillComboBoxCuentaCorrienteCaja()
@@ -1122,7 +1122,7 @@ Public Sub FillComboBoxCuentaCorrienteCaja()
     If cboCaja.ListCount > 0 Then
         KeySave = cboCaja.ItemData(cboCaja.ListIndex)
     End If
-    Call CSM_Control_ComboBox.FillFromSQL(cboCaja, "(SELECT 0 AS IDCuentaCorrienteCaja, '<Todos>' AS Nombre, 1 AS Orden) UNION (SELECT IDCuentaCorrienteCaja, Nombre, 2 AS Orden FROM CuentaCorrienteCaja WHERE Activo = 1" & IIf(pCPermiso.CuentaCorrienteCajaWhere = "", "", " AND " & pCPermiso.CuentaCorrienteCajaWhere) & ") ORDER BY Orden, Nombre", "IDCuentaCorrienteCaja", "Nombre", "Cajas de Cuenta Corriente", cscpItemOrfirst, KeySave)
+    Call CSM_Control_ComboBox.FillFromSQL(cboCaja, "(SELECT 0 AS IDCuentaCorrienteCaja, '<Todos>' AS Nombre, 1 AS Orden) UNION (SELECT IDCuentaCorrienteCaja, Nombre, 2 AS Orden FROM CuentaCorrienteCaja WHERE Activo = 1" & IIf(pCPermiso.CuentaCorrienteCajaWhere = "", "", " AND " & pCPermiso.CuentaCorrienteCajaWhere) & ") ORDER BY Orden, Nombre", "IDCuentaCorrienteCaja", "Nombre", "Cajas de Cuenta Corriente", cscpItemOrFirst, KeySave)
 End Sub
 
 Public Sub FillComboBoxMedioPago()
@@ -1131,7 +1131,7 @@ Public Sub FillComboBoxMedioPago()
     If cboMedioPago.ListCount > 0 Then
         KeySave = cboMedioPago.ItemData(cboMedioPago.ListIndex)
     End If
-    Call CSM_Control_ComboBox.FillFromSQL(cboMedioPago, "(SELECT 0 AS IDMedioPago, '<Todos>' AS Nombre, 1 AS Orden) UNION (SELECT IDMedioPago, Nombre, 2 AS Orden FROM MedioPago WHERE Activo = 1) ORDER BY Orden, Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrfirst, KeySave)
+    Call CSM_Control_ComboBox.FillFromSQL(cboMedioPago, "(SELECT 0 AS IDMedioPago, '<Todos>' AS Nombre, 1 AS Orden) UNION (SELECT IDMedioPago, Nombre, 2 AS Orden FROM MedioPago WHERE Activo = 1) ORDER BY Orden, Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrFirst, KeySave)
 End Sub
 
 Private Sub lvwData_DblClick()
@@ -1213,7 +1213,9 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
             Set CuentaCorriente = Nothing
             
             Screen.MousePointer = vbDefault
+            
         Case "DELETE"
+        
             If IsHistory Then
                 MsgBox "No se pueden eliminar items históricos.", vbInformation, App.Title
                 lvwData.SetFocus
@@ -1272,31 +1274,16 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 
                 If MsgBox("¿Desea eliminar el Movimiento seleccionado?", vbQuestion + vbYesNo, App.Title) = vbYes Then
                     If DebitoCredito Then
-                        If pTrapErrors Then
-                            On Error GoTo ErrorHandler
-                        End If
-                        
-                        Set recData = New ADODB.Recordset
-                        recData.Source = "SELECT FechaHora, IDRuta, Orden FROM ViajeDetalle WHERE IDMovimientoDebito = " & IDMovimiento & " OR IDMovimientoCredito = " & IDMovimiento
-                        recData.Open , pDatabase.Connection, adOpenStatic, adLockReadOnly, adCmdText
-                        If Not recData.EOF Then
-                            MsgBox "No se puede Eliminar este Movimiento porque está Relacionado a una Reserva o Comisión." & vbCr & vbCr & "Fecha/Hora: " & Format(recData("FechaHora").Value, "Short Date") & " " & Format(recData("FechaHora").Value, "Short Time") & vbCr & "Ruta: " & recData("IDRuta").Value, vbExclamation, App.Title
-                            recData.Close
-                            Set recData = Nothing
-                            
-                            On Error GoTo 0
+                        If CuentaCorriente.Viaje_FechaHora <> DATE_TIME_FIELD_NULL_VALUE And CuentaCorriente.Viaje_IDRuta <> "" Then
+                            MsgBox "No se puede Eliminar este Movimiento porque está Relacionado a una Reserva o Comisión." & vbCr & vbCr & "Fecha/Hora: " & CuentaCorriente.Viaje_FechaHora_FormattedAsDate & " " & CuentaCorriente.Viaje_FechaHora_FormattedAsTime & vbCr & "Ruta: " & CuentaCorriente.Viaje_IDRuta, vbExclamation, App.Title
                             Exit Sub
                         End If
-                        recData.Close
-                        Set recData = Nothing
-                        
-                        On Error GoTo 0
                     End If
-                    
                     CuentaCorriente.Delete
                     Set CuentaCorriente = Nothing
                 End If
             End If
+            
         Case "SELECT"
             FormIndex = GetFormIndex(FormWaitingForSelect)
             If FormIndex >= 0 Then
@@ -1314,7 +1301,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 Screen.MousePointer = vbHourglass
                 Forms(FormIndex).CuentaCorrienteSelected Val(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1))
                 Forms(FormIndex).SetFocus
-                If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+                If tlbPin.Buttons("PIN").value = tbrUnpressed Then
                     Unload Me
                 End If
                 Screen.MousePointer = vbDefault
@@ -1339,13 +1326,13 @@ Private Sub tlbMain_ButtonMenuClick(ByVal ButtonMenu As MSComctlLib.ButtonMenu)
                 Select Case cboFecha.ListIndex
                     Case 0
                     Case 1
-                        ReporteSubTitle = "Del día " & dtpFechaDesde.Value
+                        ReporteSubTitle = "Del día " & dtpFechaDesde.value
                     Case 2
-                        ReporteSubTitle = "Desde el día " & dtpFechaDesde.Value
+                        ReporteSubTitle = "Desde el día " & dtpFechaDesde.value
                     Case 3
-                        ReporteSubTitle = "Hasta el día " & dtpFechaDesde.Value
+                        ReporteSubTitle = "Hasta el día " & dtpFechaDesde.value
                     Case 4
-                        ReporteSubTitle = dtpFechaDesde.Value & " al " & dtpFechaHasta.Value
+                        ReporteSubTitle = dtpFechaDesde.value & " al " & dtpFechaHasta.value
                 End Select
                 If Val(txtPersona.Tag) > 0 Then
                     ReporteSubTitle = ReporteSubTitle & IIf(ReporteSubTitle = "", "", " - Cliente: ") & txtPersona.Text
@@ -1397,7 +1384,7 @@ Private Sub tlbMain_ButtonMenuClick(ByVal ButtonMenu As MSComctlLib.ButtonMenu)
 End Sub
 
 Private Sub tlbPin_ButtonClick(ByVal Button As MSComctlLib.Button)
-    If Button.Value = tbrUnpressed Then
+    If Button.value = tbrUnpressed Then
         Button.Image = 1
     Else
         Button.Image = 2
