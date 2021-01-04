@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   92667905
+      Format          =   108068865
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   92667907
+      Format          =   108068867
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   92667905
+      Format          =   108068865
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -1598,12 +1598,12 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
         End If
         
         If mNew Then
-            If Not CSM_Control_DataCombo.FillFromSQL(datcboListaPrecio, "SELECT IDListaPrecio, Nombre FROM ListaPrecio WHERE Activo = 1" & IIf(pCPermiso.ListaPrecioWhere <> "", " AND " & Replace(pCPermiso.ListaPrecioWhere, "%TABLENAME%", "ListaPrecio"), "") & " ORDER BY Nombre", "IDListaPrecio", "Nombre", "Listas de Precios", cscpItemOrfirst, .IDListaPrecio) Then
+            If Not CSM_Control_DataCombo.FillFromSQL(datcboListaPrecio, "SELECT IDListaPrecio, Nombre FROM ListaPrecio WHERE Activo = 1" & IIf(pCPermiso.ListaPrecioWhere <> "", " AND " & Replace(pCPermiso.ListaPrecioWhere, "%TABLENAME%", "ListaPrecio"), "") & " ORDER BY Nombre", "IDListaPrecio", "Nombre", "Listas de Precios", cscpItemOrFirst, .IDListaPrecio) Then
                 Unload Me
                 Exit Sub
             End If
         Else
-            If Not CSM_Control_DataCombo.FillFromSQL(datcboListaPrecio, "SELECT IDListaPrecio, Nombre FROM ListaPrecio WHERE Activo = 1 OR IDListaPrecio = " & .IDListaPrecio & " ORDER BY Nombre", "IDListaPrecio", "Nombre", "Listas de Precios", cscpItemOrfirst, .IDListaPrecio) Then
+            If Not CSM_Control_DataCombo.FillFromSQL(datcboListaPrecio, "SELECT IDListaPrecio, Nombre FROM ListaPrecio WHERE Activo = 1 OR IDListaPrecio = " & .IDListaPrecio & " ORDER BY Nombre", "IDListaPrecio", "Nombre", "Listas de Precios", cscpItemOrFirst, .IDListaPrecio) Then
                 Unload Me
                 Exit Sub
             End If
@@ -1636,11 +1636,11 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef ViajeDetalle As Viaje
         txtImporteContado_LostFocus
         
         'MEDIO DE PAGO
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboMedioPago, "SELECT IDMedioPago, Nombre FROM MedioPago WHERE Activo = 1 OR IDMedioPago = " & .IDMedioPago & " ORDER BY Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrfirst, IIf(.IDMedioPago = 0, pParametro.MedioPago_Predeterminado_ID, .IDMedioPago)) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboMedioPago, "SELECT IDMedioPago, Nombre FROM MedioPago WHERE Activo = 1 OR IDMedioPago = " & .IDMedioPago & " ORDER BY Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrFirst, IIf(.IDMedioPago = 0, pParametro.MedioPago_Predeterminado_ID, .IDMedioPago)) Then
             Unload Me
             Exit Sub
         End If
-        cboCuotas.ListIndex = CSM_Control_ComboBox.GetListIndexByText(cboCuotas, .Cuotas_Formatted, cscpItemOrfirst)
+        cboCuotas.ListIndex = CSM_Control_ComboBox.GetListIndexByText(cboCuotas, .Cuotas_Formatted, cscpItemOrFirst)
         txtOperacion.Text = .Operacion
         
         txtImporteCuentaCorriente.Text = .ImporteCuentaCorriente_Formatted
@@ -1860,11 +1860,11 @@ End Sub
 
 Private Sub dtpFecha_Change()
     txtDiaSemana.Text = WeekdayName(Weekday(dtpFecha.value))
-    Call CSM_Control_DataCombo.FillFromSQL(datcboHora, "SELECT DISTINCT convert(char(5), FechaHora, 108) AS Hora FROM Viaje WHERE convert(char(10), FechaHora, 111) = '" & Format(dtpFecha.value, "yyyy/mm/dd") & "' ORDER BY convert(char(5), FechaHora, 108)", "Hora", "Hora", "Horas", cscpItemOrfirst, datcboHora.BoundText)
+    Call CSM_Control_DataCombo.FillFromSQL(datcboHora, "SELECT DISTINCT convert(char(5), FechaHora, 108) AS Hora FROM Viaje WHERE convert(char(10), FechaHora, 111) = '" & Format(dtpFecha.value, "yyyy/mm/dd") & "' ORDER BY convert(char(5), FechaHora, 108)", "Hora", "Hora", "Horas", cscpItemOrFirst, datcboHora.BoundText)
 End Sub
 
 Private Sub datcboHora_Change()
-    Call CSM_Control_DataCombo.FillFromSQL(datcboRuta, "SELECT RTRIM(IDRuta) AS IDRuta, Nombre = RTRIM(IDRuta) + CASE IDRuta WHEN '" & ReplaceQuote(pParametro.Ruta_ID_Otra) & "' THEN ': ' + RutaOtra WHEN '" & ReplaceQuote(pParametro.Ruta_Paquete_ID) & "' THEN ': ' + RutaOtra ELSE '' END FROM Viaje WHERE convert(char(10), FechaHora, 111) = '" & Format(dtpFecha.value, "yyyy/mm/dd") & "' AND convert(char(5), FechaHora, 108) = '" & datcboHora.Text & "'" & IIf(pCPermiso.RutaWhere <> "", " AND " & Replace(pCPermiso.RutaWhere, "%TABLENAME%", "Viaje"), "") & " ORDER BY IDRuta", "IDRuta", "Nombre", "Rutas", cscpItemOrfirst, datcboRuta.BoundText)
+    Call CSM_Control_DataCombo.FillFromSQL(datcboRuta, "SELECT RTRIM(IDRuta) AS IDRuta, Nombre = RTRIM(IDRuta) + CASE IDRuta WHEN '" & ReplaceQuote(pParametro.Ruta_ID_Otra) & "' THEN ': ' + RutaOtra WHEN '" & ReplaceQuote(pParametro.Ruta_Paquete_ID) & "' THEN ': ' + RutaOtra ELSE '' END FROM Viaje WHERE convert(char(10), FechaHora, 111) = '" & Format(dtpFecha.value, "yyyy/mm/dd") & "' AND convert(char(5), FechaHora, 108) = '" & datcboHora.Text & "'" & IIf(pCPermiso.RutaWhere <> "", " AND " & Replace(pCPermiso.RutaWhere, "%TABLENAME%", "Viaje"), "") & " ORDER BY IDRuta", "IDRuta", "Nombre", "Rutas", cscpItemOrFirst, datcboRuta.BoundText)
 End Sub
 
 Private Sub cboRealizado_Click()
@@ -2991,20 +2991,24 @@ Private Sub cmdOK_Click()
         datcboOrigen.SetFocus
         Exit Sub
     End If
-    If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboOrigen.BoundText, Weekday(dtpFecha.value), datcboHora.Text) Then
-        MsgBox "El Origen no está disponible para este Horario.", vbExclamation, App.Title
-        datcboOrigen.SetFocus
-        Exit Sub
+    If Not mEsRutaEspecial Then
+        If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboOrigen.BoundText, Weekday(dtpFecha.value), datcboHora.Text) Then
+            MsgBox "El Origen no está disponible para este Horario.", vbExclamation, App.Title
+            datcboOrigen.SetFocus
+            Exit Sub
+        End If
     End If
     If Val(datcboDestino.BoundText) = 0 Then
         MsgBox "Debe seleccionar el Destino.", vbInformation, App.Title
         datcboDestino.SetFocus
         Exit Sub
     End If
-    If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboDestino.BoundText, Weekday(dtpFecha.value), datcboHora.Text) Then
-        MsgBox "El Destino no está disponible para este Horario.", vbExclamation, App.Title
-        datcboDestino.SetFocus
-        Exit Sub
+    If Not mEsRutaEspecial Then
+        If Not VerificarLugarDisponiblePorHorario(datcboRuta.Text, datcboDestino.BoundText, Weekday(dtpFecha.value), datcboHora.Text) Then
+            MsgBox "El Destino no está disponible para este Horario.", vbExclamation, App.Title
+            datcboDestino.SetFocus
+            Exit Sub
+        End If
     End If
         
     If Val(txtPersona.Tag) = Val(txtPersonaCuentaCorriente.Tag) Then
