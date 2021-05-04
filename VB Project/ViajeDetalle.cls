@@ -2472,7 +2472,7 @@ Private Function CalcularImporteCuentaCorrienteExceptCurrent() As Currency
     
     'SALDO ACTUAL
     Set Persona = New Persona
-    If IDPersonaCuentaCorriente = 0 Then
+    If mIDPersonaCuentaCorriente = 0 Then
         Persona.IDPersona = mIDPersona
     Else
         Persona.IDPersona = mIDPersonaCuentaCorriente
