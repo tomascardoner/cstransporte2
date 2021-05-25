@@ -203,7 +203,7 @@ CREATE PROCEDURE dbo.sp_ListaPrecioDetalle_Data
 	@IDLugarGrupoOrigen_FILTER int,
 	@IDLugarGrupoDestino_FILTER int AS
 
-	SELECT ListaPrecioDetalle.IDListaPrecio, ListaPrecioDetalle.OcupanteTipo, ListaPrecioDetalle.IDRuta, ListaPrecioDetalle.IDLugarGrupoOrigen, ListaPrecioDetalle.IDLugarGrupoDestino, ListaPrecioDetalle.Importe, ListaPrecioDetalle.FechaHoraCreacion, IDUsuarioCreacion, FechaHoraModificacion, IDUsuarioModificacion
+	SELECT ListaPrecioDetalle.IDListaPrecio, ListaPrecioDetalle.OcupanteTipo, ListaPrecioDetalle.IDRuta, ListaPrecioDetalle.IDLugarGrupoOrigen, ListaPrecioDetalle.IDLugarGrupoDestino, ListaPrecioDetalle.Importe, ListaPrecioDetalle.ImporteWeb, ListaPrecioDetalle.FechaHoraCreacion, IDUsuarioCreacion, FechaHoraModificacion, IDUsuarioModificacion
 		FROM ListaPrecioDetalle
 		WHERE ListaPrecioDetalle.IDListaPrecio = @IDListaPrecio_FILTER AND ListaPrecioDetalle.OcupanteTipo = @OcupanteTipo_FILTER AND ListaPrecioDetalle.IDRuta = @IDRuta_FILTER AND ListaPrecioDetalle.IDLugarGrupoOrigen = @IDLugarGrupoOrigen_FILTER AND ListaPrecioDetalle.IDLugarGrupoDestino = @IDLugarGrupoDestino_FILTER
 
@@ -228,7 +228,7 @@ CREATE PROCEDURE dbo.sp_ListaPrecioDetalle_Importe
 	@IDOrigen_FILTER int,
 	@IDDestino_FILTER int AS
 
-	SELECT ListaPrecioDetalle.Importe
+	SELECT ListaPrecioDetalle.Importe, ListaPrecioDetalle.ImporteWeb
 		FROM (ListaPrecioDetalle INNER JOIN RutaDetalle AS RutaDetalleOrigen ON ListaPrecioDetalle.IDRuta = RutaDetalleOrigen.IDRuta AND ListaPrecioDetalle.IDLugarGrupoOrigen = RutaDetalleOrigen.IDLugarGrupo) INNER JOIN RutaDetalle AS RutaDetalleDestino ON ListaPrecioDetalle.IDRuta = RutaDetalleDestino.IDRuta AND ListaPrecioDetalle.IDLugarGrupoDestino = RutaDetalleDestino.IDLugarGrupo
 		WHERE ListaPrecioDetalle.IDListaPrecio = @IDListaPrecio_FILTER AND ListaPrecioDetalle.OcupanteTipo = @OcupanteTipo_FILTER AND ListaPrecioDetalle.IDRuta = @IDRuta_FILTER AND RutaDetalleOrigen.IDLugar = @IDOrigen_FILTER AND RutaDetalleDestino.IDLugar = @IDDestino_FILTER
 
@@ -251,7 +251,7 @@ CREATE PROCEDURE dbo.sp_ListaPrecioDetalle_DataGrid_Complete
 	@OcupanteTipo_FILTER char(2),
 	@IDRuta_FILTER char(20) AS
 
-	SELECT ListaPrecioDetalle_DataGrid.IDLugarGrupoOrigen, ListaPrecioDetalle_DataGrid.LugarGrupoOrigen, ListaPrecioDetalle_DataGrid.IDLugarGrupoDestino, ListaPrecioDetalle_DataGrid.LugarGrupoDestino, ListaPrecioDetalle_List.Importe
+	SELECT ListaPrecioDetalle_DataGrid.IDLugarGrupoOrigen, ListaPrecioDetalle_DataGrid.LugarGrupoOrigen, ListaPrecioDetalle_DataGrid.IDLugarGrupoDestino, ListaPrecioDetalle_DataGrid.LugarGrupoDestino, ListaPrecioDetalle_List.Importe, ListaPrecioDetalle_List.ImporteWeb
 		FROM
 			(SELECT LugarGrupoOrigen.IDLugarGrupo AS IDLugarGrupoOrigen, LugarGrupoOrigen.Nombre AS LugarGrupoOrigen, LugarGrupoDestino.IDLugarGrupo AS IDLugarGrupoDestino, LugarGrupoDestino.Nombre AS LugarGrupoDestino, ListaPrecioDetalle_DataGrid_Order_Origen.IndiceMaximo AS IndiceMaximoOrigen, ListaPrecioDetalle_DataGrid_Order_Destino.IndiceMaximo AS IndiceMaximoDestino
 				FROM LugarGrupo AS LugarGrupoOrigen INNER JOIN
@@ -269,7 +269,7 @@ CREATE PROCEDURE dbo.sp_ListaPrecioDetalle_DataGrid_Complete
 					INNER JOIN LugarGrupo AS LugarGrupoDestino ON ListaPrecioDetalle_DataGrid_Order_Destino.IDLugarGrupo = LugarGrupoDestino.IDLugarGrupo
 				WHERE ListaPrecioDetalle_DataGrid_Order_Origen.IndiceMaximo < ListaPrecioDetalle_DataGrid_Order_Destino.IndiceMaximo)			
 			AS ListaPrecioDetalle_DataGrid LEFT JOIN
-			(SELECT ListaPrecioDetalle.IDListaPrecio, ListaPrecioDetalle.OcupanteTipo, ListaPrecioDetalle.IDRuta, ListaPrecioDetalle.IDLugarGrupoOrigen, ListaPrecioDetalle.IDLugarGrupoDestino, ListaPrecioDetalle.Importe, ListaPrecioDetalle.FechaHoraCreacion
+			(SELECT ListaPrecioDetalle.IDListaPrecio, ListaPrecioDetalle.OcupanteTipo, ListaPrecioDetalle.IDRuta, ListaPrecioDetalle.IDLugarGrupoOrigen, ListaPrecioDetalle.IDLugarGrupoDestino, ListaPrecioDetalle.Importe, ListaPrecioDetalle.ImporteWeb, ListaPrecioDetalle.FechaHoraCreacion
 				FROM ListaPrecioDetalle
 				WHERE ListaPrecioDetalle.IDListaPrecio = @IDListaPrecio_FILTER AND ListaPrecioDetalle.OcupanteTipo = @OcupanteTipo_FILTER AND ListaPrecioDetalle.IDRuta = @IDRuta_FILTER)
 			AS ListaPrecioDetalle_List

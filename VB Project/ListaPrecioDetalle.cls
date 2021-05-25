@@ -19,6 +19,7 @@ Public IDRuta As String
 Public IDLugarGrupoOrigen As Long
 Public IDLugarGrupoDestino As Long
 Public Importe As Currency
+Public ImporteWeb As Currency
 Public FechaHoraCreacion As Date
 Public IDUsuarioCreacion As Integer
 Public FechaHoraModificacion As Date
@@ -54,7 +55,7 @@ Private Function OpenRecordset() As Boolean
     cmdData.Parameters.Append cmdData.CreateParameter("IDLugarGrupoDestino_FILTER", adInteger, adParamInput, , IDLugarGrupoDestino)
     Set mrecData = New ADODB.Recordset
     mrecData.Open cmdData, , adOpenKeyset, adLockOptimistic
-    mrecData.Properties("Update Criteria").Value = adCriteriaKey
+    mrecData.Properties("Update Criteria").value = adCriteriaKey
     Set cmdData = Nothing
 
     Screen.MousePointer = vbDefault
@@ -82,11 +83,12 @@ Public Function Load() As Boolean
     Else
         NoMatch = False
         
-        Importe = mrecData("Importe").Value
-        FechaHoraCreacion = mrecData("FechaHoraCreacion").Value
-        IDUsuarioCreacion = mrecData("IDUsuarioCreacion").Value
-        FechaHoraModificacion = mrecData("FechaHoraModificacion").Value
-        IDUsuarioModificacion = mrecData("IDUsuarioModificacion").Value
+        Importe = mrecData("Importe").value
+        ImporteWeb = IIf(IsNull(mrecData("ImporteWeb").value), -1, mrecData("ImporteWeb").value)
+        FechaHoraCreacion = mrecData("FechaHoraCreacion").value
+        IDUsuarioCreacion = mrecData("IDUsuarioCreacion").value
+        FechaHoraModificacion = mrecData("FechaHoraModificacion").value
+        IDUsuarioModificacion = mrecData("IDUsuarioModificacion").value
     End If
     
     Screen.MousePointer = vbDefault
@@ -111,16 +113,17 @@ Public Function AddNew() As Boolean
     Screen.MousePointer = vbHourglass
     
     mrecData.AddNew
-    mrecData("IDListaPrecio").Value = IDListaPrecio
-    mrecData("OcupanteTipo").Value = OcupanteTipo
-    mrecData("IDRuta").Value = IDRuta
-    mrecData("IDLugarGrupoOrigen").Value = IDLugarGrupoOrigen
-    mrecData("IDLugarGrupoDestino").Value = IDLugarGrupoDestino
-    mrecData("Importe").Value = Importe
-    mrecData("FechaHoraCreacion").Value = Now
-    mrecData("IDUsuarioCreacion").Value = pUsuario.IDUsuario
-    mrecData("FechaHoraModificacion").Value = Now
-    mrecData("IDUsuarioModificacion").Value = pUsuario.IDUsuario
+    mrecData("IDListaPrecio").value = IDListaPrecio
+    mrecData("OcupanteTipo").value = OcupanteTipo
+    mrecData("IDRuta").value = IDRuta
+    mrecData("IDLugarGrupoOrigen").value = IDLugarGrupoOrigen
+    mrecData("IDLugarGrupoDestino").value = IDLugarGrupoDestino
+    mrecData("Importe").value = Importe
+    mrecData("ImporteWeb").value = IIf(ImporteWeb = -1, Null, ImporteWeb)
+    mrecData("FechaHoraCreacion").value = Now
+    mrecData("IDUsuarioCreacion").value = pUsuario.IDUsuario
+    mrecData("FechaHoraModificacion").value = Now
+    mrecData("IDUsuarioModificacion").value = pUsuario.IDUsuario
     mrecData.Update
     
     Screen.MousePointer = vbDefault
@@ -139,9 +142,10 @@ Public Function Update() As Boolean
     
     Screen.MousePointer = vbHourglass
     
-    mrecData("Importe").Value = Importe
-    mrecData("FechaHoraModificacion").Value = Now
-    mrecData("IDUsuarioModificacion").Value = pUsuario.IDUsuario
+    mrecData("Importe").value = Importe
+    mrecData("ImporteWeb").value = IIf(ImporteWeb = -1, Null, ImporteWeb)
+    mrecData("FechaHoraModificacion").value = Now
+    mrecData("IDUsuarioModificacion").value = pUsuario.IDUsuario
     mrecData.Update
     
     Screen.MousePointer = vbDefault
@@ -173,6 +177,7 @@ End Function
 
 Private Sub InitializeValues()
     Importe = -1
+    ImporteWeb = -1
     FechaHoraCreacion = DATE_TIME_FIELD_NULL_VALUE
     IDUsuarioCreacion = 0
     FechaHoraModificacion = DATE_TIME_FIELD_NULL_VALUE
@@ -227,8 +232,10 @@ Public Function GetImporteByLugar() As Boolean
     
     If recData.EOF Then
         Importe = -1
+        ImporteWeb = -1
     Else
-        Importe = recData("Importe").Value
+        Importe = recData("Importe").value
+        ImporteWeb = IIf(IsNull(recData("ImporteWeb").value), -1, recData("ImporteWeb").value)
     End If
     
     recData.Close

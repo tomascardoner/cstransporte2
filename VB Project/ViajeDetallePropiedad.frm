@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   108068865
+      Format          =   63242241
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   108068867
+      Format          =   63242243
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   108068865
+      Format          =   63242241
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -3226,6 +3226,9 @@ Private Sub cmdOK_Click()
         .FacturarNotas = txtFacturarNotas.Text
         .FacturaNumero = txtFacturaNumero.Text
         .Notas = txtNotas.Text
+        If txtReservadoPor.Text = txtPersona.Text Then
+            .ReservadoPorID = Val(txtPersona.Tag)
+        End If
         .ReservadoPor = txtReservadoPor.Text
         
         .RefreshListSkip = True

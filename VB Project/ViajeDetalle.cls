@@ -26,6 +26,7 @@ Private mEstado As String
 Private mPrioridad As Long
 Private mOrden As Long
 Private mAsiento As Integer
+Private mAsientoIdentificacion As String
 Private mRealizado As Long
 Private mIDPersona As Long
 Private mIDPersonaMenor As Long
@@ -63,6 +64,7 @@ Private mRetira As String
 Private mReservaTipo As String
 Private mCreadoEnProgreso As Boolean
 Private mModificadoEnProgreso As Boolean
+Private mReservadoPorID As Long
 Private mReservadoPor As String
 Private mCanceladoPor As String
 Private mCanceladoFechaHora As Date
@@ -334,6 +336,20 @@ Public Property Let Asiento(ByVal value As Integer)
         mIsDirty = True
     End If
     mAsiento = value
+End Property
+
+'////////////////////////////////////////////////////////////////////////
+'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Public Property Get AsientoIdentificacion() As String
+    AsientoIdentificacion = mAsientoIdentificacion
+End Property
+
+Public Property Let AsientoIdentificacion(ByVal value As String)
+    If value <> mAsientoIdentificacion Then
+        mIsDirty = True
+    End If
+    mAsientoIdentificacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -974,6 +990,20 @@ End Property
 '////////////////////////////////////////////////////////////////////////
 '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+Public Property Get ReservadoPorID() As Long
+    ReservadoPorID = mReservadoPorID
+End Property
+
+Public Property Let ReservadoPorID(ByVal value As Long)
+    If value <> mReservadoPorID Then
+        mIsDirty = True
+    End If
+    mReservadoPorID = value
+End Property
+
+'////////////////////////////////////////////////////////////////////////
+'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 Public Property Get ReservadoPor() As String
     ReservadoPor = mReservadoPor
 End Property
@@ -1309,6 +1339,7 @@ Public Function Load() As Boolean
         mPrioridad = Val(mrecData("Prioridad").value & "")
         mOrden = Val(mrecData("Orden").value & "")
         mAsiento = IIf(IsNull(mrecData("Asiento").value), -1, mrecData("Asiento").value)
+        mAsientoIdentificacion = mrecData("AsientoIdentificacion").value & ""
         mRealizado = IIf(IsNull(mrecData("Realizado").value), 0, IIf(mrecData("Realizado").value, 1, 2))
         mIDPersona = mrecData("IDPersona").value
         mIDPersonaMenor = Val(mrecData("IDPersonaMenor").value & "")
@@ -1346,6 +1377,7 @@ Public Function Load() As Boolean
         mReservaTipo = mrecData("ReservaTipo").value
         mCreadoEnProgreso = mrecData("CreadoEnProgreso").value
         mModificadoEnProgreso = mrecData("ModificadoEnProgreso").value
+        mReservadoPorID = Val(mrecData("ReservadoPorID").value & "")
         mReservadoPor = mrecData("ReservadoPor").value & ""
         mCanceladoPor = mrecData("CanceladoPor").value & ""
         mCanceladoFechaHora = IIf(IsNull(mrecData("CanceladoFechaHora").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("CanceladoFechaHora").value)
@@ -1411,6 +1443,7 @@ Public Function LoadByIDViajeDetalle() As Boolean
         mPrioridad = Val(mrecData("Prioridad").value & "")
         mOrden = Val(mrecData("Orden").value & "")
         mAsiento = IIf(IsNull(mrecData("Asiento").value), -1, mrecData("Asiento").value)
+        mAsientoIdentificacion = mrecData("AsientoIdentificacion").value & ""
         mRealizado = IIf(IsNull(mrecData("Realizado").value), 0, IIf(mrecData("Realizado").value, 1, 2))
         mIDPersona = mrecData("IDPersona").value
         mIDPersonaMenor = Val(mrecData("IDPersonaMenor").value & "")
@@ -1448,6 +1481,7 @@ Public Function LoadByIDViajeDetalle() As Boolean
         mReservaTipo = mrecData("ReservaTipo").value
         mCreadoEnProgreso = mrecData("CreadoEnProgreso").value
         mModificadoEnProgreso = mrecData("ModificadoEnProgreso").value
+        mReservadoPorID = Val(mrecData("ReservadoPorID").value & "")
         mReservadoPor = mrecData("ReservadoPor").value & ""
         mCanceladoPor = mrecData("CanceladoPor").value & ""
         mCanceladoFechaHora = IIf(IsNull(mrecData("CanceladoFechaHora").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("CanceladoFechaHora").value)
@@ -1747,6 +1781,7 @@ Public Function Update() As Boolean
     cmdData.Parameters.Append cmdData.CreateParameter("@ReservaTipo", adChar, adParamInput, 2, mReservaTipo)
     cmdData.Parameters.Append cmdData.CreateParameter("@CreadoEnProgreso", adBoolean, adParamInput, , mCreadoEnProgreso)
     cmdData.Parameters.Append cmdData.CreateParameter("@ModificadoEnProgreso", adBoolean, adParamInput, , mModificadoEnProgreso)
+    cmdData.Parameters.Append cmdData.CreateParameter("@ReservadoPorID", adInteger, adParamInput, , IIf(mReservadoPorID = 0, Null, mReservadoPorID))
     cmdData.Parameters.Append cmdData.CreateParameter("@ReservadoPor", adVarChar, adParamInput, 100, IIf(Trim(mReservadoPor) = "", Null, mReservadoPor))
     cmdData.Parameters.Append cmdData.CreateParameter("@CanceladoPor", adVarChar, adParamInput, 100, IIf(Trim(mCanceladoPor) = "", Null, mCanceladoPor))
     cmdData.Parameters.Append cmdData.CreateParameter("@CanceladoFechaHora", adDate, adParamInput, , IIf(mCanceladoFechaHora = DATE_TIME_FIELD_NULL_VALUE, Null, mCanceladoFechaHora))
@@ -2266,6 +2301,7 @@ Private Sub InitializeValues()
     mReservaTipo = ""
     mCreadoEnProgreso = False
     mModificadoEnProgreso = False
+    mReservadoPorID = 0
     mReservadoPor = ""
     mCanceladoPor = ""
     mCanceladoFechaHora = DATE_TIME_FIELD_NULL_VALUE
