@@ -1377,7 +1377,7 @@ Public Function Load() As Boolean
         mReservaTipo = mrecData("ReservaTipo").value
         mCreadoEnProgreso = mrecData("CreadoEnProgreso").value
         mModificadoEnProgreso = mrecData("ModificadoEnProgreso").value
-        mReservadoPorID = Val(mrecData("ReservadoPorID").value & "")
+        'mReservadoPorID = Val(mrecData("ReservadoPorID").value & "")
         mReservadoPor = mrecData("ReservadoPor").value & ""
         mCanceladoPor = mrecData("CanceladoPor").value & ""
         mCanceladoFechaHora = IIf(IsNull(mrecData("CanceladoFechaHora").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("CanceladoFechaHora").value)
@@ -1481,7 +1481,7 @@ Public Function LoadByIDViajeDetalle() As Boolean
         mReservaTipo = mrecData("ReservaTipo").value
         mCreadoEnProgreso = mrecData("CreadoEnProgreso").value
         mModificadoEnProgreso = mrecData("ModificadoEnProgreso").value
-        mReservadoPorID = Val(mrecData("ReservadoPorID").value & "")
+        'mReservadoPorID = Val(mrecData("ReservadoPorID").value & "")
         mReservadoPor = mrecData("ReservadoPor").value & ""
         mCanceladoPor = mrecData("CanceladoPor").value & ""
         mCanceladoFechaHora = IIf(IsNull(mrecData("CanceladoFechaHora").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("CanceladoFechaHora").value)
@@ -1598,10 +1598,6 @@ End Function
 Public Function Copy() As Boolean
     If Load() Then
         Copy = True
-
-        'mFechaHora =
-        'mIDRuta =
-        'mIndice =
 
         mIsNew = True
         mIsCopy = True
@@ -1781,7 +1777,7 @@ Public Function Update() As Boolean
     cmdData.Parameters.Append cmdData.CreateParameter("@ReservaTipo", adChar, adParamInput, 2, mReservaTipo)
     cmdData.Parameters.Append cmdData.CreateParameter("@CreadoEnProgreso", adBoolean, adParamInput, , mCreadoEnProgreso)
     cmdData.Parameters.Append cmdData.CreateParameter("@ModificadoEnProgreso", adBoolean, adParamInput, , mModificadoEnProgreso)
-    cmdData.Parameters.Append cmdData.CreateParameter("@ReservadoPorID", adInteger, adParamInput, , IIf(mReservadoPorID = 0, Null, mReservadoPorID))
+    'cmdData.Parameters.Append cmdData.CreateParameter("@ReservadoPorID", adInteger, adParamInput, , IIf(mReservadoPorID = 0, Null, mReservadoPorID))
     cmdData.Parameters.Append cmdData.CreateParameter("@ReservadoPor", adVarChar, adParamInput, 100, IIf(Trim(mReservadoPor) = "", Null, mReservadoPor))
     cmdData.Parameters.Append cmdData.CreateParameter("@CanceladoPor", adVarChar, adParamInput, 100, IIf(Trim(mCanceladoPor) = "", Null, mCanceladoPor))
     cmdData.Parameters.Append cmdData.CreateParameter("@CanceladoFechaHora", adDate, adParamInput, , IIf(mCanceladoFechaHora = DATE_TIME_FIELD_NULL_VALUE, Null, mCanceladoFechaHora))
