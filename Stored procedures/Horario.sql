@@ -11,8 +11,9 @@ GO
 CREATE PROCEDURE dbo.sp_Horario_List_DiaSemana
 	@DiaSemana_FILTER tinyint AS
 
-	SELECT DiaSemana, Hora, IDRuta, IDConductor, IDConductor2, IDVehiculo, ConductorImporteTramoCompleto, ConductorImporteTramo1, ConductorImporteTramo2, Notas, Personal, FechaHoraCreacion
-		FROM Horario
-		WHERE Horario.DiaSemana = @DiaSemana_FILTER AND Horario.Activo = 1
+	SELECT h.DiaSemana, h.Hora, h.IDRuta, r.Kilometro, r.Duracion, h.IDConductor, h.IDConductor2, h.IDVehiculo, h.ConductorImporteTramoCompleto, h.ConductorImporteTramo1, h.ConductorImporteTramo2, h.Notas, h.Personal, h.FechaHoraCreacion
+		FROM Horario AS h
+			INNER JOIN Ruta AS r ON h.IDRuta = r.IDRuta
+		WHERE h.DiaSemana = @DiaSemana_FILTER AND h.Activo = 1
 
 GO

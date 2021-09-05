@@ -797,7 +797,7 @@ CREATE PROCEDURE dbo.sp_ViajeDetalle_Asiento_List
 	@OcupanteTipo_FILTER char(2),
 	@EstadoExclude_FILTER char(3) AS
 
-	SELECT ViajeDetalle.IDViajeDetalle, ViajeDetalle.FechaHora, ViajeDetalle.IDRuta, ViajeDetalle.Indice, ViajeDetalle.Asiento, RutaDetalleOrigen.Indice AS IndiceOrigen, RutaDetalleDestino.Indice AS IndiceDestino, ViajeDetalle.Estado, ViajeDetalle.Realizado
+	SELECT ViajeDetalle.IDViajeDetalle, ViajeDetalle.FechaHora, ViajeDetalle.IDRuta, ViajeDetalle.Indice, ViajeDetalle.Asiento, ViajeDetalle.AsientoIdentificacion, RutaDetalleOrigen.Indice AS IndiceOrigen, RutaDetalleOrigen.IDLugarGrupo AS OrigenIDLugarGrupo, RutaDetalleDestino.Indice AS IndiceDestino, ViajeDetalle.Estado, ViajeDetalle.Realizado
 		FROM RutaDetalle AS RutaDetalleOrigen INNER JOIN (RutaDetalle AS RutaDetalleDestino INNER JOIN ViajeDetalle ON RutaDetalleDestino.IDLugar = ViajeDetalle.IDDestino AND RutaDetalleDestino.IDRuta = ViajeDetalle.IDRuta) ON RutaDetalleOrigen.IDRuta = ViajeDetalle.IDRuta AND RutaDetalleOrigen.IDLugar = ViajeDetalle.IDOrigen
 		WHERE ViajeDetalle.FechaHora = @FechaHora_FILTER AND ViajeDetalle.IDRuta = @IDRuta_FILTER AND (ViajeDetalle.Estado IS NULL OR ViajeDetalle.Estado <> @EstadoExclude_FILTER) AND ViajeDetalle.OcupanteTipo = @OcupanteTipo_FILTER
 		ORDER BY ViajeDetalle.Prioridad, ViajeDetalle.Indice

@@ -280,7 +280,7 @@ Begin VB.Form frmViajePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   151257091
+      Format          =   108199939
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -345,7 +345,7 @@ Begin VB.Form frmViajePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   151257089
+      Format          =   108199937
       CurrentDate     =   36950
    End
    Begin VB.CommandButton cmdSiguiente 
@@ -800,9 +800,9 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Viaje As Viaje)
         cmdHoy.Visible = (mNew Or PermisoModifyFecha)
         dtpHora.Enabled = (mNew Or PermisoModifyFecha Or PermisoModifyHora)
         
-        dtpFecha.Value = .FechaHora_FormattedAsDate
+        dtpFecha.value = .FechaHora_FormattedAsDate
         dtpFecha_Change
-        dtpHora.Value = .FechaHora_FormattedAsTime
+        dtpHora.value = .FechaHora_FormattedAsTime
         
         txtImporte.Text = Format(0, "Currency")
         txtImporteContado.Text = Format(0, "Currency")
@@ -827,18 +827,16 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Viaje As Viaje)
                     Set Persona = Nothing
                 End If
     
-                txtKilometro.Text = IIf(.Kilometro = 0, "", .Kilometro)
-                txtDuracion.Text = IIf(.Duracion = 0, "", .Duracion)
                 txtImporte.Text = .Importe_Formatted
                 txtImporteContado.Text = .ImporteContado_Formatted
                 
                 'MEDIO DE PAGO
-                If Not CSM_Control_DataCombo.FillFromSQL(datcboMedioPago, "SELECT IDMedioPago, Nombre FROM MedioPago WHERE Activo = 1 OR IDMedioPago = " & .IDMedioPago & " ORDER BY Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrfirst, IIf(.IDMedioPago = 0, pParametro.MedioPago_Predeterminado_ID, .IDMedioPago)) Then
+                If Not CSM_Control_DataCombo.FillFromSQL(datcboMedioPago, "SELECT IDMedioPago, Nombre FROM MedioPago WHERE Activo = 1 OR IDMedioPago = " & .IDMedioPago & " ORDER BY Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrFirst, IIf(.IDMedioPago = 0, pParametro.MedioPago_Predeterminado_ID, .IDMedioPago)) Then
                     Unload Me
                     Exit Sub
                 End If
                 datcboMedioPago_Change
-                cboCuotas.ListIndex = CSM_Control_ComboBox.GetListIndexByText(cboCuotas, .Cuotas_Formatted, cscpItemOrfirst)
+                cboCuotas.ListIndex = CSM_Control_ComboBox.GetListIndexByText(cboCuotas, .Cuotas_Formatted, cscpItemOrFirst)
                 txtOperacion.Text = .Operacion
         
             Case pParametro.Ruta_Paquete_ID
@@ -846,14 +844,12 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Viaje As Viaje)
                 
                 txtPersona.Tag = 0
                 txtPersona.Text = ""
-                txtKilometro.Text = IIf(.Kilometro = 0, "", .Kilometro)
-                txtDuracion.Text = IIf(.Duracion = 0, "", .Duracion)
                 
                 txtImporte.Text = .Importe_Formatted
                 txtImporteContado.Text = Format(0, "Currency")
                 
                 'MEDIO DE PAGO
-                If Not CSM_Control_DataCombo.FillFromSQL(datcboMedioPago, "SELECT IDMedioPago, Nombre FROM MedioPago WHERE Activo = 1 OR IDMedioPago = " & .IDMedioPago & " ORDER BY Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrfirst, pParametro.MedioPago_Predeterminado_ID) Then
+                If Not CSM_Control_DataCombo.FillFromSQL(datcboMedioPago, "SELECT IDMedioPago, Nombre FROM MedioPago WHERE Activo = 1 OR IDMedioPago = " & .IDMedioPago & " ORDER BY Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrFirst, pParametro.MedioPago_Predeterminado_ID) Then
                     Unload Me
                     Exit Sub
                 End If
@@ -865,13 +861,12 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Viaje As Viaje)
                 txtRutaOtra.Text = ""
                 txtPersona.Tag = 0
                 txtPersona.Text = ""
-                txtKilometro.Text = ""
-                txtDuracion.Text = ""
+                
                 txtImporte.Text = Format(0, "Currency")
                 txtImporteContado.Text = Format(0, "Currency")
         
                 'MEDIO DE PAGO
-                If Not CSM_Control_DataCombo.FillFromSQL(datcboMedioPago, "SELECT IDMedioPago, Nombre FROM MedioPago WHERE Activo = 1 OR IDMedioPago = " & .IDMedioPago & " ORDER BY Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrfirst, pParametro.MedioPago_Predeterminado_ID) Then
+                If Not CSM_Control_DataCombo.FillFromSQL(datcboMedioPago, "SELECT IDMedioPago, Nombre FROM MedioPago WHERE Activo = 1 OR IDMedioPago = " & .IDMedioPago & " ORDER BY Nombre", "IDMedioPago", "Nombre", "Medios de Pago", cscpItemOrFirst, pParametro.MedioPago_Predeterminado_ID) Then
                     Unload Me
                     Exit Sub
                 End If
@@ -880,6 +875,11 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Viaje As Viaje)
                 txtOperacion.Text = ""
         End Select
         datcboRuta_Change
+        
+        If Not mNew Then
+            txtKilometro.Text = IIf(.Kilometro = 0, "", .Kilometro)
+            txtDuracion.Text = IIf(.Duracion = 0, "", .Duracion)
+        End If
         
         If pCPermiso.GotPermission(PERMISO_CUENTA_CORRIENTE_CAJA_VIEW_ALL, False) Then
             If Not CSM_Control_DataCombo.FillFromSQL(datcboCuentaCorrienteCaja, "SELECT IDCuentaCorrienteCaja, Nombre FROM CuentaCorrienteCaja WHERE Activo = 1 OR IDCuentaCorrienteCaja = " & .IDCuentaCorrienteCaja & " ORDER BY Nombre", "IDCuentaCorrienteCaja", "Nombre", "Cajas", cscpItemOrFirstIfUnique, .IDCuentaCorrienteCaja) Then
@@ -893,26 +893,26 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Viaje As Viaje)
             End If
         End If
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboVehiculo, "(SELECT -1 AS IDVehiculo, '------------------' AS Nombre, 1 AS Orden FROM Vehiculo) UNION (SELECT IDVehiculo, Nombre, 2 AS Orden FROM Vehiculo WHERE Activo = 1 OR IDVehiculo = " & .IDVehiculo & ") ORDER BY Orden, Nombre", "IDVehiculo", "Nombre", "Vehículos", cscpItemOrfirst, .IDVehiculo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboVehiculo, "(SELECT -1 AS IDVehiculo, '------------------' AS Nombre, 1 AS Orden FROM Vehiculo) UNION (SELECT IDVehiculo, Nombre, 2 AS Orden FROM Vehiculo WHERE Activo = 1 OR IDVehiculo = " & .IDVehiculo & ") ORDER BY Orden, Nombre", "IDVehiculo", "Nombre", "Vehículos", cscpItemOrFirst, .IDVehiculo) Then
             Unload Me
             Exit Sub
         End If
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboConductor, "(SELECT -1 AS IDPersona, '------------------' AS ApellidoNombre, 1 AS Orden FROM Persona) UNION (SELECT IDPersona, Apellido + ', ' + Nombre AS ApellidoNombre, 2 AS Orden FROM Persona WHERE (Activo = 1 OR IDPersona = " & .IDConductor & ") AND EntidadTipo = '" & ENTIDAD_TIPO_PERSONA_CONDUCTOR & "') ORDER BY Orden, ApellidoNombre", "IDPersona", "ApellidoNombre", "Conductores", cscpItemOrfirst, .IDConductor) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboConductor, "(SELECT -1 AS IDPersona, '------------------' AS ApellidoNombre, 1 AS Orden FROM Persona) UNION (SELECT IDPersona, Apellido + ', ' + Nombre AS ApellidoNombre, 2 AS Orden FROM Persona WHERE (Activo = 1 OR IDPersona = " & .IDConductor & ") AND EntidadTipo = '" & ENTIDAD_TIPO_PERSONA_CONDUCTOR & "') ORDER BY Orden, ApellidoNombre", "IDPersona", "ApellidoNombre", "Conductores", cscpItemOrFirst, .IDConductor) Then
             Unload Me
             Exit Sub
         End If
-        chkAcreditaSueldo.Value = IIf(.AcreditaSueldo, vbChecked, vbUnchecked)
+        chkAcreditaSueldo.value = IIf(.AcreditaSueldo, vbChecked, vbUnchecked)
         
         If pParametro.Viaje_Permite_2_Conductores Then
-            If Not CSM_Control_DataCombo.FillFromSQL(datcboConductor2, "(SELECT -1 AS IDPersona, '------------------' AS ApellidoNombre, 1 AS Orden FROM Persona) UNION (SELECT IDPersona, Apellido + ', ' + Nombre AS ApellidoNombre, 2 AS Orden FROM Persona WHERE (Activo = 1 OR IDPersona = " & .IDConductor2 & ") AND EntidadTipo = '" & ENTIDAD_TIPO_PERSONA_CONDUCTOR & "') ORDER BY Orden, ApellidoNombre", "IDPersona", "ApellidoNombre", "Conductores", cscpItemOrfirst, IIf(mPermite2Conductores, .IDConductor2, -1)) Then
+            If Not CSM_Control_DataCombo.FillFromSQL(datcboConductor2, "(SELECT -1 AS IDPersona, '------------------' AS ApellidoNombre, 1 AS Orden FROM Persona) UNION (SELECT IDPersona, Apellido + ', ' + Nombre AS ApellidoNombre, 2 AS Orden FROM Persona WHERE (Activo = 1 OR IDPersona = " & .IDConductor2 & ") AND EntidadTipo = '" & ENTIDAD_TIPO_PERSONA_CONDUCTOR & "') ORDER BY Orden, ApellidoNombre", "IDPersona", "ApellidoNombre", "Conductores", cscpItemOrFirst, IIf(mPermite2Conductores, .IDConductor2, -1)) Then
                 Unload Me
                 Exit Sub
             End If
-            chkAcreditaSueldo2.Value = IIf(mPermite2Conductores = False Or .AcreditaSueldo2, vbChecked, vbUnchecked)
+            chkAcreditaSueldo2.value = IIf(mPermite2Conductores = False Or .AcreditaSueldo2, vbChecked, vbUnchecked)
         End If
         
-        chkCharter.Value = IIf(.Charter, vbChecked, vbUnchecked)
+        chkCharter.value = IIf(.Charter, vbChecked, vbUnchecked)
         
         cboDiaSemana.Enabled = (mNew)
         
@@ -923,7 +923,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Viaje As Viaje)
         imgEstadoCancelado.Visible = (.Estado = VIAJE_ESTADO_CANCELADO)
         
         txtNotas.Text = .Notas
-        chkPersonal.Value = IIf(.Personal, vbChecked, vbUnchecked)
+        chkPersonal.value = IIf(.Personal, vbChecked, vbUnchecked)
     End With
     
     If WindowState = vbMinimized Then
@@ -962,7 +962,7 @@ Private Sub cmdAuditoria_Click()
 End Sub
 
 Private Sub cmdAnterior_Click()
-    dtpFecha.Value = DateAdd("d", -1, dtpFecha.Value)
+    dtpFecha.value = DateAdd("d", -1, dtpFecha.value)
     dtpFecha.SetFocus
     dtpFecha_Change
 End Sub
@@ -974,14 +974,14 @@ End Sub
 
 Private Sub dtpFecha_Change()
     SetCaption
-    txtDiaSemana.Text = WeekdayName(Weekday(dtpFecha.Value))
+    txtDiaSemana.Text = WeekdayName(Weekday(dtpFecha.value))
     If cboDiaSemana.Enabled Then
-        cboDiaSemana.ListIndex = Weekday(dtpFecha.Value) - 1
+        cboDiaSemana.ListIndex = Weekday(dtpFecha.value) - 1
     End If
 End Sub
 
 Private Sub cmdSiguiente_Click()
-    dtpFecha.Value = DateAdd("d", 1, dtpFecha.Value)
+    dtpFecha.value = DateAdd("d", 1, dtpFecha.value)
     dtpFecha.SetFocus
     dtpFecha_Change
 End Sub
@@ -989,10 +989,10 @@ End Sub
 Private Sub cmdHoy_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFecha.Value
-    dtpFecha.Value = Date
+    OldValue = dtpFecha.value
+    dtpFecha.value = Date
     dtpFecha.SetFocus
-    If OldValue <> dtpFecha.Value Then
+    If OldValue <> dtpFecha.value Then
         dtpFecha_Change
     End If
 End Sub
@@ -1002,8 +1002,20 @@ Private Sub dtpHora_Change()
 End Sub
 
 Private Sub datcboRuta_Change()
+    Dim rutaSeleccionada As Ruta
+    
     SetCaption
     ShowControls
+    
+    If datcboRuta.BoundText <> "" Then
+        Set rutaSeleccionada = New Ruta
+        rutaSeleccionada.IDRuta = datcboRuta.BoundText
+        If rutaSeleccionada.Load() Then
+            txtKilometro.Text = CSM_Function.IfIsZeroLenghtString_Null(rutaSeleccionada.Kilometro)
+            txtDuracion.Text = CSM_Function.IfIsZeroLenghtString_Null(rutaSeleccionada.Duracion)
+        End If
+        Set rutaSeleccionada = Nothing
+    End If
 End Sub
 
 Private Sub cmdRuta_Click()
@@ -1268,7 +1280,7 @@ Private Sub cmdOK_Click()
     End If
     
     If mNew Then
-        If DateDiff("d", Date, dtpFecha.Value) < 0 Then
+        If DateDiff("d", Date, dtpFecha.value) < 0 Then
             If MsgBox("Está por Crear un Viaje correspondientes a una Fecha anterior a Hoy." & vbCr & "Las Reservas Fijas no serán Generadas." & vbCr & vbCr & "¿Desea continuar de todos modos?", vbExclamation + vbYesNo, App.Title) = vbNo Then
                 Exit Sub
             End If
@@ -1282,14 +1294,12 @@ Private Sub cmdOK_Click()
     End If
     
     With mViaje
-        .FechaHora = dtpFecha.Value & " " & dtpHora.Value
+        .FechaHora = dtpFecha.value & " " & dtpHora.value
         .IDRuta = datcboRuta.BoundText
         Select Case datcboRuta.BoundText
             Case pParametro.Ruta_ID_Otra
                 .RutaOtra = txtRutaOtra.Text
                 .IDPersona = Val(txtPersona.Tag)
-                .Kilometro = Val(txtKilometro.Text)
-                .Duracion = Val(txtDuracion.Text)
                 .Importe = CCur(txtImporte.Text)
                 .ImporteContado = CCur(txtImporteContado.Text)
                 .IDMedioPago = Val(datcboMedioPago.BoundText)
@@ -1305,8 +1315,6 @@ Private Sub cmdOK_Click()
             Case pParametro.Ruta_Paquete_ID
                 .RutaOtra = txtRutaOtra.Text
                 .IDPersona = 0
-                .Kilometro = Val(txtKilometro.Text)
-                .Duracion = Val(txtDuracion.Text)
                 .Importe = CCur(txtImporte.Text)
                 .ImporteContado = 0
                 .IDMedioPago = 0
@@ -1317,10 +1325,6 @@ Private Sub cmdOK_Click()
             Case Else
                 .RutaOtra = ""
                 .IDPersona = 0
-                If .IDRuta <> datcboRuta.BoundText Then
-                    .Kilometro = 0
-                    .Duracion = 0
-                End If
                 .Importe = 0
                 .ImporteContado = 0
                 .IDMedioPago = 0
@@ -1328,19 +1332,21 @@ Private Sub cmdOK_Click()
                 .Operacion = ""
                 .IDCuentaCorrienteCaja = 0
         End Select
-        .Charter = (chkCharter.Value = vbChecked)
+        .Kilometro = Val(txtKilometro.Text)
+        .Duracion = Val(txtDuracion.Text)
+        .Charter = (chkCharter.value = vbChecked)
         .IDVehiculo = IIf(Val(datcboVehiculo.BoundText) = -1, 0, Val(datcboVehiculo.BoundText))
         .IDConductor = IIf(Val(datcboConductor.BoundText) = -1, 0, Val(datcboConductor.BoundText))
-        .AcreditaSueldo = (chkAcreditaSueldo.Value = vbChecked)
+        .AcreditaSueldo = (chkAcreditaSueldo.value = vbChecked)
         If mPermite2Conductores Then
             .IDConductor2 = IIf(Val(datcboConductor2.BoundText) = -1, 0, Val(datcboConductor2.BoundText))
-            .AcreditaSueldo2 = (chkAcreditaSueldo2.Value = vbChecked)
+            .AcreditaSueldo2 = (chkAcreditaSueldo2.value = vbChecked)
         Else
             .IDConductor2 = 0
             .AcreditaSueldo2 = True
         End If
         .Notas = txtNotas.Text
-        .Personal = (chkPersonal.Value = vbChecked)
+        .Personal = (chkPersonal.value = vbChecked)
         If mNew Then
             .DiaSemanaBase = cboDiaSemana.ListIndex + 1
         End If
@@ -1424,9 +1430,9 @@ Public Sub HorarioSelected(ByVal DiaSemana As Byte, ByVal Hora As Date, ByVal ID
                 DaysDiff = 7
             End If
         End If
-        dtpFecha.Value = DateAdd("d", DaysDiff, Date)
+        dtpFecha.value = DateAdd("d", DaysDiff, Date)
         dtpFecha_Change
-        dtpHora.Value = Format(Hora, "Short Time")
+        dtpHora.value = Format(Hora, "Short Time")
         datcboRuta.BoundText = IDRuta
         datcboVehiculo.BoundText = Horario.IDVehiculo
         If Val(datcboVehiculo.BoundText) = 0 Then
@@ -1444,7 +1450,7 @@ Public Sub HorarioSelected(ByVal DiaSemana As Byte, ByVal Hora As Date, ByVal ID
             End If
         End If
         txtNotas.Text = Horario.Notas
-        chkPersonal.Value = IIf(Horario.Personal, vbChecked, vbUnchecked)
+        chkPersonal.value = IIf(Horario.Personal, vbChecked, vbUnchecked)
     End If
     Set Horario = Nothing
 End Sub
@@ -1464,7 +1470,7 @@ End Sub
 Private Sub SetCaption()
     Dim CaptionTemp As String
     
-    CaptionTemp = CaptionTemp & IIf(CaptionTemp = "", "", " - ") & dtpFecha.Value & " " & dtpHora.Value
+    CaptionTemp = CaptionTemp & IIf(CaptionTemp = "", "", " - ") & dtpFecha.value & " " & dtpHora.value
     If datcboRuta.BoundText <> "" Then
         CaptionTemp = CaptionTemp & IIf(CaptionTemp = "", "", " - ") & datcboRuta.Text
     End If
@@ -1497,12 +1503,6 @@ Private Sub ShowControls()
     txtPersona.Visible = ViajeEspecial
     cmdPersona.Visible = ViajeEspecial
     cmdPersonaClear.Visible = ViajeEspecial
-    lblKilometro.Visible = (ViajeEspecial Or ViajePaquete)
-    txtKilometro.Visible = (ViajeEspecial Or ViajePaquete)
-    
-    lblDuracion.Visible = (ViajeEspecial Or ViajePaquete)
-    txtDuracion.Visible = (ViajeEspecial Or ViajePaquete)
-    lblDuracionMinutos.Visible = (ViajeEspecial Or ViajePaquete)
     
     lblImporte.Visible = (ViajeEspecial Or ViajePaquete)
     txtImporte.Visible = (ViajeEspecial Or ViajePaquete)

@@ -385,7 +385,7 @@ Begin VB.Form frmViajeGenerar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   108593153
+      Format          =   107544577
       CurrentDate     =   36950
    End
    Begin VB.Line Line2 
@@ -476,7 +476,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByVal Fecha As Date)
     Load Me
     CSM_Forms.CenterToParent ParentForm, Me
     
-    dtpFecha.Value = Fecha
+    dtpFecha.value = Fecha
     dtpFecha_Change
     
     If WindowState = vbMinimized Then
@@ -490,7 +490,7 @@ Private Sub cmdDosSemanas_Click()
     Dim ControlIndex As Byte
     
     For ControlIndex = 1 To 13
-        chkDia(ControlIndex).Value = vbChecked
+        chkDia(ControlIndex).value = vbChecked
     Next ControlIndex
 End Sub
 
@@ -498,19 +498,19 @@ Private Sub cmdOK_Click()
     Dim ControlIndex As Byte
     Dim MultipleLeyenda As String
     
-    If DateDiff("d", Date, dtpFecha.Value) < 0 Then
+    If DateDiff("d", Date, dtpFecha.value) < 0 Then
         If MsgBox("Está por Generar Viajes correspondientes a una Fecha anterior a Hoy." & vbCr & "Las Reservas Fijas no serán Generadas." & vbCr & vbCr & "¿Desea continuar de todos modos?", vbExclamation + vbYesNo, App.Title) = vbNo Then
             Exit Sub
         End If
     End If
     
     For ControlIndex = 1 To 13
-        If chkDia(ControlIndex).Value = vbChecked Then
+        If chkDia(ControlIndex).value = vbChecked Then
             MultipleLeyenda = MultipleLeyenda & vbCr & "Fecha: " & chkDia(ControlIndex).Caption & "    - Basado en: " & cboBasadoSemana(ControlIndex).Text
         End If
     Next ControlIndex
     
-    If MsgBox("Se Generarán los Viajes correspondientes a:" & vbCr & vbCr & "Fecha: " & txtDiaSemana.Text & ", " & dtpFecha.Value & " - Basado en: " & cboBasado.Text & MultipleLeyenda & vbCr & vbCr & "¿Desea continuar?", vbQuestion + vbYesNo, App.Title) = vbYes Then
+    If MsgBox("Se Generarán los Viajes correspondientes a:" & vbCr & vbCr & "Fecha: " & txtDiaSemana.Text & ", " & dtpFecha.value & " - Basado en: " & cboBasado.Text & MultipleLeyenda & vbCr & vbCr & "¿Desea continuar?", vbQuestion + vbYesNo, App.Title) = vbYes Then
         EnableControls False
         lblStatus.Visible = True
         prbStatus.Visible = True
@@ -520,11 +520,11 @@ Private Sub cmdOK_Click()
         mRunning = True
         mCanceled = False
         
-        GenerarViajes dtpFecha.Value, cboBasado.ListIndex + 1
+        GenerarViajes dtpFecha.value, cboBasado.ListIndex + 1
         
         For ControlIndex = 1 To 13
-            If chkDia(ControlIndex).Value = vbChecked Then
-                GenerarViajes DateAdd("d", ControlIndex, dtpFecha.Value), cboBasadoSemana(ControlIndex).ListIndex + 1
+            If chkDia(ControlIndex).value = vbChecked Then
+                GenerarViajes DateAdd("d", ControlIndex, dtpFecha.value), cboBasadoSemana(ControlIndex).ListIndex + 1
             End If
         Next ControlIndex
         
@@ -532,7 +532,7 @@ Private Sub cmdOK_Click()
         lblStatus.Visible = False
         lblStatus.Caption = ""
         prbStatus.Visible = False
-        prbStatus.Value = 0
+        prbStatus.value = 0
         EnableControls True
         
         mRunning = False
@@ -598,29 +598,31 @@ Private Sub GenerarViajes(ByVal Fecha As Date, ByVal DiaSemana As Byte)
     
     Do While (Not recData.EOF) And (Not mCanceled)
         'Busco a ver si existe el Viaje, y si no, lo genero
-        lblStatus.Caption = "Buscando el Viaje: " & WeekdayName(Weekday(Fecha)) & ", " & Format(Fecha, "Short Date") & " " & Format(recData("Hora").Value, "Short Time") & " - " & RTrim(recData("IDRuta").Value) & "..."
+        lblStatus.Caption = "Buscando el Viaje: " & WeekdayName(Weekday(Fecha)) & ", " & Format(Fecha, "Short Date") & " " & Format(recData("Hora").value, "Short Time") & " - " & RTrim(recData("IDRuta").value) & "..."
         lblStatus.Refresh
         
         errorMessage = "Error al buscar el Viaje."
         
-        Viaje.FechaHora = CDate(Format(Fecha, "Short Date") & " " & Format(recData("Hora").Value, "Short Time"))
-        Viaje.IDRuta = recData("IDRuta").Value
+        Viaje.FechaHora = CDate(Format(Fecha, "Short Date") & " " & Format(recData("Hora").value, "Short Time"))
+        Viaje.IDRuta = recData("IDRuta").value
         
         If Viaje.Load() Then
             If Viaje.NoMatch Then
-                lblStatus.Caption = "Generando el Viaje: " & WeekdayName(Weekday(Fecha)) & ", " & Format(Fecha, "Short Date") & " " & Format(recData("Hora").Value, "Short Time") & " - " & RTrim(recData("IDRuta").Value) & "..."
+                lblStatus.Caption = "Generando el Viaje: " & WeekdayName(Weekday(Fecha)) & ", " & Format(Fecha, "Short Date") & " " & Format(recData("Hora").value, "Short Time") & " - " & RTrim(recData("IDRuta").value) & "..."
                 lblStatus.Refresh
                 
-                Viaje.IDVehiculo = Val(recData("IDVehiculo").Value & "")
-                Viaje.IDConductor = Val(recData("IDConductor").Value & "")
-                Viaje.IDConductor2 = Val(recData("IDConductor2").Value & "")
+                Viaje.IDVehiculo = Val(recData("IDVehiculo").value & "")
+                Viaje.IDConductor = Val(recData("IDConductor").value & "")
+                Viaje.IDConductor2 = Val(recData("IDConductor2").value & "")
                 Viaje.DiaSemanaBase = DiaSemana
-                Viaje.Personal = recData("Personal").Value
+                Viaje.Kilometro = Val(recData("Kilometro").value & "")
+                Viaje.Duracion = Val(recData("Duracion").value & "")
+                Viaje.Personal = recData("Personal").value
                 Viaje.Update
             End If
         End If
         
-        prbStatus.Value = ((recData.AbsolutePosition) / recData.RecordCount) * 100
+        prbStatus.value = ((recData.AbsolutePosition) / recData.RecordCount) * 100
         DoEvents
         recData.MoveNext
     Loop
@@ -652,10 +654,10 @@ Private Sub cmdUnaSemana_Click()
     Dim ControlIndex As Byte
     
     For ControlIndex = 1 To 6
-        chkDia(ControlIndex).Value = vbChecked
+        chkDia(ControlIndex).value = vbChecked
     Next ControlIndex
     For ControlIndex = 7 To 13
-        chkDia(ControlIndex).Value = vbUnchecked
+        chkDia(ControlIndex).value = vbUnchecked
     Next ControlIndex
 End Sub
 
@@ -663,7 +665,7 @@ Private Sub cmdUnDia_Click()
     Dim ControlIndex As Byte
     
     For ControlIndex = 1 To 13
-        chkDia(ControlIndex).Value = vbUnchecked
+        chkDia(ControlIndex).value = vbUnchecked
     Next ControlIndex
 End Sub
 
@@ -671,23 +673,23 @@ Private Sub dtpFecha_Change()
     Dim ControlIndex As Byte
     Dim Fecha As Date
     
-    txtDiaSemana.Text = WeekdayName(Weekday(dtpFecha.Value))
-    cboBasado.ListIndex = Weekday(dtpFecha.Value) - 1
+    txtDiaSemana.Text = WeekdayName(Weekday(dtpFecha.value))
+    cboBasado.ListIndex = Weekday(dtpFecha.value) - 1
     For ControlIndex = 1 To 13
-        Fecha = DateAdd("d", ControlIndex, dtpFecha.Value)
+        Fecha = DateAdd("d", ControlIndex, dtpFecha.value)
         chkDia(ControlIndex).Caption = WeekdayName(Weekday(Fecha)) & ", " & Format(Fecha, "Short Date")
         cboBasadoSemana(ControlIndex).ListIndex = Weekday(Fecha) - 1
     Next ControlIndex
 End Sub
 
 Private Sub cmdAnterior_Click()
-    dtpFecha.Value = DateAdd("d", -1, dtpFecha.Value)
+    dtpFecha.value = DateAdd("d", -1, dtpFecha.value)
     dtpFecha.SetFocus
     dtpFecha_Change
 End Sub
 
 Private Sub cmdSiguiente_Click()
-    dtpFecha.Value = DateAdd("d", 1, dtpFecha.Value)
+    dtpFecha.value = DateAdd("d", 1, dtpFecha.value)
     dtpFecha.SetFocus
     dtpFecha_Change
 End Sub
@@ -695,10 +697,10 @@ End Sub
 Private Sub cmdHoy_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFecha.Value
-    dtpFecha.Value = Date
+    OldValue = dtpFecha.value
+    dtpFecha.value = Date
     dtpFecha.SetFocus
-    If OldValue <> dtpFecha.Value Then
+    If OldValue <> dtpFecha.value Then
         dtpFecha_Change
     End If
 End Sub
@@ -714,7 +716,7 @@ Private Sub Form_Load()
         Next ControlIndex
     Next Weekday
     
-    dtpFecha.Value = Date
+    dtpFecha.value = Date
     dtpFecha_Change
 End Sub
 
@@ -722,23 +724,23 @@ Private Sub Form_Unload(Cancel As Integer)
     Set frmViajeGenerar = Nothing
 End Sub
 
-Private Sub EnableControls(ByVal Value As Boolean)
+Private Sub EnableControls(ByVal value As Boolean)
     Dim Dia As Integer
     
-    cmdAnterior.Enabled = Value
-    txtDiaSemana.Enabled = Value
-    dtpFecha.Enabled = Value
-    cmdSiguiente.Enabled = Value
-    cmdHoy.Enabled = Value
-    cboBasado.Enabled = Value
+    cmdAnterior.Enabled = value
+    txtDiaSemana.Enabled = value
+    dtpFecha.Enabled = value
+    cmdSiguiente.Enabled = value
+    cmdHoy.Enabled = value
+    cboBasado.Enabled = value
     
     For Dia = 1 To 13
-        chkDia(Dia).Enabled = Value
-        cboBasadoSemana(Dia).Enabled = Value
+        chkDia(Dia).Enabled = value
+        cboBasadoSemana(Dia).Enabled = value
     Next Dia
     
-    cmdUnDia.Enabled = Value
-    cmdUnaSemana.Enabled = Value
-    cmdDosSemanas.Enabled = Value
-    cmdOK.Enabled = Value
+    cmdUnDia.Enabled = value
+    cmdUnaSemana.Enabled = value
+    cmdDosSemanas.Enabled = value
+    cmdOK.Enabled = value
 End Sub
