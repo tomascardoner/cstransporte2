@@ -4,3 +4,5 @@
 *.exe
 *.sup
 CSTransporte.ini
+*\bin
+*\obj
