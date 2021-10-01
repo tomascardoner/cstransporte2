@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form frmReservaActualizarPrecio 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Actualizar Precios de las Reservas"
@@ -51,7 +51,7 @@ Begin VB.Form frmReservaActualizarPrecio
       _ExtentX        =   2672
       _ExtentY        =   556
       _Version        =   393216
-      Format          =   16842753
+      Format          =   87621633
       CurrentDate     =   37897
    End
    Begin MSComCtl2.DTPicker dtpHoraDesde 
@@ -72,7 +72,7 @@ Begin VB.Form frmReservaActualizarPrecio
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   16842754
+      Format          =   87621634
       CurrentDate     =   36494
    End
    Begin VB.Label lblFechaDesde 
@@ -111,24 +111,24 @@ Private Sub cmdOK_Click()
         On Error GoTo ErrorHandler
     End If
     
-    If DateDiff("n", Now, CDate(dtpFechaDesde.Value & " " & Format(dtpHoraDesde.Value, "hh:nn"))) < 0 Then
+    If DateDiff("n", Now, CDate(dtpFechaDesde.value & " " & Format(dtpHoraDesde.value, "hh:nn"))) < 0 Then
         MsgBox "La Fecha y Hora debe ser posterior a este momento.", vbInformation, App.Title
         dtpFechaDesde.SetFocus
         Exit Sub
     End If
     
-    If MsgBox("Se actualizarán los precios de las Reservas a partir del día " & dtpFechaDesde.Value & " a las " & Format(dtpHoraDesde.Value, "hh:nn") & "." & vbCr & vbCr & "¿Desea realizar la operación?", vbExclamation + vbYesNo, App.Title) = vbNo Then
+    If MsgBox("Se actualizarán los precios de las Reservas a partir del día " & dtpFechaDesde.value & " a las " & Format(dtpHoraDesde.value, "hh:nn") & "." & vbCr & vbCr & "¿Desea realizar la operación?", vbExclamation + vbYesNo, App.Title) = vbNo Then
         Exit Sub
     End If
     
     Screen.MousePointer = vbHourglass
     
     Query = "UPDATE ViajeDetalle" & vbCr
-    Query = Query & "SET ViajeDetalle.Importe = ListaPrecioDetalle.Importe" & vbCr
+    Query = Query & "SET ViajeDetalle.Importe = CASE ViajeDetalle.IDUsuarioCreacion WHEN " & pParametro.ReservaWebIdUsuario & " THEN ISNULL(ListaPrecioDetalle.ImporteWeb, ListaPrecioDetalle.Importe) ELSE ListaPrecioDetalle.Importe END" & vbCr
     Query = Query & "FROM ((ListaPrecioDetalle INNER JOIN RutaDetalle AS RutaDetalleOrigen ON ListaPrecioDetalle.IDRuta = RutaDetalleOrigen.IDRuta AND ListaPrecioDetalle.IDLugarGrupoOrigen = RutaDetalleOrigen.IDLugarGrupo)" & vbCr
     Query = Query & "INNER JOIN RutaDetalle AS RutaDetalleDestino ON ListaPrecioDetalle.IDRuta = RutaDetalleDestino.IDRuta AND ListaPrecioDetalle.IDLugarGrupoDestino = RutaDetalleDestino.IDLugarGrupo)" & vbCr
     Query = Query & "INNER JOIN ViajeDetalle ON ListaPrecioDetalle.IDRuta = ViajeDetalle.IDRuta AND ListaPrecioDetalle.OcupanteTipo = ViajeDetalle.OcupanteTipo AND ListaPrecioDetalle.IDListaPrecio = ViajeDetalle.IDListaPrecio AND RutaDetalleOrigen.IDLugar = ViajeDetalle.IDOrigen AND RutaDetalleDestino.IDLugar = ViajeDetalle.IDDestino" & vbCr
-    Query = Query & "WHERE ViajeDetalle.FechaHora >= '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " " & Format(dtpHoraDesde.Value, "hh:nn:ss") & "' AND ViajeDetalle.OcupanteTipo = 'PA' AND ViajeDetalle.Importe <> ListaPrecioDetalle.Importe"
+    Query = Query & "WHERE ViajeDetalle.FechaHora >= '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " " & Format(dtpHoraDesde.value, "hh:nn:ss") & "' AND ViajeDetalle.OcupanteTipo = 'PA' AND ViajeDetalle.Importe <> ListaPrecioDetalle.Importe AND ViajeDetalle.ImporteContado = 0" & vbCr
     
     Call pDatabase.Connection.Execute(Query)
     
@@ -144,7 +144,7 @@ ErrorHandler:
 End Sub
 
 Private Sub Form_Load()
-    dtpFechaDesde.Value = DateAdd("d", 1, Date)
+    dtpFechaDesde.value = DateAdd("d", 1, Date)
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)

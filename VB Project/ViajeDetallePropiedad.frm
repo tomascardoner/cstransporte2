@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107937793
+      Format          =   87228417
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   107937795
+      Format          =   87228419
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107937793
+      Format          =   87228417
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -3747,7 +3747,15 @@ Private Function CalcularImporte_Function(ByVal IDListaPrecio As Long, ByVal IDR
     ListaPrecioDetalle.IDOrigen = IDOrigen
     ListaPrecioDetalle.IDDestino = IDDestino
     If ListaPrecioDetalle.GetImporteByLugar() Then
-        CalcularImporte_Function = ListaPrecioDetalle.Importe
+        If mViajeDetalle.IDUsuarioCreacion = pParametro.ReservaWebIdUsuario Then
+            If ListaPrecioDetalle.ImporteWeb = -1 Then
+                CalcularImporte_Function = ListaPrecioDetalle.Importe
+            Else
+                CalcularImporte_Function = ListaPrecioDetalle.ImporteWeb
+            End If
+        Else
+            CalcularImporte_Function = ListaPrecioDetalle.Importe
+        End If
     Else
         CalcularImporte_Function = -1
     End If

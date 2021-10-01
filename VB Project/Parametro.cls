@@ -29,6 +29,8 @@ Public System_SyncDateTimeWithDBServer_Enabled As Boolean
 Public Workstation_SyncDateTimeWithDBServer_Enabled As Boolean
 Public Messenger_Enabled As Boolean
 
+Public ReservaWebIdUsuario As Long
+
 'PERSONAS
 Public Persona_DatoIncompleto_AvisoTipo As Byte     '0 = Ignorar / 1 = Avisar / 2 = Exigir
 Public Persona_DatoIncompleto_RegistroTodos As Boolean
@@ -441,6 +443,7 @@ Public Function LoadSystemParameters() As Boolean
     WebSite_HyperLink_ChangePassword = LoadSystemParameterText(recParametro, "WebSite_HyperLink_ChangePassword", "")
     WebSite_Persona_EmailBienvenida_Asunto = LoadSystemParameterText(recParametro, "WebSite_Persona_EmailBienvenida_Asunto", "")
     WebSite_Persona_EmailBienvenida_Texto = LoadSystemParameterText(recParametro, "WebSite_Persona_EmailBienvenida_Texto", "")
+    ReservaWebIdUsuario = LoadSystemParameterNumberInteger(recParametro, "ReservaWebIdUsuario", 0)
     
     '////////////////////////////////////////////////////////
     'AGENT
