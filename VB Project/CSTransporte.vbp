@@ -252,7 +252,7 @@ Description="CS-Transporte 2006"
 CompatibleMode="0"
 MajorVer=2
 MinorVer=0
-RevisionVer=521
+RevisionVer=522
 AutoIncrementVer=1
 ServerSupportFiles=0
 VersionComments="Sistema de Gestión de Empresa de Minibuses"
@@ -261,7 +261,7 @@ VersionFileDescription="CS-Transporte 2006 Application"
 VersionLegalCopyright="© 2001-2021 Cardoner Sistemas"
 VersionLegalTrademarks="® CS-Transporte 2006"
 VersionProductName="CS-Transporte"
-CondComp="USARDLLKUBALSOFT = 1"
+CondComp="USARDLLKUBALSOFT = 0"
 CompilationType=0
 OptimizationType=0
 FavorPentiumPro(tm)=0
