@@ -61,11 +61,11 @@ Public Property Get Fecha_FormattedAsTime() As String
     Fecha_FormattedAsTime = Format(mFecha, "Short Time")
 End Property
 
-Public Property Let Fecha(ByVal Value As Date)
-    If Value <> mFecha Then
+Public Property Let Fecha(ByVal value As Date)
+    If value <> mFecha Then
         mIsDirty = True
     End If
-    mFecha = Value
+    mFecha = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -75,11 +75,11 @@ Public Property Get IDPersona() As Long
     IDPersona = mIDPersona
 End Property
 
-Public Property Let IDPersona(ByVal Value As Long)
-    If Value <> mIDPersona Then
+Public Property Let IDPersona(ByVal value As Long)
+    If value <> mIDPersona Then
         mIsDirty = True
     End If
-    mIDPersona = Value
+    mIDPersona = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -89,15 +89,23 @@ Public Property Get Importe() As Currency
     Importe = mImporte
 End Property
 
-Public Property Get Importe_Formatted() As String
-    Importe_Formatted = Format(mImporte, "Currency")
+Public Property Get Importe_FormattedAsString() As String
+    Importe_FormattedAsString = IIf(mImporte = -1, "", Format(mImporte, "Currency"))
 End Property
 
-Public Property Let Importe(ByVal Value As Currency)
-    If Value <> mImporte Then
+Public Property Let Importe(ByVal value As Currency)
+    If value <> mImporte Then
         mIsDirty = True
     End If
-    mImporte = Value
+    mImporte = value
+End Property
+
+Public Property Let Importe_FormattedAsString(ByVal value As String)
+    If IsNumeric(value) Then
+        Importe = CCur(value)
+    Else
+        Importe = -1
+    End If
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -107,11 +115,11 @@ Public Property Get IDMovimientoCuentaCorriente() As Long
     IDMovimientoCuentaCorriente = mIDMovimientoCuentaCorriente
 End Property
 
-Public Property Let IDMovimientoCuentaCorriente(ByVal Value As Long)
-    If Value <> mIDMovimientoCuentaCorriente Then
+Public Property Let IDMovimientoCuentaCorriente(ByVal value As Long)
+    If value <> mIDMovimientoCuentaCorriente Then
         mIsDirty = True
     End If
-    mIDMovimientoCuentaCorriente = Value
+    mIDMovimientoCuentaCorriente = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -121,11 +129,11 @@ Public Property Get IDUsuarioCreacion() As String
     IDUsuarioCreacion = mIDUsuarioCreacion
 End Property
 
-Public Property Let IDUsuarioCreacion(ByVal Value As String)
-    If Value <> mIDUsuarioCreacion Then
+Public Property Let IDUsuarioCreacion(ByVal value As String)
+    If value <> mIDUsuarioCreacion Then
         mIsDirty = True
     End If
-    mIDUsuarioCreacion = Value
+    mIDUsuarioCreacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -147,11 +155,11 @@ Public Property Get FechaHoraCreacion_FormattedAsTime() As String
     FechaHoraCreacion_FormattedAsTime = Format(mFechaHoraCreacion, "Short Time")
 End Property
 
-Public Property Let FechaHoraCreacion(ByVal Value As Date)
-    If Value <> mFechaHoraCreacion Then
+Public Property Let FechaHoraCreacion(ByVal value As Date)
+    If value <> mFechaHoraCreacion Then
         mIsDirty = True
     End If
-    mFechaHoraCreacion = Value
+    mFechaHoraCreacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -161,11 +169,11 @@ Public Property Get IDUsuarioModificacion() As String
     IDUsuarioModificacion = mIDUsuarioModificacion
 End Property
 
-Public Property Let IDUsuarioModificacion(ByVal Value As String)
-    If Value <> mIDUsuarioModificacion Then
+Public Property Let IDUsuarioModificacion(ByVal value As String)
+    If value <> mIDUsuarioModificacion Then
         mIsDirty = True
     End If
-    mIDUsuarioModificacion = Value
+    mIDUsuarioModificacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -187,11 +195,11 @@ Public Property Get FechaHoraModificacion_FormattedAsTime() As String
     FechaHoraModificacion_FormattedAsTime = Format(mFechaHoraModificacion, "Short Time")
 End Property
 
-Public Property Let FechaHoraModificacion(ByVal Value As Date)
-    If Value <> mFechaHoraModificacion Then
+Public Property Let FechaHoraModificacion(ByVal value As Date)
+    If value <> mFechaHoraModificacion Then
         mIsDirty = True
     End If
-    mFechaHoraModificacion = Value
+    mFechaHoraModificacion = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -220,8 +228,8 @@ Public Property Get NoMatchRaiseError() As Boolean
     NoMatchRaiseError = mNoMatchRaiseError
 End Property
 
-Public Property Let NoMatchRaiseError(ByVal Value As Boolean)
-    mNoMatchRaiseError = Value
+Public Property Let NoMatchRaiseError(ByVal value As Boolean)
+    mNoMatchRaiseError = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -231,8 +239,8 @@ Public Property Get RefreshListSkip() As Boolean
     RefreshListSkip = mRefreshListSkip
 End Property
 
-Public Property Let RefreshListSkip(ByVal Value As Boolean)
-    mRefreshListSkip = Value
+Public Property Let RefreshListSkip(ByVal value As Boolean)
+    mRefreshListSkip = value
 End Property
 
 Public Sub RefreshList()
@@ -246,8 +254,8 @@ Public Property Get Database() As CSC_Database_ADO_SQL
     Set Database = mDatabase
 End Property
 
-Public Property Set Database(ByRef Value As CSC_Database_ADO_SQL)
-    Set mDatabase = Value
+Public Property Set Database(ByRef value As CSC_Database_ADO_SQL)
+    Set mDatabase = value
 End Property
 
 '////////////////////////////////////////////////////////////////////////
@@ -266,7 +274,7 @@ Public Function OpenRecordset() As Boolean
     mrecData.LockType = adLockOptimistic
     mrecData.Source = "SELECT * FROM Franco"
     mrecData.Open , , , , adCmdText
-    mrecData.Properties("Update Criteria").Value = adCriteriaKey
+    mrecData.Properties("Update Criteria").value = adCriteriaKey
 
     Screen.MousePointer = vbDefault
     OpenRecordset = True
@@ -308,14 +316,14 @@ Public Function Load() As Boolean
         mNoMatch = False
         mIsNew = False
     
-        mFecha = mrecData("Fecha").Value
-        mIDPersona = mrecData("IDPersona").Value
-        mImporte = IIf(IsNull(mrecData("Importe").Value), 0, mrecData("Importe").Value)
-        mIDMovimientoCuentaCorriente = mrecData("IDMovimientoCuentaCorriente").Value
-        mIDUsuarioCreacion = mrecData("IDUsuarioCreacion").Value
-        mFechaHoraCreacion = mrecData("FechaHoraCreacion").Value
-        mIDUsuarioModificacion = mrecData("IDUsuarioModificacion").Value
-        mFechaHoraModificacion = mrecData("FechaHoraModificacion").Value
+        mFecha = mrecData("Fecha").value
+        mIDPersona = mrecData("IDPersona").value
+        mImporte = IIf(IsNull(mrecData("Importe").value), -1, mrecData("Importe").value)
+        mIDMovimientoCuentaCorriente = Val(mrecData("IDMovimientoCuentaCorriente").value & "")
+        mIDUsuarioCreacion = mrecData("IDUsuarioCreacion").value
+        mFechaHoraCreacion = mrecData("FechaHoraCreacion").value
+        mIDUsuarioModificacion = mrecData("IDUsuarioModificacion").value
+        mFechaHoraModificacion = mrecData("FechaHoraModificacion").value
     
         mFechaOriginal = mFecha
         mIDPersonaOriginal = mIDPersona
@@ -365,9 +373,8 @@ Public Function Update() As Boolean
     cmdData.Parameters.Append cmdData.CreateParameter("@IDPersonaOriginal", adInteger, adParamInput, , mIDPersonaOriginal)
     cmdData.Parameters.Append cmdData.CreateParameter("@Fecha", adDate, adParamInput, , mFecha)
     cmdData.Parameters.Append cmdData.CreateParameter("@IDPersona", adInteger, adParamInput, , mIDPersona)
-    cmdData.Parameters.Append cmdData.CreateParameter("@Importe", adCurrency, adParamInput, , mImporte)
-    cmdData.Parameters.Append cmdData.CreateParameter("@IDMovimientoCuentaCorriente", adInteger, adParamInput, , mIDMovimientoCuentaCorriente)
-    cmdData.Parameters.Append cmdData.CreateParameter("@IDUsuario", adChar, adParamInput, 30, pUsuario.IDUsuario)
+    cmdData.Parameters.Append cmdData.CreateParameter("@Importe", adCurrency, adParamInput, , IIf(mImporte = -1, Null, mImporte))
+    cmdData.Parameters.Append cmdData.CreateParameter("@IDUsuario", adSmallInt, adParamInput, 30, pUsuario.IDUsuario)
     cmdData.Execute 0
     Set cmdData = Nothing
     
@@ -462,7 +469,7 @@ ErrorHandler:
 End Function
 
 Private Sub InitializeValues()
-    mImporte = 0
+    mImporte = -1
     mIDMovimientoCuentaCorriente = 0
     mIDUsuarioCreacion = 0
     mFechaHoraCreacion = DATE_TIME_FIELD_NULL_VALUE

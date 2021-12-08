@@ -29,7 +29,7 @@ Begin VB.Form frmFrancoPropiedad
       Left            =   2400
       MaxLength       =   20
       TabIndex        =   5
-      Tag             =   "CURRENCY|NOTEMPTY|ZERO|POSITIVE"
+      Tag             =   "CURRENCY|EMPTY|ZERO|POSITIVE"
       Top             =   1980
       Width           =   1155
    End
@@ -103,7 +103,7 @@ Begin VB.Form frmFrancoPropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   47644673
+      Format          =   93388801
       CurrentDate     =   36950
       MaxDate         =   73050
       MinDate         =   36526
@@ -162,27 +162,6 @@ Private mFranco As Franco
 Private mNew As Boolean
 Private mKeyDecimal As Boolean
 
-Private Sub txtImporteConductor_GotFocus()
-    Call CSM_Control_TextBox.SelAllText(txtImporteConductor)
-End Sub
-
-Private Sub txtImporteConductor_KeyDown(KeyCode As Integer, Shift As Integer)
-    Call CSM_Control_TextBox.CheckKeyDown(txtImporteConductor, KeyCode)
-End Sub
-
-Private Sub txtImporteConductor_KeyPress(KeyAscii As Integer)
-    Call CSM_Control_TextBox.CheckKeyPress(txtImporteConductor, KeyAscii, mKeyDecimal)
-End Sub
-
-Private Sub txtImporteConductor_LostFocus()
-    Call CSM_Control_TextBox.FormatValue_ByTag(txtImporteConductor)
-End Sub
-
-
-Private Sub cmdAuditoria_Click()
-    frmAuditoriaGenerico.LoadDataAndShow mFranco
-End Sub
-
 Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Franco As Franco)
     Set mFranco = Franco
     mNew = (mFranco.Fecha = DATE_TIME_FIELD_NULL_VALUE)
@@ -192,9 +171,9 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Franco As Franco)
     
     With mFranco
         If mNew Then
-            dtpFecha.Value = Date
+            dtpFecha.value = Date
         Else
-            dtpFecha.Value = .Fecha
+            dtpFecha.value = .Fecha
         End If
         dtpFecha_Change
         
@@ -202,7 +181,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Franco As Franco)
         
         cboConductor.ListIndex = CSM_Control_ComboBox.GetListIndexByItemData(cboConductor, .IDPersona, cscpCurrentOrFirstIfUnique)
         
-        txtImporteConductor.Text = Format(.Importe, "Currency")
+        txtImporteConductor.Text = .Importe_FormattedAsString
     End With
     
     If WindowState = vbMinimized Then
@@ -226,9 +205,9 @@ Private Sub cmdOK_Click()
     End If
     
     With mFranco
-        .Fecha = dtpFecha.Value
+        .Fecha = dtpFecha.value
         .IDPersona = cboConductor.ItemData(cboConductor.ListIndex)
-        .Importe = CCur(txtImporteConductor.Text)
+        .Importe_FormattedAsString = txtImporteConductor.Text
         If Not .Update Then
             Exit Sub
         End If
@@ -237,8 +216,28 @@ Private Sub cmdOK_Click()
     Unload Me
 End Sub
 
+Private Sub cmdAuditoria_Click()
+    frmAuditoriaGenerico.LoadDataAndShow mFranco
+End Sub
+
 Private Sub dtpFecha_Change()
-    Caption = "Propiedades del Franco: " & dtpFecha.Value
+    Caption = "Propiedades del Franco: " & dtpFecha.value
+End Sub
+
+Private Sub txtImporteConductor_GotFocus()
+    Call CSM_Control_TextBox.SelAllText(txtImporteConductor)
+End Sub
+
+Private Sub txtImporteConductor_KeyDown(KeyCode As Integer, Shift As Integer)
+    Call CSM_Control_TextBox.CheckKeyDown(txtImporteConductor, KeyCode)
+End Sub
+
+Private Sub txtImporteConductor_KeyPress(KeyAscii As Integer)
+    Call CSM_Control_TextBox.CheckKeyPress(txtImporteConductor, KeyAscii, mKeyDecimal)
+End Sub
+
+Private Sub txtImporteConductor_LostFocus()
+    Call CSM_Control_TextBox.FormatValue_ByTag(txtImporteConductor)
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -254,4 +253,3 @@ Public Sub FillComboBoxConductor()
     End If
     Call CSM_Control_ComboBox.FillFromSQL(cboConductor, "SELECT IDPersona, Apellido + ', ' + Nombre AS ApellidoNombre FROM Persona WHERE Activo = 1 AND EntidadTipo = '" & ENTIDAD_TIPO_PERSONA_CONDUCTOR & "' ORDER BY Apellido, Nombre", "IDPersona", "ApellidoNombre", "Conductores", cscpItemOrFirst, KeySave)
 End Sub
-
