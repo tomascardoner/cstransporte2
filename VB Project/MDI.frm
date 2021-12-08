@@ -87,7 +87,6 @@ Begin VB.MDIForm frmMDI
             Style           =   2
             Alignment       =   1
             AutoSize        =   2
-            Enabled         =   0   'False
             Object.Width           =   741
             MinWidth        =   2
             TextSave        =   "NUM"
@@ -109,7 +108,7 @@ Begin VB.MDIForm frmMDI
             AutoSize        =   2
             Object.Width           =   1588
             MinWidth        =   2
-            TextSave        =   "25/09/2020"
+            TextSave        =   "01/10/2021"
             Key             =   "DATE"
          EndProperty
          BeginProperty Panel9 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
@@ -118,7 +117,7 @@ Begin VB.MDIForm frmMDI
             AutoSize        =   2
             Object.Width           =   873
             MinWidth        =   2
-            TextSave        =   "21:40"
+            TextSave        =   "16:09"
             Key             =   "TIME"
          EndProperty
       EndProperty

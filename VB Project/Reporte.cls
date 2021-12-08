@@ -31,8 +31,8 @@ Public Property Get Recordset() As ADODB.Recordset
     Set Recordset = mRecordset
 End Property
 
-Public Property Set Recordset(ByVal Value As ADODB.Recordset)
-    Set mRecordset = Value.Clone
+Public Property Set Recordset(ByVal value As ADODB.Recordset)
+    Set mRecordset = value.Clone
 End Property
 
 '////////////////////////////////////////////////////////////////////
@@ -57,10 +57,10 @@ Public Function Load() As Boolean
     recData.Open cmdData, , adOpenKeyset, adLockOptimistic
     Set cmdData = Nothing
         
-    Tipo = recData("Tipo").Value
-    Nombre = recData("Nombre").Value
-    Titulo = recData("Titulo").Value & ""
-    Personal = recData("Personal").Value
+    Tipo = recData("Tipo").value
+    Nombre = recData("Nombre").value
+    Titulo = recData("Titulo").value & ""
+    Personal = recData("Personal").value
     
     recData.Close
     Set recData = Nothing
@@ -80,11 +80,11 @@ Public Function Load() As Boolean
     Do While Not recData.EOF
         Set ReporteParametro = New ReporteParametro
         
-        ReporteParametro.IDParametro = RTrim(recData("IDParametro").Value)
-        ReporteParametro.Nombre = recData("Nombre").Value
-        ReporteParametro.Tipo = RTrim(recData("Tipo").Value)
-        ReporteParametro.Requerido = recData("Requerido").Value
-        ReporteParametro.RequeridoLeyenda = recData("RequeridoLeyenda").Value & ""
+        ReporteParametro.IDParametro = RTrim(recData("IDParametro").value)
+        ReporteParametro.Nombre = recData("Nombre").value
+        ReporteParametro.Tipo = RTrim(recData("Tipo").value)
+        ReporteParametro.Requerido = recData("Requerido").value
+        ReporteParametro.RequeridoLeyenda = recData("RequeridoLeyenda").value & ""
         Parametros.Add ReporteParametro, ReporteParametro.IDParametro
         
         recData.MoveNext
@@ -133,12 +133,12 @@ Public Function OpenReport() As Boolean
         For Each DatabaseTable In Report.Database.Tables
             DatabaseTable.DllName = REPORT_DATABASE_DLL_NAME
             'DatabaseTable.ConnectionProperties("Provider").Value = pParametro.Report_Provider
-            DatabaseTable.ConnectionProperties("Data Source").Value = pDatabase.DataSource
-            DatabaseTable.ConnectionProperties("Initial Catalog").Value = pDatabase.Database
-            DatabaseTable.ConnectionProperties("Connect Timeout").Value = pDatabase.ConnectionTimeout
-            DatabaseTable.ConnectionProperties("General Timeout").Value = pDatabase.CommandTimeout
-            DatabaseTable.ConnectionProperties("User ID").Value = pDatabase.UserID
-            DatabaseTable.ConnectionProperties("Password").Value = pDatabase.Password
+            DatabaseTable.ConnectionProperties("Data Source").value = pDatabase.DataSource
+            DatabaseTable.ConnectionProperties("Initial Catalog").value = pDatabase.Database
+            DatabaseTable.ConnectionProperties("Connect Timeout").value = pDatabase.ConnectionTimeout
+            DatabaseTable.ConnectionProperties("General Timeout").value = pDatabase.CommandTimeout
+            DatabaseTable.ConnectionProperties("User ID").value = pDatabase.UserID
+            DatabaseTable.ConnectionProperties("Password").value = pDatabase.Password
             DatabaseTable.Location = pDatabase.Database & ".dbo." & DatabaseTable.Location
         Next DatabaseTable
     
@@ -148,12 +148,12 @@ Public Function OpenReport() As Boolean
                     Set SubReportObject = ReportObject
                     For Each DatabaseTable In SubReportObject.OpenSubreport.Database.Tables
                         'DatabaseTable.ConnectionProperties("Provider").Value = pParametro.Report_Provider
-                        DatabaseTable.ConnectionProperties("Data Source").Value = pDatabase.DataSource
-                        DatabaseTable.ConnectionProperties("Initial Catalog").Value = pDatabase.Database
-                        DatabaseTable.ConnectionProperties("Connect Timeout").Value = pDatabase.ConnectionTimeout
-                        DatabaseTable.ConnectionProperties("General Timeout").Value = pDatabase.CommandTimeout
-                        DatabaseTable.ConnectionProperties("User ID").Value = pDatabase.UserID
-                        DatabaseTable.ConnectionProperties("Password").Value = pDatabase.Password
+                        DatabaseTable.ConnectionProperties("Data Source").value = pDatabase.DataSource
+                        DatabaseTable.ConnectionProperties("Initial Catalog").value = pDatabase.Database
+                        DatabaseTable.ConnectionProperties("Connect Timeout").value = pDatabase.ConnectionTimeout
+                        DatabaseTable.ConnectionProperties("General Timeout").value = pDatabase.CommandTimeout
+                        DatabaseTable.ConnectionProperties("User ID").value = pDatabase.UserID
+                        DatabaseTable.ConnectionProperties("Password").value = pDatabase.Password
                         DatabaseTable.Location = pDatabase.Database & ".dbo." & DatabaseTable.Location
                     Next DatabaseTable
                 End If

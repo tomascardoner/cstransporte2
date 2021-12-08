@@ -29,6 +29,8 @@ Public System_SyncDateTimeWithDBServer_Enabled As Boolean
 Public Workstation_SyncDateTimeWithDBServer_Enabled As Boolean
 Public Messenger_Enabled As Boolean
 
+Public ReservaWebIdUsuario As Long
+
 'PERSONAS
 Public Persona_DatoIncompleto_AvisoTipo As Byte     '0 = Ignorar / 1 = Avisar / 2 = Exigir
 Public Persona_DatoIncompleto_RegistroTodos As Boolean
@@ -441,6 +443,7 @@ Public Function LoadSystemParameters() As Boolean
     WebSite_HyperLink_ChangePassword = LoadSystemParameterText(recParametro, "WebSite_HyperLink_ChangePassword", "")
     WebSite_Persona_EmailBienvenida_Asunto = LoadSystemParameterText(recParametro, "WebSite_Persona_EmailBienvenida_Asunto", "")
     WebSite_Persona_EmailBienvenida_Texto = LoadSystemParameterText(recParametro, "WebSite_Persona_EmailBienvenida_Texto", "")
+    ReservaWebIdUsuario = LoadSystemParameterNumberInteger(recParametro, "ReservaWebIdUsuario", 0)
     
     '////////////////////////////////////////////////////////
     'AGENT
@@ -605,7 +608,7 @@ Public Function InitializeUserParameters() As Boolean
     End If
 
     Set mrecUsuarioParametro = New ADODB.Recordset
-    mrecUsuarioParametro.Source = "SELECT * FROM UsuarioParametro"
+    mrecUsuarioParametro.Source = "SELECT * FROM UsuarioParametro WHERE IDUsuario = " & pUsuario.IDUsuario
     mrecUsuarioParametro.Open , pDatabase.Connection, pParametro.Database_CursorType, adLockOptimistic
 
     Screen.MousePointer = vbDefault
@@ -651,7 +654,7 @@ Public Sub LoadParameters()
     LoadUserParameters
 End Sub
 
-Public Sub SaveSystemParameterText(ByVal IDParametro As String, ByVal Value As String)
+Public Sub SaveSystemParameterText(ByVal IDParametro As String, ByVal value As String)
     Dim recParametro As ADODB.Recordset
     
     If pTrapErrors Then
@@ -664,9 +667,9 @@ Public Sub SaveSystemParameterText(ByVal IDParametro As String, ByVal Value As S
     
     If recParametro.EOF Then
         recParametro.AddNew
-        recParametro("IDParametro").Value = IDParametro
+        recParametro("IDParametro").value = IDParametro
     End If
-    recParametro("Texto").Value = IIf(Trim(Value) = "", Null, Value)
+    recParametro("Texto").value = IIf(Trim(value) = "", Null, value)
     recParametro.Update
     
     recParametro.Close
@@ -677,7 +680,7 @@ ErrorHandler:
     ShowErrorMessage "Classes.Parametro.SaveSystemParameterText", "Error al grabar el Parámetro del Sistema." & vbCr & vbCr & "IDParametro: " & IDParametro
 End Sub
 
-Public Sub SaveSystemParameterBoolean(ByVal IDParametro As String, ByVal Value As Boolean)
+Public Sub SaveSystemParameterBoolean(ByVal IDParametro As String, ByVal value As Boolean)
     Dim recParametro As ADODB.Recordset
     
     If pTrapErrors Then
@@ -690,9 +693,9 @@ Public Sub SaveSystemParameterBoolean(ByVal IDParametro As String, ByVal Value A
     
     If recParametro.EOF Then
         recParametro.AddNew
-        recParametro("IDParametro").Value = IDParametro
+        recParametro("IDParametro").value = IDParametro
     End If
-    recParametro("SiNo").Value = Value
+    recParametro("SiNo").value = value
     recParametro.Update
     
     recParametro.Close
@@ -703,7 +706,7 @@ ErrorHandler:
     ShowErrorMessage "Classes.Parametro.SaveSystemParameterBoolean", "Error al grabar el Parámetro del Sistema." & vbCr & vbCr & "IDParametro: " & IDParametro
 End Sub
 
-Public Sub SaveSystemParameterNumberInteger(ByVal IDParametro As String, ByVal Value As Long)
+Public Sub SaveSystemParameterNumberInteger(ByVal IDParametro As String, ByVal value As Long)
     Dim recParametro As ADODB.Recordset
     
     If pTrapErrors Then
@@ -716,9 +719,9 @@ Public Sub SaveSystemParameterNumberInteger(ByVal IDParametro As String, ByVal V
     
     If recParametro.EOF Then
         recParametro.AddNew
-        recParametro("IDParametro").Value = IDParametro
+        recParametro("IDParametro").value = IDParametro
     End If
-    recParametro("NumeroEntero").Value = Value
+    recParametro("NumeroEntero").value = value
     recParametro.Update
     
     recParametro.Close
@@ -729,7 +732,7 @@ ErrorHandler:
     ShowErrorMessage "Classes.Parametro.SaveSystemParameterNumberInteger", "Error al grabar el Parámetro del Sistema." & vbCr & vbCr & "IDParametro: " & IDParametro
 End Sub
 
-Public Sub SaveSystemParameterNumberDecimal(ByVal IDParametro As String, ByVal Value As Single)
+Public Sub SaveSystemParameterNumberDecimal(ByVal IDParametro As String, ByVal value As Single)
     Dim recParametro As ADODB.Recordset
     
     If pTrapErrors Then
@@ -742,9 +745,9 @@ Public Sub SaveSystemParameterNumberDecimal(ByVal IDParametro As String, ByVal V
     
     If recParametro.EOF Then
         recParametro.AddNew
-        recParametro("IDParametro").Value = IDParametro
+        recParametro("IDParametro").value = IDParametro
     End If
-    recParametro("NumeroDecimal").Value = Value
+    recParametro("NumeroDecimal").value = value
     recParametro.Update
     
     recParametro.Close
@@ -767,8 +770,8 @@ Private Function Usuario_Guardar_Inicializar(ByVal IDParametro As String) As Boo
     mrecUsuarioParametro.Filter = "IDUsuario = " & pUsuario.IDUsuario & " AND IDParametro = '" & IDParametro & "'"
     If mrecUsuarioParametro.EOF Then
         mrecUsuarioParametro.AddNew
-        mrecUsuarioParametro("IDUsuario").Value = pUsuario.IDUsuario
-        mrecUsuarioParametro("IDParametro").Value = IDParametro
+        mrecUsuarioParametro("IDUsuario").value = pUsuario.IDUsuario
+        mrecUsuarioParametro("IDParametro").value = IDParametro
     End If
     Usuario_Guardar_Inicializar = True
     Exit Function
@@ -808,7 +811,7 @@ Public Function Usuario_LeerTexto(ByVal IDParametro As String, Optional ByVal Va
     If mrecUsuarioParametro.EOF Then
         Usuario_LeerTexto = ValorPredeterminado
     Else
-        Usuario_LeerTexto = mrecUsuarioParametro("Texto").Value
+        Usuario_LeerTexto = mrecUsuarioParametro("Texto").value
     End If
     Exit Function
 
@@ -822,7 +825,7 @@ Public Sub Usuario_GuardarTexto(ByVal IDParametro As String, ByVal Valor As Stri
     End If
     
     If Usuario_Guardar_Inicializar(IDParametro) Then
-        mrecUsuarioParametro("Texto").Value = IIf(Trim(Valor) = "", Null, Valor)
+        mrecUsuarioParametro("Texto").value = IIf(Trim(Valor) = "", Null, Valor)
         Call Usuario_Guardar_Terminar(IDParametro)
     End If
     Exit Sub
@@ -842,7 +845,7 @@ Public Function Usuario_LeerNumero(ByVal IDParametro As String, Optional ByVal V
     If mrecUsuarioParametro.EOF Then
         Usuario_LeerNumero = ValorPredeterminado
     Else
-        Usuario_LeerNumero = mrecUsuarioParametro("Numero").Value
+        Usuario_LeerNumero = mrecUsuarioParametro("Numero").value
     End If
     Exit Function
 
@@ -856,7 +859,7 @@ Public Sub Usuario_GuardarNumero(ByVal IDParametro As String, ByVal Valor As Dou
     End If
     
     If Usuario_Guardar_Inicializar(IDParametro) Then
-        mrecUsuarioParametro("Numero").Value = Valor
+        mrecUsuarioParametro("Numero").value = Valor
         Call Usuario_Guardar_Terminar(IDParametro)
     End If
     Exit Sub
@@ -876,7 +879,7 @@ Public Function Usuario_LeerFechaHora(ByVal IDParametro As String, Optional ByVa
     If mrecUsuarioParametro.EOF Then
         Usuario_LeerFechaHora = ValorPredeterminado
     Else
-        Usuario_LeerFechaHora = mrecUsuarioParametro("FechaHora").Value
+        Usuario_LeerFechaHora = mrecUsuarioParametro("FechaHora").value
     End If
     Exit Function
 
@@ -890,7 +893,7 @@ Public Sub Usuario_GuardarFechaHora(ByVal IDParametro As String, ByVal Valor As 
     End If
     
     If Usuario_Guardar_Inicializar(IDParametro) Then
-        mrecUsuarioParametro("FechaHora").Value = Valor
+        mrecUsuarioParametro("FechaHora").value = Valor
         Call Usuario_Guardar_Terminar(IDParametro)
     End If
     Exit Sub
@@ -906,11 +909,11 @@ Public Function Usuario_LeerSiNo(ByVal IDParametro As String, Optional ByVal Val
         On Error GoTo ErrorHandler
     End If
     
-    mrecUsuarioParametro.Filter = "IDUsuario = " & pUsuario.IDUsuario & " AND IDParametro = '" & IDParametro & "'"
+    mrecUsuarioParametro.Filter = "IDParametro = '" & IDParametro & "'"
     If mrecUsuarioParametro.EOF Then
         Usuario_LeerSiNo = ValorPredeterminado
     Else
-        Usuario_LeerSiNo = mrecUsuarioParametro("SiNo").Value
+        Usuario_LeerSiNo = mrecUsuarioParametro("SiNo").value
     End If
     Exit Function
 
@@ -924,7 +927,7 @@ Public Sub Usuario_GuardarSiNo(ByVal IDParametro As String, ByVal Valor As Boole
     End If
     
     If Usuario_Guardar_Inicializar(IDParametro) Then
-        mrecUsuarioParametro("SiNo").Value = Valor
+        mrecUsuarioParametro("SiNo").value = Valor
         Call Usuario_Guardar_Terminar(IDParametro)
     End If
     Exit Sub
@@ -960,10 +963,10 @@ Private Function LoadSystemParameterText(ByRef recParametro As ADODB.Recordset, 
     If recParametro.EOF Then
         LoadSystemParameterText = DefaultValue
     Else
-        If IsNull(recParametro("Texto").Value) Then
+        If IsNull(recParametro("Texto").value) Then
             LoadSystemParameterText = DefaultValue
         Else
-            LoadSystemParameterText = recParametro("Texto").Value
+            LoadSystemParameterText = recParametro("Texto").value
         End If
     End If
 End Function
@@ -973,10 +976,10 @@ Private Function LoadSystemParameterNumberInteger(ByRef recParametro As ADODB.Re
     If recParametro.EOF Then
         LoadSystemParameterNumberInteger = DefaultValue
     Else
-        If IsNull(recParametro("NumeroEntero").Value) Then
+        If IsNull(recParametro("NumeroEntero").value) Then
             LoadSystemParameterNumberInteger = DefaultValue
         Else
-            LoadSystemParameterNumberInteger = recParametro("NumeroEntero").Value
+            LoadSystemParameterNumberInteger = recParametro("NumeroEntero").value
         End If
     End If
 End Function
@@ -986,10 +989,10 @@ Private Function LoadSystemParameterNumberDecimal(ByRef recParametro As ADODB.Re
     If recParametro.EOF Then
         LoadSystemParameterNumberDecimal = DefaultValue
     Else
-        If IsNull(recParametro("NumeroDecimal").Value) Then
+        If IsNull(recParametro("NumeroDecimal").value) Then
             LoadSystemParameterNumberDecimal = DefaultValue
         Else
-            LoadSystemParameterNumberDecimal = recParametro("NumeroDecimal").Value
+            LoadSystemParameterNumberDecimal = recParametro("NumeroDecimal").value
         End If
     End If
 End Function
@@ -999,10 +1002,10 @@ Private Function LoadSystemParameterCurrency(ByRef recParametro As ADODB.Records
     If recParametro.EOF Then
         LoadSystemParameterCurrency = DefaultValue
     Else
-        If IsNull(recParametro("Moneda").Value) Then
+        If IsNull(recParametro("Moneda").value) Then
             LoadSystemParameterCurrency = DefaultValue
         Else
-            LoadSystemParameterCurrency = recParametro("Moneda").Value
+            LoadSystemParameterCurrency = recParametro("Moneda").value
         End If
     End If
 End Function
@@ -1012,10 +1015,10 @@ Private Function LoadSystemParameterDateTime(ByRef recParametro As ADODB.Records
     If recParametro.EOF Then
         LoadSystemParameterDateTime = DefaultValue
     Else
-        If IsNull(recParametro("FechaHora").Value) Then
+        If IsNull(recParametro("FechaHora").value) Then
             LoadSystemParameterDateTime = DefaultValue
         Else
-            LoadSystemParameterDateTime = recParametro("FechaHora").Value
+            LoadSystemParameterDateTime = recParametro("FechaHora").value
         End If
     End If
 End Function
@@ -1025,10 +1028,10 @@ Private Function LoadSystemParameterBoolean(ByRef recParametro As ADODB.Recordse
     If recParametro.EOF Then
         LoadSystemParameterBoolean = DefaultValue
     Else
-        If IsNull(recParametro("SiNo").Value) Then
+        If IsNull(recParametro("SiNo").value) Then
             LoadSystemParameterBoolean = DefaultValue
         Else
-            LoadSystemParameterBoolean = recParametro("SiNo").Value
+            LoadSystemParameterBoolean = recParametro("SiNo").value
         End If
     End If
 End Function

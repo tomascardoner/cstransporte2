@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{38911DA0-E448-11D0-84A3-00DD01104159}#1.1#0"; "COMCT332.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form frmFranco 
@@ -48,20 +48,20 @@ Begin VB.Form frmFranco
    End
    Begin ComCtl3.CoolBar cbrMain 
       Align           =   1  'Align Top
-      Height          =   990
+      Height          =   1020
       Left            =   0
       TabIndex        =   2
       Top             =   0
       Width           =   9420
       _ExtentX        =   16616
-      _ExtentY        =   1746
+      _ExtentY        =   1799
       FixedOrder      =   -1  'True
       _CBWidth        =   9420
-      _CBHeight       =   990
+      _CBHeight       =   1020
       _Version        =   "6.7.9782"
       Child1          =   "tlbMain"
       MinWidth1       =   4410
-      MinHeight1      =   540
+      MinHeight1      =   570
       Width1          =   4410
       FixedBackground1=   0   'False
       Key1            =   "Toolbar"
@@ -88,7 +88,7 @@ Begin VB.Form frmFranco
          ScaleHeight     =   360
          ScaleWidth      =   9165
          TabIndex        =   8
-         Top             =   600
+         Top             =   630
          Width           =   9165
          Begin VB.ComboBox cboFecha 
             Height          =   330
@@ -189,7 +189,7 @@ Begin VB.Form frmFranco
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   151257089
+            Format          =   111542273
             CurrentDate     =   36950
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -211,7 +211,7 @@ Begin VB.Form frmFranco
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   151257089
+            Format          =   111542273
             CurrentDate     =   36950
          End
          Begin VB.Label lblFecha 
@@ -241,7 +241,7 @@ Begin VB.Form frmFranco
          ScaleHeight     =   330
          ScaleWidth      =   4665
          TabIndex        =   5
-         Top             =   135
+         Top             =   150
          Width           =   4665
          Begin VB.ComboBox cboConductor 
             Height          =   330
@@ -262,15 +262,15 @@ Begin VB.Form frmFranco
          End
       End
       Begin MSComctlLib.Toolbar tlbMain 
-         Height          =   540
+         Height          =   570
          Left            =   30
          TabIndex        =   3
          Top             =   30
          Width           =   4410
          _ExtentX        =   7779
-         _ExtentY        =   953
-         ButtonWidth     =   1931
-         ButtonHeight    =   953
+         _ExtentY        =   1005
+         ButtonWidth     =   2170
+         ButtonHeight    =   1005
          ToolTips        =   0   'False
          AllowCustomize  =   0   'False
          Wrappable       =   0   'False
@@ -432,19 +432,19 @@ Public Sub FillListView(ByVal Fecha As Date, ByVal IDPersona As Long)
     Select Case cboFecha.ListIndex
         Case 0  'ALL
         Case 1  'EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha BETWEEN '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha BETWEEN '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 2  'GREATER
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha > '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha > '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 3  'GREATER OR EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha >= '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha >= '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00'"
         Case 4  'MINOR
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha < '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha < '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00'"
         Case 5  'MINOR OR EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha <= '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha <= '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 6  'NOT EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha NOT BETWEEN '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha NOT BETWEEN '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 7  'BETWEEN
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha BETWEEN '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaHasta.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Franco.Fecha BETWEEN '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaHasta.value, "yyyy/mm/dd") & " 23:59:00'"
     End Select
     
     Select Case lvwData.SortKey
@@ -466,9 +466,13 @@ Public Sub FillListView(ByVal Fecha As Date, ByVal IDPersona As Long)
     With recData
         If Not .EOF Then
             Do While Not .EOF
-                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("Fecha").Value & KEY_DELIMITER & .Fields("IDPersona").Value, Format(.Fields("Fecha").Value, "Short Date"))
-                ListItem.SubItems(1) = .Fields("ApellidoNombre").Value
-                ListItem.SubItems(2) = Format(.Fields("Importe").Value, "Currency")
+                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("Fecha").value & KEY_DELIMITER & .Fields("IDPersona").value, Format(.Fields("Fecha").value, "Short Date"))
+                ListItem.SubItems(1) = .Fields("ApellidoNombre").value
+                If IsNull(.Fields("Importe").value) Then
+                    ListItem.SubItems(2) = " "
+                Else
+                    ListItem.SubItems(2) = Format(.Fields("Importe").value, "Currency")
+                End If
                 .MoveNext
             Loop
             
@@ -516,13 +520,13 @@ Private Sub dtpFechaDesde_Change()
 End Sub
 
 Private Sub cmdAnteriorDesde_Click()
-    dtpFechaDesde.Value = DateAdd("d", -1, dtpFechaDesde.Value)
+    dtpFechaDesde.value = DateAdd("d", -1, dtpFechaDesde.value)
     dtpFechaDesde.SetFocus
     dtpFechaDesde_Change
 End Sub
 
 Private Sub cmdSiguienteDesde_Click()
-    dtpFechaDesde.Value = DateAdd("d", 1, dtpFechaDesde.Value)
+    dtpFechaDesde.value = DateAdd("d", 1, dtpFechaDesde.value)
     dtpFechaDesde.SetFocus
     dtpFechaDesde_Change
 End Sub
@@ -530,10 +534,10 @@ End Sub
 Private Sub cmdHoyDesde_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFechaDesde.Value
-    dtpFechaDesde.Value = Date
+    OldValue = dtpFechaDesde.value
+    dtpFechaDesde.value = Date
     dtpFechaDesde.SetFocus
-    If OldValue <> dtpFechaDesde.Value Then
+    If OldValue <> dtpFechaDesde.value Then
         dtpFechaDesde_Change
     End If
 End Sub
@@ -543,13 +547,13 @@ Private Sub dtpFechaHasta_Change()
 End Sub
 
 Private Sub cmdAnteriorHasta_Click()
-    dtpFechaHasta.Value = DateAdd("d", -1, dtpFechaHasta.Value)
+    dtpFechaHasta.value = DateAdd("d", -1, dtpFechaHasta.value)
     dtpFechaHasta.SetFocus
     dtpFechaHasta_Change
 End Sub
 
 Private Sub cmdSiguienteHasta_Click()
-    dtpFechaHasta.Value = DateAdd("d", 1, dtpFechaHasta.Value)
+    dtpFechaHasta.value = DateAdd("d", 1, dtpFechaHasta.value)
     dtpFechaHasta.SetFocus
     dtpFechaHasta_Change
 End Sub
@@ -557,10 +561,10 @@ End Sub
 Private Sub cmdHoyHasta_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFechaHasta.Value
-    dtpFechaHasta.Value = Date
+    OldValue = dtpFechaHasta.value
+    dtpFechaHasta.value = Date
     dtpFechaHasta.SetFocus
-    If OldValue <> dtpFechaHasta.Value Then
+    If OldValue <> dtpFechaHasta.value Then
         dtpFechaHasta_Change
     End If
 End Sub
@@ -625,14 +629,14 @@ Private Sub Form_Load()
     cboFecha.AddItem "Entre"
     cboFecha.ListIndex = 1
     
-    dtpFechaDesde.Value = Date
-    dtpFechaHasta.Value = Date
+    dtpFechaDesde.value = Date
+    dtpFechaHasta.value = Date
         
     CSM_Forms.ResizeAndPosition frmMDI, Me
     pParametro.GetCoolBarSettings "Franco", cbrMain
     pParametro.GetListViewSettings "Franco", lvwData
-    tlbPin.Buttons("PIN").Value = pParametro.Usuario_LeerNumero("Franco_Pin", tlbPin.Buttons("PIN").Value)
-    If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+    tlbPin.Buttons("PIN").value = pParametro.Usuario_LeerNumero("Franco_Pin", tlbPin.Buttons("PIN").value)
+    If tlbPin.Buttons("PIN").value = tbrUnpressed Then
         tlbPin.Buttons("PIN").Image = 1
     Else
         tlbPin.Buttons("PIN").Image = 2
@@ -652,7 +656,7 @@ Private Sub Form_Unload(Cancel As Integer)
     WindowState = vbNormal
     pParametro.SaveCoolBarSettings "Franco", cbrMain
     pParametro.SaveListViewSettings "Franco", lvwData
-    pParametro.Usuario_GuardarNumero "Franco_Pin", tlbPin.Buttons("PIN").Value
+    pParametro.Usuario_GuardarNumero "Franco_Pin", tlbPin.Buttons("PIN").value
 End Sub
 
 Private Sub lvwData_DblClick()
@@ -734,7 +738,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 Forms(FormIndex).FrancoSelected CDate(CSM_String.GetSubString(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1), 1, KEY_DELIMITER)), Val(CSM_String.GetSubString(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1), 2, KEY_DELIMITER))
 
                 Forms(FormIndex).SetFocus
-                If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+                If tlbPin.Buttons("PIN").value = tbrUnpressed Then
                     Unload Me
                 End If
                 Screen.MousePointer = vbDefault
@@ -744,7 +748,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 Private Sub tlbPin_ButtonClick(ByVal Button As MSComctlLib.Button)
-    If Button.Value = tbrUnpressed Then
+    If Button.value = tbrUnpressed Then
         Button.Image = 1
     Else
         Button.Image = 2
@@ -771,5 +775,5 @@ Public Sub FillComboBoxConductor()
     If cboConductor.ListCount > 0 Then
         KeySave = cboConductor.ItemData(cboConductor.ListIndex)
     End If
-    Call CSM_Control_ComboBox.FillFromSQL(cboConductor, "(SELECT -1 AS IDPersona, '<Todos>' AS ApellidoNombre, 1 AS Orden FROM Persona) UNION (SELECT IDPersona, Apellido + ', ' + Nombre AS ApellidoNombre, 2 AS Orden FROM Persona WHERE Activo = 1 AND EntidadTipo = '" & ENTIDAD_TIPO_PERSONA_CONDUCTOR & "') ORDER BY Orden, ApellidoNombre", "IDPersona", "ApellidoNombre", "Conductores", cscpItemOrfirst, KeySave)
+    Call CSM_Control_ComboBox.FillFromSQL(cboConductor, "(SELECT -1 AS IDPersona, '<Todos>' AS ApellidoNombre, 1 AS Orden FROM Persona) UNION (SELECT IDPersona, Apellido + ', ' + Nombre AS ApellidoNombre, 2 AS Orden FROM Persona WHERE Activo = 1 AND EntidadTipo = '" & ENTIDAD_TIPO_PERSONA_CONDUCTOR & "') ORDER BY Orden, ApellidoNombre", "IDPersona", "ApellidoNombre", "Conductores", cscpItemOrFirst, KeySave)
 End Sub

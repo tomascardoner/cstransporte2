@@ -957,14 +957,6 @@ Public Function Update() As Boolean
         Case Else
             cmdData.Parameters.Append cmdData.CreateParameter("@RutaOtra", adVarChar, adParamInput, 50, Null)
             cmdData.Parameters.Append cmdData.CreateParameter("@IDPersona", adInteger, adParamInput, , Null)
-            'OBTENGO LOS VALORES DE LA RUTA
-            Set Ruta = New Ruta
-            Ruta.IDRuta = mIDRuta
-            If Ruta.Load() Then
-                mKilometro = Ruta.Kilometro
-                mDuracion = Ruta.Duracion
-            End If
-            Set Ruta = Nothing
             cmdData.Parameters.Append cmdData.CreateParameter("@Kilometro", adSmallInt, adParamInput, , IIf(mKilometro = 0, Null, mKilometro))
             cmdData.Parameters.Append cmdData.CreateParameter("@Duracion", adSmallInt, adParamInput, , IIf(mDuracion = 0, Null, mDuracion))
             cmdData.Parameters.Append cmdData.CreateParameter("@Importe", adCurrency, adParamInput, , Null)

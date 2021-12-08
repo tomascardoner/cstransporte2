@@ -221,7 +221,7 @@ Begin VB.Form frmRutaDetalle
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      NumItems        =   5
+      NumItems        =   6
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Key             =   "Lugar"
          Text            =   "Lugar"
@@ -234,23 +234,30 @@ Begin VB.Form frmRutaDetalle
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         Alignment       =   1
+         Alignment       =   2
          SubItemIndex    =   2
          Key             =   "Duracion"
          Text            =   "Duración"
-         Object.Width           =   2540
+         Object.Width           =   1764
       EndProperty
       BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   3
          Key             =   "HoraInicio"
          Text            =   "Excluído desde"
-         Object.Width           =   2540
+         Object.Width           =   1764
       EndProperty
       BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   4
          Key             =   "HoraFin"
          Text            =   "Excluído hasta"
-         Object.Width           =   2540
+         Object.Width           =   1764
+      EndProperty
+      BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Alignment       =   2
+         SubItemIndex    =   5
+         Key             =   "Exclusiones"
+         Text            =   "Exclusiones"
+         Object.Width           =   2117
       EndProperty
    End
 End
@@ -273,7 +280,8 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
     Dim ListItem As MSComctlLib.ListItem
     Dim recData As ADODB.Recordset
     Dim KeySave As String
-    Dim SQL_Where As String
+    
+    Dim SQLStatement As String
     
     If IDRuta <> cboRuta.Text Then
         Exit Sub
@@ -292,19 +300,24 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
     Else
         KeySave = KEY_STRINGER & IDLugar
     End If
-    
-    SQL_Where = ""
-    
-    SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "RutaDetalle.IDRuta = '" & ReplaceQuote(cboRuta.Text) & "'"
-    
+        
     lvwData.ListItems.Clear
     
     If pTrapErrors Then
         On Error GoTo ErrorHandler
     End If
     
+    SQLStatement = "SELECT rd.IDLugar, l.Nombre AS Lugar, lg.Nombre AS LugarGrupo, rd.Duracion, rd.HoraInicio, rd.HoraFin, COUNT(rdh.IDRutaDetalleHorario) AS Exclusiones" & vbCr
+    SQLStatement = SQLStatement & "FROM RutaDetalle AS rd" & vbCr
+    SQLStatement = SQLStatement & "INNER JOIN Lugar AS l ON rd.IDLugar = l.IDLugar" & vbCr
+    SQLStatement = SQLStatement & "INNER JOIN LugarGrupo AS lg ON rd.IDLugarGrupo = lg.IDLugarGrupo" & vbCr
+    SQLStatement = SQLStatement & "LEFT JOIN RutaDetalleHorario AS rdh ON rd.IDRuta = rdh.IDRuta AND rd.IDLugar = rdh.IDLugar" & vbCr
+    SQLStatement = SQLStatement & "WHERE rd.IDRuta = '" & ReplaceQuote(cboRuta.Text) & "'" & vbCr
+    SQLStatement = SQLStatement & "GROUP BY rd.Indice, rd.IDLugar, l.Nombre, lg.Nombre, rd.Duracion, rd.HoraInicio, rd.HoraFin" & vbCr
+    SQLStatement = SQLStatement & "ORDER BY rd.Indice" & vbCr
+    
     Set recData = New ADODB.Recordset
-    recData.Source = "SELECT RutaDetalle.IDLugar, Lugar.Nombre AS Lugar, LugarGrupo.Nombre AS LugarGrupo, RutaDetalle.Duracion, RutaDetalle.HoraInicio, RutaDetalle.HoraFin FROM (RutaDetalle INNER JOIN Lugar ON RutaDetalle.IDLugar = Lugar.IDLugar) INNER JOIN LugarGrupo ON RutaDetalle.IDLugarGrupo = LugarGrupo.IDLugarGrupo" & SQL_Where & " ORDER BY RutaDetalle.Indice"
+    recData.Source = SQLStatement
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     
     With recData
@@ -315,6 +328,7 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
                 ListItem.SubItems(2) = CSM_Function.IfIsNull_Space(.Fields("Duracion").value)
                 ListItem.SubItems(3) = IIf(IsNull(.Fields("HoraInicio").value), "", Format(.Fields("HoraInicio").value, "Short Time"))
                 ListItem.SubItems(4) = IIf(IsNull(.Fields("HoraFin").value), "", Format(.Fields("HoraFin").value, "Short Time"))
+                ListItem.SubItems(5) = CSM_Function.IfIsZero_Space(.Fields("Exclusiones").value)
                 .MoveNext
             Loop
             
@@ -363,7 +377,7 @@ Public Sub FillComboBoxRuta()
     recRuta.Close
     Set recRuta = Nothing
 
-    cboRuta.ListIndex = CSM_Control_ComboBox.GetListIndexByText(cboRuta, IDRutaSave, cscpItemOrfirst)
+    cboRuta.ListIndex = CSM_Control_ComboBox.GetListIndexByText(cboRuta, IDRutaSave, cscpItemOrFirst)
     Exit Sub
     
 ErrorHandler:
