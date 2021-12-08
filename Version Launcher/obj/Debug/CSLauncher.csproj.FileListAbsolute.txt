@@ -1,0 +1,8 @@
+C:\Data\Cardoner Sistemas\Development\CS-Transporte\Version Launcher\CSLauncher\bin\Debug\CSLauncher.exe.config
+C:\Data\Cardoner Sistemas\Development\CS-Transporte\Version Launcher\CSLauncher\bin\Debug\CSLauncher.exe
+C:\Data\Cardoner Sistemas\Development\CS-Transporte\Version Launcher\CSLauncher\bin\Debug\CSLauncher.pdb
+C:\Data\Cardoner Sistemas\Development\CS-Transporte\Version Launcher\CSLauncher\obj\Debug\CSLauncher.Properties.Resources.resources
+C:\Data\Cardoner Sistemas\Development\CS-Transporte\Version Launcher\CSLauncher\obj\Debug\CSLauncher.csproj.GenerateResource.cache
+C:\Data\Cardoner Sistemas\Development\CS-Transporte\Version Launcher\CSLauncher\obj\Debug\CSLauncher.csproj.CoreCompileInputs.cache
+C:\Data\Cardoner Sistemas\Development\CS-Transporte\Version Launcher\CSLauncher\obj\Debug\CSLauncher.exe
+C:\Data\Cardoner Sistemas\Development\CS-Transporte\Version Launcher\CSLauncher\obj\Debug\CSLauncher.pdb
