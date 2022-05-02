@@ -258,7 +258,7 @@ ServerSupportFiles=0
 VersionComments="Sistema de Gestión de Empresa de Minibuses"
 VersionCompanyName="Cardoner Sistemas"
 VersionFileDescription="CS-Transporte 2006 Application"
-VersionLegalCopyright="© 2001-2021 Cardoner Sistemas"
+VersionLegalCopyright="© 2001-2022 Cardoner Sistemas"
 VersionLegalTrademarks="® CS-Transporte 2006"
 VersionProductName="CS-Transporte"
 CondComp="USARDLLKUBALSOFT = 0"
