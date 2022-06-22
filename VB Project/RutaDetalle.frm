@@ -221,7 +221,7 @@ Begin VB.Form frmRutaDetalle
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      NumItems        =   6
+      NumItems        =   7
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Key             =   "Lugar"
          Text            =   "Lugar"
@@ -258,6 +258,13 @@ Begin VB.Form frmRutaDetalle
          Key             =   "Exclusiones"
          Text            =   "Exclusiones"
          Object.Width           =   2117
+      EndProperty
+      BeginProperty ColumnHeader(7) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Alignment       =   1
+         SubItemIndex    =   6
+         Key             =   "DistanciaNotificacion"
+         Text            =   "Distancia notificación"
+         Object.Width           =   2822
       EndProperty
    End
 End
@@ -307,13 +314,13 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
         On Error GoTo ErrorHandler
     End If
     
-    SQLStatement = "SELECT rd.IDLugar, l.Nombre AS Lugar, lg.Nombre AS LugarGrupo, rd.Duracion, rd.HoraInicio, rd.HoraFin, COUNT(rdh.IDRutaDetalleHorario) AS Exclusiones" & vbCr
+    SQLStatement = "SELECT rd.IDLugar, l.Nombre AS Lugar, lg.Nombre AS LugarGrupo, rd.Duracion, rd.HoraInicio, rd.HoraFin, COUNT(rdh.IDRutaDetalleHorario) AS Exclusiones, rd.DistanciaNotificacion" & vbCr
     SQLStatement = SQLStatement & "FROM RutaDetalle AS rd" & vbCr
     SQLStatement = SQLStatement & "INNER JOIN Lugar AS l ON rd.IDLugar = l.IDLugar" & vbCr
     SQLStatement = SQLStatement & "INNER JOIN LugarGrupo AS lg ON rd.IDLugarGrupo = lg.IDLugarGrupo" & vbCr
     SQLStatement = SQLStatement & "LEFT JOIN RutaDetalleHorario AS rdh ON rd.IDRuta = rdh.IDRuta AND rd.IDLugar = rdh.IDLugar" & vbCr
     SQLStatement = SQLStatement & "WHERE rd.IDRuta = '" & ReplaceQuote(cboRuta.Text) & "'" & vbCr
-    SQLStatement = SQLStatement & "GROUP BY rd.Indice, rd.IDLugar, l.Nombre, lg.Nombre, rd.Duracion, rd.HoraInicio, rd.HoraFin" & vbCr
+    SQLStatement = SQLStatement & "GROUP BY rd.Indice, rd.IDLugar, l.Nombre, lg.Nombre, rd.Duracion, rd.HoraInicio, rd.HoraFin, rd.DistanciaNotificacion" & vbCr
     SQLStatement = SQLStatement & "ORDER BY rd.Indice" & vbCr
     
     Set recData = New ADODB.Recordset
@@ -329,6 +336,7 @@ Public Sub FillListView(ByVal IDRuta As String, ByVal IDLugar As Long)
                 ListItem.SubItems(3) = IIf(IsNull(.Fields("HoraInicio").value), "", Format(.Fields("HoraInicio").value, "Short Time"))
                 ListItem.SubItems(4) = IIf(IsNull(.Fields("HoraFin").value), "", Format(.Fields("HoraFin").value, "Short Time"))
                 ListItem.SubItems(5) = CSM_Function.IfIsZero_Space(.Fields("Exclusiones").value)
+                ListItem.SubItems(6) = CSM_Function.IfIsNull_Space(.Fields("DistanciaNotificacion").value)
                 .MoveNext
             Loop
             

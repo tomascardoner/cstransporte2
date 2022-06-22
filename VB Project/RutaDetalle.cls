@@ -22,6 +22,7 @@ Public Duracion As Integer
 Public Espera As Integer
 Public HoraInicio As Date
 Public HoraFin As Date
+Public DistanciaNotificacion As Long
 Public FechaHoraCreacion As Date
 Public IDUsuarioCreacion As Integer
 Public FechaHoraModificacion As Date
@@ -51,7 +52,7 @@ Private Function OpenRecordset() As Boolean
     cmdData.Parameters.Append cmdData.CreateParameter("IDLugar", adInteger, adParamInput, , IDLugar)
     Set mrecData = New ADODB.Recordset
     mrecData.Open cmdData, , adOpenKeyset, adLockOptimistic
-    mrecData.Properties("Update Criteria").Value = adCriteriaKey
+    mrecData.Properties("Update Criteria").value = adCriteriaKey
     Set cmdData = Nothing
     
     Screen.MousePointer = vbDefault
@@ -80,17 +81,18 @@ Public Function Load() As Boolean
     Else
         NoMatch = False
         
-        Indice = mrecData("Indice").Value
-        IDLugarGrupo = mrecData("IDLugarGrupo").Value
-        Kilometro = IIf(IsNull(mrecData("Kilometro").Value), -1, mrecData("Kilometro").Value)
-        Duracion = IIf(IsNull(mrecData("Duracion").Value), -1, mrecData("Duracion").Value)
-        Espera = IIf(IsNull(mrecData("Espera").Value), -1, mrecData("Espera").Value)
-        HoraInicio = IIf(IsNull(mrecData("HoraInicio").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("HoraInicio").Value)
-        HoraFin = IIf(IsNull(mrecData("HoraFin").Value), DATE_TIME_FIELD_NULL_VALUE, mrecData("HoraFin").Value)
-        FechaHoraCreacion = mrecData("FechaHoraCreacion").Value
-        IDUsuarioCreacion = mrecData("IDUsuarioCreacion").Value
-        FechaHoraModificacion = mrecData("FechaHoraModificacion").Value
-        IDUsuarioModificacion = mrecData("IDUsuarioModificacion").Value
+        Indice = mrecData("Indice").value
+        IDLugarGrupo = mrecData("IDLugarGrupo").value
+        Kilometro = CSM_Function.IfIsNull_MinusOne(mrecData("Kilometro").value)
+        Duracion = CSM_Function.IfIsNull_MinusOne(mrecData("Duracion").value)
+        Espera = CSM_Function.IfIsNull_MinusOne(mrecData("Espera").value)
+        HoraInicio = CSM_Function.IfIsNull_ZeroDate(mrecData("HoraInicio").value)
+        HoraFin = CSM_Function.IfIsNull_ZeroDate(mrecData("HoraFin").value)
+        DistanciaNotificacion = CSM_Function.IfIsNull_MinusOne(mrecData("DistanciaNotificacion").value)
+        FechaHoraCreacion = mrecData("FechaHoraCreacion").value
+        IDUsuarioCreacion = mrecData("IDUsuarioCreacion").value
+        FechaHoraModificacion = mrecData("FechaHoraModificacion").value
+        IDUsuarioModificacion = mrecData("IDUsuarioModificacion").value
     End If
     
     Screen.MousePointer = vbDefault
@@ -125,24 +127,25 @@ Public Function AddNew() As Boolean
     Set recData = New ADODB.Recordset
     recData.Open cmdData, , adOpenForwardOnly, adLockReadOnly
     Set cmdData = Nothing
-    Indice = Val(recData("IndiceMax").Value & "") + 10
+    Indice = Val(recData("IndiceMax").value & "") + 10
     recData.Close
     Set recData = Nothing
     
     mrecData.AddNew
-    mrecData("IDRuta").Value = IDRuta
-    mrecData("IDLugar").Value = IDLugar
-    mrecData("Indice").Value = Indice
-    mrecData("IDLugarGrupo").Value = IDLugarGrupo
-    mrecData("Kilometro").Value = IIf(Kilometro = -1, Null, Kilometro)
-    mrecData("Duracion").Value = IIf(Duracion = -1, Null, Duracion)
-    mrecData("Espera").Value = IIf(Espera = -1, Null, Espera)
-    mrecData("HoraInicio").Value = IIf(HoraInicio = DATE_TIME_FIELD_NULL_VALUE, Null, HoraInicio)
-    mrecData("HoraFin").Value = IIf(HoraFin = DATE_TIME_FIELD_NULL_VALUE, Null, HoraFin)
-    mrecData("FechaHoraCreacion").Value = Now
-    mrecData("IDUsuarioCreacion").Value = pUsuario.IDUsuario
-    mrecData("FechaHoraModificacion").Value = Now
-    mrecData("IDUsuarioModificacion").Value = pUsuario.IDUsuario
+    mrecData("IDRuta").value = IDRuta
+    mrecData("IDLugar").value = IDLugar
+    mrecData("Indice").value = Indice
+    mrecData("IDLugarGrupo").value = IDLugarGrupo
+    mrecData("Kilometro").value = CSM_Function.IfIsMinusOne_Null(Kilometro)
+    mrecData("Duracion").value = CSM_Function.IfIsMinusOne_Null(Duracion)
+    mrecData("Espera").value = CSM_Function.IfIsMinusOne_Null(Espera)
+    mrecData("HoraInicio").value = CSM_Function.IfIsZeroDate_Null(HoraInicio)
+    mrecData("HoraFin").value = CSM_Function.IfIsZeroDate_Null(HoraFin)
+    mrecData("DistanciaNotificacion").value = CSM_Function.IfIsMinusOne_Null(DistanciaNotificacion)
+    mrecData("FechaHoraCreacion").value = Now
+    mrecData("IDUsuarioCreacion").value = pUsuario.IDUsuario
+    mrecData("FechaHoraModificacion").value = Now
+    mrecData("IDUsuarioModificacion").value = pUsuario.IDUsuario
     mrecData.Update
     
     If RefreshList Then
@@ -176,17 +179,18 @@ Public Function Update() As Boolean
     
     Screen.MousePointer = vbHourglass
     
-    mrecData("IDRuta").Value = IDRuta
-    mrecData("IDLugar").Value = IDLugar
-    mrecData("Indice").Value = Indice
-    mrecData("IDLugarGrupo").Value = IDLugarGrupo
-    mrecData("Kilometro").Value = IIf(Kilometro = -1, Null, Kilometro)
-    mrecData("Duracion").Value = IIf(Duracion = -1, Null, Duracion)
-    mrecData("Espera").Value = IIf(Espera = -1, Null, Espera)
-    mrecData("HoraInicio").Value = IIf(HoraInicio = DATE_TIME_FIELD_NULL_VALUE, Null, CStr(HoraInicio))
-    mrecData("HoraFin").Value = IIf(HoraFin = DATE_TIME_FIELD_NULL_VALUE, Null, CStr(HoraFin))
-    mrecData("FechaHoraModificacion").Value = Now
-    mrecData("IDUsuarioModificacion").Value = pUsuario.IDUsuario
+    mrecData("IDRuta").value = IDRuta
+    mrecData("IDLugar").value = IDLugar
+    mrecData("Indice").value = Indice
+    mrecData("IDLugarGrupo").value = IDLugarGrupo
+    mrecData("Kilometro").value = CSM_Function.IfIsMinusOne_Null(Kilometro)
+    mrecData("Duracion").value = CSM_Function.IfIsMinusOne_Null(Duracion)
+    mrecData("Espera").value = CSM_Function.IfIsMinusOne_Null(Espera)
+    mrecData("HoraInicio").value = CSM_Function.IfIsZeroDate_Null(HoraInicio)
+    mrecData("HoraFin").value = CSM_Function.IfIsZeroDate_Null(HoraFin)
+    mrecData("DistanciaNotificacion").value = CSM_Function.IfIsMinusOne_Null(DistanciaNotificacion)
+    mrecData("FechaHoraModificacion").value = Now
+    mrecData("IDUsuarioModificacion").value = pUsuario.IDUsuario
     mrecData.Update
     
     If RefreshList Then
@@ -252,6 +256,7 @@ Private Sub InitializeValues()
     Espera = -1
     HoraInicio = DATE_TIME_FIELD_NULL_VALUE
     HoraFin = DATE_TIME_FIELD_NULL_VALUE
+    DistanciaNotificacion = -1
     FechaHoraCreacion = DATE_TIME_FIELD_NULL_VALUE
     IDUsuarioCreacion = 0
     FechaHoraCreacion = DATE_TIME_FIELD_NULL_VALUE
@@ -303,7 +308,7 @@ Public Sub ReIndex(ByVal Ascending As Boolean)
         If Ascending Then
             IndiceCurrent = 10
             Do While Not recData.EOF
-                recData("Indice").Value = IndiceCurrent
+                recData("Indice").value = IndiceCurrent
                 recData.Update
                 recData.MoveNext
                 IndiceCurrent = IndiceCurrent + 10
@@ -312,7 +317,7 @@ Public Sub ReIndex(ByVal Ascending As Boolean)
             recData.MoveLast
             IndiceCurrent = recData.RecordCount * 10
             Do While Not recData.BOF
-                recData("Indice").Value = IndiceCurrent
+                recData("Indice").value = IndiceCurrent
                 recData.Update
                 recData.MovePrevious
                 IndiceCurrent = IndiceCurrent - 10

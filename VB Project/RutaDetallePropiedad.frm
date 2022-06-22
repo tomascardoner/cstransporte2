@@ -4,10 +4,10 @@ Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmRutaDetallePropiedad 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Propiedades"
-   ClientHeight    =   4905
+   ClientHeight    =   5325
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   5145
+   ClientWidth     =   5850
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -22,12 +22,21 @@ Begin VB.Form frmRutaDetallePropiedad
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   4905
-   ScaleWidth      =   5145
+   ScaleHeight     =   5325
+   ScaleWidth      =   5850
+   Begin VB.TextBox txtDistanciaNotificacion 
+      Alignment       =   1  'Right Justify
+      Height          =   315
+      Left            =   2100
+      MaxLength       =   5
+      TabIndex        =   21
+      Top             =   4320
+      Width           =   795
+   End
    Begin VB.TextBox txtEspera 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   1380
+      Left            =   2100
       MaxLength       =   5
       TabIndex        =   12
       Top             =   3060
@@ -36,7 +45,7 @@ Begin VB.Form frmRutaDetallePropiedad
    Begin VB.TextBox txtDuracion 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   1380
+      Left            =   2100
       MaxLength       =   5
       TabIndex        =   9
       Top             =   2640
@@ -54,8 +63,8 @@ Begin VB.Form frmRutaDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   4740
-      TabIndex        =   20
+      Left            =   5460
+      TabIndex        =   25
       TabStop         =   0   'False
       ToolTipText     =   "Rutas"
       Top             =   960
@@ -73,8 +82,8 @@ Begin VB.Form frmRutaDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   4740
-      TabIndex        =   22
+      Left            =   5460
+      TabIndex        =   27
       TabStop         =   0   'False
       ToolTipText     =   "Lugares"
       Top             =   1800
@@ -92,8 +101,8 @@ Begin VB.Form frmRutaDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       Height          =   315
-      Left            =   4740
-      TabIndex        =   21
+      Left            =   5460
+      TabIndex        =   26
       TabStop         =   0   'False
       ToolTipText     =   "Lugares"
       Top             =   1380
@@ -102,7 +111,7 @@ Begin VB.Form frmRutaDetallePropiedad
    Begin VB.TextBox txtKilometro 
       Alignment       =   1  'Right Justify
       Height          =   315
-      Left            =   1380
+      Left            =   2100
       MaxLength       =   4
       TabIndex        =   7
       Top             =   2220
@@ -120,7 +129,7 @@ Begin VB.Form frmRutaDetallePropiedad
       EndProperty
       Height          =   75
       Left            =   120
-      TabIndex        =   24
+      TabIndex        =   29
       Top             =   780
       Width           =   4875
    End
@@ -128,23 +137,23 @@ Begin VB.Form frmRutaDetallePropiedad
       Cancel          =   -1  'True
       Caption         =   "Cancelar"
       Height          =   375
-      Left            =   3780
-      TabIndex        =   19
-      Top             =   4380
+      Left            =   4500
+      TabIndex        =   24
+      Top             =   4800
       Width           =   1215
    End
    Begin VB.CommandButton cmdOK 
       Caption         =   "Aceptar"
       Default         =   -1  'True
       Height          =   375
-      Left            =   2460
-      TabIndex        =   18
-      Top             =   4380
+      Left            =   3180
+      TabIndex        =   23
+      Top             =   4800
       Width           =   1215
    End
    Begin MSDataListLib.DataCombo datcboLugar 
       Height          =   330
-      Left            =   1380
+      Left            =   2100
       TabIndex        =   3
       Top             =   1380
       Width           =   3315
@@ -168,7 +177,7 @@ Begin VB.Form frmRutaDetallePropiedad
    End
    Begin MSDataListLib.DataCombo datcboLugarGrupo 
       Height          =   330
-      Left            =   1380
+      Left            =   2100
       TabIndex        =   5
       Top             =   1800
       Width           =   3315
@@ -192,7 +201,7 @@ Begin VB.Form frmRutaDetallePropiedad
    End
    Begin MSDataListLib.DataCombo datcboRuta 
       Height          =   330
-      Left            =   1380
+      Left            =   2100
       TabIndex        =   1
       Top             =   960
       Width           =   3315
@@ -216,7 +225,7 @@ Begin VB.Form frmRutaDetallePropiedad
    End
    Begin MSComCtl2.DTPicker dtpHoraInicio 
       Height          =   315
-      Left            =   1380
+      Left            =   2100
       TabIndex        =   15
       Top             =   3480
       Width           =   1155
@@ -234,14 +243,14 @@ Begin VB.Form frmRutaDetallePropiedad
       EndProperty
       CheckBox        =   -1  'True
       CustomFormat    =   "HH:mm"
-      Format          =   61603843
+      Format          =   60162051
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
    Begin MSComCtl2.DTPicker dtpHoraFin 
       Height          =   315
-      Left            =   1380
-      TabIndex        =   17
+      Left            =   2100
+      TabIndex        =   18
       Top             =   3900
       Width           =   1155
       _ExtentX        =   2037
@@ -258,34 +267,52 @@ Begin VB.Form frmRutaDetallePropiedad
       EndProperty
       CheckBox        =   -1  'True
       CustomFormat    =   "HH:mm"
-      Format          =   61603843
+      Format          =   60162051
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
+   Begin VB.Label lblDistanciaNotificacionMetros 
+      AutoSize        =   -1  'True
+      Caption         =   "metros"
+      Height          =   210
+      Left            =   3000
+      TabIndex        =   22
+      Top             =   4380
+      Width           =   495
+   End
+   Begin VB.Label lblDistanciaNotificacion 
+      AutoSize        =   -1  'True
+      Caption         =   "Distancia de notificación:"
+      Height          =   210
+      Left            =   120
+      TabIndex        =   20
+      Top             =   4380
+      Width           =   1800
+   End
    Begin VB.Label lblHoraFinHoras 
       AutoSize        =   -1  'True
-      Caption         =   "hs."
+      Caption         =   "horas"
       Height          =   210
-      Left            =   2640
-      TabIndex        =   26
+      Left            =   3360
+      TabIndex        =   19
       Top             =   3960
-      Width           =   225
+      Width           =   420
    End
    Begin VB.Label lblHoraInicioHoras 
       AutoSize        =   -1  'True
-      Caption         =   "hs."
+      Caption         =   "horas"
       Height          =   210
-      Left            =   2640
-      TabIndex        =   25
+      Left            =   3360
+      TabIndex        =   16
       Top             =   3540
-      Width           =   225
+      Width           =   420
    End
    Begin VB.Label lblHoraFin 
       AutoSize        =   -1  'True
       Caption         =   "Excluído hasta:"
       Height          =   210
       Left            =   120
-      TabIndex        =   16
+      TabIndex        =   17
       Top             =   3960
       Width           =   1095
    End
@@ -302,7 +329,7 @@ Begin VB.Form frmRutaDetallePropiedad
       AutoSize        =   -1  'True
       Caption         =   "minutos"
       Height          =   210
-      Left            =   2280
+      Left            =   3000
       TabIndex        =   13
       Top             =   3120
       Width           =   555
@@ -329,7 +356,7 @@ Begin VB.Form frmRutaDetallePropiedad
       AutoSize        =   -1  'True
       Caption         =   "minutos"
       Height          =   210
-      Left            =   2280
+      Left            =   3000
       TabIndex        =   10
       Top             =   2700
       Width           =   555
@@ -375,7 +402,7 @@ Begin VB.Form frmRutaDetallePropiedad
       Caption         =   "Ingrese aquí los Datos del Detalle de la Ruta"
       Height          =   210
       Left            =   780
-      TabIndex        =   23
+      TabIndex        =   28
       Top             =   300
       Width           =   3150
    End
@@ -431,6 +458,8 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef RutaDetalle As RutaDe
         If .HoraFin = DATE_TIME_FIELD_NULL_VALUE Then
             dtpHoraFin.value = Null
         End If
+        
+        txtDistanciaNotificacion.Text = IIf(.DistanciaNotificacion = -1, "", .DistanciaNotificacion)
     End With
     
     If WindowState = vbMinimized Then
@@ -607,6 +636,7 @@ Private Sub cmdOK_Click()
         .Espera = IIf(Trim(txtEspera.Text) = "", -1, Val(txtEspera.Text))
         .HoraInicio = IIf(IsNull(dtpHoraInicio.value), DATE_TIME_FIELD_NULL_VALUE, Format(dtpHoraInicio.value, "HH:mm"))
         .HoraFin = IIf(IsNull(dtpHoraFin.value), DATE_TIME_FIELD_NULL_VALUE, Format(dtpHoraFin.value, "HH:mm"))
+        .DistanciaNotificacion = IIf(Trim(txtDistanciaNotificacion.Text) = "", -1, Val(txtDistanciaNotificacion.Text))
         If mNew Then
             If Not .AddNew() Then
                 Exit Sub

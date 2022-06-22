@@ -58,11 +58,11 @@ Begin VB.Form frmPersonaPropiedad
       Alignment       =   1  'Right Justify
       Caption         =   "Habilitado a viajar:"
       Height          =   225
-      Left            =   7980
-      TabIndex        =   85
+      Left            =   6120
+      TabIndex        =   82
       Top             =   5760
       Value           =   1  'Checked
-      Width           =   1755
+      Width           =   1695
    End
    Begin VB.CommandButton cmdAuditoria 
       Caption         =   "Auditoría"
@@ -70,7 +70,7 @@ Begin VB.Form frmPersonaPropiedad
       Left            =   8760
       Picture         =   "PersonaPropiedad.frx":105E
       Style           =   1  'Graphical
-      TabIndex        =   90
+      TabIndex        =   89
       Top             =   60
       Width           =   975
    End
@@ -88,7 +88,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   330
       Left            =   8460
       Style           =   2  'Dropdown List
-      TabIndex        =   75
+      TabIndex        =   73
       Top             =   3180
       Width           =   930
    End
@@ -97,37 +97,24 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   315
       Left            =   5700
       MaxLength       =   20
-      TabIndex        =   73
+      TabIndex        =   71
       Top             =   3180
       Width           =   1455
    End
-   Begin VB.CommandButton cmdInternetDataSend 
-      Caption         =   "Enviar Datos por E-mail"
-      Height          =   570
-      Left            =   2340
-      Picture         =   "PersonaPropiedad.frx":1688
-      Style           =   1  'Graphical
-      TabIndex        =   37
-      TabStop         =   0   'False
-      Top             =   6360
-      Visible         =   0   'False
-      Width           =   2175
-   End
    Begin VB.CheckBox chkHabilitadoInternet 
       Alignment       =   1  'Right Justify
-      Caption         =   "Opera por Internet"
+      Caption         =   "Habilitado internet:"
       Height          =   210
-      Left            =   120
-      TabIndex        =   36
-      Top             =   6360
+      Left            =   8040
+      TabIndex        =   83
+      Top             =   5760
       Value           =   1  'Checked
-      Visible         =   0   'False
-      Width           =   1875
+      Width           =   1695
    End
    Begin VB.CommandButton cmdEmail 
       Height          =   315
       Left            =   4200
-      Picture         =   "PersonaPropiedad.frx":1C9A
+      Picture         =   "PersonaPropiedad.frx":1688
       Style           =   1  'Graphical
       TabIndex        =   31
       TabStop         =   0   'False
@@ -142,7 +129,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   5
       Left            =   7680
       MaxLength       =   5
-      TabIndex        =   65
+      TabIndex        =   63
       Top             =   2340
       Width           =   615
    End
@@ -152,7 +139,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   5
       Left            =   8280
       MaxLength       =   16
-      TabIndex        =   66
+      TabIndex        =   64
       Top             =   2340
       Width           =   1095
    End
@@ -162,7 +149,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   4
       Left            =   7680
       MaxLength       =   5
-      TabIndex        =   59
+      TabIndex        =   57
       Top             =   1980
       Width           =   615
    End
@@ -172,7 +159,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   4
       Left            =   8280
       MaxLength       =   16
-      TabIndex        =   60
+      TabIndex        =   58
       Top             =   1980
       Width           =   1095
    End
@@ -182,7 +169,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   3
       Left            =   7680
       MaxLength       =   5
-      TabIndex        =   53
+      TabIndex        =   51
       Top             =   1620
       Width           =   615
    End
@@ -192,7 +179,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   3
       Left            =   8280
       MaxLength       =   16
-      TabIndex        =   54
+      TabIndex        =   52
       Top             =   1620
       Width           =   1095
    End
@@ -202,7 +189,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   2
       Left            =   7680
       MaxLength       =   5
-      TabIndex        =   47
+      TabIndex        =   45
       Top             =   1260
       Width           =   615
    End
@@ -212,7 +199,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   2
       Left            =   8280
       MaxLength       =   16
-      TabIndex        =   48
+      TabIndex        =   46
       Top             =   1260
       Width           =   1095
    End
@@ -222,7 +209,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   1
       Left            =   7680
       MaxLength       =   5
-      TabIndex        =   41
+      TabIndex        =   39
       Top             =   900
       Width           =   615
    End
@@ -232,7 +219,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   1
       Left            =   8280
       MaxLength       =   16
-      TabIndex        =   42
+      TabIndex        =   40
       Top             =   900
       Width           =   1095
    End
@@ -249,7 +236,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Autorizado a Viajar sin Pagar al Contado:"
       Height          =   210
       Left            =   4800
-      TabIndex        =   80
+      TabIndex        =   78
       Top             =   4140
       Value           =   1  'Checked
       Width           =   3375
@@ -258,9 +245,9 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   315
       Index           =   5
       Left            =   9420
-      Picture         =   "PersonaPropiedad.frx":22AC
+      Picture         =   "PersonaPropiedad.frx":1C9A
       Style           =   1  'Graphical
-      TabIndex        =   67
+      TabIndex        =   65
       TabStop         =   0   'False
       ToolTipText     =   "Llamar"
       Top             =   2340
@@ -271,9 +258,9 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   315
       Index           =   4
       Left            =   9420
-      Picture         =   "PersonaPropiedad.frx":28BE
+      Picture         =   "PersonaPropiedad.frx":22AC
       Style           =   1  'Graphical
-      TabIndex        =   61
+      TabIndex        =   59
       TabStop         =   0   'False
       ToolTipText     =   "Llamar"
       Top             =   1980
@@ -284,9 +271,9 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   315
       Index           =   3
       Left            =   9420
-      Picture         =   "PersonaPropiedad.frx":2ED0
+      Picture         =   "PersonaPropiedad.frx":28BE
       Style           =   1  'Graphical
-      TabIndex        =   55
+      TabIndex        =   53
       TabStop         =   0   'False
       ToolTipText     =   "Llamar"
       Top             =   1620
@@ -297,9 +284,9 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   315
       Index           =   2
       Left            =   9420
-      Picture         =   "PersonaPropiedad.frx":34E2
+      Picture         =   "PersonaPropiedad.frx":2ED0
       Style           =   1  'Graphical
-      TabIndex        =   49
+      TabIndex        =   47
       TabStop         =   0   'False
       ToolTipText     =   "Llamar"
       Top             =   1260
@@ -310,9 +297,9 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   315
       Index           =   1
       Left            =   9420
-      Picture         =   "PersonaPropiedad.frx":3AF4
+      Picture         =   "PersonaPropiedad.frx":34E2
       Style           =   1  'Graphical
-      TabIndex        =   43
+      TabIndex        =   41
       TabStop         =   0   'False
       ToolTipText     =   "Llamar"
       Top             =   900
@@ -330,9 +317,9 @@ Begin VB.Form frmPersonaPropiedad
    Begin VB.CommandButton cmdPersonaCuentaCorrienteClear 
       Height          =   315
       Left            =   9420
-      Picture         =   "PersonaPropiedad.frx":4106
+      Picture         =   "PersonaPropiedad.frx":3AF4
       Style           =   1  'Graphical
-      TabIndex        =   79
+      TabIndex        =   77
       ToolTipText     =   "Borrar"
       Top             =   3720
       Width           =   315
@@ -340,9 +327,9 @@ Begin VB.Form frmPersonaPropiedad
    Begin VB.CommandButton cmdPersonaCuentaCorriente 
       Height          =   315
       Left            =   9060
-      Picture         =   "PersonaPropiedad.frx":4690
+      Picture         =   "PersonaPropiedad.frx":407E
       Style           =   1  'Graphical
-      TabIndex        =   78
+      TabIndex        =   76
       ToolTipText     =   "Buscar..."
       Top             =   3720
       Width           =   315
@@ -352,7 +339,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   315
       Left            =   5700
       Locked          =   -1  'True
-      TabIndex        =   77
+      TabIndex        =   75
       TabStop         =   0   'False
       Top             =   3720
       Width           =   3375
@@ -362,7 +349,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   5
       Left            =   6900
       MaxLength       =   15
-      TabIndex        =   64
+      TabIndex        =   62
       Top             =   2340
       Visible         =   0   'False
       Width           =   735
@@ -372,7 +359,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   4
       Left            =   6900
       MaxLength       =   15
-      TabIndex        =   58
+      TabIndex        =   56
       Top             =   1980
       Visible         =   0   'False
       Width           =   735
@@ -382,7 +369,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   3
       Left            =   6900
       MaxLength       =   15
-      TabIndex        =   52
+      TabIndex        =   50
       Top             =   1620
       Visible         =   0   'False
       Width           =   735
@@ -392,7 +379,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   2
       Left            =   6900
       MaxLength       =   15
-      TabIndex        =   46
+      TabIndex        =   44
       Top             =   1260
       Visible         =   0   'False
       Width           =   735
@@ -402,7 +389,7 @@ Begin VB.Form frmPersonaPropiedad
       Index           =   1
       Left            =   6900
       MaxLength       =   15
-      TabIndex        =   40
+      TabIndex        =   38
       Top             =   900
       Visible         =   0   'False
       Width           =   735
@@ -427,7 +414,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Administrativo"
       Height          =   195
       Left            =   8100
-      TabIndex        =   71
+      TabIndex        =   69
       Top             =   2880
       Width           =   1335
    End
@@ -435,7 +422,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Conductor"
       Height          =   195
       Left            =   6780
-      TabIndex        =   70
+      TabIndex        =   68
       Top             =   2880
       Width           =   1095
    End
@@ -443,7 +430,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Cliente"
       Height          =   195
       Left            =   5700
-      TabIndex        =   69
+      TabIndex        =   67
       Top             =   2880
       Width           =   855
    End
@@ -452,7 +439,7 @@ Begin VB.Form frmPersonaPropiedad
       Left            =   5700
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   82
+      TabIndex        =   80
       Top             =   4560
       Width           =   4035
    End
@@ -509,7 +496,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "&Activo"
       Height          =   210
       Left            =   4800
-      TabIndex        =   83
+      TabIndex        =   81
       Top             =   5760
       Value           =   1  'Checked
       Width           =   1095
@@ -525,7 +512,7 @@ Begin VB.Form frmPersonaPropiedad
    Begin VB.Frame fraLine 
       Height          =   75
       Left            =   120
-      TabIndex        =   89
+      TabIndex        =   88
       Top             =   660
       Width           =   9615
    End
@@ -534,7 +521,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Cancelar"
       Height          =   375
       Left            =   8460
-      TabIndex        =   87
+      TabIndex        =   86
       Top             =   6120
       Width           =   1275
    End
@@ -543,7 +530,7 @@ Begin VB.Form frmPersonaPropiedad
       Default         =   -1  'True
       Height          =   375
       Left            =   7080
-      TabIndex        =   86
+      TabIndex        =   85
       Top             =   6120
       Width           =   1275
    End
@@ -599,7 +586,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   330
       Index           =   1
       Left            =   5700
-      TabIndex        =   39
+      TabIndex        =   37
       Top             =   900
       Width           =   1155
       _ExtentX        =   2037
@@ -624,7 +611,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   330
       Index           =   2
       Left            =   5700
-      TabIndex        =   45
+      TabIndex        =   43
       Top             =   1260
       Width           =   1155
       _ExtentX        =   2037
@@ -649,7 +636,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   330
       Index           =   3
       Left            =   5700
-      TabIndex        =   51
+      TabIndex        =   49
       Top             =   1620
       Width           =   1155
       _ExtentX        =   2037
@@ -674,7 +661,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   330
       Index           =   4
       Left            =   5700
-      TabIndex        =   57
+      TabIndex        =   55
       Top             =   1980
       Width           =   1155
       _ExtentX        =   2037
@@ -699,7 +686,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   330
       Index           =   5
       Left            =   5700
-      TabIndex        =   63
+      TabIndex        =   61
       Top             =   2340
       Width           =   1155
       _ExtentX        =   2037
@@ -763,7 +750,7 @@ Begin VB.Form frmPersonaPropiedad
          Strikethrough   =   0   'False
       EndProperty
       CheckBox        =   -1  'True
-      Format          =   92930049
+      Format          =   59768833
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboCondicionIVA 
@@ -804,7 +791,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Día del Mes:"
       Height          =   210
       Left            =   7440
-      TabIndex        =   74
+      TabIndex        =   72
       Top             =   3240
       Width           =   870
    End
@@ -819,7 +806,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Sueldo:"
       Height          =   210
       Left            =   4800
-      TabIndex        =   72
+      TabIndex        =   70
       Top             =   3240
       Width           =   540
    End
@@ -882,7 +869,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Debitar a:"
       Height          =   210
       Left            =   4800
-      TabIndex        =   76
+      TabIndex        =   74
       Top             =   3780
       Width           =   690
    End
@@ -892,7 +879,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   210
       Index           =   5
       Left            =   4800
-      TabIndex        =   62
+      TabIndex        =   60
       Top             =   2400
       Width           =   810
    End
@@ -902,7 +889,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   210
       Index           =   4
       Left            =   4800
-      TabIndex        =   56
+      TabIndex        =   54
       Top             =   2040
       Width           =   810
    End
@@ -912,7 +899,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   210
       Index           =   3
       Left            =   4800
-      TabIndex        =   50
+      TabIndex        =   48
       Top             =   1680
       Width           =   810
    End
@@ -922,7 +909,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   210
       Index           =   2
       Left            =   4800
-      TabIndex        =   44
+      TabIndex        =   42
       Top             =   1320
       Width           =   810
    End
@@ -932,7 +919,7 @@ Begin VB.Form frmPersonaPropiedad
       Height          =   210
       Index           =   1
       Left            =   4800
-      TabIndex        =   38
+      TabIndex        =   36
       Top             =   960
       Width           =   810
    End
@@ -974,7 +961,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "&Tipo:"
       Height          =   210
       Left            =   4800
-      TabIndex        =   68
+      TabIndex        =   66
       Top             =   2880
       Width           =   345
    End
@@ -983,7 +970,7 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Notas:"
       Height          =   210
       Left            =   4800
-      TabIndex        =   81
+      TabIndex        =   79
       Top             =   4620
       Width           =   465
    End
@@ -1064,14 +1051,14 @@ Begin VB.Form frmPersonaPropiedad
       Caption         =   "Ingrese aquí los Datos de la Persona"
       Height          =   210
       Left            =   780
-      TabIndex        =   88
+      TabIndex        =   87
       Top             =   240
       Width           =   2640
    End
    Begin VB.Image imgIcon 
       Height          =   480
       Left            =   120
-      Picture         =   "PersonaPropiedad.frx":4C1A
+      Picture         =   "PersonaPropiedad.frx":4608
       Top             =   60
       Width           =   480
    End
@@ -1119,28 +1106,28 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
         txtDomicilioCalle2.Text = .DomicilioCalle2
         txtDomicilioCalle3.Text = .DomicilioCalle3
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboProvincia, "(SELECT ' ' AS IDProvincia, '----------' AS Nombre) UNION (SELECT IDProvincia, Nombre FROM Provincia) ORDER BY Nombre", "IDProvincia", "Nombre", "Provincias", cscpItemOrfirst, .IDProvincia) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboProvincia, "(SELECT ' ' AS IDProvincia, '----------' AS Nombre) UNION (SELECT IDProvincia, Nombre FROM Provincia) ORDER BY Nombre", "IDProvincia", "Nombre", "Provincias", cscpItemOrFirst, .IDProvincia) Then
             Unload Me
             Exit Sub
         End If
         datcboLocalidad.BoundText = .IDLocalidad
         txtCodigoPostal.Text = .CodigoPostal
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboDocumentoTipo, "(SELECT 0 AS IDDocumentoTipo, '------' AS Nombre, 1 AS Orden FROM DocumentoTipo) UNION (SELECT IDDocumentoTipo, Nombre, 2 AS Orden FROM DocumentoTipo WHERE Activo = 1) ORDER BY Orden, Nombre", "IDDocumentoTipo", "Nombre", "Tipos de Documento", cscpItemOrfirst, .IDDocumentoTipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboDocumentoTipo, "(SELECT 0 AS IDDocumentoTipo, '------' AS Nombre, 1 AS Orden FROM DocumentoTipo) UNION (SELECT IDDocumentoTipo, Nombre, 2 AS Orden FROM DocumentoTipo WHERE Activo = 1) ORDER BY Orden, Nombre", "IDDocumentoTipo", "Nombre", "Tipos de Documento", cscpItemOrFirst, .IDDocumentoTipo) Then
             Unload Me
             Exit Sub
         End If
         txtDocumentoNumero.Text = .DocumentoNumero
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboCondicionIVA, "(SELECT 0 AS IDCondicionIVA, '------------------------' AS Nombre, 1 AS Orden FROM CondicionIVA) UNION (SELECT IDCondicionIVA, Nombre, 2 AS Orden FROM CondicionIVA WHERE Activo = 1) ORDER BY Orden, Nombre", "IDCondicionIVA", "Nombre", "Condiciones de IVA", cscpItemOrfirst, .IDCondicionIVA) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboCondicionIVA, "(SELECT 0 AS IDCondicionIVA, '------------------------' AS Nombre, 1 AS Orden FROM CondicionIVA) UNION (SELECT IDCondicionIVA, Nombre, 2 AS Orden FROM CondicionIVA WHERE Activo = 1) ORDER BY Orden, Nombre", "IDCondicionIVA", "Nombre", "Condiciones de IVA", cscpItemOrFirst, .IDCondicionIVA) Then
             Unload Me
             Exit Sub
         End If
         
         If .FechaNacimiento = DATE_TIME_FIELD_NULL_VALUE Then
-            dtpFechaNacimiento.Value = Date
-            dtpFechaNacimiento.Value = Null
+            dtpFechaNacimiento.value = Date
+            dtpFechaNacimiento.value = Null
         Else
-            dtpFechaNacimiento.Value = .FechaNacimiento
+            dtpFechaNacimiento.value = .FechaNacimiento
         End If
         txtEmail.Text = .Email
         
@@ -1156,7 +1143,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
             txtPersonaACargo.Text = ""
         End If
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(1), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono1Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(1), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono1Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1164,7 +1151,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
         txtTelefonoArea(1).Text = .Telefono1Area
         txtTelefonoNumero(1).Text = .Telefono1Numero
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(2), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono2Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(2), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono2Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1172,7 +1159,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
         txtTelefonoArea(2).Text = .Telefono2Area
         txtTelefonoNumero(2).Text = .Telefono2Numero
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(3), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono3Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(3), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono3Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1180,7 +1167,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
         txtTelefonoArea(3).Text = .Telefono3Area
         txtTelefonoNumero(3).Text = .Telefono3Numero
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(4), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono4Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(4), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono4Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1188,7 +1175,7 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
         txtTelefonoArea(4).Text = .Telefono4Area
         txtTelefonoNumero(4).Text = .Telefono4Numero
         
-        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(5), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrfirst, .IDTelefono5Tipo) Then
+        If Not CSM_Control_DataCombo.FillFromSQL(datcboTelefonoTipo(5), "(SELECT 0 AS IDTelefonoTipo, '--------' AS Nombre, 1 AS Orden FROM TelefonoTipo) UNION (SELECT IDTelefonoTipo, Nombre, 2 AS Orden FROM TelefonoTipo WHERE Activo = 1) ORDER BY Orden, IDTelefonoTipo", "IDTelefonoTipo", "Nombre", "Tipos de Teléfonos", cscpItemOrFirst, .IDTelefono5Tipo) Then
             Unload Me
             Exit Sub
         End If
@@ -1196,11 +1183,11 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
         txtTelefonoArea(5).Text = .Telefono5Area
         txtTelefonoNumero(5).Text = .Telefono5Numero
         
-        optTipoCliente.Value = (.EntidadTipo = ENTIDAD_TIPO_PERSONA_CLIENTE)
-        optTipoConductor.Value = (.EntidadTipo = ENTIDAD_TIPO_PERSONA_CONDUCTOR)
-        optTipoAdministrativo.Value = (.EntidadTipo = ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO)
+        optTipoCliente.value = (.EntidadTipo = ENTIDAD_TIPO_PERSONA_CLIENTE)
+        optTipoConductor.value = (.EntidadTipo = ENTIDAD_TIPO_PERSONA_CONDUCTOR)
+        optTipoAdministrativo.value = (.EntidadTipo = ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO)
         If .EntidadTipo = "" Then
-            optTipoCliente.Value = True
+            optTipoCliente.value = True
         End If
         
         txtSueldoImporte.Text = .SueldoImporte
@@ -1223,12 +1210,12 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
             txtPersonaCuentaCorriente.Text = ""
         End If
         
-        chkPermiteViajarSinPagar.Value = IIf(.PermiteViajarSinPagar, vbChecked, vbUnchecked)
-        chkHabilitadoViajar.Value = IIf(.HabilitadoViajar, vbChecked, vbUnchecked)
-        chkHabilitadoInternet.Value = IIf(.HabilitadoInternet, vbChecked, vbUnchecked)
+        chkPermiteViajarSinPagar.value = IIf(.PermiteViajarSinPagar, vbChecked, vbUnchecked)
+        chkHabilitadoViajar.value = IIf(.HabilitadoViajar, vbChecked, vbUnchecked)
+        chkHabilitadoInternet.value = IIf(.HabilitadoInternet, vbChecked, vbUnchecked)
         txtNotas.Text = .Notas
-        chkActivo.Value = IIf(.Activo, vbChecked, vbUnchecked)
-        chkListaPasajero.Value = IIf(.ListaPasajero, vbChecked, vbUnchecked)
+        chkActivo.value = IIf(.Activo, vbChecked, vbUnchecked)
+        chkListaPasajero.value = IIf(.ListaPasajero, vbChecked, vbUnchecked)
         
         If Not mNew Then
             SetLastPersona .IDPersona, .ApellidoNombre
@@ -1250,14 +1237,6 @@ Public Sub LoadDataAndShow(ByRef ParentForm As Form, ByRef Persona As Persona)
     End If
     Show
     SetFocus
-End Sub
-
-Private Sub chkHabilitadoInternet_Click()
-    cmdInternetDataSend.Visible = (chkHabilitadoInternet.Value = vbChecked And Trim(txtEmail.Text) <> "")
-    
-    If chkHabilitadoInternet.Value = vbChecked And mPersona.Password = "" Then
-        mPersona.Password = mPersona.GenerateNewPassword()
-    End If
 End Sub
 
 Private Sub cmdCancel_Click()
@@ -1288,7 +1267,7 @@ Private Sub cmdInternetDataSend_Click()
     
     Const LINE_FEED As String = vbCrLf
     
-    If chkHabilitadoInternet.Value = vbUnchecked Then
+    If chkHabilitadoInternet.value = vbUnchecked Then
         MsgBox "Debe habilitar la Persona para que opere por Internet.", vbInformation, App.Title
         chkHabilitadoInternet.SetFocus
         Exit Sub
@@ -1380,7 +1359,7 @@ Private Sub cmdOK_Click()
             Exit Sub
         End If
     End If
-    If chkHabilitadoInternet.Value = vbChecked Then
+    If chkHabilitadoInternet.value = vbChecked Then
         If (datcboDocumentoTipo.BoundText = "------" Or Trim(txtDocumentoNumero.Text) = "") Then
             If MsgBox("Esta Persona no podrá operar en Internet hasta que no complete su Tipo y Número de Documento." & vbCr & vbCr & "¿Desea completar los Datos?", vbQuestion + vbYesNo, App.Title) = vbYes Then
                 datcboDocumentoTipo.SetFocus
@@ -1394,7 +1373,7 @@ Private Sub cmdOK_Click()
             End If
         End If
     End If
-    If optTipoAdministrativo.Value Then
+    If optTipoAdministrativo.value Then
         If Not IsNumeric(txtSueldoImporte.Text) Then
             MsgBox "El Sueldo ingresado es incorrecto.", vbInformation, App.Title
             txtSueldoImporte.SetFocus
@@ -1423,7 +1402,7 @@ Private Sub cmdOK_Click()
         .DocumentoNumero = txtDocumentoNumero.Text
         .IDCondicionIVA = IIf(datcboCondicionIVA.BoundText = "------", "", datcboCondicionIVA.BoundText)
         
-        .FechaNacimiento = IIf(IsNull(dtpFechaNacimiento.Value), DATE_TIME_FIELD_NULL_VALUE, dtpFechaNacimiento.Value)
+        .FechaNacimiento = IIf(IsNull(dtpFechaNacimiento.value), DATE_TIME_FIELD_NULL_VALUE, dtpFechaNacimiento.value)
         .Email = txtEmail.Text
         
         .IDPersonaACargo = Val(txtPersonaACargo.Tag)
@@ -1453,7 +1432,7 @@ Private Sub cmdOK_Click()
         .Telefono5Area = txtTelefonoArea(5).Text
         .Telefono5Numero = txtTelefonoNumero(5).Text
         
-        If optTipoAdministrativo.Value Then
+        If optTipoAdministrativo.value Then
             .SueldoImporte = CCur(txtSueldoImporte.Text)
             If cboSueldoDia.ListIndex = 29 Then
                 .SueldoDia = 99
@@ -1462,14 +1441,14 @@ Private Sub cmdOK_Click()
             End If
         End If
             
-        .EntidadTipo = IIf(optTipoCliente.Value, ENTIDAD_TIPO_PERSONA_CLIENTE, IIf(optTipoConductor.Value, ENTIDAD_TIPO_PERSONA_CONDUCTOR, ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO))
+        .EntidadTipo = IIf(optTipoCliente.value, ENTIDAD_TIPO_PERSONA_CLIENTE, IIf(optTipoConductor.value, ENTIDAD_TIPO_PERSONA_CONDUCTOR, ENTIDAD_TIPO_PERSONA_ADMINISTRATIVO))
         .IDPersonaCuentaCorriente = Val(txtPersonaCuentaCorriente.Tag)
-        .PermiteViajarSinPagar = (chkPermiteViajarSinPagar.Value = vbChecked)
-        .HabilitadoViajar = (chkHabilitadoViajar.Value = vbChecked)
-        .HabilitadoInternet = (chkHabilitadoInternet.Value = vbChecked)
+        .PermiteViajarSinPagar = (chkPermiteViajarSinPagar.value = vbChecked)
+        .HabilitadoViajar = (chkHabilitadoViajar.value = vbChecked)
+        .HabilitadoInternet = (chkHabilitadoInternet.value = vbChecked)
         .Notas = txtNotas.Text
-        .Activo = (chkActivo.Value = vbChecked)
-        .ListaPasajero = (chkListaPasajero.Value = vbChecked)
+        .Activo = (chkActivo.value = vbChecked)
+        .ListaPasajero = (chkListaPasajero.value = vbChecked)
         
         If mNew Then
             If Not .AddNew() Then
@@ -1637,7 +1616,6 @@ End Sub
 
 Private Sub txtEmail_Change()
     cmdEmail.Visible = (Trim(txtEmail.Text) <> "")
-    cmdInternetDataSend.Visible = (chkHabilitadoInternet.Value = vbChecked And Trim(txtEmail.Text) <> "" And mPersona.Password <> "")
 End Sub
 
 Private Sub txtEmail_GotFocus()
@@ -1832,10 +1810,10 @@ Public Sub PersonaSelected(ByVal IDPersona As Long, ByVal Tag As String)
 End Sub
 
 Private Sub ShowControls()
-    lblSueldoImporte.Visible = (optTipoAdministrativo.Value Or optTipoConductor.Value)
-    txtSueldoImporte.Visible = (optTipoAdministrativo.Value Or optTipoConductor.Value)
-    lblSueldoDia.Visible = (optTipoAdministrativo.Value Or optTipoConductor.Value)
-    cboSueldoDia.Visible = (optTipoAdministrativo.Value Or optTipoConductor.Value)
+    lblSueldoImporte.Visible = (optTipoAdministrativo.value Or optTipoConductor.value)
+    txtSueldoImporte.Visible = (optTipoAdministrativo.value Or optTipoConductor.value)
+    lblSueldoDia.Visible = (optTipoAdministrativo.value Or optTipoConductor.value)
+    cboSueldoDia.Visible = (optTipoAdministrativo.value Or optTipoConductor.value)
 End Sub
 
 Public Sub FillComboBoxDocumentoTipo()

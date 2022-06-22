@@ -33,7 +33,7 @@ Public Function AbrirViajeYDetalle(ByVal FechaHora As Date, ByVal IDRuta As Stri
             .mLoading = True
             .cboDiaSemana.ListIndex = 0
             .cboFecha.ListIndex = 1
-            .dtpFechaDesde.Value = FechaHora
+            .dtpFechaDesde.value = FechaHora
             .cboRuta.ListIndex = 0
             .mLoading = False
             .FillListView FechaHora, IDRuta
@@ -76,7 +76,7 @@ Public Sub BuscarYAbrirViajeActualPorVehiculo(ByVal IDVehiculo As Long, ByVal Ve
         recViaje.MoveLast
         recViaje.MoveFirst
         If recViaje.RecordCount = 1 Then
-            AbrirViajeYDetalle recViaje("FechaHora").Value, recViaje("IDRuta").Value
+            AbrirViajeYDetalle recViaje("FechaHora").value, recViaje("IDRuta").value
         Else
             frmViajeVehiculoSelect.LoadDataAndShow Now
             frmViajeVehiculoSelect.txtFechaHora.Text = Format(Now, "Short Date") & " " & Format(Now, "Short Time")
@@ -84,11 +84,11 @@ Public Sub BuscarYAbrirViajeActualPorVehiculo(ByVal IDVehiculo As Long, ByVal Ve
             frmViajeVehiculoSelect.lvwData.ListItems.Clear
             With recViaje
                 Do While Not .EOF
-                    Set ListItem = frmViajeVehiculoSelect.lvwData.ListItems.Add(, KEY_STRINGER & .Fields("FechaHora").Value & KEY_DELIMITER & .Fields("IDRuta").Value, WeekdayName(Weekday(.Fields("FechaHora").Value)))
-                    ListItem.SubItems(1) = Format(.Fields("FechaHora").Value, "Short Date")
-                    ListItem.SubItems(2) = Format(.Fields("FechaHora").Value, "Short Time")
-                    ListItem.SubItems(3) = .Fields("IDRuta").Value
-                    Viaje.Estado = .Fields("Estado").Value
+                    Set ListItem = frmViajeVehiculoSelect.lvwData.ListItems.Add(, KEY_STRINGER & .Fields("FechaHora").value & KEY_DELIMITER & .Fields("IDRuta").value, WeekdayName(Weekday(.Fields("FechaHora").value)))
+                    ListItem.SubItems(1) = Format(.Fields("FechaHora").value, "Short Date")
+                    ListItem.SubItems(2) = Format(.Fields("FechaHora").value, "Short Time")
+                    ListItem.SubItems(3) = .Fields("IDRuta").value
+                    Viaje.Estado = .Fields("Estado").value
                     ListItem.SubItems(4) = Viaje.Estado_ToString
                     ListItem.ForeColor = Viaje.Estado_ToColor
                     ListItem.Bold = Viaje.Estado_ToBold
@@ -163,17 +163,16 @@ Public Function LogAccionAdd(ByVal EntidadTipo As String, ByVal Descripcion As S
     End If
 End Function
 
-Public Function TextReplaceSystemVariables(ByVal Value As String, ByRef Persona As Persona) As String
-    Value = Replace(Value, "|@NL|", vbCrLf)
-    Value = Replace(Value, "|@CompanyName|", pParametro.CompanyName)
-    Value = Replace(Value, "|@WebSite_HyperLink_Main|", "http://" & pParametro.WebSite_HyperLink_Main)
-    Value = Replace(Value, "|@WebSite_HyperLink_Login|", "http://" & pParametro.WebSite_HyperLink_Login)
-    Value = Replace(Value, "|@WebSite_HyperLink_ChangePassword|", "http://" & pParametro.WebSite_HyperLink_ChangePassword)
+Public Function TextReplaceSystemVariables(ByVal value As String, ByRef Persona As Persona) As String
+    value = Replace(value, "|@NL|", vbCrLf)
+    value = Replace(value, "|@CompanyName|", pParametro.CompanyName)
+    value = Replace(value, "|@WebSite_HyperLink_Main|", "http://" & pParametro.WebSite_HyperLink_Main)
+    value = Replace(value, "|@WebSite_HyperLink_Login|", "http://" & pParametro.WebSite_HyperLink_Login)
+    value = Replace(value, "|@WebSite_HyperLink_ChangePassword|", "http://" & pParametro.WebSite_HyperLink_ChangePassword)
     If Not Persona Is Nothing Then
-        Value = Replace(Value, "|@DocumentoTipo|", Trim(Persona.IDDocumentoTipo))
-        Value = Replace(Value, "|@DocumentoNumero|", Persona.DocumentoNumero)
-        Value = Replace(Value, "|@Password|", Persona.Password)
+        value = Replace(value, "|@DocumentoTipo|", Trim(Persona.IDDocumentoTipo))
+        value = Replace(value, "|@DocumentoNumero|", Persona.DocumentoNumero)
     End If
     
-    TextReplaceSystemVariables = Value
+    TextReplaceSystemVariables = value
 End Function

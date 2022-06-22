@@ -59,7 +59,6 @@ Private mSueldoDia As Integer
 Private mPermiteViajarSinPagar As Boolean
 Private mHabilitadoViajar As Boolean
 Private mHabilitadoInternet As Boolean
-Private mPassword As String
 Private mNotas As String
 Private mActivo As Boolean
 Private mListaPasajero As Boolean
@@ -784,20 +783,6 @@ End Property
 '////////////////////////////////////////////////////////////////////////
 '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-Public Property Get Password() As String
-    Password = mPassword
-End Property
-
-Public Property Let Password(ByVal value As String)
-    If value <> mPassword Then
-        mIsDirty = True
-    End If
-    mPassword = value
-End Property
-
-'////////////////////////////////////////////////////////////////////////
-'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 Public Property Get Notas() As String
     Notas = mNotas
 End Property
@@ -1092,15 +1077,6 @@ Public Function Load() As Boolean
         mPermiteViajarSinPagar = IIf(EntidadTipo <> ENTIDAD_TIPO_PERSONA_CLIENTE, False, mrecData("PermiteViajarSinPagar").value)
         mHabilitadoViajar = mrecData("HabilitadoViajar").value
         mHabilitadoInternet = mrecData("HabilitadoInternet").value
-        
-        If IsNull(mrecData("Password").value) Or Trim(DocumentoNumero) = "" Then
-            mPassword = ""
-        Else
-            Set DES = New CSC_Encryption_DES
-            mPassword = DES.DecryptString(mrecData("Password").value, PASSWORD_ENCRYPTION_KEY)
-            Set DES = Nothing
-        End If
-        
         mNotas = mrecData("Notas").value & ""
         mActivo = mrecData("Activo").value
         mListaPasajero = mrecData("ListaPasajero").value
@@ -1250,15 +1226,6 @@ Public Function AddNew() As Boolean
     mrecData("Notas").value = IIf(Trim(Notas) = "", Null, Notas)
     mrecData("HabilitadoViajar").value = mHabilitadoViajar
     mrecData("HabilitadoInternet").value = HabilitadoInternet
-    
-    If Trim(Password) = "" Then
-        mrecData("Password").value = Null
-    Else
-        Set DES = New CSC_Encryption_DES
-        mrecData("Password").value = DES.EncryptString(Password, PASSWORD_ENCRYPTION_KEY, False)
-        Set DES = Nothing
-    End If
-    
     mrecData("Activo").value = Activo
     mrecData("ListaPasajero").value = ListaPasajero
     mrecData("FechaHoraCreacion").value = Now
@@ -1407,15 +1374,6 @@ Public Function Update() As Boolean
     mrecData("Notas").value = IIf(Trim(Notas) = "", Null, Notas)
     mrecData("HabilitadoViajar").value = mHabilitadoViajar
     mrecData("HabilitadoInternet").value = HabilitadoInternet
-    
-    If Trim(Password) = "" Then
-        mrecData("Password").value = Null
-    Else
-        Set DES = New CSC_Encryption_DES
-        mrecData("Password").value = DES.EncryptString(Password, PASSWORD_ENCRYPTION_KEY, False)
-        Set DES = Nothing
-    End If
-    
     mrecData("Activo").value = Activo
     mrecData("ListaPasajero").value = ListaPasajero
     mrecData("FechaHoraModificacion").value = Now
@@ -1561,8 +1519,7 @@ Private Sub InitializeValues()
     mSueldoDia = 0
     mPermiteViajarSinPagar = False
     mHabilitadoViajar = True
-    mHabilitadoInternet = False
-    mPassword = ""
+    mHabilitadoInternet = True
     mNotas = ""
     mActivo = True
     mListaPasajero = False

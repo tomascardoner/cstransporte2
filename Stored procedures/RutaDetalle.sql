@@ -9,7 +9,7 @@ CREATE PROCEDURE dbo.usp_RutaDetalle_Data
 	@IDRuta char(20),
 	@IDLugar int AS
 
-	SELECT IDRuta, IDLugar, Indice, IDLugarGrupo, Kilometro, Duracion, Espera, HoraInicio, HoraFin, FechaHoraCreacion, IDUsuarioCreacion, FechaHoraModificacion, IDUsuarioModificacion
+	SELECT IDRuta, IDLugar, Indice, IDLugarGrupo, Kilometro, Duracion, Espera, HoraInicio, HoraFin, DistanciaNotificacion, FechaHoraCreacion, IDUsuarioCreacion, FechaHoraModificacion, IDUsuarioModificacion
 		FROM RutaDetalle
 		WHERE IDRuta = @IDRuta AND IDLugar = @IDLugar
 
@@ -30,7 +30,7 @@ GO
 CREATE PROCEDURE dbo.usp_RutaDetalle_List
 	@IDRuta_FILTER char(20) AS
 
-	SELECT IDRuta, IDLugar, Indice, IDLugarGrupo, Kilometro, Duracion, Espera, HoraInicio, HoraFin, FechaHoraCreacion, IDUsuarioCreacion, FechaHoraModificacion, IDUsuarioModificacion
+	SELECT IDRuta, IDLugar, Indice, IDLugarGrupo, Kilometro, Duracion, Espera, HoraInicio, HoraFin, DistanciaNotificacion, FechaHoraCreacion, IDUsuarioCreacion, FechaHoraModificacion, IDUsuarioModificacion
 		FROM RutaDetalle
 		WHERE IDRuta = @IDRuta_FILTER
 		ORDER BY Indice
