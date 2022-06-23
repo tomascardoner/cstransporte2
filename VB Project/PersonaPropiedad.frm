@@ -750,7 +750,7 @@ Begin VB.Form frmPersonaPropiedad
          Strikethrough   =   0   'False
       EndProperty
       CheckBox        =   -1  'True
-      Format          =   59768833
+      Format          =   93323265
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboCondicionIVA 
@@ -1357,20 +1357,6 @@ Private Sub cmdOK_Click()
             MsgBox "La Dirección de E-mail de la Persona es incorrecta porque no contiene la arroba '@'.", vbInformation, App.Title
             txtEmail.SetFocus
             Exit Sub
-        End If
-    End If
-    If chkHabilitadoInternet.value = vbChecked Then
-        If (datcboDocumentoTipo.BoundText = "------" Or Trim(txtDocumentoNumero.Text) = "") Then
-            If MsgBox("Esta Persona no podrá operar en Internet hasta que no complete su Tipo y Número de Documento." & vbCr & vbCr & "¿Desea completar los Datos?", vbQuestion + vbYesNo, App.Title) = vbYes Then
-                datcboDocumentoTipo.SetFocus
-                Exit Sub
-            End If
-        End If
-        If Trim(txtEmail.Text) = "" Then
-            If MsgBox("Esta Persona no podrá operar en Internet hasta que no complete su dirección de E-mail." & vbCr & vbCr & "¿Desea completar los Datos?", vbQuestion + vbYesNo, App.Title) = vbYes Then
-                txtEmail.SetFocus
-                Exit Sub
-            End If
         End If
     End If
     If optTipoAdministrativo.value Then
