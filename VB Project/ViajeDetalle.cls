@@ -74,6 +74,7 @@ Private mIDUsuarioCreacion As Integer
 Private mFechaHoraModificacion As Date
 Private mIDUsuarioModificacion As Integer
 Private mIDUsuarioCancelacion As String
+Private mAsistenciaFechaHora As Date
 
 'STATE VARIABLES
 Private mIsNew As Boolean
@@ -1184,6 +1185,32 @@ End Property
 '////////////////////////////////////////////////////////////////////////
 '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+Public Property Get AsistenciaFechaHora() As Date
+    AsistenciaFechaHora = mAsistenciaFechaHora
+End Property
+
+Public Property Get AsistenciaFechaHora_Formatted() As String
+    AsistenciaFechaHora_Formatted = Format(mAsistenciaFechaHora, "Short Date") & " " & Format(mAsistenciaFechaHora, "Short Time")
+End Property
+
+Public Property Get AsistenciaFechaHora_FormattedAsDate() As String
+    AsistenciaFechaHora_FormattedAsDate = Format(mAsistenciaFechaHora, "Short Date")
+End Property
+
+Public Property Get AsistenciaFechaHora_FormattedAsTime() As String
+    AsistenciaFechaHora_FormattedAsTime = Format(mAsistenciaFechaHora, "Short Time")
+End Property
+
+Public Property Let AsistenciaFechaHora(ByVal value As Date)
+    If value <> mAsistenciaFechaHora Then
+        mIsDirty = True
+    End If
+    mAsistenciaFechaHora = value
+End Property
+
+'////////////////////////////////////////////////////////////////////////
+'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 Public Property Get IsNew() As Boolean
     IsNew = mIsNew
 End Property
@@ -1372,7 +1399,7 @@ Public Function Load() As Boolean
         mTelefono = mrecData("Telefono").value & ""
         mDejarTraer = mrecData("DejarTraer").value & ""
         mEntregada = mrecData("Entregada").value
-        mEntregadaFechaHora = IIf(IsNull(mrecData("EntregadaFechaHora").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("EntregadaFechaHora").value)
+        mEntregadaFechaHora = CSM_Function.IfIsNull_ZeroDate(mrecData("EntregadaFechaHora").value)
         mRetira = mrecData("Retira").value & ""
         mReservaTipo = mrecData("ReservaTipo").value
         mCreadoEnProgreso = mrecData("CreadoEnProgreso").value
@@ -1380,13 +1407,14 @@ Public Function Load() As Boolean
         'mReservadoPorID = Val(mrecData("ReservadoPorID").value & "")
         mReservadoPor = mrecData("ReservadoPor").value & ""
         mCanceladoPor = mrecData("CanceladoPor").value & ""
-        mCanceladoFechaHora = IIf(IsNull(mrecData("CanceladoFechaHora").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("CanceladoFechaHora").value)
+        mCanceladoFechaHora = CSM_Function.IfIsNull_ZeroDate(mrecData("CanceladoFechaHora").value)
         mNotas = mrecData("Notas").value & ""
         mFechaHoraCreacion = mrecData("FechaHoraCreacion").value
         mIDUsuarioCreacion = mrecData("IDUsuarioCreacion").value
         mFechaHoraModificacion = mrecData("FechaHoraModificacion").value
         mIDUsuarioModificacion = mrecData("IDUsuarioModificacion").value
         mIDUsuarioCancelacion = mrecData("IDUsuarioCancelacion").value & ""
+        mAsistenciaFechaHora = CSM_Function.IfIsNull_ZeroDate(mrecData("AsistenciaFechaHora").value)
     End If
     mFechaHoraOriginal = FechaHora
     mIDRutaOriginal = IDRuta
@@ -1476,7 +1504,7 @@ Public Function LoadByIDViajeDetalle() As Boolean
         mTelefono = mrecData("Telefono").value & ""
         mDejarTraer = mrecData("DejarTraer").value & ""
         mEntregada = mrecData("Entregada").value
-        mEntregadaFechaHora = IIf(IsNull(mrecData("EntregadaFechaHora").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("EntregadaFechaHora").value)
+        mEntregadaFechaHora = CSM_Function.IfIsNull_ZeroDate(mrecData("EntregadaFechaHora").value)
         mRetira = mrecData("Retira").value & ""
         mReservaTipo = mrecData("ReservaTipo").value
         mCreadoEnProgreso = mrecData("CreadoEnProgreso").value
@@ -1484,13 +1512,14 @@ Public Function LoadByIDViajeDetalle() As Boolean
         'mReservadoPorID = Val(mrecData("ReservadoPorID").value & "")
         mReservadoPor = mrecData("ReservadoPor").value & ""
         mCanceladoPor = mrecData("CanceladoPor").value & ""
-        mCanceladoFechaHora = IIf(IsNull(mrecData("CanceladoFechaHora").value), DATE_TIME_FIELD_NULL_VALUE, mrecData("CanceladoFechaHora").value)
+        mCanceladoFechaHora = CSM_Function.IfIsNull_ZeroDate(mrecData("CanceladoFechaHora").value)
         mNotas = mrecData("Notas").value & ""
         mFechaHoraCreacion = mrecData("FechaHoraCreacion").value
         mIDUsuarioCreacion = mrecData("IDUsuarioCreacion").value
         mFechaHoraModificacion = mrecData("FechaHoraModificacion").value
         mIDUsuarioModificacion = mrecData("IDUsuarioModificacion").value
         mIDUsuarioCancelacion = mrecData("IDUsuarioCancelacion").value & ""
+        mAsistenciaFechaHora = CSM_Function.IfIsNull_ZeroDate(mrecData("AsistenciaFechaHora").value)
     End If
     mFechaHoraOriginal = FechaHora
     mIDRutaOriginal = IDRuta
@@ -1777,7 +1806,7 @@ Public Function Update() As Boolean
     cmdData.Parameters.Append cmdData.CreateParameter("@ReservaTipo", adChar, adParamInput, 2, mReservaTipo)
     cmdData.Parameters.Append cmdData.CreateParameter("@CreadoEnProgreso", adBoolean, adParamInput, , mCreadoEnProgreso)
     cmdData.Parameters.Append cmdData.CreateParameter("@ModificadoEnProgreso", adBoolean, adParamInput, , mModificadoEnProgreso)
-    'cmdData.Parameters.Append cmdData.CreateParameter("@ReservadoPorID", adInteger, adParamInput, , IIf(mReservadoPorID = 0, Null, mReservadoPorID))
+    cmdData.Parameters.Append cmdData.CreateParameter("@ReservadoPorID", adInteger, adParamInput, , CSM_Function.IfIsZero_Null(mReservadoPorID))
     cmdData.Parameters.Append cmdData.CreateParameter("@ReservadoPor", adVarChar, adParamInput, 100, IIf(Trim(mReservadoPor) = "", Null, mReservadoPor))
     cmdData.Parameters.Append cmdData.CreateParameter("@CanceladoPor", adVarChar, adParamInput, 100, IIf(Trim(mCanceladoPor) = "", Null, mCanceladoPor))
     cmdData.Parameters.Append cmdData.CreateParameter("@CanceladoFechaHora", adDate, adParamInput, , IIf(mCanceladoFechaHora = DATE_TIME_FIELD_NULL_VALUE, Null, mCanceladoFechaHora))
@@ -2307,6 +2336,7 @@ Private Sub InitializeValues()
     mFechaHoraModificacion = DATE_TIME_FIELD_NULL_VALUE
     mIDUsuarioModificacion = 0
     mIDUsuarioCancelacion = ""
+    mAsistenciaFechaHora = DATE_TIME_FIELD_NULL_VALUE
     
     Set mCPagos = New Collection
 
