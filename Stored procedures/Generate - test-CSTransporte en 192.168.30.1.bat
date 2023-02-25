@@ -6,7 +6,7 @@ SET ISQL_EXE="sqlcmd"
 SET SERVER_NAME=192.168.30.1
 SET USERID=sa
 SET PASSWORD=Amste1275Rdam
-SET DATABASE=test-CSTransporte
+SET DATABASE=CSTransporte_TuBus_Gasoducto
 
 ECHO ------------------------------------------
 ECHO - Generando Stored Procedures de Alarmas -
@@ -116,16 +116,40 @@ ECHO -------------------------------------------------------
 CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "PersonaPrepago.sql"
 ECHO.
 ECHO.
+ECHO -----------------------------------------------------------------
+ECHO - Generando Stored Procedures de Reportes - Planillas de Viajes -
+ECHO -----------------------------------------------------------------
+CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Report - ViajePlanilla.sql"
+ECHO.
+ECHO.
 ECHO -------------------------------------------
 ECHO - Generando Stored Procedures de Reportes -
 ECHO -------------------------------------------
 CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Report.sql"
 ECHO.
 ECHO.
-ECHO -----------------------------------------------------------------
-ECHO - Generando Stored Procedures de Reportes - Planillas de Viajes -
-ECHO -----------------------------------------------------------------
-CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Report - ViajePlanilla.sql"
+ECHO ----------------------------------------------------------
+ECHO - Generando Stored Procedures de Reportes - Reservas Web -
+ECHO ----------------------------------------------------------
+CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Reporte - ReservasWeb.sql"
+ECHO.
+ECHO.
+ECHO ---------------------------------------------------------------------------
+ECHO - Generando Stored Procedures de Reportes - Reservas Web con pago vencido -
+ECHO ---------------------------------------------------------------------------
+CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Reporte - ReservasWebConPagoVencido.sql"
+ECHO.
+ECHO.
+ECHO ----------------------------------------------------------------------------------
+ECHO - Generando Stored Procedures de Reportes - Reservas Web pagadas por MercadoPago -
+ECHO ----------------------------------------------------------------------------------
+CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Reporte - ReservasWebPagadasPorMP.sql"
+ECHO.
+ECHO.
+ECHO -------------------------------------------------------------------------
+ECHO - Generando Stored Procedures de Reportes - Viajes por mes por pasajero -
+ECHO -------------------------------------------------------------------------
+CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Reporte - Viaje PasajerosViajesImporte por mes.sql"
 ECHO.
 ECHO.
 ECHO ----------------------------------------
@@ -147,7 +171,7 @@ CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Rut
 ECHO.
 ECHO.
 ECHO ---------------------------------------------------
-ECHO - Generando Stored Procedures de Semáforo General -
+ECHO - Generando Stored Procedures de Semaforo General -
 ECHO ---------------------------------------------------
 CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "SemaforoGeneral.sql"
 ECHO.
@@ -174,6 +198,12 @@ ECHO -------------------------------------------------------------
 ECHO - Generando Stored Procedures de Mantenimiento de Vehiculos -
 ECHO -------------------------------------------------------------
 CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "VehiculoMantenimiento.sql"
+ECHO.
+ECHO.
+ECHO ------------------------------------------------------------------------
+ECHO - Generando Stored Procedures de Viajes - Horas Viajadas por Conductor -
+ECHO ------------------------------------------------------------------------
+CALL %ISQL_EXE% -S %SERVER_NAME% -U %USERID% -P %PASSWORD% -d %DATABASE% -i "Viaje - Horas Viajadas por Conductor.sql"
 ECHO.
 ECHO.
 ECHO -----------------------------------------

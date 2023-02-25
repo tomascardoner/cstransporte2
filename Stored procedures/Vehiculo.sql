@@ -37,8 +37,6 @@ CREATE PROCEDURE dbo.usp_Vehiculo_List
 		WHERE @Activo IS NULL OR v.Activo = @Activo
 		ORDER BY vc.Nombre
 GO
-GRANT SELECT ON CSTransporte.dbo.VehiculoConfiguracion TO cstransporte
-GO
 
 
 ------------------------------------------------------------------------------------------
