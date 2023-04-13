@@ -7,7 +7,7 @@ Begin VB.Form frmViaje
    ClientHeight    =   5565
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   5850
+   ClientWidth     =   10800
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -23,7 +23,7 @@ Begin VB.Form frmViaje
    LockControls    =   -1  'True
    MDIChild        =   -1  'True
    ScaleHeight     =   5565
-   ScaleWidth      =   5850
+   ScaleWidth      =   10800
    Begin MSComctlLib.Toolbar tlbPin 
       Height          =   330
       Left            =   60
@@ -48,17 +48,17 @@ Begin VB.Form frmViaje
    End
    Begin ComCtl3.CoolBar cbrMain 
       Align           =   1  'Align Top
-      Height          =   1770
+      Height          =   1020
       Left            =   0
       TabIndex        =   2
       Top             =   0
-      Width           =   5850
-      _ExtentX        =   10319
-      _ExtentY        =   3122
+      Width           =   10800
+      _ExtentX        =   19050
+      _ExtentY        =   1799
       BandCount       =   6
       FixedOrder      =   -1  'True
-      _CBWidth        =   5850
-      _CBHeight       =   1770
+      _CBWidth        =   10800
+      _CBHeight       =   1020
       _Version        =   "6.7.9782"
       Child1          =   "tlbMain"
       MinHeight1      =   570
@@ -104,12 +104,12 @@ Begin VB.Form frmViaje
       Begin VB.PictureBox picFilterRutaGrupo 
          BorderStyle     =   0  'None
          Height          =   360
-         Left            =   165
+         Left            =   10770
          ScaleHeight     =   360
-         ScaleWidth      =   600
+         ScaleWidth      =   15
          TabIndex        =   27
-         Top             =   1020
-         Width           =   600
+         Top             =   135
+         Width           =   15
          Begin VB.OptionButton optRutaGrupo 
             Height          =   315
             Index           =   0
@@ -132,12 +132,12 @@ Begin VB.Form frmViaje
             Strikethrough   =   0   'False
          EndProperty
          Height          =   330
-         Left            =   165
+         Left            =   8085
          ScaleHeight     =   330
-         ScaleWidth      =   5595
+         ScaleWidth      =   2625
          TabIndex        =   24
-         Top             =   1410
-         Width           =   5595
+         Top             =   645
+         Width           =   2625
          Begin VB.ComboBox cboFilterEstado 
             Height          =   330
             Left            =   600
@@ -168,12 +168,12 @@ Begin VB.Form frmViaje
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   990
+         Left            =   165
          ScaleHeight     =   360
-         ScaleWidth      =   4770
+         ScaleWidth      =   7695
          TabIndex        =   13
-         Top             =   1020
-         Width           =   4770
+         Top             =   630
+         Width           =   7695
          Begin VB.ComboBox cboRuta 
             Height          =   330
             Left            =   480
@@ -204,11 +204,11 @@ Begin VB.Form frmViaje
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   165
+         Left            =   3840
          ScaleHeight     =   360
          ScaleWidth      =   6705
          TabIndex        =   7
-         Top             =   630
+         Top             =   135
          Width           =   6705
          Begin VB.TextBox txtDiaSemana 
             Height          =   315
@@ -373,7 +373,7 @@ Begin VB.Form frmViaje
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   108920833
+            Format          =   111411201
             CurrentDate     =   36950
          End
          Begin MSComCtl2.DTPicker dtpFechaHasta 
@@ -395,7 +395,7 @@ Begin VB.Form frmViaje
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   108920833
+            Format          =   111411201
             CurrentDate     =   36950
          End
          Begin VB.Label lblFechaAnd 
@@ -430,12 +430,12 @@ Begin VB.Form frmViaje
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   3195
+         Left            =   1920
          ScaleHeight     =   360
-         ScaleWidth      =   2565
+         ScaleWidth      =   1695
          TabIndex        =   4
          Top             =   135
-         Width           =   2565
+         Width           =   1695
          Begin VB.ComboBox cboDiaSemana 
             Height          =   330
             Left            =   360
@@ -459,8 +459,8 @@ Begin VB.Form frmViaje
          Left            =   30
          TabIndex        =   3
          Top             =   30
-         Width           =   2940
-         _ExtentX        =   5186
+         Width           =   1665
+         _ExtentX        =   2937
          _ExtentY        =   1005
          ButtonWidth     =   2381
          ButtonHeight    =   1005
@@ -524,8 +524,8 @@ Begin VB.Form frmViaje
       Left            =   0
       TabIndex        =   1
       Top             =   5205
-      Width           =   5850
-      _ExtentX        =   10319
+      Width           =   10800
+      _ExtentX        =   19050
       _ExtentY        =   635
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -538,7 +538,7 @@ Begin VB.Form frmViaje
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   9102
+            Object.Width           =   17833
             Key             =   "TEXT"
          EndProperty
       EndProperty
@@ -557,8 +557,8 @@ Begin VB.Form frmViaje
       Left            =   60
       TabIndex        =   0
       Top             =   1440
-      Width           =   3795
-      _ExtentX        =   6694
+      Width           =   5955
+      _ExtentX        =   10504
       _ExtentY        =   6376
       View            =   3
       LabelEdit       =   1
@@ -704,25 +704,25 @@ Public Sub FillListView(ByVal FechaHora As Date, ByVal IDRuta As String)
     Select Case cboFecha.ListIndex
         Case 0  'ALL
         Case 1  'EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora BETWEEN '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora BETWEEN '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 2  'GREATER
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora > '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora > '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 3  'GREATER OR EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora >= '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora >= '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00'"
         Case 4  'MINOR
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora < '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora < '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00'"
         Case 5  'MINOR OR EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora <= '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora <= '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 6  'NOT EQUAL
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora NOT BETWEEN '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora NOT BETWEEN '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 23:59:00'"
         Case 7  'BETWEEN
-            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora BETWEEN '" & Format(dtpFechaDesde.Value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaHasta.Value, "yyyy/mm/dd") & " 23:59:00'"
+            SQL_Where = SQL_Where & IIf(SQL_Where = "", " WHERE ", " AND ") & "Viaje.FechaHora BETWEEN '" & Format(dtpFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND '" & Format(dtpFechaHasta.value, "yyyy/mm/dd") & " 23:59:00'"
     End Select
     
     'RUTA Y GRUPO DE RUTAS
     If cboRuta.ListIndex = 0 Then
         For Index = 0 To optRutaGrupo.Count - 1
-            If optRutaGrupo(Index).Value Then
+            If optRutaGrupo(Index).value Then
                 IDRutaGrupo = Val(optRutaGrupo(Index).Tag)
                 Exit For
             End If
@@ -791,25 +791,25 @@ Public Sub FillListView(ByVal FechaHora As Date, ByVal IDRuta As String)
     With recData
         If Not .EOF Then
             Do While Not .EOF
-                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("FechaHora").Value & KEY_DELIMITER & RTrim(.Fields("IDRuta").Value), WeekdayName(Weekday(.Fields("FechaHora").Value)))
-                ListItem.SubItems(1) = Format(.Fields("FechaHora").Value, "Short Date")
-                ListItem.SubItems(2) = Format(.Fields("FechaHora").Value, "Short Time")
-                ListItem.SubItems(3) = RTrim(.Fields("IDRuta").Value) & IIf(RTrim(.Fields("IDRuta").Value) = pParametro.Ruta_ID_Otra Or RTrim(.Fields("IDRuta").Value) = pParametro.Ruta_Paquete_ID, ": " & .Fields("RutaOtra").Value, "")
-                ListItem.SubItems(4) = .Fields("Vehiculo").Value & ""
-                ListItem.SubItems(5) = .Fields("Conductor").Value & ""
-                Viaje.Estado = .Fields("Estado").Value
+                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("FechaHora").value & KEY_DELIMITER & RTrim(.Fields("IDRuta").value), WeekdayName(Weekday(.Fields("FechaHora").value)))
+                ListItem.SubItems(1) = Format(.Fields("FechaHora").value, "Short Date")
+                ListItem.SubItems(2) = Format(.Fields("FechaHora").value, "Short Time")
+                ListItem.SubItems(3) = RTrim(.Fields("IDRuta").value) & IIf(RTrim(.Fields("IDRuta").value) = pParametro.Ruta_ID_Otra Or RTrim(.Fields("IDRuta").value) = pParametro.Ruta_Paquete_ID, ": " & .Fields("RutaOtra").value, "")
+                ListItem.SubItems(4) = .Fields("Vehiculo").value & ""
+                ListItem.SubItems(5) = .Fields("Conductor").value & ""
+                Viaje.Estado = .Fields("Estado").value
                 If pParametro.Viaje_Permite_2_Conductores Then
-                    ListItem.SubItems(6) = .Fields("Conductor2").Value & ""
+                    ListItem.SubItems(6) = .Fields("Conductor2").value & ""
                     ListItem.SubItems(7) = Viaje.Estado_ToString
-                    ListItem.SubItems(8) = .Fields("AsientoLibre").Value & ""
-                    ListItem.SubItems(9) = .Fields("Notas").Value & ""
+                    ListItem.SubItems(8) = .Fields("AsientoLibre").value & ""
+                    ListItem.SubItems(9) = .Fields("Notas").value & ""
                 Else
                     ListItem.SubItems(6) = Viaje.Estado_ToString
-                    ListItem.SubItems(7) = .Fields("AsientoLibre").Value & ""
-                    ListItem.SubItems(8) = .Fields("Notas").Value & ""
+                    ListItem.SubItems(7) = .Fields("AsientoLibre").value & ""
+                    ListItem.SubItems(8) = .Fields("Notas").value & ""
                 End If
                 
-                If RTrim(.Fields("IDRuta").Value) = pParametro.Ruta_ID_Otra Or RTrim(.Fields("IDRuta").Value) = pParametro.Ruta_Paquete_ID Then
+                If RTrim(.Fields("IDRuta").value) = pParametro.Ruta_ID_Otra Or RTrim(.Fields("IDRuta").value) = pParametro.Ruta_Paquete_ID Then
                     ListItem.Bold = pParametro.Viaje_Especial_Bold
                     ListItem.ForeColor = pParametro.Viaje_Especial_Color
                 Else
@@ -867,7 +867,7 @@ Public Sub FillComboBoxRuta()
     
     'GRUPO DE RUTAS
     For Index = 0 To optRutaGrupo.Count - 1
-        If optRutaGrupo(Index).Value Then
+        If optRutaGrupo(Index).value Then
             IDRutaGrupo = Val(optRutaGrupo(Index).Tag)
             Exit For
         End If
@@ -883,13 +883,13 @@ Public Sub FillComboBoxRuta()
     cboRuta.Clear
     cboRuta.AddItem ITEM_ALL_FEMALE
     Do While Not recRuta.EOF
-        cboRuta.AddItem RTrim(recRuta("IDRuta").Value)
+        cboRuta.AddItem RTrim(recRuta("IDRuta").value)
         recRuta.MoveNext
     Loop
     recRuta.Close
     Set recRuta = Nothing
 
-    cboRuta.ListIndex = CSM_Control_ComboBox.GetListIndexByText(cboRuta, KeySave, cscpItemOrfirst)
+    cboRuta.ListIndex = CSM_Control_ComboBox.GetListIndexByText(cboRuta, KeySave, cscpItemOrFirst)
     Exit Sub
     
 ErrorHandler:
@@ -942,18 +942,18 @@ Private Sub cboDiaSemana_Click()
 End Sub
 
 Private Sub dtpFechaDesde_Change()
-    txtDiaSemana.Text = WeekdayName(Weekday(dtpFechaDesde.Value))
+    txtDiaSemana.Text = WeekdayName(Weekday(dtpFechaDesde.value))
     FillListView Now, ""
 End Sub
 
 Private Sub cmdAnteriorDesde_Click()
-    dtpFechaDesde.Value = DateAdd("d", -1, dtpFechaDesde.Value)
+    dtpFechaDesde.value = DateAdd("d", -1, dtpFechaDesde.value)
     dtpFechaDesde.SetFocus
     dtpFechaDesde_Change
 End Sub
 
 Private Sub cmdSiguienteDesde_Click()
-    dtpFechaDesde.Value = DateAdd("d", 1, dtpFechaDesde.Value)
+    dtpFechaDesde.value = DateAdd("d", 1, dtpFechaDesde.value)
     dtpFechaDesde.SetFocus
     dtpFechaDesde_Change
 End Sub
@@ -961,10 +961,10 @@ End Sub
 Private Sub cmdHoyDesde_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFechaDesde.Value
-    dtpFechaDesde.Value = Date
+    OldValue = dtpFechaDesde.value
+    dtpFechaDesde.value = Date
     dtpFechaDesde.SetFocus
-    If OldValue <> dtpFechaDesde.Value Then
+    If OldValue <> dtpFechaDesde.value Then
         dtpFechaDesde_Change
     End If
 End Sub
@@ -974,13 +974,13 @@ Private Sub dtpFechaHasta_Change()
 End Sub
 
 Private Sub cmdAnteriorHasta_Click()
-    dtpFechaHasta.Value = DateAdd("d", -1, dtpFechaHasta.Value)
+    dtpFechaHasta.value = DateAdd("d", -1, dtpFechaHasta.value)
     dtpFechaHasta.SetFocus
     dtpFechaHasta_Change
 End Sub
 
 Private Sub cmdSiguienteHasta_Click()
-    dtpFechaHasta.Value = DateAdd("d", 1, dtpFechaHasta.Value)
+    dtpFechaHasta.value = DateAdd("d", 1, dtpFechaHasta.value)
     dtpFechaHasta.SetFocus
     dtpFechaHasta_Change
 End Sub
@@ -988,10 +988,10 @@ End Sub
 Private Sub cmdHoyHasta_Click()
     Dim OldValue As Date
     
-    OldValue = dtpFechaHasta.Value
-    dtpFechaHasta.Value = Date
+    OldValue = dtpFechaHasta.value
+    dtpFechaHasta.value = Date
     dtpFechaHasta.SetFocus
-    If OldValue <> dtpFechaHasta.Value Then
+    If OldValue <> dtpFechaHasta.value Then
         dtpFechaHasta_Change
     End If
 End Sub
@@ -1068,9 +1068,9 @@ Private Sub Form_Load()
     cboFecha.AddItem "Entre"
     cboFecha.ListIndex = 1
     
-    dtpFechaDesde.Value = Date
-    txtDiaSemana.Text = WeekdayName(Weekday(dtpFechaDesde.Value))
-    dtpFechaHasta.Value = Date
+    dtpFechaDesde.value = Date
+    txtDiaSemana.Text = WeekdayName(Weekday(dtpFechaDesde.value))
+    dtpFechaHasta.value = Date
     
     'GRUPOS DE RUTAS
     Set RutaGrupo = New RutaGrupo
@@ -1108,8 +1108,8 @@ Private Sub Form_Load()
     pParametro.GetCoolBarSettings "Viaje", cbrMain
     pParametro.GetListViewSettings "Viaje", lvwData
     lvwData.ColumnHeaders(lvwData.SortKey + 1).Icon = lvwData.SortOrder + 1
-    tlbPin.Buttons("PIN").Value = pParametro.Usuario_LeerNumero("Viaje_Pin", tlbPin.Buttons("PIN").Value)
-    If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+    tlbPin.Buttons("PIN").value = pParametro.Usuario_LeerNumero("Viaje_Pin", tlbPin.Buttons("PIN").value)
+    If tlbPin.Buttons("PIN").value = tbrUnpressed Then
         tlbPin.Buttons("PIN").Image = 1
     Else
         tlbPin.Buttons("PIN").Image = 2
@@ -1137,7 +1137,7 @@ Private Sub Form_Unload(Cancel As Integer)
     WindowState = vbNormal
     pParametro.SaveCoolBarSettings "Viaje", cbrMain
     pParametro.SaveListViewSettings "Viaje", lvwData
-    pParametro.Usuario_GuardarNumero "Viaje_Pin", tlbPin.Buttons("PIN").Value
+    pParametro.Usuario_GuardarNumero "Viaje_Pin", tlbPin.Buttons("PIN").value
     Set frmViaje = Nothing
 End Sub
 
@@ -1194,14 +1194,14 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
         Case "GENERATE"
             If pCPermiso.GotPermission(PERMISO_VIAJE_GENERATE) Then
                 Screen.MousePointer = vbHourglass
-                frmViajeGenerar.LoadDataAndShow Me, IIf(cboFecha.ListIndex > 0, dtpFechaDesde.Value, Date)
+                frmViajeGenerar.LoadDataAndShow Me, IIf(cboFecha.ListIndex > 0, dtpFechaDesde.value, Date)
                 Screen.MousePointer = vbDefault
             End If
         Case "NEW"
             If pCPermiso.GotPermission(PERMISO_VIAJE_ADD) Then
                 Screen.MousePointer = vbHourglass
                 Set Viaje = New Viaje
-                Viaje.FechaHora = IIf(cboFecha.ListIndex > 0, dtpFechaDesde.Value, Date)
+                Viaje.FechaHora = IIf(cboFecha.ListIndex > 0, dtpFechaDesde.value, Date)
                 frmViajePropiedad.LoadDataAndShow Me, Viaje
                 Set Viaje = Nothing
                 Screen.MousePointer = vbDefault
@@ -1389,7 +1389,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 End If
                 
                 'Forms(FormIndex).SetFocus
-                If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+                If tlbPin.Buttons("PIN").value = tbrUnpressed Then
                     Unload Me
                 End If
                 Screen.MousePointer = vbDefault
@@ -1520,7 +1520,7 @@ Private Sub tlbMain_ButtonMenuClick(ByVal ButtonMenu As MSComctlLib.ButtonMenu)
 End Sub
 
 Private Sub tlbPin_ButtonClick(ByVal Button As MSComctlLib.Button)
-    If Button.Value = tbrUnpressed Then
+    If Button.value = tbrUnpressed Then
         Button.Image = 1
     Else
         Button.Image = 2
@@ -1819,14 +1819,14 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
     'HEADER
     RowNumber = 1
     With ExcelWorksheet.Range("A" & RowNumber)
-        .Value = pParametro.CompanyName
+        .value = pParametro.CompanyName
         .Font.Name = "Arial"
         .Font.Size = 10
         .Font.Bold = True
     End With
     
     With ExcelWorksheet.Range("F" & RowNumber)
-        .Value = Now
+        .value = Now
         .Font.Name = "Arial"
         .Font.Size = 10
     End With
@@ -1835,7 +1835,7 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
     
     RowNumber = RowNumber + 2
     With ExcelWorksheet.Range("A" & RowNumber)
-        .Value = "Detalle del Viaje: " & Viaje.FechaHora_Formatted & " - " & Viaje.Ruta_DisplayName
+        .value = "Detalle del Viaje: " & Viaje.FechaHora_Formatted & " - " & Viaje.Ruta_DisplayName
         .HorizontalAlignment = xlCenter
         .Font.Name = "Arial"
         .Font.Size = 12
@@ -1858,14 +1858,14 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
     If Not recData.EOF Then
         RowNumber = RowNumber + 2
         With ExcelWorksheet.Range("A" & RowNumber)
-            .Value = "Conductor: " & recData("Conductor").Value & ""
+            .value = "Conductor: " & recData("Conductor").value & ""
             .Font.Name = "Arial"
             .Font.Size = 10
             .Font.Bold = True
         End With
         
         With ExcelWorksheet.Range("F" & RowNumber)
-            .Value = "Vehículo: " & recData("Vehiculo").Value & ""
+            .value = "Vehículo: " & recData("Vehiculo").value & ""
             .Font.Name = "Arial"
             .Font.Size = 10
             .Font.Bold = True
@@ -1899,7 +1899,7 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
         
     RowNumber = RowNumber + 2
     With ExcelWorksheet.Range("A" & RowNumber)
-        .Value = "PASAJEROS"
+        .value = "PASAJEROS"
         .HorizontalAlignment = xlCenter
         .Font.Name = "Arial"
         .Font.Size = 14
@@ -1910,19 +1910,19 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
     
     'ENCABEZADOS DE LAS COLUMNAS
     RowNumber = RowNumber + 2
-    ExcelWorksheet.Range("A" & RowNumber).Value = "#"
-    ExcelWorksheet.Range("B" & RowNumber).Value = "Apellido y Nombre"
+    ExcelWorksheet.Range("A" & RowNumber).value = "#"
+    ExcelWorksheet.Range("B" & RowNumber).value = "Apellido y Nombre"
     ExcelWorksheet.Range("B" & RowNumber, "C" & RowNumber).Merge
-    ExcelWorksheet.Range("D" & RowNumber).Value = "Sube"
-    ExcelWorksheet.Range("E" & RowNumber).Value = "Baja"
-    ExcelWorksheet.Range("F" & RowNumber).Value = "Importe"
-    ExcelWorksheet.Range("G" & RowNumber).Value = "Pagado"
-    ExcelWorksheet.Range("H" & RowNumber).Value = "Saldo"
-    ExcelWorksheet.Range("I" & RowNumber).Value = "R"
+    ExcelWorksheet.Range("D" & RowNumber).value = "Sube"
+    ExcelWorksheet.Range("E" & RowNumber).value = "Baja"
+    ExcelWorksheet.Range("F" & RowNumber).value = "Importe"
+    ExcelWorksheet.Range("G" & RowNumber).value = "Pagado"
+    ExcelWorksheet.Range("H" & RowNumber).value = "Saldo"
+    ExcelWorksheet.Range("I" & RowNumber).value = "R"
     If MostrarDocumento Then
-        ExcelWorksheet.Range("J" & RowNumber).Value = "Documento"
+        ExcelWorksheet.Range("J" & RowNumber).value = "Documento"
     Else
-        ExcelWorksheet.Range("J" & RowNumber).Value = "Observaciones"
+        ExcelWorksheet.Range("J" & RowNumber).value = "Observaciones"
     End If
     ExcelWorksheet.Range("A" & RowNumber, "J" & RowNumber).VerticalAlignment = xlCenter
     
@@ -1942,45 +1942,45 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
     RowNumberDetalleStart = RowNumber + 1
     Do While Not recData.EOF
         RowNumber = RowNumber + 1
-        ExcelWorksheet.Range("A" & RowNumber).Value = recData.AbsolutePosition
-        ExcelWorksheet.Range("B" & RowNumber).Value = recData("Pasajero").Value
-        If Not (recData("IDOrigen").Value = Ruta.IDOrigen And recData("Origen").Value = LugarOrigen.Nombre) Then
-            ExcelWorksheet.Range("D" & RowNumber).Value = recData("Origen").Value
+        ExcelWorksheet.Range("A" & RowNumber).value = recData.AbsolutePosition
+        ExcelWorksheet.Range("B" & RowNumber).value = recData("Pasajero").value
+        If Not (recData("IDOrigen").value = Ruta.IDOrigen And recData("Origen").value = LugarOrigen.Nombre) Then
+            ExcelWorksheet.Range("D" & RowNumber).value = recData("Origen").value
         End If
-        If Not (recData("IDDestino").Value = Ruta.IDDestino And recData("Destino").Value = LugarDestino.Nombre) Then
-            ExcelWorksheet.Range("E" & RowNumber).Value = recData("Destino").Value
+        If Not (recData("IDDestino").value = Ruta.IDDestino And recData("Destino").value = LugarDestino.Nombre) Then
+            ExcelWorksheet.Range("E" & RowNumber).value = recData("Destino").value
         End If
-        ExcelWorksheet.Range("F" & RowNumber).Value = recData("Importe").Value
-        If recData("ImportePagado").Value = 0 Then
+        ExcelWorksheet.Range("F" & RowNumber).value = recData("Importe").value
+        If recData("ImportePagado").value = 0 Then
             ExcelWorksheet.Range("G" & RowNumber).Locked = False
             ExcelWorksheet.Range("G" & RowNumber).Font.Color = vbRed
         Else
-            ExcelWorksheet.Range("G" & RowNumber).Value = recData("ImportePagado").Value
+            ExcelWorksheet.Range("G" & RowNumber).value = recData("ImportePagado").value
         End If
-        If recData("ImprimirSaldo").Value And Not IsNull(recData("SaldoActual").Value) Then
-            ExcelWorksheet.Range("H" & RowNumber).Value = recData("SaldoActual").Value
+        If recData("ImprimirSaldo").value And Not IsNull(recData("SaldoActual").value) Then
+            ExcelWorksheet.Range("H" & RowNumber).value = recData("SaldoActual").value
         End If
-        If IsNull(recData("Realizado").Value) Then
+        If IsNull(recData("Realizado").value) Then
             ExcelWorksheet.Range("I" & RowNumber).Locked = False
             ExcelWorksheet.Range("I" & RowNumber).Font.Color = vbRed
         Else
-            If recData("Realizado").Value Then
-                ExcelWorksheet.Range("I" & RowNumber).Value = "x"
+            If recData("Realizado").value Then
+                ExcelWorksheet.Range("I" & RowNumber).value = "x"
             End If
         End If
         If MostrarDocumento Then
-            If IsNull(recData("Documento").Value) Then
+            If IsNull(recData("Documento").value) Then
                 ExcelWorksheet.Range("J" & RowNumber).Locked = False
                 ExcelWorksheet.Range("J" & RowNumber).Font.Color = vbRed
             Else
-                ExcelWorksheet.Range("J" & RowNumber).Value = recData("Documento").Value
+                ExcelWorksheet.Range("J" & RowNumber).value = recData("Documento").value
             End If
         Else
-            If IsNull(recData("Notas").Value) Then
+            If IsNull(recData("Notas").value) Then
                 ExcelWorksheet.Range("J" & RowNumber).Locked = False
                 ExcelWorksheet.Range("J" & RowNumber).Font.Color = vbRed
             Else
-                ExcelWorksheet.Range("J" & RowNumber).Value = recData("Notas").Value
+                ExcelWorksheet.Range("J" & RowNumber).value = recData("Notas").value
             End If
         End If
         
@@ -2053,7 +2053,7 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
     
     RowNumber = RowNumber + 1
     With ExcelWorksheet.Range("A" & RowNumber)
-        .Value = "COMISIONES"
+        .value = "COMISIONES"
         .HorizontalAlignment = xlCenter
         .Font.Name = "Arial"
         .Font.Size = 14
@@ -2064,15 +2064,15 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
         
     'ENCABEZADOS DE LAS COLUMNAS
     RowNumber = RowNumber + 2
-    ExcelWorksheet.Range("A" & RowNumber).Value = "#"
-    ExcelWorksheet.Range("B" & RowNumber).Value = "Envía"
-    ExcelWorksheet.Range("C" & RowNumber).Value = "Recibe"
-    ExcelWorksheet.Range("D" & RowNumber).Value = "Sube"
-    ExcelWorksheet.Range("E" & RowNumber).Value = "Baja"
-    ExcelWorksheet.Range("F" & RowNumber).Value = "Importe"
-    ExcelWorksheet.Range("G" & RowNumber).Value = "Pagado"
-    ExcelWorksheet.Range("H" & RowNumber).Value = "Saldo"
-    ExcelWorksheet.Range("I" & RowNumber).Value = "Observaciones"
+    ExcelWorksheet.Range("A" & RowNumber).value = "#"
+    ExcelWorksheet.Range("B" & RowNumber).value = "Envía"
+    ExcelWorksheet.Range("C" & RowNumber).value = "Recibe"
+    ExcelWorksheet.Range("D" & RowNumber).value = "Sube"
+    ExcelWorksheet.Range("E" & RowNumber).value = "Baja"
+    ExcelWorksheet.Range("F" & RowNumber).value = "Importe"
+    ExcelWorksheet.Range("G" & RowNumber).value = "Pagado"
+    ExcelWorksheet.Range("H" & RowNumber).value = "Saldo"
+    ExcelWorksheet.Range("I" & RowNumber).value = "Observaciones"
     ExcelWorksheet.Range("A" & RowNumber, "J" & RowNumber).VerticalAlignment = xlCenter
     ExcelWorksheet.Range("I" & RowNumber, "J" & RowNumber).Merge
     
@@ -2092,30 +2092,30 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
     RowNumberDetalleStart = RowNumber + 1
     Do While Not recData.EOF
         RowNumber = RowNumber + 1
-        ExcelWorksheet.Range("A" & RowNumber).Value = recData.AbsolutePosition
-        ExcelWorksheet.Range("B" & RowNumber).Value = recData("Envia").Value
-        ExcelWorksheet.Range("C" & RowNumber).Value = recData("Recibe").Value
-        If Not (recData("IDOrigen").Value = Ruta.IDOrigen And recData("Origen").Value = LugarOrigen.Nombre) Then
-            ExcelWorksheet.Range("D" & RowNumber).Value = recData("Origen").Value
+        ExcelWorksheet.Range("A" & RowNumber).value = recData.AbsolutePosition
+        ExcelWorksheet.Range("B" & RowNumber).value = recData("Envia").value
+        ExcelWorksheet.Range("C" & RowNumber).value = recData("Recibe").value
+        If Not (recData("IDOrigen").value = Ruta.IDOrigen And recData("Origen").value = LugarOrigen.Nombre) Then
+            ExcelWorksheet.Range("D" & RowNumber).value = recData("Origen").value
         End If
-        If Not (recData("IDDestino").Value = Ruta.IDDestino And recData("Destino").Value = LugarDestino.Nombre) Then
-            ExcelWorksheet.Range("E" & RowNumber).Value = recData("Destino").Value
+        If Not (recData("IDDestino").value = Ruta.IDDestino And recData("Destino").value = LugarDestino.Nombre) Then
+            ExcelWorksheet.Range("E" & RowNumber).value = recData("Destino").value
         End If
-        ExcelWorksheet.Range("F" & RowNumber).Value = recData("Importe").Value
-        If recData("ImportePagado").Value = 0 Then
+        ExcelWorksheet.Range("F" & RowNumber).value = recData("Importe").value
+        If recData("ImportePagado").value = 0 Then
             ExcelWorksheet.Range("G" & RowNumber).Locked = False
             ExcelWorksheet.Range("G" & RowNumber).Font.Color = vbRed
         Else
-            ExcelWorksheet.Range("G" & RowNumber).Value = recData("ImportePagado").Value
+            ExcelWorksheet.Range("G" & RowNumber).value = recData("ImportePagado").value
         End If
-        If recData("ImprimirSaldo").Value And Not IsNull(recData("SaldoActual").Value) Then
-            ExcelWorksheet.Range("H" & RowNumber).Value = recData("SaldoActual").Value
+        If recData("ImprimirSaldo").value And Not IsNull(recData("SaldoActual").value) Then
+            ExcelWorksheet.Range("H" & RowNumber).value = recData("SaldoActual").value
         End If
-        If IsNull(recData("Notas").Value) Then
+        If IsNull(recData("Notas").value) Then
             ExcelWorksheet.Range("I" & RowNumber).Locked = False
             ExcelWorksheet.Range("I" & RowNumber).Font.Color = vbRed
         Else
-            ExcelWorksheet.Range("I" & RowNumber).Value = recData("Notas").Value & ""
+            ExcelWorksheet.Range("I" & RowNumber).value = recData("Notas").value & ""
         End If
         recData.MoveNext
     Loop
@@ -2169,7 +2169,7 @@ Private Function PlanillaViajeGenerateExcel(ByRef Viaje As Viaje, ByVal MostrarD
     'COPYRIGHT
     ExcelWorksheet.Range("A45", "J46").Borders(xlInsideHorizontal).Weight = xlMedium
     With ExcelWorksheet.Range("A46")
-        .Value = "iNet Soluciones Informáticas"
+        .value = "iNet Soluciones Informáticas"
         .Font.Name = "Times New Roman"
         .Font.Size = 10
     End With

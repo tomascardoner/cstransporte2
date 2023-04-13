@@ -141,6 +141,7 @@ Public Const PERMISO_VIAJE_DETALLE_INASISTENCIA_NODEBITAR = "Viaje_Detalle_Inasi
 Public Const PERMISO_VIAJE_DETALLE_DELETE = "Viaje_Detalle_Eliminar"
 Public Const PERMISO_VIAJE_DETALLE_PRINT = "Viaje_Detalle_Imprimir"
 Public Const PERMISO_VIAJE_DETALLE_CHANGE_STATUS = "Viaje_Detalle_Cambiar_Estado"
+Public Const PERMISO_VIAJE_DETALLE_WEB_CHANGE_STATUS = "Viaje_Detalle_Web_Cambiar_Estado"
 Public Const PERMISO_VIAJE_DETALLE_CHANGE_STATUS_AFTER_LIMIT = "Viaje_Detalle_Cambiar_Estado_Despues_Limite"
 Public Const PERMISO_VIAJE_DETALLE_TRANSFER = "Viaje_Detalle_Transferencia"
 Public Const PERMISO_VIAJE_DETALLE_TRANSFER_ALLOWOUTOFRANGE = "Viaje_Detalle_Transferencia_Permite_FueraRango"

@@ -648,9 +648,9 @@ RESTART:
     Set cmdData = New ADODB.command
     Set cmdData.ActiveConnection = pDatabase.Connection
     If pParametro.ViajeDetalle_Paquete_Permite_Multiples_Pagos And mViaje.IDRuta = pParametro.Ruta_Paquete_ID Then
-        cmdData.CommandText = "sp_ViajeDetalle_ListGrid_Paquete_MultiplesPagos" & IIf(chkMostrarSaldo.Value = vbChecked, "_WithSaldo", "")
+        cmdData.CommandText = "sp_ViajeDetalle_ListGrid_Paquete_MultiplesPagos" & IIf(chkMostrarSaldo.value = vbChecked, "_WithSaldo", "")
     Else
-        cmdData.CommandText = "sp_ViajeDetalle_ListGrid" & IIf(chkMostrarSaldo.Value = vbChecked, "_WithSaldo", "")
+        cmdData.CommandText = "sp_ViajeDetalle_ListGrid" & IIf(chkMostrarSaldo.value = vbChecked, "_WithSaldo", "")
     End If
     cmdData.CommandType = adCmdStoredProc
     cmdData.Parameters.Append cmdData.CreateParameter("FechaHora", adDate, adParamInput, , mViaje.FechaHora)
@@ -702,7 +702,7 @@ RESTART:
         .Sort = OrderBy
         If Not .EOF Then
             Do While Not .EOF
-                Select Case .Fields("Estado").Value
+                Select Case .Fields("Estado").value
                     Case VIAJE_DETALLE_ESTADO_CONFIRMADO
                         EstadoKey = "CONFIRMADO"
                     Case VIAJE_DETALLE_ESTADO_CONDICIONAL
@@ -716,80 +716,80 @@ RESTART:
                 '//////////////////////////////////////////////////
                 'ROWS SEPARATOR BY TYPE
                 If pParametro.ViajeDetalle_SeparateRowsByType Then
-                    If UltimoTipo <> .Fields("OcupanteTipo").Value Then
+                    If UltimoTipo <> .Fields("OcupanteTipo").value Then
                         If UltimoTipo <> "" Then
-                            Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & (.Fields("Indice").Value * -1), "")
+                            Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & (.Fields("Indice").value * -1), "")
                         End If
-                        UltimoTipo = .Fields("OcupanteTipo").Value
+                        UltimoTipo = .Fields("OcupanteTipo").value
                     End If
                 End If
                 '//////////////////////////////////////////////////
                 'ROWS SEPARATOR BY STATUS
-                If .Fields("OcupanteTipo").Value = OCUPANTE_TIPO_PASAJERO Then
+                If .Fields("OcupanteTipo").value = OCUPANTE_TIPO_PASAJERO Then
                     If pParametro.ViajeDetalle_SeparateRowsByStatus Then
-                        If UltimoEstadoPersona <> .Fields("Estado").Value And (lvwData.SortKey = 0 Or lvwData.SortKey = 6) Then
+                        If UltimoEstadoPersona <> .Fields("Estado").value And (lvwData.SortKey = 0 Or lvwData.SortKey = 6) Then
                             If UltimoEstadoPersona <> "" Then
-                                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & (.Fields("Indice").Value * -1), "")
+                                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & (.Fields("Indice").value * -1), "")
                             End If
-                            UltimoEstadoPersona = .Fields("Estado").Value
+                            UltimoEstadoPersona = .Fields("Estado").value
                         End If
                     End If
                 Else
                     If pParametro.ViajeDetalle_SeparateRowsByStatus Then
-                        If UltimoEstadoComision <> .Fields("Estado").Value And (lvwData.SortKey = 0 Or lvwData.SortKey = 6) Then
+                        If UltimoEstadoComision <> .Fields("Estado").value And (lvwData.SortKey = 0 Or lvwData.SortKey = 6) Then
                             If UltimoEstadoComision <> "" Then
-                                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & (.Fields("Indice").Value * -1), "")
+                                Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & (.Fields("Indice").value * -1), "")
                             End If
-                            UltimoEstadoComision = .Fields("Estado").Value
+                            UltimoEstadoComision = .Fields("Estado").value
                         End If
                     End If
                 End If
                 
-                Select Case .Fields("OcupanteTipo").Value
+                Select Case .Fields("OcupanteTipo").value
                     Case OCUPANTE_TIPO_PASAJERO
                         'Pasajero
                         If EstadoKey = "" Then
-                            Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("Indice").Value, .Fields("Orden").Value)
+                            Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("Indice").value, .Fields("Orden").value)
                         Else
-                            Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("Indice").Value, .Fields("Orden").Value, , "PASAJERO_" & EstadoKey)
-                            If .Fields("Estado").Value = VIAJE_DETALLE_ESTADO_CONFIRMADO Then
-                                ListItem.SubItems(9) = IIf(IsNull(.Fields("Realizado").Value), "", IIf(.Fields("Realizado").Value, "Sí", "No"))
+                            Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("Indice").value, .Fields("Orden").value, , "PASAJERO_" & EstadoKey)
+                            If .Fields("Estado").value = VIAJE_DETALLE_ESTADO_CONFIRMADO Then
+                                ListItem.SubItems(9) = IIf(IsNull(.Fields("Realizado").value), "", IIf(.Fields("Realizado").value, "Sí", "No"))
                             End If
                         End If
                     Case OCUPANTE_TIPO_COMISION
                         'Comisión
-                        Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("Indice").Value, Val(.Fields("Orden").Value & ""), , "COMISION_" & EstadoKey)
+                        Set ListItem = lvwData.ListItems.Add(, KEY_STRINGER & .Fields("Indice").value, Val(.Fields("Orden").value & ""), , "COMISION_" & EstadoKey)
                 End Select
-                ListItem.SubItems(1) = .Fields("Persona").Value
-                ListItem.SubItems(2) = IIf(IsNull(.Fields("DocumentoNumero").Value), "", IIf(IsNull(.Fields("DocumentoTipoNombre").Value), .Fields("DocumentoNumero").Value, .Fields("DocumentoTipoNombre").Value & ": " & .Fields("DocumentoNumero").Value))
-                ListItem.SubItems(3) = Format(.Fields("Importe").Value, "Currency")
-                ListItem.SubItems(4) = Format(.Fields("ImportePagado").Value, "Currency")
+                ListItem.SubItems(1) = .Fields("Persona").value
+                ListItem.SubItems(2) = IIf(IsNull(.Fields("DocumentoNumero").value), "", IIf(IsNull(.Fields("DocumentoTipoNombre").value), .Fields("DocumentoNumero").value, .Fields("DocumentoTipoNombre").value & ": " & .Fields("DocumentoNumero").value))
+                ListItem.SubItems(3) = Format(.Fields("Importe").value, "Currency")
+                ListItem.SubItems(4) = Format(.Fields("ImportePagado").value, "Currency")
                 If pParametro.ViajeDetalle_Paquete_Permite_Multiples_Pagos And mViaje.IDRuta = pParametro.Ruta_Paquete_ID Then
-                    ListItem.SubItems(5) = Format(.Fields("Importe").Value - .Fields("ImportePagado").Value, "Currency")
+                    ListItem.SubItems(5) = Format(.Fields("Importe").value - .Fields("ImportePagado").value, "Currency")
                 Else
-                    ListItem.SubItems(5) = Format(.Fields("Debe").Value, "Currency")
+                    ListItem.SubItems(5) = Format(.Fields("Debe").value, "Currency")
                 End If
-                If chkMostrarSaldo.Value = vbChecked Then
-                    ListItem.SubItems(6) = IIf(IsNull(.Fields("SaldoActual").Value), " ", Format(.Fields("SaldoActual").Value, "Currency"))
+                If chkMostrarSaldo.value = vbChecked Then
+                    ListItem.SubItems(6) = IIf(IsNull(.Fields("SaldoActual").value), " ", Format(.Fields("SaldoActual").value, "Currency"))
                 Else
                     ListItem.SubItems(6) = " "
                 End If
-                ViajeDetalle.Estado = .Fields("Estado").Value & ""
+                ViajeDetalle.Estado = .Fields("Estado").value & ""
                 ListItem.SubItems(7) = ViajeDetalle.Estado_ToString
-                 ListItem.SubItems(8) = .Fields("AsientoIdentificacion").Value & ""
-                ListItem.SubItems(10) = .Fields("Origen").Value
-                ListItem.SubItems(11) = .Fields("Destino").Value
-                ViajeDetalle.ReservaTipo = .Fields("ReservaTipo").Value
+                 ListItem.SubItems(8) = .Fields("AsientoIdentificacion").value & ""
+                ListItem.SubItems(10) = .Fields("Origen").value
+                ListItem.SubItems(11) = .Fields("Destino").value
+                ViajeDetalle.ReservaTipo = .Fields("ReservaTipo").value
                 ListItem.SubItems(12) = ViajeDetalle.ReservaTipo_ToString
-                ListItem.SubItems(13) = IIf(.Fields("Facturar").Value, "Sí", "No")
-                ListItem.SubItems(14) = .Fields("Notas").Value & ""
-                ListItem.SubItems(15) = IIf(.Fields("ListaPasajero").Value, "Sí", "")
+                ListItem.SubItems(13) = IIf(.Fields("Facturar").value, "Sí", "No")
+                ListItem.SubItems(14) = .Fields("Notas").value & ""
+                ListItem.SubItems(15) = IIf(.Fields("ListaPasajero").value, "Sí", "")
                 
-                If .Fields("CreadoEnProgreso").Value Then
+                If .Fields("CreadoEnProgreso").value Then
                    ListItem.ForeColor = pParametro.ViajeDetalle_CreadoEnProgreso_Color
                    ListItem.Bold = True
                 End If
-                If .Fields("ModificadoEnProgreso").Value Then
+                If .Fields("ModificadoEnProgreso").value Then
                    ListItem.ForeColor = pParametro.ViajeDetalle_ModificadoEnProgreso_Color
                    ListItem.Bold = True
                 End If
@@ -905,8 +905,8 @@ Private Sub Form_Load()
     pParametro.GetCoolBarSettings "ViajeDetalle", cbrMain
     pParametro.GetListViewSettings "ViajeDetalle", lvwData
     lvwData.ColumnHeaders(lvwData.SortKey + 1).Icon = lvwData.SortOrder + 1
-    tlbPin.Buttons("PIN").Value = pParametro.Usuario_LeerNumero("ViajeDetalle_Pin", tlbPin.Buttons("PIN").Value)
-    If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+    tlbPin.Buttons("PIN").value = pParametro.Usuario_LeerNumero("ViajeDetalle_Pin", tlbPin.Buttons("PIN").value)
+    If tlbPin.Buttons("PIN").value = tbrUnpressed Then
         tlbPin.Buttons("PIN").Image = 1
     Else
         tlbPin.Buttons("PIN").Image = 2
@@ -924,7 +924,7 @@ Private Sub Form_Unload(Cancel As Integer)
     WindowState = vbNormal
     pParametro.SaveCoolBarSettings "ViajeDetalle", cbrMain
     pParametro.SaveListViewSettings "ViajeDetalle", lvwData
-    pParametro.Usuario_GuardarNumero "ViajeDetalle_Pin", tlbPin.Buttons("PIN").Value
+    pParametro.Usuario_GuardarNumero "ViajeDetalle_Pin", tlbPin.Buttons("PIN").value
     Set mViaje = Nothing
     Set frmViajeDetalle = Nothing
 End Sub
@@ -1049,7 +1049,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
                 Screen.MousePointer = vbHourglass
                 Forms(FormIndex).ViajePasajeroSelected mViaje.FechaHora, mViaje.IDRuta, Val(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1))
                 Forms(FormIndex).SetFocus
-                If tlbPin.Buttons("PIN").Value = tbrUnpressed Then
+                If tlbPin.Buttons("PIN").value = tbrUnpressed Then
                     Unload Me
                 End If
                 Screen.MousePointer = vbDefault
@@ -1131,160 +1131,7 @@ Private Sub tlbMain_ButtonClick(ByVal Button As MSComctlLib.Button)
             End If
         Case "CHANGE_STATUS"
             If Button.Enabled Then
-                If pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_CHANGE_STATUS) Then
-                    If lvwData.SelectedItem Is Nothing Then
-                        MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title
-                        lvwData.SetFocus
-                        Exit Sub
-                    End If
-                    If Val(Mid(lvwData.SelectedItem.Key, 2)) < 0 Then
-                        MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title
-                        lvwData.SetFocus
-                        Exit Sub
-                    End If
-                    
-                    Set ViajeDetalle = New ViajeDetalle
-                    With ViajeDetalle
-                        .FechaHora = mViaje.FechaHora
-                        .IDRuta = mViaje.IDRuta
-                        .Indice = Val(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1))
-                        If Not .Load() Then
-                            lvwData.SetFocus
-                            Set ViajeDetalle = Nothing
-                            Exit Sub
-                        End If
-                        
-                        'VERIFICO QUE NO HAYA PASADO EL TIEMPO LIMITE
-                        Set Ruta = New Ruta
-                        Ruta.IDRuta = mViaje.IDRuta
-                        If Ruta.Load() Then
-                            If Ruta.LimiteCancelacionDuracion > 0 And Ruta.LimiteCancelacionIDLugar > 0 Then
-                                Set RutaDetalleLimite = New RutaDetalle
-                                RutaDetalleLimite.IDRuta = mViaje.IDRuta
-                                RutaDetalleLimite.IDLugar = Ruta.LimiteCancelacionIDLugar
-                                If RutaDetalleLimite.Load() Then
-                                    Set RutaDetalleOrigen = New RutaDetalle
-                                    RutaDetalleOrigen.IDRuta = mViaje.IDRuta
-                                    RutaDetalleOrigen.IDLugar = ViajeDetalle.IDOrigen
-                                    If RutaDetalleOrigen.Load() Then
-                                        If RutaDetalleOrigen.Indice <= RutaDetalleLimite.Indice Then
-                                            If DateDiff("n", ViajeDetalle.FechaHora, Now) > Ruta.LimiteCancelacionDuracion Then
-                                                'Tiempo Vencido, habilito según Permiso
-                                                If pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_CHANGE_STATUS_AFTER_LIMIT, False) Then
-                                                    'Permitido por Permiso
-                                                    Select Case .Estado
-                                                        Case VIAJE_DETALLE_ESTADO_CONFIRMADO, VIAJE_DETALLE_ESTADO_CONDICIONAL
-                                                            frmViajeDetalleCancelar.LoadDataAndShow Me, ViajeDetalle
-                                                        Case VIAJE_DETALLE_ESTADO_CANCELADO
-                                                            If .OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
-                                                                If MsgBox("Esta Reserva está Cancelada." & vbCr & vbCr & "Orden: " & .Orden & vbCr & "Pasajero: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Reserva?", vbExclamation + vbYesNo, App.Title) = vbYes Then
-                                                                    .Estado = ""
-                                                                    Call .CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
-                                                                End If
-                                                            Else
-                                                                If MsgBox("Esta Comisión está Cancelada." & vbCr & vbCr & "Orden: " & .Orden & vbCr & "Remitente: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Comisión?", vbExclamation + vbYesNo, App.Title) = vbYes Then
-                                                                    .Estado = VIAJE_DETALLE_ESTADO_CONFIRMADO
-                                                                    Call .CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
-                                                                End If
-                                                            End If
-                                                        Case Else
-                                                            MsgBox "Estado Incorrecto.", vbCritical, App.Title
-                                                    End Select
-                                                Else
-                                                    MsgBox "Este Viaje ya ha cumplido el tiempo límite para realizar cambios de estado de las Reservas.", vbInformation, App.Title
-                                                End If
-                                            Else
-                                                'Permitido porque aún no pasado el tiempo límite
-                                                Select Case .Estado
-                                                    Case VIAJE_DETALLE_ESTADO_CONFIRMADO, VIAJE_DETALLE_ESTADO_CONDICIONAL
-                                                        frmViajeDetalleCancelar.LoadDataAndShow Me, ViajeDetalle
-                                                    Case VIAJE_DETALLE_ESTADO_CANCELADO
-                                                        If .OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
-                                                            If MsgBox("Esta Reserva está Cancelada." & vbCr & vbCr & "Orden: " & .Orden & vbCr & "Pasajero: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Reserva?", vbExclamation + vbYesNo, App.Title) = vbYes Then
-                                                                .Estado = ""
-                                                                Call .CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
-                                                            End If
-                                                        Else
-                                                            If MsgBox("Esta Comisión está Cancelada." & vbCr & vbCr & "Orden: " & .Orden & vbCr & "Remitente: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Comisión?", vbExclamation + vbYesNo, App.Title) = vbYes Then
-                                                                .Estado = VIAJE_DETALLE_ESTADO_CONFIRMADO
-                                                                Call .CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
-                                                            End If
-                                                        End If
-                                                    Case Else
-                                                        MsgBox "Estado Incorrecto.", vbCritical, App.Title
-                                                End Select
-                                            End If
-                                        Else
-                                            'Permitido porque el Origen está antes que el Límite
-                                            Select Case .Estado
-                                                Case VIAJE_DETALLE_ESTADO_CONFIRMADO, VIAJE_DETALLE_ESTADO_CONDICIONAL
-                                                    frmViajeDetalleCancelar.LoadDataAndShow Me, ViajeDetalle
-                                                Case VIAJE_DETALLE_ESTADO_CANCELADO
-                                                    If .OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
-                                                        If MsgBox("Esta Reserva está Cancelada." & vbCr & vbCr & "Orden: " & .Orden & vbCr & "Pasajero: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Reserva?", vbExclamation + vbYesNo, App.Title) = vbYes Then
-                                                            .Estado = ""
-                                                            Call .CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
-                                                        End If
-                                                    Else
-                                                        If MsgBox("Esta Comisión está Cancelada." & vbCr & vbCr & "Orden: " & .Orden & vbCr & "Remitente: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Comisión?", vbExclamation + vbYesNo, App.Title) = vbYes Then
-                                                            .Estado = VIAJE_DETALLE_ESTADO_CONFIRMADO
-                                                            Call .CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
-                                                        End If
-                                                    End If
-                                                Case Else
-                                                    MsgBox "Estado Incorrecto.", vbCritical, App.Title
-                                            End Select
-                                        End If
-                                    Else
-                                        lvwData.SetFocus
-                                        Set ViajeDetalle = Nothing
-                                        Set Ruta = Nothing
-                                        Set RutaDetalleLimite = Nothing
-                                        Set RutaDetalleOrigen = Nothing
-                                        Exit Sub
-                                    End If
-                                    Set RutaDetalleOrigen = Nothing
-                                Else
-                                    lvwData.SetFocus
-                                    Set ViajeDetalle = Nothing
-                                    Set Ruta = Nothing
-                                    Set RutaDetalleLimite = Nothing
-                                    Exit Sub
-                                End If
-                                Set RutaDetalleLimite = Nothing
-                            Else
-                                'Permitido porque la Ruta no tiene Límite
-                                Select Case .Estado
-                                    Case VIAJE_DETALLE_ESTADO_CONFIRMADO, VIAJE_DETALLE_ESTADO_CONDICIONAL
-                                        frmViajeDetalleCancelar.LoadDataAndShow Me, ViajeDetalle
-                                    Case VIAJE_DETALLE_ESTADO_CANCELADO
-                                        If .OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
-                                            If MsgBox("Esta Reserva está Cancelada." & vbCr & vbCr & "Orden: " & .Orden & vbCr & "Pasajero: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Reserva?", vbExclamation + vbYesNo, App.Title) = vbYes Then
-                                                .Estado = ""
-                                                Call .CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
-                                            End If
-                                        Else
-                                            If MsgBox("Esta Comisión está Cancelada." & vbCr & vbCr & "Orden: " & .Orden & vbCr & "Remitente: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Comisión?", vbExclamation + vbYesNo, App.Title) = vbYes Then
-                                                .Estado = VIAJE_DETALLE_ESTADO_CONFIRMADO
-                                                Call .CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
-                                            End If
-                                        End If
-                                    Case Else
-                                        MsgBox "Estado Incorrecto.", vbCritical, App.Title
-                                End Select
-                            End If
-                        Else
-                            lvwData.SetFocus
-                            Set ViajeDetalle = Nothing
-                            Set Ruta = Nothing
-                            Exit Sub
-                        End If
-                        Set Ruta = Nothing
-                        
-                        SetLastPersona ViajeDetalle.IDPersona
-                    End With
-                    Set ViajeDetalle = Nothing
-                End If
+                CambiarEstado
             End If
     End Select
 End Sub
@@ -1506,7 +1353,7 @@ Private Sub tlbMain_ButtonMenuClick(ByVal ButtonMenu As MSComctlLib.ButtonMenu)
 End Sub
 
 Private Sub tlbPin_ButtonClick(ByVal Button As MSComctlLib.Button)
-    If Button.Value = tbrUnpressed Then
+    If Button.value = tbrUnpressed Then
         Button.Image = 1
     Else
         Button.Image = 2
@@ -1527,85 +1374,175 @@ Private Sub ResizeControls(ByVal CoolBarHeight As Single)
     tlbPin.Left = 15
 End Sub
 
-'Private Sub PrintFactura()
-'    Dim ViajeDetalle As ViajeDetalle
-'    Dim DocumentoFiscal As DocumentoFiscal
-'    Dim Persona As Persona
-'
-'    If pCPermiso.GotPermission(PERMISO_DOCUMENTOFISCAL) Then
-'        If lvwData.SelectedItem Is Nothing Then
-'            MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title
-'            lvwData.SetFocus
-'            Exit Sub
-'        End If
-'        If Val(Mid(lvwData.SelectedItem.Key, 2)) < 0 Then
-'            MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title
-'            lvwData.SetFocus
-'            Exit Sub
-'        End If
-'
-'        If pSucursal.NoMatch Then
-'            MsgBox "No se puede facturar debido a que no está especificada la sucursal a la cual pertenece esta Estación de Tranajo.", vbInformation, App.Title
-'            lvwData.SetFocus
-'            Exit Sub
-'        End If
-'
-'        Set ViajeDetalle = New ViajeDetalle
-'        ViajeDetalle.FechaHora = mViaje.FechaHora
-'        ViajeDetalle.IDRuta = mViaje.IDRuta
-'        ViajeDetalle.Indice = Val(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1))
-'        If ViajeDetalle.Load() Then
-'            Set Persona = New Persona
-'            If ViajeDetalle.IDPersonaCuentaCorriente > 0 Then
-'                Persona.IDPersona = ViajeDetalle.IDPersonaCuentaCorriente
-'            Else
-'                Persona.IDPersona = ViajeDetalle.IDPersona
-'            End If
-'            If Persona.Load() Then
-'                If Persona.IDCondicionIVA = "" Then
-'                    If MsgBox("La Persona a la cual se va a Facturar no tiene especificada la Condición de IVA." & vbCr & vbCr & "Persona: " & Persona.ApellidoNombre & vbCr & vbCr & "¿Desea abrir las propiedades de la Persona?", vbQuestion + vbYesNo, App.Title) = vbYes Then
-'                        If pCPermiso.GotPermission(PERMISO_PERSONA_MODIFY) Then
-'                            frmPersonaPropiedad.LoadDataAndShow Me, Persona
-'                        Else
-'                            lvwData.SetFocus
-'                        End If
-'                    End If
-'                    Set ViajeDetalle = Nothing
-'                    Set Persona = Nothing
-'                    Exit Sub
-'                End If
-'            Else
-'                Set Persona = Nothing
-'                Set ViajeDetalle = Nothing
-'                lvwData.SetFocus
-'                Exit Sub
-'            End If
-'        Else
-'            Set ViajeDetalle = Nothing
-'            lvwData.SetFocus
-'            Exit Sub
-'        End If
-'
-'        Screen.MousePointer = vbHourglass
-'
-'        Set DocumentoFiscal = New DocumentoFiscal
-'        With DocumentoFiscal
-'            .IDDocumentoFiscalTipo = Persona.CondicionIVA.IDDocumentoFiscalTipo_Factura
-'            .Sucursal = pSucursal.CodigoFacturacion
-'            .IDPersona = Persona.IDPersona
-'            .Fecha = Date
-'            .PorcentajeIVA = Persona.CondicionIVA.PorcentajeRI + Persona.CondicionIVA.PorcentajeRNI
-'            Call .DocumentoFiscalDetalle_Create(1, "", "Viaje - " & ViajeDetalle.FechaHora_Formatted & " - " & ViajeDetalle.IDRuta, ViajeDetalle.Importe, ViajeDetalle.Importe)
-'            Call .CalculateTotals
-'            If .Update Then
-'            End If
-'        End With
-'        Set DocumentoFiscal = Nothing
-'
-'        Set Persona = Nothing
-'        Set ViajeDetalle = Nothing
-'        lvwData.SetFocus
-'
-'        Screen.MousePointer = vbDefault
-'    End If
-'End Sub
+Private Sub CambiarEstado()
+    Dim ViajeDetalle As ViajeDetalle
+    Dim Ruta As Ruta
+    Dim RutaDetalleLimite As RutaDetalle
+    Dim RutaDetalleOrigen As RutaDetalle
+    
+    If lvwData.SelectedItem Is Nothing Then
+        MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title
+        lvwData.SetFocus
+        Exit Sub
+    End If
+    If Val(Mid(lvwData.SelectedItem.Key, 2)) < 0 Then
+        MsgBox "No hay ningún Item seleccionado.", vbInformation, App.Title
+        lvwData.SetFocus
+        Exit Sub
+    End If
+    
+    ' Cargo el detalle del viaje
+    Set ViajeDetalle = New ViajeDetalle
+    ViajeDetalle.FechaHora = mViaje.FechaHora
+    ViajeDetalle.IDRuta = mViaje.IDRuta
+    ViajeDetalle.Indice = Val(Mid(lvwData.SelectedItem.Key, Len(KEY_STRINGER) + 1))
+    If Not ViajeDetalle.Load() Then
+        lvwData.SetFocus
+        Set ViajeDetalle = Nothing
+        Exit Sub
+    End If
+    
+    ' Verifico si tiene permiso
+    If ViajeDetalle.IDUsuarioCreacion = pParametro.ReservaWebIdUsuario Then
+        If Not pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_WEB_CHANGE_STATUS, False) Then
+            MsgBox "No está autorizado a cambiar el estado de Reservas realizadas por la Web.", vbExclamation, App.Title
+            Exit Sub
+        End If
+    Else
+        If Not pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_CHANGE_STATUS) Then
+            Exit Sub
+        End If
+    End If
+            
+    ' Verifico que no haya pasado el límite de tiempo
+    Set Ruta = New Ruta
+    Ruta.IDRuta = mViaje.IDRuta
+    If Not Ruta.Load() Then
+        lvwData.SetFocus
+        Set ViajeDetalle = Nothing
+        Set Ruta = Nothing
+        Exit Sub
+    End If
+            
+            
+    If Ruta.LimiteCancelacionDuracion > 0 And Ruta.LimiteCancelacionIDLugar > 0 Then
+        Set RutaDetalleLimite = New RutaDetalle
+        RutaDetalleLimite.IDRuta = mViaje.IDRuta
+        RutaDetalleLimite.IDLugar = Ruta.LimiteCancelacionIDLugar
+        If RutaDetalleLimite.Load() Then
+            Set RutaDetalleOrigen = New RutaDetalle
+            RutaDetalleOrigen.IDRuta = mViaje.IDRuta
+            RutaDetalleOrigen.IDLugar = ViajeDetalle.IDOrigen
+            If RutaDetalleOrigen.Load() Then
+                If RutaDetalleOrigen.Indice <= RutaDetalleLimite.Indice Then
+                    If DateDiff("n", ViajeDetalle.FechaHora, Now) > Ruta.LimiteCancelacionDuracion Then
+                        'Tiempo Vencido, habilito según Permiso
+                        If pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_CHANGE_STATUS_AFTER_LIMIT, False) Then
+                            'Permitido por Permiso
+                            Select Case ViajeDetalle.Estado
+                                Case VIAJE_DETALLE_ESTADO_CONFIRMADO, VIAJE_DETALLE_ESTADO_CONDICIONAL
+                                    frmViajeDetalleCancelar.LoadDataAndShow Me, ViajeDetalle
+                                Case VIAJE_DETALLE_ESTADO_CANCELADO
+                                    If ViajeDetalle.OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
+                                        If MsgBox("Esta Reserva está Cancelada." & vbCr & vbCr & "Orden: " & ViajeDetalle.Orden & vbCr & "Pasajero: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Reserva?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                                            ViajeDetalle.Estado = ""
+                                            Call ViajeDetalle.CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
+                                        End If
+                                    Else
+                                        If MsgBox("Esta Comisión está Cancelada." & vbCr & vbCr & "Orden: " & ViajeDetalle.Orden & vbCr & "Remitente: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Comisión?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                                            ViajeDetalle.Estado = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                                            Call ViajeDetalle.CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
+                                        End If
+                                    End If
+                                Case Else
+                                    MsgBox "Estado Incorrecto.", vbCritical, App.Title
+                            End Select
+                        Else
+                            MsgBox "Este Viaje ya ha cumplido el tiempo límite para realizar cambios de estado de las Reservas.", vbInformation, App.Title
+                        End If
+                    Else
+                        'Permitido porque aún no pasado el tiempo límite
+                        Select Case ViajeDetalle.Estado
+                            Case VIAJE_DETALLE_ESTADO_CONFIRMADO, VIAJE_DETALLE_ESTADO_CONDICIONAL
+                                frmViajeDetalleCancelar.LoadDataAndShow Me, ViajeDetalle
+                            Case VIAJE_DETALLE_ESTADO_CANCELADO
+                                If ViajeDetalle.OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
+                                    If MsgBox("Esta Reserva está Cancelada." & vbCr & vbCr & "Orden: " & ViajeDetalle.Orden & vbCr & "Pasajero: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Reserva?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                                        ViajeDetalle.Estado = ""
+                                        Call ViajeDetalle.CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
+                                    End If
+                                Else
+                                    If MsgBox("Esta Comisión está Cancelada." & vbCr & vbCr & "Orden: " & ViajeDetalle.Orden & vbCr & "Remitente: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Comisión?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                                        ViajeDetalle.Estado = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                                        Call ViajeDetalle.CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
+                                    End If
+                                End If
+                            Case Else
+                                MsgBox "Estado Incorrecto.", vbCritical, App.Title
+                        End Select
+                    End If
+                Else
+                    'Permitido porque el Origen está antes que el Límite
+                    Select Case ViajeDetalle.Estado
+                        Case VIAJE_DETALLE_ESTADO_CONFIRMADO, VIAJE_DETALLE_ESTADO_CONDICIONAL
+                            frmViajeDetalleCancelar.LoadDataAndShow Me, ViajeDetalle
+                        Case VIAJE_DETALLE_ESTADO_CANCELADO
+                            If ViajeDetalle.OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
+                                If MsgBox("Esta Reserva está Cancelada." & vbCr & vbCr & "Orden: " & ViajeDetalle.Orden & vbCr & "Pasajero: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Reserva?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                                    ViajeDetalle.Estado = ""
+                                    Call ViajeDetalle.CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
+                                End If
+                            Else
+                                If MsgBox("Esta Comisión está Cancelada." & vbCr & vbCr & "Orden: " & ViajeDetalle.Orden & vbCr & "Remitente: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Comisión?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                                    ViajeDetalle.Estado = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                                    Call ViajeDetalle.CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
+                                End If
+                            End If
+                        Case Else
+                            MsgBox "Estado Incorrecto.", vbCritical, App.Title
+                    End Select
+                End If
+            Else
+                lvwData.SetFocus
+                Set ViajeDetalle = Nothing
+                Set Ruta = Nothing
+                Set RutaDetalleLimite = Nothing
+                Set RutaDetalleOrigen = Nothing
+                Exit Sub
+            End If
+            Set RutaDetalleOrigen = Nothing
+        Else
+            lvwData.SetFocus
+            Set ViajeDetalle = Nothing
+            Set Ruta = Nothing
+            Set RutaDetalleLimite = Nothing
+            Exit Sub
+        End If
+        Set RutaDetalleLimite = Nothing
+    Else
+        'Permitido porque la Ruta no tiene Límite
+        Select Case ViajeDetalle.Estado
+            Case VIAJE_DETALLE_ESTADO_CONFIRMADO, VIAJE_DETALLE_ESTADO_CONDICIONAL
+                frmViajeDetalleCancelar.LoadDataAndShow Me, ViajeDetalle
+            Case VIAJE_DETALLE_ESTADO_CANCELADO
+                If ViajeDetalle.OcupanteTipo = OCUPANTE_TIPO_PASAJERO Then
+                    If MsgBox("Esta Reserva está Cancelada." & vbCr & vbCr & "Orden: " & ViajeDetalle.Orden & vbCr & "Pasajero: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Reserva?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                        ViajeDetalle.Estado = ""
+                        Call ViajeDetalle.CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
+                    End If
+                Else
+                    If MsgBox("Esta Comisión está Cancelada." & vbCr & vbCr & "Orden: " & ViajeDetalle.Orden & vbCr & "Remitente: " & lvwData.SelectedItem.SubItems(1) & ", " & lvwData.SelectedItem.SubItems(2) & vbCr & vbCr & "¿Desea Activar esta Comisión?", vbExclamation + vbYesNo, App.Title) = vbYes Then
+                        ViajeDetalle.Estado = VIAJE_DETALLE_ESTADO_CONFIRMADO
+                        Call ViajeDetalle.CambiarEstado(pParametro.Viaje_Permite_RutaConexion)
+                    End If
+                End If
+            Case Else
+                MsgBox "Estado Incorrecto.", vbCritical, App.Title
+        End Select
+    End If
+    
+    Set Ruta = Nothing
+            
+    SetLastPersona ViajeDetalle.IDPersona
+    Set ViajeDetalle = Nothing
+End Sub

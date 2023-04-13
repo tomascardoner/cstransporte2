@@ -240,7 +240,7 @@ Public Sub Load()
     recData.Open cmdData, , adOpenForwardOnly, adLockReadOnly
     Set cmdData = Nothing
     Do While Not recData.EOF
-        Add PERMISO_RUTA_RUTA & RTrim(recData("IDRuta").Value), "Rutas", "Ver: " & recData("IDRuta").Value
+        Add PERMISO_RUTA_RUTA & RTrim(recData("IDRuta").value), "Rutas", "Ver: " & recData("IDRuta").value
         recData.MoveNext
     Loop
     recData.Close
@@ -273,7 +273,7 @@ Public Sub Load()
     recData.Source = "SELECT IDListaPrecio, Nombre FROM ListaPrecio ORDER BY IDListaPrecio"
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     Do While Not recData.EOF
-        Add PERMISO_LISTA_PRECIO_LISTA_PRECIO & recData("IDListaPrecio").Value, "Listas de Precios", "Ver: " & recData("Nombre").Value
+        Add PERMISO_LISTA_PRECIO_LISTA_PRECIO & recData("IDListaPrecio").value, "Listas de Precios", "Ver: " & recData("Nombre").value
         recData.MoveNext
     Loop
     recData.Close
@@ -364,7 +364,8 @@ Public Sub Load()
     Add PERMISO_VIAJE_DETALLE_INASISTENCIA_NODEBITAR, "Detalle de Viajes", "No Debitar Viaje No Realizado"
     Add PERMISO_VIAJE_DETALLE_DELETE, "Detalle de Viajes", "Eliminar"
     Add PERMISO_VIAJE_DETALLE_PRINT, "Detalle de Viajes", "Imprimir"
-    Add PERMISO_VIAJE_DETALLE_CHANGE_STATUS, "Detalle de Viajes", "Cambiar Estado"
+    Add PERMISO_VIAJE_DETALLE_CHANGE_STATUS, "Detalle de Viajes", "Cambiar Estado (Reserva estándar)"
+    Add PERMISO_VIAJE_DETALLE_WEB_CHANGE_STATUS, "Detalle de Viajes", "Cambiar Estado (Reserva Web)"
     Add PERMISO_VIAJE_DETALLE_CHANGE_STATUS_AFTER_LIMIT, "Detalle de Viajes", "Cambiar Estado Después del Límite"
     Add PERMISO_VIAJE_DETALLE_TRANSFER, "Detalle de Viajes", "Transferencia de Pasajeros"
     Add PERMISO_VIAJE_DETALLE_TRANSFER_ALLOWOUTOFRANGE, "Detalle de Viajes", "Transferencia de Pasajeros entre Viajes fuera del rango horario establecido."
@@ -422,7 +423,7 @@ Public Sub Load()
     recData.Source = "SELECT IDCuentaCorrienteCaja, Nombre FROM CuentaCorrienteCaja ORDER BY Nombre"
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     Do While Not recData.EOF
-        Add PERMISO_CUENTA_CORRIENTE_CAJA_CAJA & recData("IDCuentaCorrienteCaja").Value, "Cajas de Cuenta Corriente", "Ver Movimientos de: " & recData("Nombre").Value
+        Add PERMISO_CUENTA_CORRIENTE_CAJA_CAJA & recData("IDCuentaCorrienteCaja").value, "Cajas de Cuenta Corriente", "Ver Movimientos de: " & recData("Nombre").value
         recData.MoveNext
     Loop
     recData.Close
@@ -439,7 +440,7 @@ Public Sub Load()
     recData.Source = "SELECT IDCuentaCorrienteGrupo, Nombre FROM CuentaCorrienteGrupo ORDER BY Nombre"
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     Do While Not recData.EOF
-        Add PERMISO_CUENTA_CORRIENTE_GRUPO_GRUPO & recData("IDCuentaCorrienteGrupo").Value, "Grupos de Cuenta Corriente", "Mostrar el Grupo: " & recData("Nombre").Value
+        Add PERMISO_CUENTA_CORRIENTE_GRUPO_GRUPO & recData("IDCuentaCorrienteGrupo").value, "Grupos de Cuenta Corriente", "Mostrar el Grupo: " & recData("Nombre").value
         recData.MoveNext
     Loop
     recData.Close
@@ -541,7 +542,7 @@ Public Sub Load()
     recData.Source = "SELECT IDReporte, Tipo, Nombre FROM Reporte ORDER BY Tipo, Nombre"
     recData.Open , pDatabase.Connection, adOpenForwardOnly, adLockReadOnly, adCmdText
     Do While Not recData.EOF
-        Add PERMISO_REPORTE_REPORTE & RTrim(recData("IDReporte").Value), "Reportes", recData("Tipo").Value & ": " & recData("Nombre").Value
+        Add PERMISO_REPORTE_REPORTE & RTrim(recData("IDReporte").value), "Reportes", recData("Tipo").value & ": " & recData("Nombre").value
         recData.MoveNext
     Loop
     recData.Close
