@@ -29,7 +29,7 @@ GO
 -- =============================================
 -- Author: Tomás A. Cardoner
 -- Created:	30/04/2014 21:43:11
--- Updated:	
+-- Updated:	21/01/2024 21:40 - changed fields with smallmoney datatype to money
 -- Description: Agrega un Prepago de una Persona
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_PersonaPrepago_Add') AND type in (N'P', N'PC'))
@@ -42,8 +42,8 @@ CREATE PROCEDURE dbo.usp_PersonaPrepago_Add
 	@FechaInicio smalldatetime,
 	@FechaFin smalldatetime,
 	@IDListaPrecio int,
-	@ImporteOriginal smallmoney,
-	@Importe smallmoney,
+	@ImporteOriginal money,
+	@Importe money,
 	@IDMedioPago tinyint,
 	@Cuotas tinyint,
 	@Operacion varchar(20),
@@ -89,7 +89,7 @@ GO
 -- =============================================
 -- Author: Tomás A. Cardoner
 -- Created:	30/04/2014 21:43:11
--- Updated:	
+-- Updated:	21/01/2024 21:40 - changed fields with smallmoney datatype to money
 -- Description: Actualiza los datos del PersonaPrepago
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_PersonaPrepago_Update') AND type in (N'P', N'PC'))
@@ -104,8 +104,8 @@ CREATE PROCEDURE dbo.usp_PersonaPrepago_Update
 	@FechaInicio smalldatetime,
 	@FechaFin smalldatetime,
 	@IDListaPrecio int,
-	@ImporteOriginal smallmoney,
-	@Importe smallmoney,
+	@ImporteOriginal money,
+	@Importe money,
 	@IDMedioPago tinyint,
 	@Cuotas tinyint,
 	@Operacion varchar(20),
