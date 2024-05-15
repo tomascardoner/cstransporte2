@@ -1,6 +1,7 @@
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2020-09-01 13:08
+-- Updates: 2024-05-15 17:28 - Se agregó el campo importe
 -- Description:	Obtiene las reservas web
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspObtenerReservasWebPagadasConMP') AND type in (N'P', N'PC'))
@@ -16,7 +17,7 @@ CREATE PROCEDURE uspObtenerReservasWebPagadasConMP
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT DISTINCT vd.IDViajeDetalle, vd.FechaHora, vd.IDRuta, vd.Orden, dbo.udf_GetEntidadApellidoYNombre(p.Apellido, p.Nombre) AS ApellidoNombre, vd.FacturaNumero, pa.codigoPago AS CodigoPago
+		SELECT DISTINCT vd.IDViajeDetalle, vd.FechaHora, vd.IDRuta, vd.Orden, dbo.udf_GetEntidadApellidoYNombre(p.Apellido, p.Nombre) AS ApellidoNombre, vd.FacturaNumero, pa.codigoPago AS CodigoPago, pa.monto AS ImportePago
 			FROM ViajeDetalle AS vd
                 INNER JOIN Persona AS p ON vd.IDPersona = p.IDPersona
 				INNER JOIN CSTransporte_Web_LobosBus.dbo.Reserva AS r ON vd.IDViajeDetalle = r.idViajeDetalle
