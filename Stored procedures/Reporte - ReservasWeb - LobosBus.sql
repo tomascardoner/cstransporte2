@@ -1,3 +1,6 @@
+USE CSTransporte_LobosBus
+GO
+
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2020-09-01 20:22

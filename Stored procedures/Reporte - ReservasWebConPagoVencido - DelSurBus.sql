@@ -1,3 +1,6 @@
+USE CSTransporte_DelSurBus
+GO
+
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2020-09-01 21:58
@@ -19,10 +22,10 @@ CREATE PROCEDURE uspObtenerReservasWebConPagoVencido
 		SELECT vd.IDViajeDetalle, vd.FechaHora, vd.IDRuta, vd.Orden, dbo.udf_GetEntidadApellidoYNombre(p.Apellido, p.Nombre) AS ApellidoNombre, anu.Email
 			FROM ViajeDetalle AS vd
 				INNER JOIN Persona AS p ON vd.IDPersona = p.IDPersona
-				INNER JOIN CSTransporte_Web_LobosBus.dbo.Reserva AS r ON vd.IDViajeDetalle = r.idViajeDetalle
-				INNER JOIN CSTransporte_Web_LobosBus.dbo.AspNetUsers AS anu ON r.idAspNetUserCliente = anu.id
+				INNER JOIN CSTransporte_Web_DelSurBus.dbo.Reserva AS r ON vd.IDViajeDetalle = r.idViajeDetalle
+				INNER JOIN CSTransporte_Web_DelSurBus.dbo.AspNetUsers AS anu ON r.idAspNetUserCliente = anu.id
 			WHERE vd.FechaHora BETWEEN @FechaHoraDesde AND @FechaHoraHasta
-				AND vd.IDUsuarioCreacion = 151 AND vd.ImporteContado = 0 AND vd.Estado = '1CO' AND vd.OcupanteTipo = 'PA'
+				AND vd.IDUsuarioCreacion = 92 AND vd.ImporteContado = 0 AND vd.Estado = '1CO' AND vd.OcupanteTipo = 'PA'
 				AND vd.FechaHoraCreacion <= DATEADD(second, -600, GETDATE())
 				AND anu.PuedePagarEnOficina = 0
 	END
@@ -31,9 +34,9 @@ GO
 GRANT EXECUTE ON dbo.uspObtenerReservasWebConPagoVencido TO cstransporte
 GO
 
-USE CSTransporte_Web_LobosBus
+USE CSTransporte_Web_DelSurBus
 GO
-GRANT SELECT ON CSTransporte_Web_LobosBus.dbo.AspNetUsers TO cstransporte
+GRANT SELECT ON CSTransporte_Web_DelSurBus.dbo.AspNetUsers TO cstransporte
 GO
-GRANT SELECT ON CSTransporte_Web_LobosBus.dbo.Reserva TO cstransporte
+GRANT SELECT ON CSTransporte_Web_DelSurBus.dbo.Reserva TO cstransporte
 GO
