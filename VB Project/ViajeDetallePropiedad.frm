@@ -697,7 +697,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   104660993
+      Format          =   106299393
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboHora 
@@ -840,7 +840,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "HH:mm"
-      Format          =   104660995
+      Format          =   106299395
       UpDown          =   -1  'True
       CurrentDate     =   36494
    End
@@ -863,7 +863,7 @@ Begin VB.Form frmViajeDetallePropiedad
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   104660993
+      Format          =   106299393
       CurrentDate     =   36950
    End
    Begin MSDataListLib.DataCombo datcboRutaConexion 
@@ -1843,6 +1843,13 @@ Private Sub Form_Load()
     cboRealizado.AddItem "--"
     cboRealizado.AddItem "Sí"
     cboRealizado.AddItem "No"
+    
+    Dim SubeBaja As Boolean
+    SubeBaja = pCPermiso.GotPermission(PERMISO_VIAJE_DETALLE_SUBEBAJA_MOSTRAR, False)
+    lblSube.Visible = SubeBaja
+    txtSube.Visible = SubeBaja
+    lblBaja.Visible = SubeBaja
+    txtBaja.Visible = SubeBaja
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)

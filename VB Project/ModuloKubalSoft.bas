@@ -5,7 +5,7 @@ Private Function GetReservasOptimizacion(ByVal FechaHora As Date, ByVal IDRuta A
     Dim cmdViajeDetalleAsientoList As ADODB.command
     Dim recViajeDetalleAsientoList As ADODB.Recordset
     Dim reservasOptimizacion As New Collection
-    Dim reservaOptimizacion As LobosBus_Server_Optimizador.reservaOptimizacion
+    'Dim reservaOptimizacion As LobosBus_Server_Optimizador.reservaOptimizacion
     Dim paradaActualIndice As Long
     Dim paradaActualIDLugarGrupo As Long
 
@@ -28,14 +28,14 @@ Private Function GetReservasOptimizacion(ByVal FechaHora As Date, ByVal IDRuta A
     With recViajeDetalleAsientoList
         Do While Not .EOF
             If paradaActualIndice < .Fields("IndiceDestino").value Then
-                reservaOptimizacion = New LobosBus_Server_Optimizador.reservaOptimizacion
-                reservaOptimizacion.idReserva = .Fields("IDViajeDetalle").value
-                reservaOptimizacion.Asiento = .Fields("AsientoIdentificacion").value
-                reservaOptimizacion.ciudadDesde = IIf(paradaActualIndice > .Fields("IndiceOrigen").value, paradaActualIDLugarGrupo, .Fields("OrigenIDLugarGrupo").value)
-                reservaOptimizacion.desde = IIf(paradaActualIndice > .Fields("IndiceOrigen").value, paradaActualIndice, .Fields("IndiceOrigen").value)
-                reservaOptimizacion.hasta = .Fields("IndiceDestino").value
-                
-                reservasOptimizacion.Add (reservaOptimizacion)
+'                reservaOptimizacion = New LobosBus_Server_Optimizador.reservaOptimizacion
+'                reservaOptimizacion.idReserva = .Fields("IDViajeDetalle").value
+'                reservaOptimizacion.Asiento = .Fields("AsientoIdentificacion").value
+'                reservaOptimizacion.ciudadDesde = IIf(paradaActualIndice > .Fields("IndiceOrigen").value, paradaActualIDLugarGrupo, .Fields("OrigenIDLugarGrupo").value)
+'                reservaOptimizacion.desde = IIf(paradaActualIndice > .Fields("IndiceOrigen").value, paradaActualIndice, .Fields("IndiceOrigen").value)
+'                reservaOptimizacion.hasta = .Fields("IndiceDestino").value
+'
+'                reservasOptimizacion.Add (reservaOptimizacion)
             End If
             
             .MoveNext
